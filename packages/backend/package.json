@@ -1,0 +1,20 @@
+{
+  "name": "@project/backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^9.0.2",
+    "fastify": "^3.15.1"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.6",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4"
+  },
+  "scripts": {
+    "watch": "cross-env NODE_ENV=development tsnd src/index.ts --exit-child",
+    "build": "tsc"
+  }
+}
