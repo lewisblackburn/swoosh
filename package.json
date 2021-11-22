@@ -7,20 +7,21 @@
     "author": "Lewis Blackburn <lewisblackburn10@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^4.24.0",
-        "@typescript-eslint/parser": "^4.24.0",
-        "eslint": "^7.26.0",
         "eslint-config-xo": "^0.36.0",
         "eslint-config-xo-react": "^0.25.0",
         "eslint-config-xo-typescript": "^0.41.1",
-        "eslint-plugin-react": "^7.23.2",
         "eslint-plugin-react-hooks": "^4.2.0",
-        "lerna": "^4.0.0",
-        "prettier": "^2.3.0",
-        "prisma": "^2.23.0",
+        "typescript": "^4.2.4",
+        "@typescript-eslint/eslint-plugin": "^4.13.0",
+        "@typescript-eslint/parser": "^4.13.0",
+        "eslint": "^7.17.0",
+        "eslint-plugin-react": "7.26.1",
+        "lerna": "^3.22.1",
+        "prettier": "^2.2.1",
+        "prisma": "3.2.1",
         "rimraf": "^3.0.2",
-        "tslib": "^2.2.0",
-        "typescript": "^4.2.4"
+        "tslib": "^2.1.0",
+        "typegraphql-prisma": "0.16.2"
     },
     "workspaces": {
         "packages": [
@@ -28,13 +29,19 @@
         ]
     },
     "dependencies": {
-        "@prisma/client": "^2.23.0"
+        "@prisma/client": "~3.2.0",
+        "@types/graphql-fields": "1.3.4",
+        "graphql-fields": "2.0.3",
+        "graphql-scalars": "1.11.1",
+        "node": "16.10.0"
     },
     "scripts": {
+        "clean": "lerna clean",
+        "new-version": "lerna version --conventional-commits --yes",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev --preview-feature",
         "watch": "lerna run watch --parallel",
-        "lint": "eslint ./**/*.{ts,tsx} --fix",
+        "lint": "eslint .",
         "build": "yarn workspace @project/shared build && lerna run --ignore @project/shared build --parallel"
     }
 }

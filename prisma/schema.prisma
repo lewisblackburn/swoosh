@@ -1,36 +1,47 @@
 datasource db {
-  url      = env("DATABASE_URL")
-  provider = "postgresql"
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
 }
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
+}
+
+generator typegraphql {
+    provider = "typegraphql-prisma"
+    output   = "../packages/backend/src/generated/type-graphql"
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
-  role      Role     @default(USER)
-  posts     Post[]
-
-  @@map("users")
+    id          Int      @id @default(autoincrement())
+    confirmed   Boolean  @default(false)
+    email       String   @unique
+    username    String   @unique
+    displayname String
+    /// @TypeGraphQL.omit(output: true)
+    password    String
+    role        Role     @default(USER)
+    avatar      String   @default(value: "https://via.placeholder.com/400x400")
+    bio         String   @default(value: "")
+    location    String   @default(value: "")
+    website     String   @default(value: "")
+    dob         String   @default(value: "")
+    posts       Post[]   @relation(name: "PostsByUser")
+    following   User[]   @relation(name: "FollowRelation")
+    followers   User[]   @relation(name: "FollowRelation")
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  title     String
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
-
-  @@map("posts")
+    id        Int      @id @default(autoincrement())
+    user      User     @relation(name: "PostsByUser", fields: [userId], references: [id])
+    userId    Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 enum Role {
-  USER
-  ADMIN
+    USER
+    ADMIN
 }
