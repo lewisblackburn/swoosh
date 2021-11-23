@@ -26,19 +26,63 @@ model User {
     location    String   @default(value: "")
     website     String   @default(value: "")
     dob         String   @default(value: "")
-    posts       Post[]   @relation(name: "PostsByUser")
+    movies      Movie[]  @relation(name: "MoviesByUser")
+    books       Book[]   @relation("BooksByUser")
+    songs       Song[]   @relation("SongsByUser")
     following   User[]   @relation(name: "FollowRelation")
     followers   User[]   @relation(name: "FollowRelation")
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    user      User     @relation(name: "PostsByUser", fields: [userId], references: [id])
-    userId    Int
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Person {
+    id     Int     @id @default(autoincrement())
+    type   Career
+    books  Book[]  @relation("BooksByPerson")
+    movies Movie[] @relation("MoviesByPerson")
+    songs  Song[]  @relation("SongsByPerson")
+}
+
+model Movie {
+    id          Int      @id @default(autoincrement())
+    user        User     @relation(name: "MoviesByUser", fields: [userId], references: [id])
+    userId      Int
+    title       String
+    description String
+    personId    Int
+    actor       Person   @relation(name: "MoviesByPerson", fields: [personId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Book {
+    id          Int      @id @default(autoincrement())
+    user        User     @relation(name: "BooksByUser", fields: [userId], references: [id])
+    userId      Int
+    title       String
+    description String
+    personId    Int
+    author      Person   @relation(name: "BooksByPerson", fields: [personId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Song {
+    id          Int      @id @default(autoincrement())
+    user        User     @relation(name: "SongsByUser", fields: [userId], references: [id])
+    userId      Int
+    title       String
+    description String
+    personId    Int
+    artist      Person   @relation(name: "SongsByPerson", fields: [personId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+enum Career {
+    AUTHOR
+    ARTIST
+    ACTOR
 }
 
 enum Role {

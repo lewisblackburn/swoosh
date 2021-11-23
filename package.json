@@ -40,6 +40,7 @@
         "new-version": "lerna version --conventional-commits --yes",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev --preview-feature",
+        "prisma:studio": "npx prisma studio",
         "watch": "lerna run watch --parallel",
         "lint": "eslint .",
         "build": "yarn workspace @project/shared build && lerna run --ignore @project/shared build --parallel"

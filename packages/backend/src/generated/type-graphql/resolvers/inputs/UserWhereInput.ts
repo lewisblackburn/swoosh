@@ -2,11 +2,13 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookListRelationFilter } from "../inputs/BookListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PostListRelationFilter } from "../inputs/PostListRelationFilter";
+import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
+import { SongListRelationFilter } from "../inputs/SongListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserListRelationFilter } from "../inputs/UserListRelationFilter";
 
@@ -89,10 +91,20 @@ export class UserWhereInput {
   })
   dob?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PostListRelationFilter, {
+  @TypeGraphQL.Field(_type => MovieListRelationFilter, {
     nullable: true
   })
-  posts?: PostListRelationFilter | undefined;
+  movies?: MovieListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookListRelationFilter, {
+    nullable: true
+  })
+  books?: BookListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongListRelationFilter, {
+    nullable: true
+  })
+  songs?: SongListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => UserListRelationFilter, {
     nullable: true

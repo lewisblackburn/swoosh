@@ -1,3 +1,5 @@
+export { UserBooksArgs } from "./UserBooksArgs";
 export { UserFollowersArgs } from "./UserFollowersArgs";
 export { UserFollowingArgs } from "./UserFollowingArgs";
-export { UserPostsArgs } from "./UserPostsArgs";
+export { UserMoviesArgs } from "./UserMoviesArgs";
+export { UserSongsArgs } from "./UserSongsArgs";

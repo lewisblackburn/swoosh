@@ -2,7 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Post } from "../models/Post";
+import { Book } from "../models/Book";
+import { Movie } from "../models/Movie";
+import { Song } from "../models/Song";
 import { Role } from "../enums/Role";
 import { UserCount } from "../resolvers/outputs/UserCount";
 
@@ -67,7 +69,11 @@ export class User {
   })
   dob!: string;
 
-  posts?: Post[];
+  movies?: Movie[];
+
+  books?: Book[];
+
+  songs?: Song[];
 
   following?: User[];
 

@@ -1,5 +1,9 @@
-export { PostScalarFieldEnum } from "./PostScalarFieldEnum";
+export { BookScalarFieldEnum } from "./BookScalarFieldEnum";
+export { Career } from "./Career";
+export { MovieScalarFieldEnum } from "./MovieScalarFieldEnum";
+export { PersonScalarFieldEnum } from "./PersonScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { Role } from "./Role";
+export { SongScalarFieldEnum } from "./SongScalarFieldEnum";
 export { SortOrder } from "./SortOrder";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";

@@ -2,10 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookUpdateManyWithoutUserInput } from "../inputs/BookUpdateManyWithoutUserInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
-import { PostUpdateManyWithoutUserInput } from "../inputs/PostUpdateManyWithoutUserInput";
+import { MovieUpdateManyWithoutUserInput } from "../inputs/MovieUpdateManyWithoutUserInput";
+import { SongUpdateManyWithoutUserInput } from "../inputs/SongUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { UserUpdateManyWithoutFollowersInput } from "../inputs/UserUpdateManyWithoutFollowersInput";
 
@@ -78,10 +80,20 @@ export class UserUpdateWithoutFollowersInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => PostUpdateManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutUserInput, {
     nullable: true
   })
-  posts?: PostUpdateManyWithoutUserInput | undefined;
+  movies?: MovieUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  books?: BookUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  songs?: SongUpdateManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => UserUpdateManyWithoutFollowersInput, {
     nullable: true
