@@ -43,6 +43,8 @@ export class FileUploadResolver {
         const { createReadStream, filename } = file;
         const filepath = `${__dirname}/../../../images`;
 
+        console.log("here")
+
         const folder = {
             [UploadType.AVATAR]: `${filepath}/${ctx.req.session.userId}`,
             [UploadType.THUMBNAIL]: `${filepath}/thumbnail`,
@@ -61,13 +63,15 @@ export class FileUploadResolver {
             autoClose: true,
         });
 
-        await ctx.prisma.user.update({
-            where: { id: ctx.req.session.userId },
-            data: {
-                // this will need to change dynamically some how depending on the server url
-                avatar: `http://localhost:4000/images/${ctx.req.session.userId}/${filename}`,
-            },
-        });
+        if (type === UploadType.AVATAR) {
+            await ctx.prisma.user.update({
+                where: { id: ctx.req.session.userId },
+                data: {
+                    // this will need to change dynamically some how depending on the server url
+                    avatar: `http://localhost:4000/images/${ctx.req.session.userId}/${filename}`,
+                },
+            });
+        }
 
         return new Promise((res, rej) => {
             createReadStream()
