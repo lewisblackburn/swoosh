@@ -16,5 +16,5 @@ export class PersonMaxOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  type?: "asc" | "desc" | undefined;
+  name?: "asc" | "desc" | undefined;
 }

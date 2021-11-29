@@ -18,10 +18,15 @@ export class PersonGroupBy {
   })
   id!: number;
 
-  @TypeGraphQL.Field(_type => Career, {
+  @TypeGraphQL.Field(_type => [Career], {
+    nullable: true
+  })
+  career!: Array<"AUTHOR" | "ARTIST" | "ACTOR"> | null;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  type!: "AUTHOR" | "ARTIST" | "ACTOR";
+  name!: string;
 
   @TypeGraphQL.Field(_type => PersonCountAggregate, {
     nullable: true

@@ -2,8 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PersonOrderByWithRelationInput } from "../inputs/PersonOrderByWithRelationInput";
-import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
+import { PersonOrderByRelationAggregateInput } from "../inputs/PersonOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType({
@@ -14,16 +13,6 @@ export class MovieOrderByWithRelationInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
-    nullable: true
-  })
-  user?: UserOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  userId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -38,12 +27,12 @@ export class MovieOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  personId?: "asc" | "desc" | undefined;
+  locked?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PersonOrderByWithRelationInput, {
+  @TypeGraphQL.Field(_type => PersonOrderByRelationAggregateInput, {
     nullable: true
   })
-  actor?: PersonOrderByWithRelationInput | undefined;
+  actors?: PersonOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

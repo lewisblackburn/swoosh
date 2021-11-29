@@ -2,11 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PersonRelationFilter } from "../inputs/PersonRelationFilter";
+import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -32,16 +32,6 @@ export class MovieWhereInput {
   })
   id?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserRelationFilter, {
-    nullable: true
-  })
-  user?: UserRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => IntFilter, {
-    nullable: true
-  })
-  userId?: IntFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -52,15 +42,15 @@ export class MovieWhereInput {
   })
   description?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntFilter, {
+  @TypeGraphQL.Field(_type => BoolFilter, {
     nullable: true
   })
-  personId?: IntFilter | undefined;
+  locked?: BoolFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PersonRelationFilter, {
+  @TypeGraphQL.Field(_type => PersonListRelationFilter, {
     nullable: true
   })
-  actor?: PersonRelationFilter | undefined;
+  actors?: PersonListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

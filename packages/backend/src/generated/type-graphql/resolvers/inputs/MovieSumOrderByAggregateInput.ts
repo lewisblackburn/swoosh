@@ -12,14 +12,4 @@ export class MovieSumOrderByAggregateInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  userId?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  personId?: "asc" | "desc" | undefined;
 }

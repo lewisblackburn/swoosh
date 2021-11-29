@@ -11,14 +11,4 @@ export class SongAvgAggregate {
     nullable: true
   })
   id!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
-  userId!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
-  personId!: number | null;
 }

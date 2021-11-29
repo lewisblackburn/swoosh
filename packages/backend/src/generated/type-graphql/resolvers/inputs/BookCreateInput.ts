@@ -2,8 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PersonCreateNestedOneWithoutBooksInput } from "../inputs/PersonCreateNestedOneWithoutBooksInput";
-import { UserCreateNestedOneWithoutBooksInput } from "../inputs/UserCreateNestedOneWithoutBooksInput";
+import { PersonCreateNestedManyWithoutBooksInput } from "../inputs/PersonCreateNestedManyWithoutBooksInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -19,6 +18,11 @@ export class BookCreateInput {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  locked?: boolean | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -29,13 +33,8 @@ export class BookCreateInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBooksInput, {
-    nullable: false
+  @TypeGraphQL.Field(_type => PersonCreateNestedManyWithoutBooksInput, {
+    nullable: true
   })
-  user!: UserCreateNestedOneWithoutBooksInput;
-
-  @TypeGraphQL.Field(_type => PersonCreateNestedOneWithoutBooksInput, {
-    nullable: false
-  })
-  author!: PersonCreateNestedOneWithoutBooksInput;
+  authors?: PersonCreateNestedManyWithoutBooksInput | undefined;
 }

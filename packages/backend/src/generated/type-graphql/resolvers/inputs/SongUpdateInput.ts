@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { PersonUpdateOneRequiredWithoutSongsInput } from "../inputs/PersonUpdateOneRequiredWithoutSongsInput";
+import { PersonUpdateManyWithoutSongsInput } from "../inputs/PersonUpdateManyWithoutSongsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutSongsInput } from "../inputs/UserUpdateOneRequiredWithoutSongsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -21,6 +21,11 @@ export class SongUpdateInput {
   })
   description?: StringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  locked?: BoolFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -31,13 +36,8 @@ export class SongUpdateInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutSongsInput, {
+  @TypeGraphQL.Field(_type => PersonUpdateManyWithoutSongsInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutSongsInput | undefined;
-
-  @TypeGraphQL.Field(_type => PersonUpdateOneRequiredWithoutSongsInput, {
-    nullable: true
-  })
-  artist?: PersonUpdateOneRequiredWithoutSongsInput | undefined;
+  artists?: PersonUpdateManyWithoutSongsInput | undefined;
 }

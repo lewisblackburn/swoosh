@@ -2,26 +2,31 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieCreateNestedManyWithoutActorInput } from "../inputs/MovieCreateNestedManyWithoutActorInput";
-import { SongCreateNestedManyWithoutArtistInput } from "../inputs/SongCreateNestedManyWithoutArtistInput";
-import { Career } from "../../enums/Career";
+import { MovieCreateNestedManyWithoutActorsInput } from "../inputs/MovieCreateNestedManyWithoutActorsInput";
+import { PersonCreatecareerInput } from "../inputs/PersonCreatecareerInput";
+import { SongCreateNestedManyWithoutArtistsInput } from "../inputs/SongCreateNestedManyWithoutArtistsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
 })
 export class PersonCreateWithoutBooksInput {
-  @TypeGraphQL.Field(_type => Career, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  type!: "AUTHOR" | "ARTIST" | "ACTOR";
+  name!: string;
 
-  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutActorInput, {
+  @TypeGraphQL.Field(_type => PersonCreatecareerInput, {
     nullable: true
   })
-  movies?: MovieCreateNestedManyWithoutActorInput | undefined;
+  career?: PersonCreatecareerInput | undefined;
 
-  @TypeGraphQL.Field(_type => SongCreateNestedManyWithoutArtistInput, {
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutActorsInput, {
     nullable: true
   })
-  songs?: SongCreateNestedManyWithoutArtistInput | undefined;
+  movies?: MovieCreateNestedManyWithoutActorsInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongCreateNestedManyWithoutArtistsInput, {
+    nullable: true
+  })
+  songs?: SongCreateNestedManyWithoutArtistsInput | undefined;
 }

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Person } from "../models/Person";
-import { User } from "../models/User";
+import { BookCount } from "../resolvers/outputs/BookCount";
 
 @TypeGraphQL.ObjectType({
   isAbstract: true
@@ -13,13 +13,6 @@ export class Book {
     nullable: false
   })
   id!: number;
-
-  user?: User;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  userId!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -31,12 +24,12 @@ export class Book {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
   })
-  personId!: number;
+  locked!: boolean;
 
-  author?: Person;
+  authors?: Person[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
@@ -47,4 +40,9 @@ export class Book {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => BookCount, {
+    nullable: true
+  })
+  _count?: BookCount | null;
 }

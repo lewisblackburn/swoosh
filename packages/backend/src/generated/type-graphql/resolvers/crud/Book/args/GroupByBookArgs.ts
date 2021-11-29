@@ -20,7 +20,7 @@ export class GroupByBookArgs {
   @TypeGraphQL.Field(_type => [BookScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId" | "title" | "description" | "personId" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "title" | "description" | "locked" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => BookScalarWhereWithAggregatesInput, {
     nullable: true

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Person } from "../models/Person";
-import { User } from "../models/User";
+import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType({
   isAbstract: true
@@ -13,13 +13,6 @@ export class Movie {
     nullable: false
   })
   id!: number;
-
-  user?: User;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  userId!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -31,12 +24,12 @@ export class Movie {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
   })
-  personId!: number;
+  locked!: boolean;
 
-  actor?: Person;
+  actors?: Person[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
@@ -47,4 +40,9 @@ export class Movie {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => MovieCount, {
+    nullable: true
+  })
+  _count?: MovieCount | null;
 }

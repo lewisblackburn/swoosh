@@ -35,5 +35,5 @@ export class FindManyPersonArgs {
   @TypeGraphQL.Field(_type => [PersonScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "type"> | undefined;
+  distinct?: Array<"id" | "career" | "name"> | undefined;
 }

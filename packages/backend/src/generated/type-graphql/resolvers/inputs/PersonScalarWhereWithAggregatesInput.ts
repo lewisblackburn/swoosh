@@ -2,8 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { EnumCareerWithAggregatesFilter } from "../inputs/EnumCareerWithAggregatesFilter";
+import { EnumCareerNullableListFilter } from "../inputs/EnumCareerNullableListFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
+import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -29,8 +30,13 @@ export class PersonScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => EnumCareerWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => EnumCareerNullableListFilter, {
     nullable: true
   })
-  type?: EnumCareerWithAggregatesFilter | undefined;
+  career?: EnumCareerNullableListFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  name?: StringWithAggregatesFilter | undefined;
 }

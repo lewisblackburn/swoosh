@@ -17,14 +17,19 @@ export class Person {
   })
   id!: number;
 
-  @TypeGraphQL.Field(_type => Career, {
+  @TypeGraphQL.Field(_type => [Career], {
     nullable: false
   })
-  type!: "AUTHOR" | "ARTIST" | "ACTOR";
+  career!: Array<"AUTHOR" | "ARTIST" | "ACTOR">;
 
-  books?: Book[];
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
 
   movies?: Movie[];
+
+  books?: Book[];
 
   songs?: Song[];
 

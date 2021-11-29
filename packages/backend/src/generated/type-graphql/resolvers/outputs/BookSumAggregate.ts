@@ -11,14 +11,4 @@ export class BookSumAggregate {
     nullable: true
   })
   id!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  userId!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  personId!: number | null;
 }

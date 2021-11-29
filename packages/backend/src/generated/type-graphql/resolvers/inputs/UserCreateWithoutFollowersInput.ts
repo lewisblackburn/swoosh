@@ -2,9 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BookCreateNestedManyWithoutUserInput } from "../inputs/BookCreateNestedManyWithoutUserInput";
-import { MovieCreateNestedManyWithoutUserInput } from "../inputs/MovieCreateNestedManyWithoutUserInput";
-import { SongCreateNestedManyWithoutUserInput } from "../inputs/SongCreateNestedManyWithoutUserInput";
 import { UserCreateNestedManyWithoutFollowersInput } from "../inputs/UserCreateNestedManyWithoutFollowersInput";
 import { Role } from "../../enums/Role";
 
@@ -76,21 +73,6 @@ export class UserCreateWithoutFollowersInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutUserInput, {
-    nullable: true
-  })
-  movies?: MovieCreateNestedManyWithoutUserInput | undefined;
-
-  @TypeGraphQL.Field(_type => BookCreateNestedManyWithoutUserInput, {
-    nullable: true
-  })
-  books?: BookCreateNestedManyWithoutUserInput | undefined;
-
-  @TypeGraphQL.Field(_type => SongCreateNestedManyWithoutUserInput, {
-    nullable: true
-  })
-  songs?: SongCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => UserCreateNestedManyWithoutFollowersInput, {
     nullable: true

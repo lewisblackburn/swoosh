@@ -12,11 +12,6 @@ export class BookCreateManyInput {
   })
   id?: number | undefined;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  userId!: number;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -27,10 +22,10 @@ export class BookCreateManyInput {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
-  personId!: number;
+  locked?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

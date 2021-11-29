@@ -21,11 +21,6 @@ export class MovieOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  userId?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
   title?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -36,7 +31,7 @@ export class MovieOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  personId?: "asc" | "desc" | undefined;
+  locked?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

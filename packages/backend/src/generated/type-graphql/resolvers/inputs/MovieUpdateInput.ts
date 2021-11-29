@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { PersonUpdateOneRequiredWithoutMoviesInput } from "../inputs/PersonUpdateOneRequiredWithoutMoviesInput";
+import { PersonUpdateManyWithoutMoviesInput } from "../inputs/PersonUpdateManyWithoutMoviesInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutMoviesInput } from "../inputs/UserUpdateOneRequiredWithoutMoviesInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -21,6 +21,11 @@ export class MovieUpdateInput {
   })
   description?: StringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  locked?: BoolFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -31,13 +36,8 @@ export class MovieUpdateInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutMoviesInput, {
+  @TypeGraphQL.Field(_type => PersonUpdateManyWithoutMoviesInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutMoviesInput | undefined;
-
-  @TypeGraphQL.Field(_type => PersonUpdateOneRequiredWithoutMoviesInput, {
-    nullable: true
-  })
-  actor?: PersonUpdateOneRequiredWithoutMoviesInput | undefined;
+  actors?: PersonUpdateManyWithoutMoviesInput | undefined;
 }

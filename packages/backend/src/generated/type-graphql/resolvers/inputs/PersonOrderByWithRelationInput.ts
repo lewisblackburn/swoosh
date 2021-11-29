@@ -19,17 +19,22 @@ export class PersonOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  type?: "asc" | "desc" | undefined;
+  career?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  books?: BookOrderByRelationAggregateInput | undefined;
+  name?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
     nullable: true
   })
   movies?: MovieOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  books?: BookOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SongOrderByRelationAggregateInput, {
     nullable: true

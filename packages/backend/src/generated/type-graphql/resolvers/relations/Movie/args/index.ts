@@ -1,0 +1,1 @@
+export { MovieActorsArgs } from "./MovieActorsArgs";

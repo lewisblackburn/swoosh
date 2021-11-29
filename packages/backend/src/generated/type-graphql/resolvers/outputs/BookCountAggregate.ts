@@ -15,11 +15,6 @@ export class BookCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  userId!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
   title!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -30,7 +25,7 @@ export class BookCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  personId!: number;
+  locked!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

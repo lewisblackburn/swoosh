@@ -17,11 +17,6 @@ export class SongGroupBy {
   })
   id!: number;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  userId!: number;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -32,10 +27,10 @@ export class SongGroupBy {
   })
   description!: string;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
   })
-  personId!: number;
+  locked!: boolean;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

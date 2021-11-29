@@ -2,26 +2,32 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { EnumCareerFieldUpdateOperationsInput } from "../inputs/EnumCareerFieldUpdateOperationsInput";
-import { MovieUpdateManyWithoutActorInput } from "../inputs/MovieUpdateManyWithoutActorInput";
-import { SongUpdateManyWithoutArtistInput } from "../inputs/SongUpdateManyWithoutArtistInput";
+import { MovieUpdateManyWithoutActorsInput } from "../inputs/MovieUpdateManyWithoutActorsInput";
+import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
+import { SongUpdateManyWithoutArtistsInput } from "../inputs/SongUpdateManyWithoutArtistsInput";
+import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
 })
 export class PersonUpdateWithoutBooksInput {
-  @TypeGraphQL.Field(_type => EnumCareerFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  type?: EnumCareerFieldUpdateOperationsInput | undefined;
+  name?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutActorInput, {
+  @TypeGraphQL.Field(_type => PersonUpdatecareerInput, {
     nullable: true
   })
-  movies?: MovieUpdateManyWithoutActorInput | undefined;
+  career?: PersonUpdatecareerInput | undefined;
 
-  @TypeGraphQL.Field(_type => SongUpdateManyWithoutArtistInput, {
+  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutActorsInput, {
     nullable: true
   })
-  songs?: SongUpdateManyWithoutArtistInput | undefined;
+  movies?: MovieUpdateManyWithoutActorsInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongUpdateManyWithoutArtistsInput, {
+    nullable: true
+  })
+  songs?: SongUpdateManyWithoutArtistsInput | undefined;
 }

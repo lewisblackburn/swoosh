@@ -10,17 +10,6 @@ import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRel
 
 @TypeGraphQL.Resolver(_of => Person)
 export class PersonRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [Book], {
-    nullable: false
-  })
-  async books(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonBooksArgs): Promise<Book[]> {
-    return getPrismaFromContext(ctx).person.findUnique({
-      where: {
-        id: person.id,
-      },
-    }).books(args);
-  }
-
   @TypeGraphQL.FieldResolver(_type => [Movie], {
     nullable: false
   })
@@ -30,6 +19,17 @@ export class PersonRelationsResolver {
         id: person.id,
       },
     }).movies(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [Book], {
+    nullable: false
+  })
+  async books(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonBooksArgs): Promise<Book[]> {
+    return getPrismaFromContext(ctx).person.findUnique({
+      where: {
+        id: person.id,
+      },
+    }).books(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [Song], {

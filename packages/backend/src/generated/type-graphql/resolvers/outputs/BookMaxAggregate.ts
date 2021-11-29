@@ -12,11 +12,6 @@ export class BookMaxAggregate {
   })
   id!: number | null;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  userId!: number | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -27,10 +22,10 @@ export class BookMaxAggregate {
   })
   description!: string | null;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  personId!: number | null;
+  locked!: boolean | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
