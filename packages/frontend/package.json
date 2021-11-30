@@ -1,23 +1,37 @@
 {
-  "name": "@project/frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "watch": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "10.2.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "^15.3.1",
-    "@types/react": "^17.0.6",
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.15",
-    "tailwindcss": "^2.1.2",
-    "typescript": "^4.2.4"
-  }
+    "name": "@project/frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "watch": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "gen": "graphql-codegen --config codegen.yml"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.5.5",
+        "apollo-upload-client": "^16.0.0",
+        "date-fns": "^2.27.0",
+        "formik": "^2.2.9",
+        "next": "^12.0.4",
+        "next-apollo": "^5.0.7",
+        "prettier": "^2.2.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "zustand": "^3.6.5"
+    },
+    "devDependencies": {
+        "@graphql-codegen/cli": "^2.3.0",
+        "@graphql-codegen/typescript": "^2.4.1",
+        "@graphql-codegen/typescript-operations": "^2.2.1",
+        "@graphql-codegen/typescript-react-apollo": "^3.2.2",
+        "@types/apollo-upload-client": "^14.1.0",
+        "@types/node": "^16.11.11",
+        "@types/react": "^17.0.37",
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.4.4",
+        "postcss-import": "^14.0.2",
+        "tailwindcss": "^2.2.19",
+        "typescript": "^4.5.2"
+    }
 }
