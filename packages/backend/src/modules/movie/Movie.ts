@@ -1,10 +1,12 @@
 import { CreateMovieArgs, DeleteMovieArgs, Movie, UpdateMovieArgs } from "../../generated/type-graphql";
 import { Context } from "../../interfaces/context";
-import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
+import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
 
 @Resolver(Movie) export class MovieResolver {
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async createMovie(
         @Ctx() ctx: Context,
@@ -19,6 +21,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async editMovie(
         @Ctx() ctx: Context,
@@ -36,6 +39,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async lockMovie(
         @Ctx() ctx: Context,
@@ -53,6 +57,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async deleteMovie(
         @Ctx() ctx: Context,
@@ -64,6 +69,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async addActor(
         @Ctx() ctx: Context,
@@ -85,6 +91,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Movie, { nullable: true })
     async removeActor(
         @Ctx() ctx: Context,
@@ -104,7 +111,6 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
             },
         })
     }
-
 
     @Query(() => Movie, { nullable: true })
     async movie(

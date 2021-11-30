@@ -33,7 +33,7 @@ registerEnumType(UploadType, {
 @Resolver()
 export class FileUploadResolver {
     @Authorized(["USER", "ADMIN"])
-    @UseMiddleware(ErrorInterceptor)
+    // @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Boolean)
     async upload(
         @Ctx() ctx: Context,
@@ -42,8 +42,6 @@ export class FileUploadResolver {
     ): Promise<boolean> {
         const { createReadStream, filename } = file;
         const filepath = `${__dirname}/../../../images`;
-
-        console.log("here")
 
         const folder = {
             [UploadType.AVATAR]: `${filepath}/${ctx.req.session.userId}`,

@@ -1,9 +1,11 @@
 import { Context } from "../../interfaces/context";
-import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { Person, CreatePersonArgs, DeletePersonArgs, FindManyPersonArgs, UpdatePersonArgs } from "../../generated/type-graphql";
+import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
 @Resolver(Person) export class PersonResolver {
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Person, {
         nullable: false
     })
@@ -20,6 +22,7 @@ import { Person, CreatePersonArgs, DeletePersonArgs, FindManyPersonArgs, UpdateP
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Person, { nullable: true })
     async editPerson(
         @Ctx() ctx: Context,
@@ -37,6 +40,7 @@ import { Person, CreatePersonArgs, DeletePersonArgs, FindManyPersonArgs, UpdateP
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Person, { nullable: true })
     async deletePerson(
         @Ctx() ctx: Context,

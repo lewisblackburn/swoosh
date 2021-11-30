@@ -1,10 +1,12 @@
 import { CreateSongArgs, DeleteSongArgs, Song, UpdateSongArgs } from "../../generated/type-graphql";
 import { Context } from "../../interfaces/context";
-import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
+import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
 
 @Resolver(Song) export class SongResolver {
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async createSong(
         @Ctx() ctx: Context,
@@ -19,6 +21,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async editSong(
         @Ctx() ctx: Context,
@@ -36,6 +39,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async lockSong(
         @Ctx() ctx: Context,
@@ -53,6 +57,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async deleteSong(
         @Ctx() ctx: Context,
@@ -64,6 +69,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async addArtist(
         @Ctx() ctx: Context,
@@ -85,6 +91,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Song, { nullable: true })
     async removeArtist(
         @Ctx() ctx: Context,

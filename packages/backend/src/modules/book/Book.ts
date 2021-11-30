@@ -1,11 +1,13 @@
 
 import { Book, CreateBookArgs, DeleteBookArgs, UpdateBookArgs } from "../../generated/type-graphql";
 import { Context } from "../../interfaces/context";
-import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
+import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
 
 @Resolver(Book) export class BookResolver {
-    @Authorized(["ADMIN", "USER"])
+    @Authorized(["USER", "ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async createBook(
         @Ctx() ctx: Context,
@@ -19,7 +21,8 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
         })
     }
 
-    @Authorized(["ADMIN", "USER"])
+    @Authorized(["USER", "ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async editBook(
         @Ctx() ctx: Context,
@@ -37,6 +40,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async lockBook(
         @Ctx() ctx: Context,
@@ -54,6 +58,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async deleteBook(
         @Ctx() ctx: Context,
@@ -65,6 +70,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async addArtist(
         @Ctx() ctx: Context,
@@ -86,6 +92,7 @@ import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver } from "type
     }
 
     @Authorized(["ADMIN", "USER"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Book, { nullable: true })
     async removeArtist(
         @Ctx() ctx: Context,

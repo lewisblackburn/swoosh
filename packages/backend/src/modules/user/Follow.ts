@@ -7,11 +7,14 @@ import {
     Int,
     Mutation,
     Resolver,
+    UseMiddleware,
 } from "type-graphql";
+import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
 @Resolver(User)
 export class FollowResolver {
     @Authorized(["USER", "ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Boolean)
     async follow(
         @Arg("userId", () => Int) userId: number,
@@ -33,6 +36,7 @@ export class FollowResolver {
     }
 
     @Authorized(["USER", "ADMIN"])
+    @UseMiddleware(ErrorInterceptor)
     @Mutation(() => Boolean)
     async unfollow(
         @Arg("userId", () => Int) userId: number,
