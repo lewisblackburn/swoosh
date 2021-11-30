@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import {Navigation} from '../../components/Navigation';
 
-interface LayoutProps { }
-
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <div className="w-screen h-screen">{children}</div>
-    );
+export const Layout: React.FC = ({children}) => {
+	return (
+		<div className="w-screen h-screen">
+			<Navigation />
+			{children}
+		</div>
+	);
 };
