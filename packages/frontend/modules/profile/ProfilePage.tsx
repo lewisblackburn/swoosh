@@ -1,4 +1,5 @@
 import { useApolloClient } from "@apollo/client";
+import { isServer } from "lib/constants";
 import { useRouter } from "next/router";
 import React from "react";
 import { Avatar } from "../../components/Avatar";
@@ -55,7 +56,7 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ refetch }) => {
 };
 
 export const ProfilePage: React.FC<ProfilePageProps> = ({ }) => {
-    useVerifyLoggedIn();
+    // useVerifyLoggedIn();
 
     const router = useRouter();
     const { data, refetch } = useMeQuery();
@@ -77,6 +78,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ }) => {
                     >
                         logout
                     </button>
+                    {data?.me.username}
                 </div>
             </Layout>
         );

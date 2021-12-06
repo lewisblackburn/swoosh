@@ -25,6 +25,11 @@ export class MovieCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  thumbnail!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   locked!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

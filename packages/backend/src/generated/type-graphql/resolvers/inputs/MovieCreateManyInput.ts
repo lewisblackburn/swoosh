@@ -22,6 +22,11 @@ export class MovieCreateManyInput {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  thumbnail?: string | undefined;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })

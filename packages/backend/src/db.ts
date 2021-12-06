@@ -22,11 +22,9 @@ prisma.$use(async (params, next) => {
 prisma.$use(async (params, next) => {
     const limit = 20;
 
-
     const isNested = Boolean(params.args.select);
-    if (!isNested) return next(params);
-
     if (params.action === "findMany") params.args.take = limit;
+    else if (!isNested) return next(params);
 
     if (isNested) {
         const key = Object.keys(params.args.select)[0];

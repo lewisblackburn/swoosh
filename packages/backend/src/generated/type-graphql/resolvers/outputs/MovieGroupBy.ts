@@ -27,6 +27,11 @@ export class MovieGroupBy {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  thumbnail!: string;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
   })

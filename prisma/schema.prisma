@@ -26,9 +26,6 @@ model User {
     location    String   @default(value: "")
     website     String   @default(value: "")
     dob         String   @default(value: "")
-    movies      Movie[]  @relation(name: "MoviesByUser")
-    books       Book[]   @relation("BooksByUser")
-    songs       Song[]   @relation("SongsByUser")
     following   User[]   @relation(name: "FollowRelation")
     followers   User[]   @relation(name: "FollowRelation")
     createdAt   DateTime @default(now())
@@ -36,45 +33,41 @@ model User {
 }
 
 model Person {
-    id     Int     @id @default(autoincrement())
-    type   Career
-    books  Book[]  @relation("BooksByPerson")
-    movies Movie[] @relation("MoviesByPerson")
-    songs  Song[]  @relation("SongsByPerson")
+    id     Int      @id @default(autoincrement())
+    career Career[]
+    name   String
+    movies Movie[]
+    books  Book[]
+    songs  Song[]
 }
 
 model Movie {
     id          Int      @id @default(autoincrement())
-    user        User     @relation(name: "MoviesByUser", fields: [userId], references: [id])
-    userId      Int
     title       String
     description String
-    personId    Int
-    actor       Person   @relation(name: "MoviesByPerson", fields: [personId], references: [id])
+    thumbnail      String   @default(value: "https://via.placeholder.com/400x600")
+    locked      Boolean  @default(false)
+    actors      Person[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }
 
 model Book {
     id          Int      @id @default(autoincrement())
-    user        User     @relation(name: "BooksByUser", fields: [userId], references: [id])
-    userId      Int
     title       String
     description String
-    personId    Int
-    author      Person   @relation(name: "BooksByPerson", fields: [personId], references: [id])
+    locked      Boolean  @default(false)
+    authors     Person[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }
 
 model Song {
     id          Int      @id @default(autoincrement())
-    user        User     @relation(name: "SongsByUser", fields: [userId], references: [id])
-    userId      Int
     title       String
     description String
-    personId    Int
-    artist      Person   @relation(name: "SongsByPerson", fields: [personId], references: [id])
+    locked      Boolean  @default(false)
+    artists     Person[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }

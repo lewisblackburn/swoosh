@@ -29,6 +29,7 @@ export class LoginResolver {
         }
 
         ctx.req.session.userId = user.id;
+        ctx.req.session.confirmed = user.confirmed;
         ctx.req.session.role = user.role;
 
         return user;

@@ -1,8 +1,8 @@
 import React, {
     ButtonHTMLAttributes,
     DetailedHTMLProps,
-    ReactNode
 } from "react";
+import { IconType } from "react-icons/lib";
 import { Spinner } from "./Spinner";
 
 export type ButtonProps = DetailedHTMLProps<
@@ -10,7 +10,7 @@ export type ButtonProps = DetailedHTMLProps<
     HTMLButtonElement
 > & {
     loading?: boolean;
-    icon?: ReactNode;
+    icon?: IconType;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -24,15 +24,15 @@ export const Button: React.FC<ButtonProps> = ({
     return (
         <button
             disabled={disabled || loading}
-            className={`bg-gray-200 p-2 font-bold flex items-center justify-center ${className}`}
+            className={`inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base ${className}`}
             {...props}
         >
             {loading ? (
                 <Spinner />
             ) : (
-                <span className="flex items-center`">
-                    {icon && <span className={`mr-2 items-center`}>{icon}</span>}
+                <span className="flex items-center space-x-1">
                     {children}
+                    {icon && <span>{icon({})}</span>}
                 </span>
             )}
         </button>

@@ -260,6 +260,7 @@ export type Movie = {
   description: Scalars['String'];
   id: Scalars['Int'];
   locked: Scalars['Boolean'];
+  thumbnail: Scalars['String'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -284,6 +285,7 @@ export type MovieCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   locked?: InputMaybe<Scalars['Boolean']>;
+  thumbnail?: InputMaybe<Scalars['String']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -303,6 +305,7 @@ export type MovieCreateWithoutActorsInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   locked?: InputMaybe<Scalars['Boolean']>;
+  thumbnail?: InputMaybe<Scalars['String']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -323,6 +326,7 @@ export type MovieOrderByWithRelationInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   locked?: InputMaybe<SortOrder>;
+  thumbnail?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -332,6 +336,7 @@ export enum MovieScalarFieldEnum {
   Description = 'description',
   Id = 'id',
   Locked = 'locked',
+  Thumbnail = 'thumbnail',
   Title = 'title',
   UpdatedAt = 'updatedAt'
 }
@@ -344,6 +349,7 @@ export type MovieScalarWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
   locked?: InputMaybe<BoolFilter>;
+  thumbnail?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -353,6 +359,7 @@ export type MovieUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -361,6 +368,7 @@ export type MovieUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -392,6 +400,7 @@ export type MovieUpdateWithoutActorsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -411,6 +420,7 @@ export type MovieWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
   locked?: InputMaybe<BoolFilter>;
+  thumbnail?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -967,7 +977,12 @@ export type QueryMovieArgs = {
 
 
 export type QueryMoviesArgs = {
-  title: Scalars['String'];
+  cursor?: InputMaybe<MovieWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MovieWhereInput>;
 };
 
 
@@ -1377,6 +1392,15 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: number, email: string, username: string, avatar: string } | null | undefined };
 
+export type MoviesQueryVariables = Exact<{
+  where?: InputMaybe<MovieWhereInput>;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationInput> | MovieOrderByWithRelationInput>;
+  cursor?: InputMaybe<MovieWhereUniqueInput>;
+}>;
+
+
+export type MoviesQuery = { __typename?: 'Query', movies?: Array<{ __typename?: 'Movie', id: number, title: string, description: string, thumbnail: string, locked: boolean }> | null | undefined };
+
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
@@ -1578,3 +1602,44 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const MoviesDocument = gql`
+    query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
+  movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
+    id
+    title
+    description
+    thumbnail
+    locked
+  }
+}
+    `;
+
+/**
+ * __useMoviesQuery__
+ *
+ * To run a query within a React component, call `useMoviesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMoviesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMoviesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *   },
+ * });
+ */
+export function useMoviesQuery(baseOptions?: Apollo.QueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
+      }
+export function useMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
+        }
+export type MoviesQueryHookResult = ReturnType<typeof useMoviesQuery>;
+export type MoviesLazyQueryHookResult = ReturnType<typeof useMoviesLazyQuery>;
+export type MoviesQueryResult = Apollo.QueryResult<MoviesQuery, MoviesQueryVariables>;

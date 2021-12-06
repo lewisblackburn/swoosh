@@ -1,0 +1,9 @@
+query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
+  movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
+    id
+    title
+    description
+    thumbnail
+    locked
+  }
+}

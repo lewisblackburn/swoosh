@@ -1,4 +1,4 @@
-import { CreateMovieArgs, DeleteMovieArgs, Movie, UpdateMovieArgs } from "../../generated/type-graphql";
+import { CreateMovieArgs, DeleteMovieArgs, FindManyMovieArgs, Movie, UpdateMovieArgs } from "../../generated/type-graphql";
 import { Context } from "../../interfaces/context";
 import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
@@ -126,15 +126,11 @@ import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
 
     @Query(() => [Movie], { nullable: true })
     async movies(
-        @Arg("title", () => String) title: string,
+        @Args() args: FindManyMovieArgs,
         @Ctx() ctx: Context
     ): Promise<Movie[] | null> {
         return ctx.prisma.movie.findMany({
-            where: {
-                title: {
-                    contains: title
-                }
-            }
+            ...args
         });
     }
 

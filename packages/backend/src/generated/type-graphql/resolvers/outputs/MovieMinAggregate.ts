@@ -22,6 +22,11 @@ export class MovieMinAggregate {
   })
   description!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  thumbnail!: string | null;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })

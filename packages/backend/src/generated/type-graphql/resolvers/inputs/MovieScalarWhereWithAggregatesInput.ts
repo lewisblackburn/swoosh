@@ -41,6 +41,11 @@ export class MovieScalarWhereWithAggregatesInput {
   })
   description?: StringWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  thumbnail?: StringWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => BoolWithAggregatesFilter, {
     nullable: true
   })

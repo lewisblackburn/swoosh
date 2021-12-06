@@ -35,5 +35,5 @@ export class PersonMoviesArgs {
   @TypeGraphQL.Field(_type => [MovieScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "locked" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "title" | "description" | "thumbnail" | "locked" | "createdAt" | "updatedAt"> | undefined;
 }

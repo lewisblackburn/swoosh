@@ -4,6 +4,27 @@
     "module": "esnext",
     "jsx": "preserve",
     "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@components": [
+        "components"
+      ],
+      "@modules/*": [
+        "modules/*"
+      ],
+      "@modules": [
+        "modules"
+      ],
+      "@public/*": [
+        "public/*"
+      ],
+      "@public": [
+        "public"
+      ],
+    },
     "incremental": true
   },
   "include": [
