@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
+import { ActorInMovie } from "../../../models/ActorInMovie";
 import { Book } from "../../../models/Book";
-import { Movie } from "../../../models/Movie";
 import { Person } from "../../../models/Person";
 import { Song } from "../../../models/Song";
 import { PersonBooksArgs } from "./args/PersonBooksArgs";
@@ -10,10 +10,10 @@ import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRel
 
 @TypeGraphQL.Resolver(_of => Person)
 export class PersonRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [Movie], {
+  @TypeGraphQL.FieldResolver(_type => [ActorInMovie], {
     nullable: false
   })
-  async movies(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonMoviesArgs): Promise<Movie[]> {
+  async movies(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonMoviesArgs): Promise<ActorInMovie[]> {
     return getPrismaFromContext(ctx).person.findUnique({
       where: {
         id: person.id,

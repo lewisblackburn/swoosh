@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { PersonOrderByWithRelationInput } from "../../../inputs/PersonOrderByWithRelationInput";
-import { PersonWhereInput } from "../../../inputs/PersonWhereInput";
-import { PersonWhereUniqueInput } from "../../../inputs/PersonWhereUniqueInput";
-import { PersonScalarFieldEnum } from "../../../../enums/PersonScalarFieldEnum";
+import { ActorInMovieOrderByWithRelationInput } from "../../../inputs/ActorInMovieOrderByWithRelationInput";
+import { ActorInMovieWhereInput } from "../../../inputs/ActorInMovieWhereInput";
+import { ActorInMovieWhereUniqueInput } from "../../../inputs/ActorInMovieWhereUniqueInput";
+import { ActorInMovieScalarFieldEnum } from "../../../../enums/ActorInMovieScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class MovieActorsArgs {
-  @TypeGraphQL.Field(_type => PersonWhereInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieWhereInput, {
     nullable: true
   })
-  where?: PersonWhereInput | undefined;
+  where?: ActorInMovieWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [PersonOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [ActorInMovieOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: PersonOrderByWithRelationInput[] | undefined;
+  orderBy?: ActorInMovieOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => PersonWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieWhereUniqueInput, {
     nullable: true
   })
-  cursor?: PersonWhereUniqueInput | undefined;
+  cursor?: ActorInMovieWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class MovieActorsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [PersonScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [ActorInMovieScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "career" | "name"> | undefined;
+  distinct?: Array<"movieId" | "personId" | "role"> | undefined;
 }

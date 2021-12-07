@@ -1,3 +1,4 @@
+export { ActorInMovieScalarFieldEnum } from "./ActorInMovieScalarFieldEnum";
 export { BookScalarFieldEnum } from "./BookScalarFieldEnum";
 export { Career } from "./Career";
 export { MovieScalarFieldEnum } from "./MovieScalarFieldEnum";

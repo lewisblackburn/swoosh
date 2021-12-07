@@ -1,3 +1,15 @@
+export { FindUniqueActorInMovieResolver } from "./ActorInMovie/FindUniqueActorInMovieResolver";
+export { FindFirstActorInMovieResolver } from "./ActorInMovie/FindFirstActorInMovieResolver";
+export { FindManyActorInMovieResolver } from "./ActorInMovie/FindManyActorInMovieResolver";
+export { CreateActorInMovieResolver } from "./ActorInMovie/CreateActorInMovieResolver";
+export { CreateManyActorInMovieResolver } from "./ActorInMovie/CreateManyActorInMovieResolver";
+export { DeleteActorInMovieResolver } from "./ActorInMovie/DeleteActorInMovieResolver";
+export { UpdateActorInMovieResolver } from "./ActorInMovie/UpdateActorInMovieResolver";
+export { DeleteManyActorInMovieResolver } from "./ActorInMovie/DeleteManyActorInMovieResolver";
+export { UpdateManyActorInMovieResolver } from "./ActorInMovie/UpdateManyActorInMovieResolver";
+export { UpsertActorInMovieResolver } from "./ActorInMovie/UpsertActorInMovieResolver";
+export { AggregateActorInMovieResolver } from "./ActorInMovie/AggregateActorInMovieResolver";
+export { GroupByActorInMovieResolver } from "./ActorInMovie/GroupByActorInMovieResolver";
 export { FindUniqueBookResolver } from "./Book/FindUniqueBookResolver";
 export { FindFirstBookResolver } from "./Book/FindFirstBookResolver";
 export { FindManyBookResolver } from "./Book/FindManyBookResolver";

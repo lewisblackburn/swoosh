@@ -1,3 +1,4 @@
+export { ActorInMovieRelationsResolver } from "./ActorInMovie/ActorInMovieRelationsResolver";
 export { BookRelationsResolver } from "./Book/BookRelationsResolver";
 export { MovieRelationsResolver } from "./Movie/MovieRelationsResolver";
 export { PersonRelationsResolver } from "./Person/PersonRelationsResolver";

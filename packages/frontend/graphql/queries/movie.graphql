@@ -1,0 +1,17 @@
+query Movie($movieId: Int!) {
+	movie(movieId: $movieId) {
+		id
+		title
+		description
+		thumbnail
+		locked
+		createdAt
+		updatedAt
+		actors {
+			movieId
+			personId
+			role
+		}
+	}
+}
+

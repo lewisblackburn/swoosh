@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ActorInMovieCreateNestedManyWithoutPersonInput } from "../inputs/ActorInMovieCreateNestedManyWithoutPersonInput";
 import { BookCreateNestedManyWithoutAuthorsInput } from "../inputs/BookCreateNestedManyWithoutAuthorsInput";
-import { MovieCreateNestedManyWithoutActorsInput } from "../inputs/MovieCreateNestedManyWithoutActorsInput";
 import { PersonCreatecareerInput } from "../inputs/PersonCreatecareerInput";
 import { SongCreateNestedManyWithoutArtistsInput } from "../inputs/SongCreateNestedManyWithoutArtistsInput";
 
@@ -21,10 +21,10 @@ export class PersonCreateInput {
   })
   career?: PersonCreatecareerInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutActorsInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieCreateNestedManyWithoutPersonInput, {
     nullable: true
   })
-  movies?: MovieCreateNestedManyWithoutActorsInput | undefined;
+  movies?: ActorInMovieCreateNestedManyWithoutPersonInput | undefined;
 
   @TypeGraphQL.Field(_type => BookCreateNestedManyWithoutAuthorsInput, {
     nullable: true

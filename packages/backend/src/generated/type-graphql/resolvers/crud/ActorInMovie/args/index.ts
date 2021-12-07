@@ -1,0 +1,12 @@
+export { AggregateActorInMovieArgs } from "./AggregateActorInMovieArgs";
+export { CreateActorInMovieArgs } from "./CreateActorInMovieArgs";
+export { CreateManyActorInMovieArgs } from "./CreateManyActorInMovieArgs";
+export { DeleteActorInMovieArgs } from "./DeleteActorInMovieArgs";
+export { DeleteManyActorInMovieArgs } from "./DeleteManyActorInMovieArgs";
+export { FindFirstActorInMovieArgs } from "./FindFirstActorInMovieArgs";
+export { FindManyActorInMovieArgs } from "./FindManyActorInMovieArgs";
+export { FindUniqueActorInMovieArgs } from "./FindUniqueActorInMovieArgs";
+export { GroupByActorInMovieArgs } from "./GroupByActorInMovieArgs";
+export { UpdateActorInMovieArgs } from "./UpdateActorInMovieArgs";
+export { UpdateManyActorInMovieArgs } from "./UpdateManyActorInMovieArgs";
+export { UpsertActorInMovieArgs } from "./UpsertActorInMovieArgs";

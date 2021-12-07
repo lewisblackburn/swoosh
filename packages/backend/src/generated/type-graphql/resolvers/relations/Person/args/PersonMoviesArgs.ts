@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieOrderByWithRelationInput } from "../../../inputs/MovieOrderByWithRelationInput";
-import { MovieWhereInput } from "../../../inputs/MovieWhereInput";
-import { MovieWhereUniqueInput } from "../../../inputs/MovieWhereUniqueInput";
-import { MovieScalarFieldEnum } from "../../../../enums/MovieScalarFieldEnum";
+import { ActorInMovieOrderByWithRelationInput } from "../../../inputs/ActorInMovieOrderByWithRelationInput";
+import { ActorInMovieWhereInput } from "../../../inputs/ActorInMovieWhereInput";
+import { ActorInMovieWhereUniqueInput } from "../../../inputs/ActorInMovieWhereUniqueInput";
+import { ActorInMovieScalarFieldEnum } from "../../../../enums/ActorInMovieScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class PersonMoviesArgs {
-  @TypeGraphQL.Field(_type => MovieWhereInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieWhereInput, {
     nullable: true
   })
-  where?: MovieWhereInput | undefined;
+  where?: ActorInMovieWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [MovieOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [ActorInMovieOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: MovieOrderByWithRelationInput[] | undefined;
+  orderBy?: ActorInMovieOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieWhereUniqueInput, {
     nullable: true
   })
-  cursor?: MovieWhereUniqueInput | undefined;
+  cursor?: ActorInMovieWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class PersonMoviesArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [MovieScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [ActorInMovieScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "thumbnail" | "locked" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"movieId" | "personId" | "role"> | undefined;
 }

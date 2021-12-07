@@ -1,3 +1,4 @@
+export { ActorInMovieCrudResolver } from "./ActorInMovie/ActorInMovieCrudResolver";
 export { BookCrudResolver } from "./Book/BookCrudResolver";
 export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
 export { PersonCrudResolver } from "./Person/PersonCrudResolver";

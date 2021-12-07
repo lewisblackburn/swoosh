@@ -2,9 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ActorInMovieUpdateManyWithoutMovieInput } from "../inputs/ActorInMovieUpdateManyWithoutMovieInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { PersonUpdateManyWithoutMoviesInput } from "../inputs/PersonUpdateManyWithoutMoviesInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
@@ -41,8 +41,8 @@ export class MovieUpdateInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => PersonUpdateManyWithoutMoviesInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieUpdateManyWithoutMovieInput, {
     nullable: true
   })
-  actors?: PersonUpdateManyWithoutMoviesInput | undefined;
+  actors?: ActorInMovieUpdateManyWithoutMovieInput | undefined;
 }

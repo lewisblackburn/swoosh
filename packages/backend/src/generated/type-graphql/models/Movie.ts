@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Person } from "../models/Person";
+import { ActorInMovie } from "../models/ActorInMovie";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType({
@@ -34,7 +34,7 @@ export class Movie {
   })
   locked!: boolean;
 
-  actors?: Person[];
+  actors?: ActorInMovie[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

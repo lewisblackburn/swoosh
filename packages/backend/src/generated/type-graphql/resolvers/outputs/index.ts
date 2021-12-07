@@ -1,4 +1,11 @@
+export { ActorInMovieAvgAggregate } from "./ActorInMovieAvgAggregate";
+export { ActorInMovieCountAggregate } from "./ActorInMovieCountAggregate";
+export { ActorInMovieGroupBy } from "./ActorInMovieGroupBy";
+export { ActorInMovieMaxAggregate } from "./ActorInMovieMaxAggregate";
+export { ActorInMovieMinAggregate } from "./ActorInMovieMinAggregate";
+export { ActorInMovieSumAggregate } from "./ActorInMovieSumAggregate";
 export { AffectedRowsOutput } from "./AffectedRowsOutput";
+export { AggregateActorInMovie } from "./AggregateActorInMovie";
 export { AggregateBook } from "./AggregateBook";
 export { AggregateMovie } from "./AggregateMovie";
 export { AggregatePerson } from "./AggregatePerson";

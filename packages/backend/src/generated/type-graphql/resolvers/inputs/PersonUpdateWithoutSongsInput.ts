@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ActorInMovieUpdateManyWithoutPersonInput } from "../inputs/ActorInMovieUpdateManyWithoutPersonInput";
 import { BookUpdateManyWithoutAuthorsInput } from "../inputs/BookUpdateManyWithoutAuthorsInput";
-import { MovieUpdateManyWithoutActorsInput } from "../inputs/MovieUpdateManyWithoutActorsInput";
 import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
@@ -21,10 +21,10 @@ export class PersonUpdateWithoutSongsInput {
   })
   career?: PersonUpdatecareerInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutActorsInput, {
+  @TypeGraphQL.Field(_type => ActorInMovieUpdateManyWithoutPersonInput, {
     nullable: true
   })
-  movies?: MovieUpdateManyWithoutActorsInput | undefined;
+  movies?: ActorInMovieUpdateManyWithoutPersonInput | undefined;
 
   @TypeGraphQL.Field(_type => BookUpdateManyWithoutAuthorsInput, {
     nullable: true

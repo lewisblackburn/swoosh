@@ -19,6 +19,194 @@ export type Scalars = {
   Upload: any;
 };
 
+export type ActorInMovie = {
+  __typename?: 'ActorInMovie';
+  movieId: Scalars['Int'];
+  personId: Scalars['Int'];
+  role: Scalars['String'];
+};
+
+export type ActorInMovieCreateManyMovieInput = {
+  personId: Scalars['Int'];
+  role: Scalars['String'];
+};
+
+export type ActorInMovieCreateManyMovieInputEnvelope = {
+  data: Array<ActorInMovieCreateManyMovieInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ActorInMovieCreateManyPersonInput = {
+  movieId: Scalars['Int'];
+  role: Scalars['String'];
+};
+
+export type ActorInMovieCreateManyPersonInputEnvelope = {
+  data: Array<ActorInMovieCreateManyPersonInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ActorInMovieCreateNestedManyWithoutMovieInput = {
+  connect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ActorInMovieCreateOrConnectWithoutMovieInput>>;
+  create?: InputMaybe<Array<ActorInMovieCreateWithoutMovieInput>>;
+  createMany?: InputMaybe<ActorInMovieCreateManyMovieInputEnvelope>;
+};
+
+export type ActorInMovieCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ActorInMovieCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<ActorInMovieCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<ActorInMovieCreateManyPersonInputEnvelope>;
+};
+
+export type ActorInMovieCreateOrConnectWithoutMovieInput = {
+  create: ActorInMovieCreateWithoutMovieInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieCreateOrConnectWithoutPersonInput = {
+  create: ActorInMovieCreateWithoutPersonInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieCreateWithoutMovieInput = {
+  person: PersonCreateNestedOneWithoutMoviesInput;
+  role: Scalars['String'];
+};
+
+export type ActorInMovieCreateWithoutPersonInput = {
+  movie: MovieCreateNestedOneWithoutActorsInput;
+  role: Scalars['String'];
+};
+
+export type ActorInMovieListRelationFilter = {
+  every?: InputMaybe<ActorInMovieWhereInput>;
+  none?: InputMaybe<ActorInMovieWhereInput>;
+  some?: InputMaybe<ActorInMovieWhereInput>;
+};
+
+export type ActorInMovieOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ActorInMovieOrderByWithRelationInput = {
+  movie?: InputMaybe<MovieOrderByWithRelationInput>;
+  movieId?: InputMaybe<SortOrder>;
+  person?: InputMaybe<PersonOrderByWithRelationInput>;
+  personId?: InputMaybe<SortOrder>;
+  role?: InputMaybe<SortOrder>;
+};
+
+export type ActorInMoviePersonIdMovieIdCompoundUniqueInput = {
+  movieId: Scalars['Int'];
+  personId: Scalars['Int'];
+};
+
+export enum ActorInMovieScalarFieldEnum {
+  MovieId = 'movieId',
+  PersonId = 'personId',
+  Role = 'role'
+}
+
+export type ActorInMovieScalarWhereInput = {
+  AND?: InputMaybe<Array<ActorInMovieScalarWhereInput>>;
+  NOT?: InputMaybe<Array<ActorInMovieScalarWhereInput>>;
+  OR?: InputMaybe<Array<ActorInMovieScalarWhereInput>>;
+  movieId?: InputMaybe<IntFilter>;
+  personId?: InputMaybe<IntFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type ActorInMovieUpdateManyMutationInput = {
+  role?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ActorInMovieUpdateManyWithWhereWithoutMovieInput = {
+  data: ActorInMovieUpdateManyMutationInput;
+  where: ActorInMovieScalarWhereInput;
+};
+
+export type ActorInMovieUpdateManyWithWhereWithoutPersonInput = {
+  data: ActorInMovieUpdateManyMutationInput;
+  where: ActorInMovieScalarWhereInput;
+};
+
+export type ActorInMovieUpdateManyWithoutMovieInput = {
+  connect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ActorInMovieCreateOrConnectWithoutMovieInput>>;
+  create?: InputMaybe<Array<ActorInMovieCreateWithoutMovieInput>>;
+  createMany?: InputMaybe<ActorInMovieCreateManyMovieInputEnvelope>;
+  delete?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ActorInMovieScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  set?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  update?: InputMaybe<Array<ActorInMovieUpdateWithWhereUniqueWithoutMovieInput>>;
+  updateMany?: InputMaybe<Array<ActorInMovieUpdateManyWithWhereWithoutMovieInput>>;
+  upsert?: InputMaybe<Array<ActorInMovieUpsertWithWhereUniqueWithoutMovieInput>>;
+};
+
+export type ActorInMovieUpdateManyWithoutPersonInput = {
+  connect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ActorInMovieCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<ActorInMovieCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<ActorInMovieCreateManyPersonInputEnvelope>;
+  delete?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ActorInMovieScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  set?: InputMaybe<Array<ActorInMovieWhereUniqueInput>>;
+  update?: InputMaybe<Array<ActorInMovieUpdateWithWhereUniqueWithoutPersonInput>>;
+  updateMany?: InputMaybe<Array<ActorInMovieUpdateManyWithWhereWithoutPersonInput>>;
+  upsert?: InputMaybe<Array<ActorInMovieUpsertWithWhereUniqueWithoutPersonInput>>;
+};
+
+export type ActorInMovieUpdateWithWhereUniqueWithoutMovieInput = {
+  data: ActorInMovieUpdateWithoutMovieInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieUpdateWithWhereUniqueWithoutPersonInput = {
+  data: ActorInMovieUpdateWithoutPersonInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieUpdateWithoutMovieInput = {
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutMoviesInput>;
+  role?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ActorInMovieUpdateWithoutPersonInput = {
+  movie?: InputMaybe<MovieUpdateOneRequiredWithoutActorsInput>;
+  role?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ActorInMovieUpsertWithWhereUniqueWithoutMovieInput = {
+  create: ActorInMovieCreateWithoutMovieInput;
+  update: ActorInMovieUpdateWithoutMovieInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieUpsertWithWhereUniqueWithoutPersonInput = {
+  create: ActorInMovieCreateWithoutPersonInput;
+  update: ActorInMovieUpdateWithoutPersonInput;
+  where: ActorInMovieWhereUniqueInput;
+};
+
+export type ActorInMovieWhereInput = {
+  AND?: InputMaybe<Array<ActorInMovieWhereInput>>;
+  NOT?: InputMaybe<Array<ActorInMovieWhereInput>>;
+  OR?: InputMaybe<Array<ActorInMovieWhereInput>>;
+  movie?: InputMaybe<MovieRelationFilter>;
+  movieId?: InputMaybe<IntFilter>;
+  person?: InputMaybe<PersonRelationFilter>;
+  personId?: InputMaybe<IntFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type ActorInMovieWhereUniqueInput = {
+  personId_movieId?: InputMaybe<ActorInMoviePersonIdMovieIdCompoundUniqueInput>;
+};
+
 export type Book = {
   __typename?: 'Book';
   _count?: Maybe<BookCount>;
@@ -255,7 +443,7 @@ export type LoginInput = {
 export type Movie = {
   __typename?: 'Movie';
   _count?: Maybe<MovieCount>;
-  actors: Array<Person>;
+  actors: Array<ActorInMovie>;
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
@@ -267,12 +455,12 @@ export type Movie = {
 
 
 export type MovieActorsArgs = {
-  cursor?: InputMaybe<PersonWhereUniqueInput>;
-  distinct?: InputMaybe<Array<PersonScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<PersonOrderByWithRelationInput>>;
+  cursor?: InputMaybe<ActorInMovieWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ActorInMovieScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ActorInMovieOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<PersonWhereInput>;
+  where?: InputMaybe<ActorInMovieWhereInput>;
 };
 
 export type MovieCount = {
@@ -281,7 +469,7 @@ export type MovieCount = {
 };
 
 export type MovieCreateInput = {
-  actors?: InputMaybe<PersonCreateNestedManyWithoutMoviesInput>;
+  actors?: InputMaybe<ActorInMovieCreateNestedManyWithoutMovieInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   locked?: InputMaybe<Scalars['Boolean']>;
@@ -290,10 +478,10 @@ export type MovieCreateInput = {
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type MovieCreateNestedManyWithoutActorsInput = {
-  connect?: InputMaybe<Array<MovieWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<MovieCreateOrConnectWithoutActorsInput>>;
-  create?: InputMaybe<Array<MovieCreateWithoutActorsInput>>;
+export type MovieCreateNestedOneWithoutActorsInput = {
+  connect?: InputMaybe<MovieWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutActorsInput>;
+  create?: InputMaybe<MovieCreateWithoutActorsInput>;
 };
 
 export type MovieCreateOrConnectWithoutActorsInput = {
@@ -310,18 +498,8 @@ export type MovieCreateWithoutActorsInput = {
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type MovieListRelationFilter = {
-  every?: InputMaybe<MovieWhereInput>;
-  none?: InputMaybe<MovieWhereInput>;
-  some?: InputMaybe<MovieWhereInput>;
-};
-
-export type MovieOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
-};
-
 export type MovieOrderByWithRelationInput = {
-  actors?: InputMaybe<PersonOrderByRelationAggregateInput>;
+  actors?: InputMaybe<ActorInMovieOrderByRelationAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -329,6 +507,11 @@ export type MovieOrderByWithRelationInput = {
   thumbnail?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type MovieRelationFilter = {
+  is?: InputMaybe<MovieWhereInput>;
+  isNot?: InputMaybe<MovieWhereInput>;
 };
 
 export enum MovieScalarFieldEnum {
@@ -341,21 +524,8 @@ export enum MovieScalarFieldEnum {
   UpdatedAt = 'updatedAt'
 }
 
-export type MovieScalarWhereInput = {
-  AND?: InputMaybe<Array<MovieScalarWhereInput>>;
-  NOT?: InputMaybe<Array<MovieScalarWhereInput>>;
-  OR?: InputMaybe<Array<MovieScalarWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  description?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IntFilter>;
-  locked?: InputMaybe<BoolFilter>;
-  thumbnail?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-};
-
 export type MovieUpdateInput = {
-  actors?: InputMaybe<PersonUpdateManyWithoutMoviesInput>;
+  actors?: InputMaybe<ActorInMovieUpdateManyWithoutMovieInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
@@ -364,36 +534,12 @@ export type MovieUpdateInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type MovieUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
-  title?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type MovieUpdateManyWithWhereWithoutActorsInput = {
-  data: MovieUpdateManyMutationInput;
-  where: MovieScalarWhereInput;
-};
-
-export type MovieUpdateManyWithoutActorsInput = {
-  connect?: InputMaybe<Array<MovieWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<MovieCreateOrConnectWithoutActorsInput>>;
-  create?: InputMaybe<Array<MovieCreateWithoutActorsInput>>;
-  delete?: InputMaybe<Array<MovieWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<MovieScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<MovieWhereUniqueInput>>;
-  set?: InputMaybe<Array<MovieWhereUniqueInput>>;
-  update?: InputMaybe<Array<MovieUpdateWithWhereUniqueWithoutActorsInput>>;
-  updateMany?: InputMaybe<Array<MovieUpdateManyWithWhereWithoutActorsInput>>;
-  upsert?: InputMaybe<Array<MovieUpsertWithWhereUniqueWithoutActorsInput>>;
-};
-
-export type MovieUpdateWithWhereUniqueWithoutActorsInput = {
-  data: MovieUpdateWithoutActorsInput;
-  where: MovieWhereUniqueInput;
+export type MovieUpdateOneRequiredWithoutActorsInput = {
+  connect?: InputMaybe<MovieWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutActorsInput>;
+  create?: InputMaybe<MovieCreateWithoutActorsInput>;
+  update?: InputMaybe<MovieUpdateWithoutActorsInput>;
+  upsert?: InputMaybe<MovieUpsertWithoutActorsInput>;
 };
 
 export type MovieUpdateWithoutActorsInput = {
@@ -405,17 +551,16 @@ export type MovieUpdateWithoutActorsInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type MovieUpsertWithWhereUniqueWithoutActorsInput = {
+export type MovieUpsertWithoutActorsInput = {
   create: MovieCreateWithoutActorsInput;
   update: MovieUpdateWithoutActorsInput;
-  where: MovieWhereUniqueInput;
 };
 
 export type MovieWhereInput = {
   AND?: InputMaybe<Array<MovieWhereInput>>;
   NOT?: InputMaybe<Array<MovieWhereInput>>;
   OR?: InputMaybe<Array<MovieWhereInput>>;
-  actors?: InputMaybe<PersonListRelationFilter>;
+  actors?: InputMaybe<ActorInMovieListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
@@ -465,6 +610,7 @@ export type Mutation = {
 export type MutationAddActorArgs = {
   movieId: Scalars['Int'];
   personId: Scalars['Int'];
+  role: Scalars['String'];
 };
 
 
@@ -662,7 +808,7 @@ export type Person = {
   books: Array<Book>;
   career: Array<Career>;
   id: Scalars['Int'];
-  movies: Array<Movie>;
+  movies: Array<ActorInMovie>;
   name: Scalars['String'];
   songs: Array<Song>;
 };
@@ -679,12 +825,12 @@ export type PersonBooksArgs = {
 
 
 export type PersonMoviesArgs = {
-  cursor?: InputMaybe<MovieWhereUniqueInput>;
-  distinct?: InputMaybe<Array<MovieScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<MovieOrderByWithRelationInput>>;
+  cursor?: InputMaybe<ActorInMovieWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ActorInMovieScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ActorInMovieOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<MovieWhereInput>;
+  where?: InputMaybe<ActorInMovieWhereInput>;
 };
 
 
@@ -707,7 +853,7 @@ export type PersonCount = {
 export type PersonCreateInput = {
   books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
-  movies?: InputMaybe<MovieCreateNestedManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
 };
@@ -718,16 +864,16 @@ export type PersonCreateNestedManyWithoutBooksInput = {
   create?: InputMaybe<Array<PersonCreateWithoutBooksInput>>;
 };
 
-export type PersonCreateNestedManyWithoutMoviesInput = {
-  connect?: InputMaybe<Array<PersonWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<PersonCreateOrConnectWithoutMoviesInput>>;
-  create?: InputMaybe<Array<PersonCreateWithoutMoviesInput>>;
-};
-
 export type PersonCreateNestedManyWithoutSongsInput = {
   connect?: InputMaybe<Array<PersonWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<PersonCreateOrConnectWithoutSongsInput>>;
   create?: InputMaybe<Array<PersonCreateWithoutSongsInput>>;
+};
+
+export type PersonCreateNestedOneWithoutMoviesInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutMoviesInput>;
+  create?: InputMaybe<PersonCreateWithoutMoviesInput>;
 };
 
 export type PersonCreateOrConnectWithoutBooksInput = {
@@ -747,7 +893,7 @@ export type PersonCreateOrConnectWithoutSongsInput = {
 
 export type PersonCreateWithoutBooksInput = {
   career?: InputMaybe<PersonCreatecareerInput>;
-  movies?: InputMaybe<MovieCreateNestedManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
 };
@@ -762,7 +908,7 @@ export type PersonCreateWithoutMoviesInput = {
 export type PersonCreateWithoutSongsInput = {
   books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
-  movies?: InputMaybe<MovieCreateNestedManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
 };
 
@@ -784,9 +930,14 @@ export type PersonOrderByWithRelationInput = {
   books?: InputMaybe<BookOrderByRelationAggregateInput>;
   career?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  movies?: InputMaybe<MovieOrderByRelationAggregateInput>;
+  movies?: InputMaybe<ActorInMovieOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
   songs?: InputMaybe<SongOrderByRelationAggregateInput>;
+};
+
+export type PersonRelationFilter = {
+  is?: InputMaybe<PersonWhereInput>;
+  isNot?: InputMaybe<PersonWhereInput>;
 };
 
 export enum PersonScalarFieldEnum {
@@ -807,7 +958,7 @@ export type PersonScalarWhereInput = {
 export type PersonUpdateInput = {
   books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
-  movies?: InputMaybe<MovieUpdateManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
 };
@@ -818,11 +969,6 @@ export type PersonUpdateManyMutationInput = {
 };
 
 export type PersonUpdateManyWithWhereWithoutBooksInput = {
-  data: PersonUpdateManyMutationInput;
-  where: PersonScalarWhereInput;
-};
-
-export type PersonUpdateManyWithWhereWithoutMoviesInput = {
   data: PersonUpdateManyMutationInput;
   where: PersonScalarWhereInput;
 };
@@ -845,19 +991,6 @@ export type PersonUpdateManyWithoutBooksInput = {
   upsert?: InputMaybe<Array<PersonUpsertWithWhereUniqueWithoutBooksInput>>;
 };
 
-export type PersonUpdateManyWithoutMoviesInput = {
-  connect?: InputMaybe<Array<PersonWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<PersonCreateOrConnectWithoutMoviesInput>>;
-  create?: InputMaybe<Array<PersonCreateWithoutMoviesInput>>;
-  delete?: InputMaybe<Array<PersonWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<PersonScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<PersonWhereUniqueInput>>;
-  set?: InputMaybe<Array<PersonWhereUniqueInput>>;
-  update?: InputMaybe<Array<PersonUpdateWithWhereUniqueWithoutMoviesInput>>;
-  updateMany?: InputMaybe<Array<PersonUpdateManyWithWhereWithoutMoviesInput>>;
-  upsert?: InputMaybe<Array<PersonUpsertWithWhereUniqueWithoutMoviesInput>>;
-};
-
 export type PersonUpdateManyWithoutSongsInput = {
   connect?: InputMaybe<Array<PersonWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<PersonCreateOrConnectWithoutSongsInput>>;
@@ -871,13 +1004,16 @@ export type PersonUpdateManyWithoutSongsInput = {
   upsert?: InputMaybe<Array<PersonUpsertWithWhereUniqueWithoutSongsInput>>;
 };
 
-export type PersonUpdateWithWhereUniqueWithoutBooksInput = {
-  data: PersonUpdateWithoutBooksInput;
-  where: PersonWhereUniqueInput;
+export type PersonUpdateOneRequiredWithoutMoviesInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutMoviesInput>;
+  create?: InputMaybe<PersonCreateWithoutMoviesInput>;
+  update?: InputMaybe<PersonUpdateWithoutMoviesInput>;
+  upsert?: InputMaybe<PersonUpsertWithoutMoviesInput>;
 };
 
-export type PersonUpdateWithWhereUniqueWithoutMoviesInput = {
-  data: PersonUpdateWithoutMoviesInput;
+export type PersonUpdateWithWhereUniqueWithoutBooksInput = {
+  data: PersonUpdateWithoutBooksInput;
   where: PersonWhereUniqueInput;
 };
 
@@ -888,7 +1024,7 @@ export type PersonUpdateWithWhereUniqueWithoutSongsInput = {
 
 export type PersonUpdateWithoutBooksInput = {
   career?: InputMaybe<PersonUpdatecareerInput>;
-  movies?: InputMaybe<MovieUpdateManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
 };
@@ -903,7 +1039,7 @@ export type PersonUpdateWithoutMoviesInput = {
 export type PersonUpdateWithoutSongsInput = {
   books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
-  movies?: InputMaybe<MovieUpdateManyWithoutActorsInput>;
+  movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
@@ -918,16 +1054,15 @@ export type PersonUpsertWithWhereUniqueWithoutBooksInput = {
   where: PersonWhereUniqueInput;
 };
 
-export type PersonUpsertWithWhereUniqueWithoutMoviesInput = {
-  create: PersonCreateWithoutMoviesInput;
-  update: PersonUpdateWithoutMoviesInput;
-  where: PersonWhereUniqueInput;
-};
-
 export type PersonUpsertWithWhereUniqueWithoutSongsInput = {
   create: PersonCreateWithoutSongsInput;
   update: PersonUpdateWithoutSongsInput;
   where: PersonWhereUniqueInput;
+};
+
+export type PersonUpsertWithoutMoviesInput = {
+  create: PersonCreateWithoutMoviesInput;
+  update: PersonUpdateWithoutMoviesInput;
 };
 
 export type PersonWhereInput = {
@@ -937,7 +1072,7 @@ export type PersonWhereInput = {
   books?: InputMaybe<BookListRelationFilter>;
   career?: InputMaybe<EnumCareerNullableListFilter>;
   id?: InputMaybe<IntFilter>;
-  movies?: InputMaybe<MovieListRelationFilter>;
+  movies?: InputMaybe<ActorInMovieListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   songs?: InputMaybe<SongListRelationFilter>;
 };
@@ -1392,6 +1527,13 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: number, email: string, username: string, avatar: string } | null | undefined };
 
+export type MovieQueryVariables = Exact<{
+  movieId: Scalars['Int'];
+}>;
+
+
+export type MovieQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: number, title: string, description: string, thumbnail: string, locked: boolean, createdAt: any, updatedAt: any, actors: Array<{ __typename?: 'ActorInMovie', movieId: number, personId: number, role: string }> } | null | undefined };
+
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
   orderBy?: InputMaybe<Array<MovieOrderByWithRelationInput> | MovieOrderByWithRelationInput>;
@@ -1602,6 +1744,52 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const MovieDocument = gql`
+    query Movie($movieId: Int!) {
+  movie(movieId: $movieId) {
+    id
+    title
+    description
+    thumbnail
+    locked
+    createdAt
+    updatedAt
+    actors {
+      movieId
+      personId
+      role
+    }
+  }
+}
+    `;
+
+/**
+ * __useMovieQuery__
+ *
+ * To run a query within a React component, call `useMovieQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMovieQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMovieQuery({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function useMovieQuery(baseOptions: Apollo.QueryHookOptions<MovieQuery, MovieQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MovieQuery, MovieQueryVariables>(MovieDocument, options);
+      }
+export function useMovieLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieQuery, MovieQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MovieQuery, MovieQueryVariables>(MovieDocument, options);
+        }
+export type MovieQueryHookResult = ReturnType<typeof useMovieQuery>;
+export type MovieLazyQueryHookResult = ReturnType<typeof useMovieLazyQuery>;
+export type MovieQueryResult = Apollo.QueryResult<MovieQuery, MovieQueryVariables>;
 export const MoviesDocument = gql`
     query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
   movies(where: $where, orderBy: $orderBy, cursor: $cursor) {

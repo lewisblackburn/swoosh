@@ -1,3 +1,4 @@
+export { ActorInMovie } from "./ActorInMovie";
 export { Book } from "./Book";
 export { Movie } from "./Movie";
 export { Person } from "./Person";

@@ -1,4 +1,4 @@
-import { CreateMovieArgs, DeleteMovieArgs, FindManyMovieArgs, Movie, UpdateMovieArgs } from "../../generated/type-graphql";
+import { CreateMovieArgs, DeleteMovieArgs, FindManyMovieArgs, Movie, Person, UpdateMovieArgs } from "../../generated/type-graphql";
 import { Context } from "../../interfaces/context";
 import { Arg, Args, Authorized, Ctx, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
@@ -75,6 +75,7 @@ import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
         @Ctx() ctx: Context,
         @Arg("personId", () => Int) personId: number,
         @Arg("movieId", () => Int) movieId: number,
+        @Arg("role") role: string,
     ): Promise<Movie | null> {
         return ctx.prisma.movie.update({
             where: {
@@ -82,8 +83,13 @@ import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
             },
             data: {
                 actors: {
-                    connect: {
-                        id: personId
+                    create: {
+                        person: {
+                            connect: {
+                                id: personId
+                            }
+                        },
+                        role: role
                     }
                 }
             },
@@ -105,7 +111,10 @@ import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
             data: {
                 actors: {
                     disconnect: {
-                        id: personId
+                        personId_movieId: {
+                            movieId: movieId,
+                            personId: personId
+                        }
                     }
                 }
             },
@@ -123,6 +132,15 @@ import { ErrorInterceptor } from "../middleware/ErrorInterceptor";
             }
         });
     }
+
+    // @Query(() => [Person], { nullable: true })
+    // async actorsInMovie(
+    //     @Arg("movieId", () => Int) movieId: number,
+    //     @Ctx() ctx: Context
+    // ): Promise<Person[] | null> {
+    //     return ctx.prisma.person.findMany({
+    //     });
+    // }
 
     @Query(() => [Movie], { nullable: true })
     async movies(

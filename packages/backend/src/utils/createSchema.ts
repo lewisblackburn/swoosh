@@ -1,5 +1,5 @@
 import { buildSchema } from 'type-graphql';
-import { BookRelationsResolver, MovieRelationsResolver, PersonRelationsResolver, SongRelationsResolver, UserRelationsResolver } from '../generated/type-graphql';
+import { ActorInMovieRelationsResolver, BookRelationsResolver, MovieRelationsResolver, PersonRelationsResolver, SongRelationsResolver, UserRelationsResolver } from '../generated/type-graphql';
 import { BookResolver } from '../modules/book/Book';
 import { FileUploadResolver } from '../modules/file/FileUpload';
 import { authChecker } from '../modules/middleware/authChecker';
@@ -37,6 +37,7 @@ export const createSchema = async () =>
             BookRelationsResolver,
             SongRelationsResolver,
             PersonRelationsResolver,
+            ActorInMovieRelationsResolver,
             MovieRelationsResolver
         ],
         authChecker,

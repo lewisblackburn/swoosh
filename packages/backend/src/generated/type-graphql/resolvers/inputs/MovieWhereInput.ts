@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ActorInMovieListRelationFilter } from "../inputs/ActorInMovieListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType({
@@ -52,10 +52,10 @@ export class MovieWhereInput {
   })
   locked?: BoolFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PersonListRelationFilter, {
+  @TypeGraphQL.Field(_type => ActorInMovieListRelationFilter, {
     nullable: true
   })
-  actors?: PersonListRelationFilter | undefined;
+  actors?: ActorInMovieListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

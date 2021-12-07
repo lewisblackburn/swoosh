@@ -1,84 +1,94 @@
 datasource db {
-    url      = env("DATABASE_URL")
-    provider = "postgresql"
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 generator typegraphql {
-    provider = "typegraphql-prisma"
-    output   = "../packages/backend/src/generated/type-graphql"
+  provider = "typegraphql-prisma"
+  output   = "../packages/backend/src/generated/type-graphql"
 }
 
 model User {
-    id          Int      @id @default(autoincrement())
-    confirmed   Boolean  @default(false)
-    email       String   @unique
-    username    String   @unique
-    displayname String
-    /// @TypeGraphQL.omit(output: true)
-    password    String
-    role        Role     @default(USER)
-    avatar      String   @default(value: "https://via.placeholder.com/400x400")
-    bio         String   @default(value: "")
-    location    String   @default(value: "")
-    website     String   @default(value: "")
-    dob         String   @default(value: "")
-    following   User[]   @relation(name: "FollowRelation")
-    followers   User[]   @relation(name: "FollowRelation")
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  confirmed   Boolean  @default(false)
+  email       String   @unique
+  username    String   @unique
+  displayname String
+  /// @TypeGraphQL.omit(output: true)
+  password    String
+  role        Role     @default(USER)
+  avatar      String   @default(value: "https://via.placeholder.com/400x400")
+  bio         String   @default(value: "")
+  location    String   @default(value: "")
+  website     String   @default(value: "")
+  dob         String   @default(value: "")
+  following   User[]   @relation(name: "FollowRelation")
+  followers   User[]   @relation(name: "FollowRelation")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Person {
-    id     Int      @id @default(autoincrement())
-    career Career[]
-    name   String
-    movies Movie[]
-    books  Book[]
-    songs  Song[]
+  id     Int            @id @default(autoincrement())
+  career Career[]
+  name   String
+  movies ActorInMovie[]
+  books  Book[]
+  songs  Song[]
 }
 
 model Movie {
-    id          Int      @id @default(autoincrement())
-    title       String
-    description String
-    thumbnail      String   @default(value: "https://via.placeholder.com/400x600")
-    locked      Boolean  @default(false)
-    actors      Person[]
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          Int            @id @default(autoincrement())
+  title       String
+  description String
+  thumbnail   String         @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean        @default(false)
+  actors      ActorInMovie[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model ActorInMovie {
+  movie    Movie  @relation(fields: [movieId], references: [id])
+  movieId  Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
+  role     String
+
+  @@id([personId, movieId])
 }
 
 model Book {
-    id          Int      @id @default(autoincrement())
-    title       String
-    description String
-    locked      Boolean  @default(false)
-    authors     Person[]
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  locked      Boolean  @default(false)
+  authors     Person[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Song {
-    id          Int      @id @default(autoincrement())
-    title       String
-    description String
-    locked      Boolean  @default(false)
-    artists     Person[]
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  locked      Boolean  @default(false)
+  artists     Person[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum Career {
-    AUTHOR
-    ARTIST
-    ACTOR
+  AUTHOR
+  ARTIST
+  ACTOR
 }
 
 enum Role {
-    USER
-    ADMIN
+  USER
+  ADMIN
 }
