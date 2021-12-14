@@ -1,12 +1,19 @@
-import {InternalLink} from '@components/InternalLink';
-import {useMoviesQuery} from 'generated/graphql';
+import {InternalLink} from '@components';
+import {SortOrder, useMoviesQuery} from 'generated/graphql';
 import React from 'react';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
 import {Layout} from '../layouts/Layout';
 
 export const LandingPage: React.FC = () => {
 	useVerifyLoggedIn();
-	const {data} = useMoviesQuery();
+
+	const {data} = useMoviesQuery({
+		variables: {
+			orderBy: {
+				createdAt: SortOrder['Desc'],
+			},
+		},
+	});
 
 	return (
 		<Layout>
@@ -15,10 +22,8 @@ export const LandingPage: React.FC = () => {
 					return (
 						<div key={movie.id}>
 							<div className="p-5">
-								{movie.title}
-								{movie.description}
 								<InternalLink href={`movie/${movie.id}`}>
-									<img src={movie.thumbnail} />
+									<img src={movie.thumbnail} className="w-64 h-96" />
 								</InternalLink>
 							</div>
 						</div>

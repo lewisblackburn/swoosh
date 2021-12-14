@@ -1,16 +1,16 @@
-import { RegisterForm } from "frontend/components/Form/RegisterForm";
-import React from "react";
-import { useNotVerifyLoggedIn } from "../auth/useVerifyNotLoggedIn";
-import { Layout } from "../layouts/Layout";
+import {RegisterForm} from 'frontend/components/Form/RegisterForm';
+import React from 'react';
+import {useNotVerifyLoggedIn} from '../auth/useVerifyNotLoggedIn';
+import {Layout} from '../layouts/Layout';
 
-interface RegisterPageProps { }
+interface RegisterPageProps {}
 
-export const RegisterPage: React.FC<RegisterPageProps> = ({ }) => {
-    useNotVerifyLoggedIn();
+export const RegisterPage: React.FC<RegisterPageProps> = ({}) => {
+	useNotVerifyLoggedIn();
 
-    return (
-        <Layout>
-            <RegisterForm />
-        </Layout>
-    );
+	return (
+		<Layout>
+			<RegisterForm />
+		</Layout>
+	);
 };

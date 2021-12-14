@@ -20,7 +20,9 @@ module.exports = {
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',
 		'react/jsx-tag-spacing': 'off',
-		'@typescript-eslint/no-unsafe-call': 'off',
+		// '@typescript-eslint/no-unsafe-call': 'off',
+		// '@typescript-eslint/no-unsafe-assignment': 'off',
+		// '@typescript-eslint/no-unsafe-member-access': 'off',
 	},
 	ignorePatterns: ['**/*.js'],
 };

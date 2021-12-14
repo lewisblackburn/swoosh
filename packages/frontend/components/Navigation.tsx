@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import {FiAirplay, FiArrowRight} from 'react-icons/fi';
-import {InternalLink} from '@components/InternalLink';
 import {useLogoutMutation, useMeQuery} from 'generated/graphql';
 import {Button} from './Button';
 import {useApolloClient} from '@apollo/client';
-import {Dropdown} from './Dropdown';
+import {InternalLink, Dropdown} from '@components';
 
 export const Navigation: React.FC = () => {
 	const items = [

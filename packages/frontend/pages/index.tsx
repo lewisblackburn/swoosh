@@ -1,4 +1,4 @@
 import withApollo from '../lib/withApollo';
-import { LandingPage } from '../modules/landing/LandingPage';
+import {LandingPage} from '../modules/landing/LandingPage';
 
-export default withApollo({ ssr: true })(LandingPage);
+export default withApollo({ssr: true})(LandingPage);

@@ -1,0 +1,3 @@
+mutation UploadThumbnail($id: Int!, $file: Upload!) {
+	uploadThumbnail(id: $id, file: $file)
+}

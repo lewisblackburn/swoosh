@@ -1,3 +1,0 @@
-mutation Upload($file: Upload!, $type: UploadType!) {
-  upload(file: $file, type: $type)
-}
