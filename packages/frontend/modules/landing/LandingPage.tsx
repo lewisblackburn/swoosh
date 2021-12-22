@@ -10,7 +10,7 @@ export const LandingPage: React.FC = () => {
 	const {data} = useMoviesQuery({
 		variables: {
 			orderBy: {
-				createdAt: SortOrder['Desc'],
+				createdAt: SortOrder.Desc,
 			},
 		},
 	});
