@@ -1,4 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
+import { Follows } from "../../../models/Follows";
 import { Notification } from "../../../models/Notification";
 import { User } from "../../../models/User";
 import { UserFollowersArgs } from "./args/UserFollowersArgs";
@@ -8,10 +9,10 @@ import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRel
 
 @TypeGraphQL.Resolver(_of => User)
 export class UserRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [User], {
+  @TypeGraphQL.FieldResolver(_type => [Follows], {
     nullable: false
   })
-  async following(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserFollowingArgs): Promise<User[]> {
+  async following(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserFollowingArgs): Promise<Follows[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         id: user.id,
@@ -19,10 +20,10 @@ export class UserRelationsResolver {
     }).following(args);
   }
 
-  @TypeGraphQL.FieldResolver(_type => [User], {
+  @TypeGraphQL.FieldResolver(_type => [Follows], {
     nullable: false
   })
-  async followers(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserFollowersArgs): Promise<User[]> {
+  async followers(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserFollowersArgs): Promise<Follows[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         id: user.id,

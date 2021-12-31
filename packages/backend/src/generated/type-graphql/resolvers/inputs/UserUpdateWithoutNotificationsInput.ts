@@ -5,9 +5,9 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
+import { FollowsUpdateManyWithoutFollowerInput } from "../inputs/FollowsUpdateManyWithoutFollowerInput";
+import { FollowsUpdateManyWithoutFollowingInput } from "../inputs/FollowsUpdateManyWithoutFollowingInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateManyWithoutFollowersInput } from "../inputs/UserUpdateManyWithoutFollowersInput";
-import { UserUpdateManyWithoutFollowingInput } from "../inputs/UserUpdateManyWithoutFollowingInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -78,13 +78,13 @@ export class UserUpdateWithoutNotificationsInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateManyWithoutFollowersInput, {
+  @TypeGraphQL.Field(_type => FollowsUpdateManyWithoutFollowingInput, {
     nullable: true
   })
-  following?: UserUpdateManyWithoutFollowersInput | undefined;
+  following?: FollowsUpdateManyWithoutFollowingInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateManyWithoutFollowingInput, {
+  @TypeGraphQL.Field(_type => FollowsUpdateManyWithoutFollowerInput, {
     nullable: true
   })
-  followers?: UserUpdateManyWithoutFollowingInput | undefined;
+  followers?: FollowsUpdateManyWithoutFollowerInput | undefined;
 }

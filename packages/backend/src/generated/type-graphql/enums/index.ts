@@ -1,6 +1,7 @@
 export { ActorInMovieScalarFieldEnum } from "./ActorInMovieScalarFieldEnum";
 export { BookScalarFieldEnum } from "./BookScalarFieldEnum";
 export { Career } from "./Career";
+export { FollowsScalarFieldEnum } from "./FollowsScalarFieldEnum";
 export { MovieScalarFieldEnum } from "./MovieScalarFieldEnum";
 export { NotificationScalarFieldEnum } from "./NotificationScalarFieldEnum";
 export { PersonScalarFieldEnum } from "./PersonScalarFieldEnum";

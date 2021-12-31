@@ -5,10 +5,10 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
+import { FollowsListRelationFilter } from "../inputs/FollowsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { UserListRelationFilter } from "../inputs/UserListRelationFilter";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -89,15 +89,15 @@ export class UserWhereInput {
   })
   dob?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserListRelationFilter, {
+  @TypeGraphQL.Field(_type => FollowsListRelationFilter, {
     nullable: true
   })
-  following?: UserListRelationFilter | undefined;
+  following?: FollowsListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserListRelationFilter, {
+  @TypeGraphQL.Field(_type => FollowsListRelationFilter, {
     nullable: true
   })
-  followers?: UserListRelationFilter | undefined;
+  followers?: FollowsListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => NotificationListRelationFilter, {
     nullable: true

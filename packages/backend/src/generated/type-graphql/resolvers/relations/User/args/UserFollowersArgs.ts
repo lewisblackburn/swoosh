@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { UserOrderByWithRelationInput } from "../../../inputs/UserOrderByWithRelationInput";
-import { UserWhereInput } from "../../../inputs/UserWhereInput";
-import { UserWhereUniqueInput } from "../../../inputs/UserWhereUniqueInput";
-import { UserScalarFieldEnum } from "../../../../enums/UserScalarFieldEnum";
+import { FollowsOrderByWithRelationInput } from "../../../inputs/FollowsOrderByWithRelationInput";
+import { FollowsWhereInput } from "../../../inputs/FollowsWhereInput";
+import { FollowsWhereUniqueInput } from "../../../inputs/FollowsWhereUniqueInput";
+import { FollowsScalarFieldEnum } from "../../../../enums/FollowsScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class UserFollowersArgs {
-  @TypeGraphQL.Field(_type => UserWhereInput, {
+  @TypeGraphQL.Field(_type => FollowsWhereInput, {
     nullable: true
   })
-  where?: UserWhereInput | undefined;
+  where?: FollowsWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [UserOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [FollowsOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: UserOrderByWithRelationInput[] | undefined;
+  orderBy?: FollowsOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => FollowsWhereUniqueInput, {
     nullable: true
   })
-  cursor?: UserWhereUniqueInput | undefined;
+  cursor?: FollowsWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class UserFollowersArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [UserScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [FollowsScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "confirmed" | "email" | "username" | "displayname" | "password" | "role" | "avatar" | "bio" | "location" | "website" | "dob" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"followingId" | "followerId"> | undefined;
 }

@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Follows } from "../models/Follows";
 import { Notification } from "../models/Notification";
 import { Role } from "../enums/Role";
 import { UserCount } from "../resolvers/outputs/UserCount";
@@ -67,9 +68,9 @@ export class User {
   })
   dob!: string;
 
-  following?: User[];
+  following?: Follows[];
 
-  followers?: User[];
+  followers?: Follows[];
 
   notifications?: Notification[];
 

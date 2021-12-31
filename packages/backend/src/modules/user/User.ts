@@ -1,8 +1,12 @@
-import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
+import {
+	getPrismaFromContext,
+	transformCountFieldIntoSelectRelationsCount,
+	transformFields,
+} from '../../generated/type-graphql/helpers';
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
 import {Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root} from 'type-graphql';
-import {FindManyUserArgs, User} from '../../generated/type-graphql';
+import {FindManyUserArgs, UpsertBookArgs, User} from '../../generated/type-graphql';
 import {Context} from '../../interfaces/context';
 
 @Resolver(User)
@@ -13,10 +17,34 @@ export class UserResolver {
 		return '';
 	}
 
-	@Query(() => User, {nullable: true})
-	async user(@Arg('username', () => String) username: string, @Ctx() ctx: Context) {
-		return ctx.prisma.user.findUnique({
+	@FieldResolver(() => Boolean)
+	async isFollowing(@Root() user: User, @Ctx() ctx: Context) {
+		if (!ctx.req.session.userId) return false;
+
+		const following = await ctx.prisma.follows.findUnique({
+			where: {
+				followerId_followingId: {
+					followingId: ctx.req.session.userId,
+					followerId: user.id,
+				},
+			},
+		});
+
+		return !!following;
+	}
+
+	@Query(() => User, {
+		nullable: true,
+	})
+	async user(
+		@Ctx() ctx: Context,
+		@Info() info: GraphQLResolveInfo,
+		@Arg('username', () => String) username: String
+	): Promise<User | null> {
+		const {_count} = transformFields(graphqlFields(info as any));
+		return getPrismaFromContext(ctx).user.findUnique({
 			where: {username},
+			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 	}
 

@@ -1,5 +1,6 @@
 export { ActorInMovie } from "./ActorInMovie";
 export { Book } from "./Book";
+export { Follows } from "./Follows";
 export { Movie } from "./Movie";
 export { Notification } from "./Notification";
 export { Person } from "./Person";
