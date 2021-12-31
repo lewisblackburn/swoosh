@@ -27,20 +27,20 @@ export class FollowResolver {
 			},
 		});
 
-		// NOTE: this is to stop the senderId error becuase for some reason putting ! is not working
-		if (ctx.req.session.userId) {
-			const notification = await ctx.prisma.notification
-				.create({
-					data: {
-						message: `${follow.username} is following you`,
-						senderId: ctx.req.session.userId,
-						recieverId: userId,
+		const notification = await ctx.prisma.notification
+			.create({
+				data: {
+					message: `${follow.username} is following you`,
+					user: {
+						connect: {
+							id: userId,
+						},
 					},
-				})
-				.then(async notification => {
-					await pubSub.publish('NOTIFICATIONS', {...notification});
-				});
-		}
+				},
+			})
+			.then(async notification => {
+				await pubSub.publish('NOTIFICATIONS', {...notification});
+			});
 
 		return !!follow;
 	}
