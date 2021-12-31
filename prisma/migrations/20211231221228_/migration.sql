@@ -25,14 +25,22 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Follows" (
+    "followingId" INTEGER NOT NULL,
+    "followerId" INTEGER NOT NULL,
+
+    CONSTRAINT "Follows_pkey" PRIMARY KEY ("followerId","followingId")
+);
+
+-- CreateTable
 CREATE TABLE "Notification" (
-    "recieverId" INTEGER NOT NULL,
-    "senderId" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER,
     "message" TEXT NOT NULL,
     "read" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Notification_pkey" PRIMARY KEY ("senderId","recieverId")
+    CONSTRAINT "Notification_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -91,12 +99,6 @@ CREATE TABLE "Song" (
 );
 
 -- CreateTable
-CREATE TABLE "_FollowRelation" (
-    "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
-);
-
--- CreateTable
 CREATE TABLE "_BookToPerson" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
@@ -115,12 +117,6 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_FollowRelation_AB_unique" ON "_FollowRelation"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_FollowRelation_B_index" ON "_FollowRelation"("B");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_BookToPerson_AB_unique" ON "_BookToPerson"("A", "B");
 
 -- CreateIndex
@@ -133,19 +129,19 @@ CREATE UNIQUE INDEX "_PersonToSong_AB_unique" ON "_PersonToSong"("A", "B");
 CREATE INDEX "_PersonToSong_B_index" ON "_PersonToSong"("B");
 
 -- AddForeignKey
-ALTER TABLE "Notification" ADD CONSTRAINT "Notification_recieverId_fkey" FOREIGN KEY ("recieverId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Follows" ADD CONSTRAINT "Follows_followingId_fkey" FOREIGN KEY ("followingId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Follows" ADD CONSTRAINT "Follows_followerId_fkey" FOREIGN KEY ("followerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Notification" ADD CONSTRAINT "Notification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ActorInMovie" ADD CONSTRAINT "ActorInMovie_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ActorInMovie" ADD CONSTRAINT "ActorInMovie_personId_fkey" FOREIGN KEY ("personId") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_FollowRelation" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_FollowRelation" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_BookToPerson" ADD FOREIGN KEY ("A") REFERENCES "Book"("id") ON DELETE CASCADE ON UPDATE CASCADE;

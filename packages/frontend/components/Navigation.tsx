@@ -27,7 +27,8 @@ export const Navigation: React.FC = () => {
 	const itemsTwo: any = [];
 
 	notifications?.notifications.forEach(notification => {
-		itemsTwo.push({name: notification.message, link: '/'});
+		// this needs to be improove, very janky way of doing it but cba rn
+		itemsTwo.push({name: notification.message, link: `/user/${notification.message.split(' ')[0]}`});
 	});
 
 	return (

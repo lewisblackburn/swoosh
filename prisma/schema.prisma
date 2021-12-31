@@ -26,11 +26,20 @@ model User {
   location      String         @default(value: "")
   website       String         @default(value: "")
   dob           String         @default(value: "")
-  following     User[]         @relation(name: "FollowRelation")
-  followers     User[]         @relation(name: "FollowRelation")
+  following     Follows[]      @relation(name: "following")
+  followers     Follows[]      @relation(name: "follower")
   notifications Notification[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+}
+
+model Follows {
+  following   User @relation("following", fields: [followingId], references: [id])
+  followingId Int
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  followerId  Int
+
+  @@id([followerId, followingId])
 }
 
 model Notification {
@@ -47,6 +56,7 @@ model Person {
   career Career[]
   name   String
   movies ActorInMovie[]
+  shows  ActorInShow[]
   books  Book[]
   songs  Song[]
 }
@@ -57,9 +67,31 @@ model Movie {
   description String
   thumbnail   String         @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean        @default(false)
+  platforms   Platform[]
   actors      ActorInMovie[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
+}
+
+model Show {
+  id          Int           @id @default(autoincrement())
+  title       String
+  description String
+  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean       @default(false)
+  platforms   Platform[]
+  actors      ActorInShow[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Platform {
+  id      Int    @id @default(autoincrement())
+  name    String
+  movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
+  show    Show?  @relation(fields: [showId], references: [id])
+  showId  Int?
 }
 
 model ActorInMovie {
@@ -70,6 +102,16 @@ model ActorInMovie {
   role     String
 
   @@id([personId, movieId])
+}
+
+model ActorInShow {
+  show     Show   @relation(fields: [showId], references: [id])
+  showId   Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
+  role     String
+
+  @@id([personId, showId])
 }
 
 model Book {

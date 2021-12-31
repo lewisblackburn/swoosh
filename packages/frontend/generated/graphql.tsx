@@ -425,6 +425,55 @@ export type EnumRoleFilter = {
 	notIn?: InputMaybe<Role[]>;
 };
 
+export type Follows = {
+	__typename?: 'Follows';
+	follower: User;
+	followerId: Scalars['Int'];
+	following: User;
+	followingId: Scalars['Int'];
+};
+
+export type FollowsFollowerIdFollowingIdCompoundUniqueInput = {
+	followerId: Scalars['Int'];
+	followingId: Scalars['Int'];
+};
+
+export type FollowsListRelationFilter = {
+	every?: InputMaybe<FollowsWhereInput>;
+	none?: InputMaybe<FollowsWhereInput>;
+	some?: InputMaybe<FollowsWhereInput>;
+};
+
+export type FollowsOrderByRelationAggregateInput = {
+	_count?: InputMaybe<SortOrder>;
+};
+
+export type FollowsOrderByWithRelationInput = {
+	follower?: InputMaybe<UserOrderByWithRelationInput>;
+	followerId?: InputMaybe<SortOrder>;
+	following?: InputMaybe<UserOrderByWithRelationInput>;
+	followingId?: InputMaybe<SortOrder>;
+};
+
+export enum FollowsScalarFieldEnum {
+	FollowerId = 'followerId',
+	FollowingId = 'followingId'
+}
+
+export type FollowsWhereInput = {
+	AND?: InputMaybe<FollowsWhereInput[]>;
+	NOT?: InputMaybe<FollowsWhereInput[]>;
+	OR?: InputMaybe<FollowsWhereInput[]>;
+	follower?: InputMaybe<UserRelationFilter>;
+	followerId?: InputMaybe<IntFilter>;
+	following?: InputMaybe<UserRelationFilter>;
+	followingId?: InputMaybe<IntFilter>;
+};
+
+export type FollowsWhereUniqueInput = {
+	followerId_followingId?: InputMaybe<FollowsFollowerIdFollowingIdCompoundUniqueInput>;
+};
+
 export type IntFilter = {
 	equals?: InputMaybe<Scalars['Int']>;
 	gt?: InputMaybe<Scalars['Int']>;
@@ -1135,6 +1184,7 @@ export type Query = {
 	__typename?: 'Query';
 	book?: Maybe<Book>;
 	books?: Maybe<Book[]>;
+	follows: Follows[];
 	me?: Maybe<User>;
 	movie?: Maybe<Movie>;
 	movies?: Maybe<Movie[]>;
@@ -1153,6 +1203,15 @@ export type QueryBookArgs = {
 
 export type QueryBooksArgs = {
 	title: Scalars['String'];
+};
+
+export type QueryFollowsArgs = {
+	cursor?: InputMaybe<FollowsWhereUniqueInput>;
+	distinct?: InputMaybe<FollowsScalarFieldEnum[]>;
+	orderBy?: InputMaybe<FollowsOrderByWithRelationInput[]>;
+	skip?: InputMaybe<Scalars['Int']>;
+	take?: InputMaybe<Scalars['Int']>;
+	where?: InputMaybe<FollowsWhereInput>;
 };
 
 export type QueryMovieArgs = {
@@ -1437,9 +1496,10 @@ export type User = {
 	displayname: Scalars['String'];
 	dob: Scalars['String'];
 	email: Scalars['String'];
-	followers: User[];
-	following: User[];
+	followers: Follows[];
+	following: Follows[];
 	id: Scalars['Int'];
+	isFollowing: Scalars['Boolean'];
 	location: Scalars['String'];
 	notifications: Notification[];
 	role: Role;
@@ -1449,21 +1509,21 @@ export type User = {
 };
 
 export type UserFollowersArgs = {
-	cursor?: InputMaybe<UserWhereUniqueInput>;
-	distinct?: InputMaybe<UserScalarFieldEnum[]>;
-	orderBy?: InputMaybe<UserOrderByWithRelationInput[]>;
+	cursor?: InputMaybe<FollowsWhereUniqueInput>;
+	distinct?: InputMaybe<FollowsScalarFieldEnum[]>;
+	orderBy?: InputMaybe<FollowsOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<UserWhereInput>;
+	where?: InputMaybe<FollowsWhereInput>;
 };
 
 export type UserFollowingArgs = {
-	cursor?: InputMaybe<UserWhereUniqueInput>;
-	distinct?: InputMaybe<UserScalarFieldEnum[]>;
-	orderBy?: InputMaybe<UserOrderByWithRelationInput[]>;
+	cursor?: InputMaybe<FollowsWhereUniqueInput>;
+	distinct?: InputMaybe<FollowsScalarFieldEnum[]>;
+	orderBy?: InputMaybe<FollowsOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<UserWhereInput>;
+	where?: InputMaybe<FollowsWhereInput>;
 };
 
 export type UserNotificationsArgs = {
@@ -1482,16 +1542,6 @@ export type UserCount = {
 	notifications: Scalars['Int'];
 };
 
-export type UserListRelationFilter = {
-	every?: InputMaybe<UserWhereInput>;
-	none?: InputMaybe<UserWhereInput>;
-	some?: InputMaybe<UserWhereInput>;
-};
-
-export type UserOrderByRelationAggregateInput = {
-	_count?: InputMaybe<SortOrder>;
-};
-
 export type UserOrderByWithRelationInput = {
 	avatar?: InputMaybe<SortOrder>;
 	bio?: InputMaybe<SortOrder>;
@@ -1500,8 +1550,8 @@ export type UserOrderByWithRelationInput = {
 	displayname?: InputMaybe<SortOrder>;
 	dob?: InputMaybe<SortOrder>;
 	email?: InputMaybe<SortOrder>;
-	followers?: InputMaybe<UserOrderByRelationAggregateInput>;
-	following?: InputMaybe<UserOrderByRelationAggregateInput>;
+	followers?: InputMaybe<FollowsOrderByRelationAggregateInput>;
+	following?: InputMaybe<FollowsOrderByRelationAggregateInput>;
 	id?: InputMaybe<SortOrder>;
 	location?: InputMaybe<SortOrder>;
 	notifications?: InputMaybe<NotificationOrderByRelationAggregateInput>;
@@ -1545,8 +1595,8 @@ export type UserWhereInput = {
 	displayname?: InputMaybe<StringFilter>;
 	dob?: InputMaybe<StringFilter>;
 	email?: InputMaybe<StringFilter>;
-	followers?: InputMaybe<UserListRelationFilter>;
-	following?: InputMaybe<UserListRelationFilter>;
+	followers?: InputMaybe<FollowsListRelationFilter>;
+	following?: InputMaybe<FollowsListRelationFilter>;
 	id?: InputMaybe<IntFilter>;
 	location?: InputMaybe<StringFilter>;
 	notifications?: InputMaybe<NotificationListRelationFilter>;
@@ -1585,6 +1635,12 @@ export type CreateMovieMutationVariables = Exact<{
 
 export type CreateMovieMutation = {__typename?: 'Mutation'; createMovie?: {__typename?: 'Movie'; id: number; title: string; description: string; thumbnail: string; locked: boolean; createdAt: any; updatedAt: any} | null | undefined};
 
+export type FollowMutationVariables = Exact<{
+	userId: Scalars['Int'];
+}>;
+
+export type FollowMutation = {__typename?: 'Mutation'; follow: boolean};
+
 export type LoginMutationVariables = Exact<{
 	data: LoginInput;
 }>;
@@ -1600,6 +1656,12 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 export type RegisterMutation = {__typename?: 'Mutation'; register: {__typename?: 'User'; id: number; email: string; username: string; avatar: string}};
+
+export type UnfollowMutationVariables = Exact<{
+	userId: Scalars['Int'];
+}>;
+
+export type UnfollowMutation = {__typename?: 'Mutation'; unfollow: boolean};
 
 export type UploadAvatarMutationVariables = Exact<{
 	file: Scalars['Upload'];
@@ -1644,6 +1706,12 @@ export type PeopleQueryVariables = Exact<{
 }>;
 
 export type PeopleQuery = {__typename?: 'Query'; people?: Array<{__typename?: 'Person'; id: number; career: Career[]; name: string}> | null | undefined};
+
+export type UserQueryVariables = Exact<{
+	username: Scalars['String'];
+}>;
+
+export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null | undefined} | null | undefined};
 
 export type NotificationListenerSubscriptionVariables = Exact<{
 	listenerId: Scalars['Int'];
@@ -1765,6 +1833,38 @@ export function useCreateMovieMutation(baseOptions?: Apollo.MutationHookOptions<
 export type CreateMovieMutationHookResult = ReturnType<typeof useCreateMovieMutation>;
 export type CreateMovieMutationResult = Apollo.MutationResult<CreateMovieMutation>;
 export type CreateMovieMutationOptions = Apollo.BaseMutationOptions<CreateMovieMutation, CreateMovieMutationVariables>;
+export const FollowDocument = gql`
+    mutation Follow($userId: Int!) {
+  follow(userId: $userId)
+}
+    `;
+export type FollowMutationFn = Apollo.MutationFunction<FollowMutation, FollowMutationVariables>;
+
+/**
+ * __useFollowMutation__
+ *
+ * To run a mutation, you first call `useFollowMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFollowMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [followMutation, { data, loading, error }] = useFollowMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useFollowMutation(baseOptions?: Apollo.MutationHookOptions<FollowMutation, FollowMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<FollowMutation, FollowMutationVariables>(FollowDocument, options);
+}
+
+export type FollowMutationHookResult = ReturnType<typeof useFollowMutation>;
+export type FollowMutationResult = Apollo.MutationResult<FollowMutation>;
+export type FollowMutationOptions = Apollo.BaseMutationOptions<FollowMutation, FollowMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($data: LoginInput!) {
   login(data: $data) {
@@ -1864,6 +1964,38 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const UnfollowDocument = gql`
+    mutation Unfollow($userId: Int!) {
+  unfollow(userId: $userId)
+}
+    `;
+export type UnfollowMutationFn = Apollo.MutationFunction<UnfollowMutation, UnfollowMutationVariables>;
+
+/**
+ * __useUnfollowMutation__
+ *
+ * To run a mutation, you first call `useUnfollowMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnfollowMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unfollowMutation, { data, loading, error }] = useUnfollowMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useUnfollowMutation(baseOptions?: Apollo.MutationHookOptions<UnfollowMutation, UnfollowMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<UnfollowMutation, UnfollowMutationVariables>(UnfollowDocument, options);
+}
+
+export type UnfollowMutationHookResult = ReturnType<typeof useUnfollowMutation>;
+export type UnfollowMutationResult = Apollo.MutationResult<UnfollowMutation>;
+export type UnfollowMutationOptions = Apollo.BaseMutationOptions<UnfollowMutation, UnfollowMutationVariables>;
 export const UploadAvatarDocument = gql`
     mutation UploadAvatar($file: Upload!) {
   uploadAvatar(file: $file)
@@ -2137,6 +2269,60 @@ export function usePeopleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Peo
 export type PeopleQueryHookResult = ReturnType<typeof usePeopleQuery>;
 export type PeopleLazyQueryHookResult = ReturnType<typeof usePeopleLazyQuery>;
 export type PeopleQueryResult = Apollo.QueryResult<PeopleQuery, PeopleQueryVariables>;
+export const UserDocument = gql`
+    query User($username: String!) {
+  user(username: $username) {
+    id
+    confirmed
+    email
+    username
+    displayname
+    role
+    avatar
+    bio
+    location
+    website
+    dob
+    isFollowing
+    createdAt
+    updatedAt
+    _count {
+      following
+      followers
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      username: // value for 'username'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+}
+
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+}
+
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const NotificationListenerDocument = gql`
     subscription NotificationListener($listenerId: Int!) {
   notificationListener(listenerId: $listenerId) {
