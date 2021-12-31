@@ -3,6 +3,7 @@ import {
 	ActorInMovieRelationsResolver,
 	BookRelationsResolver,
 	MovieRelationsResolver,
+	NotificationRelationsResolver,
 	PersonRelationsResolver,
 	SongRelationsResolver,
 	UserRelationsResolver,
@@ -11,6 +12,7 @@ import {BookResolver} from '../modules/book/Book';
 import {FileUploadResolver} from '../modules/file/FileUpload';
 import {authChecker} from '../modules/middleware/authChecker';
 import {MovieResolver} from '../modules/movie/Movie';
+import {NotificationResolver} from '../modules/notification/Notification';
 import {PersonResolver} from '../modules/person/Person';
 import {SongResolver} from '../modules/song/Song';
 import {ChangePasswordResolver} from '../modules/user/ChangePassword';
@@ -35,17 +37,19 @@ export const createSchema = async () =>
 			LogoutResolver,
 			MeResolver,
 			FollowResolver,
-			UserRelationsResolver,
 			MovieResolver,
 			PersonResolver,
 			SongResolver,
 			BookResolver,
 			FileUploadResolver,
+			NotificationResolver,
+			UserRelationsResolver,
 			BookRelationsResolver,
 			SongRelationsResolver,
 			PersonRelationsResolver,
 			ActorInMovieRelationsResolver,
 			MovieRelationsResolver,
+			NotificationRelationsResolver,
 		],
 		authChecker,
 	});

@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
+import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { UserUpdateManyWithoutFollowersInput } from "../inputs/UserUpdateManyWithoutFollowersInput";
 
@@ -81,4 +82,9 @@ export class UserUpdateWithoutFollowersInput {
     nullable: true
   })
   following?: UserUpdateManyWithoutFollowersInput | undefined;
+
+  @TypeGraphQL.Field(_type => NotificationUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  notifications?: NotificationUpdateManyWithoutUserInput | undefined;
 }

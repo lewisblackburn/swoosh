@@ -25,6 +25,17 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Notification" (
+    "recieverId" INTEGER NOT NULL,
+    "senderId" INTEGER NOT NULL,
+    "message" TEXT NOT NULL,
+    "read" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Notification_pkey" PRIMARY KEY ("senderId","recieverId")
+);
+
+-- CreateTable
 CREATE TABLE "Person" (
     "id" SERIAL NOT NULL,
     "career" "Career"[],
@@ -38,11 +49,21 @@ CREATE TABLE "Movie" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "thumbnail" TEXT NOT NULL DEFAULT E'https://via.placeholder.com/400x600',
     "locked" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Movie_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ActorInMovie" (
+    "movieId" INTEGER NOT NULL,
+    "personId" INTEGER NOT NULL,
+    "role" TEXT NOT NULL,
+
+    CONSTRAINT "ActorInMovie_pkey" PRIMARY KEY ("personId","movieId")
 );
 
 -- CreateTable
@@ -76,12 +97,6 @@ CREATE TABLE "_FollowRelation" (
 );
 
 -- CreateTable
-CREATE TABLE "_MovieToPerson" (
-    "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
-);
-
--- CreateTable
 CREATE TABLE "_BookToPerson" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
@@ -106,12 +121,6 @@ CREATE UNIQUE INDEX "_FollowRelation_AB_unique" ON "_FollowRelation"("A", "B");
 CREATE INDEX "_FollowRelation_B_index" ON "_FollowRelation"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_MovieToPerson_AB_unique" ON "_MovieToPerson"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_MovieToPerson_B_index" ON "_MovieToPerson"("B");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_BookToPerson_AB_unique" ON "_BookToPerson"("A", "B");
 
 -- CreateIndex
@@ -124,16 +133,19 @@ CREATE UNIQUE INDEX "_PersonToSong_AB_unique" ON "_PersonToSong"("A", "B");
 CREATE INDEX "_PersonToSong_B_index" ON "_PersonToSong"("B");
 
 -- AddForeignKey
+ALTER TABLE "Notification" ADD CONSTRAINT "Notification_recieverId_fkey" FOREIGN KEY ("recieverId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ActorInMovie" ADD CONSTRAINT "ActorInMovie_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ActorInMovie" ADD CONSTRAINT "ActorInMovie_personId_fkey" FOREIGN KEY ("personId") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "_FollowRelation" ADD FOREIGN KEY ("A") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_FollowRelation" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_MovieToPerson" ADD FOREIGN KEY ("A") REFERENCES "Movie"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_MovieToPerson" ADD FOREIGN KEY ("B") REFERENCES "Person"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_BookToPerson" ADD FOREIGN KEY ("A") REFERENCES "Book"("id") ON DELETE CASCADE ON UPDATE CASCADE;

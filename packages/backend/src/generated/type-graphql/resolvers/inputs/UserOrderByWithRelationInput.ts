@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
 import { UserOrderByRelationAggregateInput } from "../inputs/UserOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -78,6 +79,11 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   followers?: UserOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => NotificationOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  notifications?: NotificationOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

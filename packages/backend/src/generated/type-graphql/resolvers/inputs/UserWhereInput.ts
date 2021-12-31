@@ -6,6 +6,7 @@ import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserListRelationFilter } from "../inputs/UserListRelationFilter";
 
@@ -97,6 +98,11 @@ export class UserWhereInput {
     nullable: true
   })
   followers?: UserListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => NotificationListRelationFilter, {
+    nullable: true
+  })
+  notifications?: NotificationListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
