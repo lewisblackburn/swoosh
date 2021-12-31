@@ -436,6 +436,17 @@ export type IntFilter = {
 	notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type IntNullableFilter = {
+	equals?: InputMaybe<Scalars['Int']>;
+	gt?: InputMaybe<Scalars['Int']>;
+	gte?: InputMaybe<Scalars['Int']>;
+	in?: InputMaybe<Array<Scalars['Int']>>;
+	lt?: InputMaybe<Scalars['Int']>;
+	lte?: InputMaybe<Scalars['Int']>;
+	not?: InputMaybe<NestedIntNullableFilter>;
+	notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type LoginInput = {
 	email: Scalars['String'];
 	password: Scalars['String'];
@@ -576,7 +587,7 @@ export type MovieWhereUniqueInput = {
 
 export type Mutation = {
 	__typename?: 'Mutation';
-	addActor?: Maybe<Movie>;
+	addActor?: Maybe<Scalars['Boolean']>;
 	addArtist?: Maybe<Song>;
 	changePassword: User;
 	confirm: Scalars['Boolean'];
@@ -766,6 +777,17 @@ export type NestedIntFilter = {
 	notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type NestedIntNullableFilter = {
+	equals?: InputMaybe<Scalars['Int']>;
+	gt?: InputMaybe<Scalars['Int']>;
+	gte?: InputMaybe<Scalars['Int']>;
+	in?: InputMaybe<Array<Scalars['Int']>>;
+	lt?: InputMaybe<Scalars['Int']>;
+	lte?: InputMaybe<Scalars['Int']>;
+	not?: InputMaybe<NestedIntNullableFilter>;
+	notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type NestedStringFilter = {
 	contains?: InputMaybe<Scalars['String']>;
 	endsWith?: InputMaybe<Scalars['String']>;
@@ -778,6 +800,59 @@ export type NestedStringFilter = {
 	not?: InputMaybe<NestedStringFilter>;
 	notIn?: InputMaybe<Array<Scalars['String']>>;
 	startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Notification = {
+	__typename?: 'Notification';
+	createdAt: Scalars['DateTime'];
+	id: Scalars['Int'];
+	message: Scalars['String'];
+	read: Scalars['Boolean'];
+	user?: Maybe<User>;
+	userId?: Maybe<Scalars['Int']>;
+};
+
+export type NotificationListRelationFilter = {
+	every?: InputMaybe<NotificationWhereInput>;
+	none?: InputMaybe<NotificationWhereInput>;
+	some?: InputMaybe<NotificationWhereInput>;
+};
+
+export type NotificationOrderByRelationAggregateInput = {
+	_count?: InputMaybe<SortOrder>;
+};
+
+export type NotificationOrderByWithRelationInput = {
+	createdAt?: InputMaybe<SortOrder>;
+	id?: InputMaybe<SortOrder>;
+	message?: InputMaybe<SortOrder>;
+	read?: InputMaybe<SortOrder>;
+	user?: InputMaybe<UserOrderByWithRelationInput>;
+	userId?: InputMaybe<SortOrder>;
+};
+
+export enum NotificationScalarFieldEnum {
+	CreatedAt = 'createdAt',
+	Id = 'id',
+	Message = 'message',
+	Read = 'read',
+	UserId = 'userId'
+}
+
+export type NotificationWhereInput = {
+	AND?: InputMaybe<NotificationWhereInput[]>;
+	NOT?: InputMaybe<NotificationWhereInput[]>;
+	OR?: InputMaybe<NotificationWhereInput[]>;
+	createdAt?: InputMaybe<DateTimeFilter>;
+	id?: InputMaybe<IntFilter>;
+	message?: InputMaybe<StringFilter>;
+	read?: InputMaybe<BoolFilter>;
+	user?: InputMaybe<UserRelationFilter>;
+	userId?: InputMaybe<IntNullableFilter>;
+};
+
+export type NotificationWhereUniqueInput = {
+	id?: InputMaybe<Scalars['Int']>;
 };
 
 export type Person = {
@@ -1063,11 +1138,13 @@ export type Query = {
 	me?: Maybe<User>;
 	movie?: Maybe<Movie>;
 	movies?: Maybe<Movie[]>;
+	notifications: Notification[];
 	people?: Maybe<Person[]>;
 	person?: Maybe<Person>;
 	song?: Maybe<Song>;
 	songs?: Maybe<Song[]>;
 	user?: Maybe<User>;
+	users: User[];
 };
 
 export type QueryBookArgs = {
@@ -1089,6 +1166,15 @@ export type QueryMoviesArgs = {
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
 	where?: InputMaybe<MovieWhereInput>;
+};
+
+export type QueryNotificationsArgs = {
+	cursor?: InputMaybe<NotificationWhereUniqueInput>;
+	distinct?: InputMaybe<NotificationScalarFieldEnum[]>;
+	orderBy?: InputMaybe<NotificationOrderByWithRelationInput[]>;
+	skip?: InputMaybe<Scalars['Int']>;
+	take?: InputMaybe<Scalars['Int']>;
+	where?: InputMaybe<NotificationWhereInput>;
 };
 
 export type QueryPeopleArgs = {
@@ -1114,6 +1200,15 @@ export type QuerySongsArgs = {
 
 export type QueryUserArgs = {
 	username: Scalars['String'];
+};
+
+export type QueryUsersArgs = {
+	cursor?: InputMaybe<UserWhereUniqueInput>;
+	distinct?: InputMaybe<UserScalarFieldEnum[]>;
+	orderBy?: InputMaybe<UserOrderByWithRelationInput[]>;
+	skip?: InputMaybe<Scalars['Int']>;
+	take?: InputMaybe<Scalars['Int']>;
+	where?: InputMaybe<UserWhereInput>;
 };
 
 export enum QueryMode {
@@ -1323,6 +1418,15 @@ export type StringFilter = {
 	startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type Subscription = {
+	__typename?: 'Subscription';
+	notificationListener: Notification;
+};
+
+export type SubscriptionNotificationListenerArgs = {
+	listenerId: Scalars['Int'];
+};
+
 export type User = {
 	__typename?: 'User';
 	_count?: Maybe<UserCount>;
@@ -1337,6 +1441,7 @@ export type User = {
 	following: User[];
 	id: Scalars['Int'];
 	location: Scalars['String'];
+	notifications: Notification[];
 	role: Role;
 	updatedAt: Scalars['DateTime'];
 	username: Scalars['String'];
@@ -1361,10 +1466,20 @@ export type UserFollowingArgs = {
 	where?: InputMaybe<UserWhereInput>;
 };
 
+export type UserNotificationsArgs = {
+	cursor?: InputMaybe<NotificationWhereUniqueInput>;
+	distinct?: InputMaybe<NotificationScalarFieldEnum[]>;
+	orderBy?: InputMaybe<NotificationOrderByWithRelationInput[]>;
+	skip?: InputMaybe<Scalars['Int']>;
+	take?: InputMaybe<Scalars['Int']>;
+	where?: InputMaybe<NotificationWhereInput>;
+};
+
 export type UserCount = {
 	__typename?: 'UserCount';
 	followers: Scalars['Int'];
 	following: Scalars['Int'];
+	notifications: Scalars['Int'];
 };
 
 export type UserListRelationFilter = {
@@ -1389,11 +1504,17 @@ export type UserOrderByWithRelationInput = {
 	following?: InputMaybe<UserOrderByRelationAggregateInput>;
 	id?: InputMaybe<SortOrder>;
 	location?: InputMaybe<SortOrder>;
+	notifications?: InputMaybe<NotificationOrderByRelationAggregateInput>;
 	password?: InputMaybe<SortOrder>;
 	role?: InputMaybe<SortOrder>;
 	updatedAt?: InputMaybe<SortOrder>;
 	username?: InputMaybe<SortOrder>;
 	website?: InputMaybe<SortOrder>;
+};
+
+export type UserRelationFilter = {
+	is?: InputMaybe<UserWhereInput>;
+	isNot?: InputMaybe<UserWhereInput>;
 };
 
 export enum UserScalarFieldEnum {
@@ -1428,6 +1549,7 @@ export type UserWhereInput = {
 	following?: InputMaybe<UserListRelationFilter>;
 	id?: InputMaybe<IntFilter>;
 	location?: InputMaybe<StringFilter>;
+	notifications?: InputMaybe<NotificationListRelationFilter>;
 	password?: InputMaybe<StringFilter>;
 	role?: InputMaybe<EnumRoleFilter>;
 	updatedAt?: InputMaybe<DateTimeFilter>;
@@ -1442,6 +1564,14 @@ export type UserWhereUniqueInput = {
 };
 
 export type RegularUserFragment = {__typename?: 'User'; id: number; email: string; username: string; avatar: string};
+
+export type AddActorMutationVariables = Exact<{
+	role: Scalars['String'];
+	movieId: Scalars['Int'];
+	personId: Scalars['Int'];
+}>;
+
+export type AddActorMutation = {__typename?: 'Mutation'; addActor?: boolean | null | undefined};
 
 export type ConfirmMutationVariables = Exact<{
 	token: Scalars['String'];
@@ -1502,6 +1632,25 @@ export type MoviesQueryVariables = Exact<{
 
 export type MoviesQuery = {__typename?: 'Query'; movies?: Array<{__typename?: 'Movie'; id: number; title: string; description: string; thumbnail: string; locked: boolean}> | null | undefined};
 
+export type NotificationsQueryVariables = Exact<Record<string, never>>;
+
+export type NotificationsQuery = {__typename?: 'Query'; notifications: Array<{__typename?: 'Notification'; id: number; message: string; read: boolean; createdAt: any}>};
+
+export type PeopleQueryVariables = Exact<{
+	where?: InputMaybe<PersonWhereInput>;
+	orderBy?: InputMaybe<PersonOrderByWithRelationInput[] | PersonOrderByWithRelationInput>;
+	cursor?: InputMaybe<PersonWhereUniqueInput>;
+	take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type PeopleQuery = {__typename?: 'Query'; people?: Array<{__typename?: 'Person'; id: number; career: Career[]; name: string}> | null | undefined};
+
+export type NotificationListenerSubscriptionVariables = Exact<{
+	listenerId: Scalars['Int'];
+}>;
+
+export type NotificationListenerSubscription = {__typename?: 'Subscription'; notificationListener: {__typename?: 'Notification'; id: number; userId?: number | null | undefined; message: string; read: boolean; createdAt: any}};
+
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
@@ -1510,6 +1659,40 @@ export const RegularUserFragmentDoc = gql`
   avatar
 }
     `;
+export const AddActorDocument = gql`
+    mutation addActor($role: String!, $movieId: Int!, $personId: Int!) {
+  addActor(role: $role, movieId: $movieId, personId: $personId)
+}
+    `;
+export type AddActorMutationFn = Apollo.MutationFunction<AddActorMutation, AddActorMutationVariables>;
+
+/**
+ * __useAddActorMutation__
+ *
+ * To run a mutation, you first call `useAddActorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddActorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addActorMutation, { data, loading, error }] = useAddActorMutation({
+ *   variables: {
+ *      role: // value for 'role'
+ *      movieId: // value for 'movieId'
+ *      personId: // value for 'personId'
+ *   },
+ * });
+ */
+export function useAddActorMutation(baseOptions?: Apollo.MutationHookOptions<AddActorMutation, AddActorMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<AddActorMutation, AddActorMutationVariables>(AddActorDocument, options);
+}
+
+export type AddActorMutationHookResult = ReturnType<typeof useAddActorMutation>;
+export type AddActorMutationResult = Apollo.MutationResult<AddActorMutation>;
+export type AddActorMutationOptions = Apollo.BaseMutationOptions<AddActorMutation, AddActorMutationVariables>;
 export const ConfirmDocument = gql`
     mutation Confirm($token: String!) {
   confirm(token: $token)
@@ -1873,3 +2056,119 @@ export function useMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Mov
 export type MoviesQueryHookResult = ReturnType<typeof useMoviesQuery>;
 export type MoviesLazyQueryHookResult = ReturnType<typeof useMoviesLazyQuery>;
 export type MoviesQueryResult = Apollo.QueryResult<MoviesQuery, MoviesQueryVariables>;
+export const NotificationsDocument = gql`
+    query Notifications {
+  notifications {
+    id
+    message
+    read
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useNotificationsQuery__
+ *
+ * To run a query within a React component, call `useNotificationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNotificationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNotificationsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNotificationsQuery(baseOptions?: Apollo.QueryHookOptions<NotificationsQuery, NotificationsQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useQuery<NotificationsQuery, NotificationsQueryVariables>(NotificationsDocument, options);
+}
+
+export function useNotificationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NotificationsQuery, NotificationsQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useLazyQuery<NotificationsQuery, NotificationsQueryVariables>(NotificationsDocument, options);
+}
+
+export type NotificationsQueryHookResult = ReturnType<typeof useNotificationsQuery>;
+export type NotificationsLazyQueryHookResult = ReturnType<typeof useNotificationsLazyQuery>;
+export type NotificationsQueryResult = Apollo.QueryResult<NotificationsQuery, NotificationsQueryVariables>;
+export const PeopleDocument = gql`
+    query People($where: PersonWhereInput, $orderBy: [PersonOrderByWithRelationInput!], $cursor: PersonWhereUniqueInput, $take: Int) {
+  people(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+    id
+    career
+    name
+  }
+}
+    `;
+
+/**
+ * __usePeopleQuery__
+ *
+ * To run a query within a React component, call `usePeopleQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePeopleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePeopleQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function usePeopleQuery(baseOptions?: Apollo.QueryHookOptions<PeopleQuery, PeopleQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useQuery<PeopleQuery, PeopleQueryVariables>(PeopleDocument, options);
+}
+
+export function usePeopleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PeopleQuery, PeopleQueryVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useLazyQuery<PeopleQuery, PeopleQueryVariables>(PeopleDocument, options);
+}
+
+export type PeopleQueryHookResult = ReturnType<typeof usePeopleQuery>;
+export type PeopleLazyQueryHookResult = ReturnType<typeof usePeopleLazyQuery>;
+export type PeopleQueryResult = Apollo.QueryResult<PeopleQuery, PeopleQueryVariables>;
+export const NotificationListenerDocument = gql`
+    subscription NotificationListener($listenerId: Int!) {
+  notificationListener(listenerId: $listenerId) {
+    id
+    userId
+    message
+    read
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useNotificationListenerSubscription__
+ *
+ * To run a query within a React component, call `useNotificationListenerSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useNotificationListenerSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNotificationListenerSubscription({
+ *   variables: {
+ *      listenerId: // value for 'listenerId'
+ *   },
+ * });
+ */
+export function useNotificationListenerSubscription(baseOptions: Apollo.SubscriptionHookOptions<NotificationListenerSubscription, NotificationListenerSubscriptionVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useSubscription<NotificationListenerSubscription, NotificationListenerSubscriptionVariables>(NotificationListenerDocument, options);
+}
+
+export type NotificationListenerSubscriptionHookResult = ReturnType<typeof useNotificationListenerSubscription>;
+export type NotificationListenerSubscriptionResult = Apollo.SubscriptionResult<NotificationListenerSubscription>;

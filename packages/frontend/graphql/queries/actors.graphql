@@ -1,5 +1,0 @@
-query People($wher) {
-  people() {
-    id
-  }
-}

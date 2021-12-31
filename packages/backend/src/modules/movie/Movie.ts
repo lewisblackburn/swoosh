@@ -67,14 +67,14 @@ export class MovieResolver {
 
 	@Authorized(['ADMIN', 'USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Movie, {nullable: true})
+	@Mutation(() => Boolean, {nullable: true})
 	async addActor(
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
 		@Arg('movieId', () => Int) movieId: number,
 		@Arg('role') role: string
-	): Promise<Movie | null> {
-		return ctx.prisma.movie.update({
+	): Promise<Boolean> {
+		const actor = ctx.prisma.movie.update({
 			where: {
 				id: movieId,
 			},
@@ -91,6 +91,8 @@ export class MovieResolver {
 				},
 			},
 		});
+
+		return !!actor;
 	}
 
 	@Authorized(['ADMIN', 'USER'])

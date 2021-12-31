@@ -39,7 +39,9 @@ export class FollowResolver {
 				},
 			})
 			.then(async notification => {
-				await pubSub.publish('NOTIFICATIONS', {...notification});
+				await pubSub.publish('NOTIFICATIONS', {
+					...notification,
+				});
 			});
 
 		return !!follow;
@@ -61,6 +63,7 @@ export class FollowResolver {
 				},
 			},
 		});
+
 		return !!follow;
 	}
 }

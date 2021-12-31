@@ -1,0 +1,9 @@
+subscription NotificationListener($listenerId: Int!) {
+	notificationListener(listenerId: $listenerId) {
+		id
+		userId
+		message
+		read
+		createdAt
+	}
+}
