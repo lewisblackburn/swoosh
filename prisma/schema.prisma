@@ -62,36 +62,76 @@ model Person {
 }
 
 model Movie {
-  id          Int            @id @default(autoincrement())
+  id          Int               @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String         @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean        @default(false)
-  platforms   Platform[]
+  thumbnail   String            @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean           @default(false)
   actors      ActorInMovie[]
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  platforms   PlatformOnMovie[]
+  soundtrack  SongInMovie[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
 model Show {
-  id          Int           @id @default(autoincrement())
+  id          Int              @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean       @default(false)
-  platforms   Platform[]
+  thumbnail   String           @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean          @default(false)
   actors      ActorInShow[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  platforms   PlatformOnShow[]
+  soundtrack  SongInShow[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 }
 
 model Platform {
-  id      Int    @id @default(autoincrement())
-  name    String
-  movie   Movie? @relation(fields: [movieId], references: [id])
-  movieId Int?
-  show    Show?  @relation(fields: [showId], references: [id])
-  showId  Int?
+  id              Int               @id @default(autoincrement())
+  name            String
+  PlatformOnMovie PlatformOnMovie[]
+  PlatformOnShow  PlatformOnShow[]
+}
+
+model PlatformOnMovie {
+  platform   Platform @relation(fields: [platformId], references: [id])
+  platformId Int
+  movie      Movie    @relation(fields: [movieId], references: [id])
+  movieId    Int
+
+  @@id([platformId, movieId])
+}
+
+model PlatformOnShow {
+  platform   Platform @relation(fields: [platformId], references: [id])
+  platformId Int
+  show       Show     @relation(fields: [showId], references: [id])
+  showId     Int
+
+  @@id([platformId, showId])
+}
+
+model SongInMovie {
+  song        Song     @relation(fields: [songId], references: [id])
+  songId      Int
+  movie       Movie    @relation(fields: [movieId], references: [id])
+  movieId     Int
+  timestamp   DateTime
+  description String
+
+  @@id([songId, movieId])
+}
+
+model SongInShow {
+  song        Song     @relation(fields: [songId], references: [id])
+  songId      Int
+  show        Show     @relation(fields: [showId], references: [id])
+  showId      Int
+  timestamp   DateTime
+  description String
+
+  @@id([songId, showId])
 }
 
 model ActorInMovie {
@@ -125,13 +165,15 @@ model Book {
 }
 
 model Song {
-  id          Int      @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String
   description String
-  locked      Boolean  @default(false)
+  locked      Boolean       @default(false)
   artists     Person[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  songInShow  SongInShow[]
+  songInMovie SongInMovie[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 enum Career {
