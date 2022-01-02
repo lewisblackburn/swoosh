@@ -1,8 +1,15 @@
 export { ActorInMovie } from "./ActorInMovie";
+export { ActorInShow } from "./ActorInShow";
 export { Book } from "./Book";
 export { Follows } from "./Follows";
 export { Movie } from "./Movie";
 export { Notification } from "./Notification";
 export { Person } from "./Person";
+export { Platform } from "./Platform";
+export { PlatformOnMovie } from "./PlatformOnMovie";
+export { PlatformOnShow } from "./PlatformOnShow";
+export { Show } from "./Show";
 export { Song } from "./Song";
+export { SongInMovie } from "./SongInMovie";
+export { SongInShow } from "./SongInShow";
 export { User } from "./User";

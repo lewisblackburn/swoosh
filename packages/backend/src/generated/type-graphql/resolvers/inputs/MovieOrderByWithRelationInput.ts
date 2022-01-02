@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieOrderByRelationAggregateInput } from "../inputs/ActorInMovieOrderByRelationAggregateInput";
+import { PlatformOnMovieOrderByRelationAggregateInput } from "../inputs/PlatformOnMovieOrderByRelationAggregateInput";
+import { SongInMovieOrderByRelationAggregateInput } from "../inputs/SongInMovieOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType({
@@ -34,10 +36,25 @@ export class MovieOrderByWithRelationInput {
   })
   locked?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  released?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => ActorInMovieOrderByRelationAggregateInput, {
     nullable: true
   })
   actors?: ActorInMovieOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => PlatformOnMovieOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  platforms?: PlatformOnMovieOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongInMovieOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  soundtrack?: SongInMovieOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

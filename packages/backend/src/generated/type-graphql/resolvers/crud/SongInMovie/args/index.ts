@@ -1,0 +1,12 @@
+export { AggregateSongInMovieArgs } from "./AggregateSongInMovieArgs";
+export { CreateManySongInMovieArgs } from "./CreateManySongInMovieArgs";
+export { CreateSongInMovieArgs } from "./CreateSongInMovieArgs";
+export { DeleteManySongInMovieArgs } from "./DeleteManySongInMovieArgs";
+export { DeleteSongInMovieArgs } from "./DeleteSongInMovieArgs";
+export { FindFirstSongInMovieArgs } from "./FindFirstSongInMovieArgs";
+export { FindManySongInMovieArgs } from "./FindManySongInMovieArgs";
+export { FindUniqueSongInMovieArgs } from "./FindUniqueSongInMovieArgs";
+export { GroupBySongInMovieArgs } from "./GroupBySongInMovieArgs";
+export { UpdateManySongInMovieArgs } from "./UpdateManySongInMovieArgs";
+export { UpdateSongInMovieArgs } from "./UpdateSongInMovieArgs";
+export { UpsertSongInMovieArgs } from "./UpsertSongInMovieArgs";

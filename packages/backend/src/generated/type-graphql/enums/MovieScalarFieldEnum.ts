@@ -6,6 +6,7 @@ export enum MovieScalarFieldEnum {
   description = "description",
   thumbnail = "thumbnail",
   locked = "locked",
+  released = "released",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

@@ -5,6 +5,9 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutMovieInput } from "../inputs/ActorInMovieUpdateManyWithoutMovieInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
+import { PlatformOnMovieUpdateManyWithoutMovieInput } from "../inputs/PlatformOnMovieUpdateManyWithoutMovieInput";
+import { SongInMovieUpdateManyWithoutMovieInput } from "../inputs/SongInMovieUpdateManyWithoutMovieInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
@@ -31,6 +34,11 @@ export class MovieUpdateInput {
   })
   locked?: BoolFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => NullableDateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  released?: NullableDateTimeFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -45,4 +53,14 @@ export class MovieUpdateInput {
     nullable: true
   })
   actors?: ActorInMovieUpdateManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => PlatformOnMovieUpdateManyWithoutMovieInput, {
+    nullable: true
+  })
+  platforms?: PlatformOnMovieUpdateManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongInMovieUpdateManyWithoutMovieInput, {
+    nullable: true
+  })
+  soundtrack?: SongInMovieUpdateManyWithoutMovieInput | undefined;
 }

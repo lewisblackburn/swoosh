@@ -3,6 +3,7 @@ import {
 	DeleteMovieArgs,
 	FindManyMovieArgs,
 	Movie,
+	Person,
 	UpdateMovieArgs,
 } from '../../generated/type-graphql';
 import {Context} from '../../interfaces/context';
@@ -74,21 +75,11 @@ export class MovieResolver {
 		@Arg('movieId', () => Int) movieId: number,
 		@Arg('role') role: string
 	): Promise<Boolean> {
-		const actor = ctx.prisma.movie.update({
-			where: {
-				id: movieId,
-			},
+		const actor = await ctx.prisma.actorInMovie.create({
 			data: {
-				actors: {
-					create: {
-						person: {
-							connect: {
-								id: personId,
-							},
-						},
-						role,
-					},
-				},
+				movieId,
+				personId,
+				role,
 			},
 		});
 
@@ -102,22 +93,17 @@ export class MovieResolver {
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
 		@Arg('movieId', () => Int) movieId: number
-	): Promise<Movie | null> {
-		return ctx.prisma.movie.update({
+	): Promise<Boolean> {
+		const actor = await ctx.prisma.actorInMovie.delete({
 			where: {
-				id: movieId,
-			},
-			data: {
-				actors: {
-					disconnect: {
-						personId_movieId: {
-							movieId,
-							personId,
-						},
-					},
+				personId_movieId: {
+					movieId,
+					personId,
 				},
 			},
 		});
+
+		return !!actor;
 	}
 
 	@Query(() => Movie, {nullable: true})

@@ -11,4 +11,9 @@ export class PersonSumAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  age!: number | null;
 }

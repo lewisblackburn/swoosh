@@ -20,7 +20,7 @@ export class GroupByPersonArgs {
   @TypeGraphQL.Field(_type => [PersonScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "career" | "name">;
+  by!: Array<"id" | "career" | "name" | "thumbnail" | "bio" | "age" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => PersonScalarWhereWithAggregatesInput, {
     nullable: true

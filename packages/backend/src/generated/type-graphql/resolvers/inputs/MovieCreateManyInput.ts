@@ -35,6 +35,11 @@ export class MovieCreateManyInput {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
+  released?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
   createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {

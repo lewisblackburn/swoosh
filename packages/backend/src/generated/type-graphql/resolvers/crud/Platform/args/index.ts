@@ -1,0 +1,12 @@
+export { AggregatePlatformArgs } from "./AggregatePlatformArgs";
+export { CreateManyPlatformArgs } from "./CreateManyPlatformArgs";
+export { CreatePlatformArgs } from "./CreatePlatformArgs";
+export { DeleteManyPlatformArgs } from "./DeleteManyPlatformArgs";
+export { DeletePlatformArgs } from "./DeletePlatformArgs";
+export { FindFirstPlatformArgs } from "./FindFirstPlatformArgs";
+export { FindManyPlatformArgs } from "./FindManyPlatformArgs";
+export { FindUniquePlatformArgs } from "./FindUniquePlatformArgs";
+export { GroupByPlatformArgs } from "./GroupByPlatformArgs";
+export { UpdateManyPlatformArgs } from "./UpdateManyPlatformArgs";
+export { UpdatePlatformArgs } from "./UpdatePlatformArgs";
+export { UpsertPlatformArgs } from "./UpsertPlatformArgs";

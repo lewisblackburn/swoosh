@@ -27,10 +27,20 @@ export class SongGroupBy {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  thumbnail!: string;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
   })
   locked!: boolean;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  released!: Date | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

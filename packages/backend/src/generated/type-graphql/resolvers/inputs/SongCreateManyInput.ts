@@ -22,10 +22,20 @@ export class SongCreateManyInput {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  thumbnail?: string | undefined;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
   locked?: boolean | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  released?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

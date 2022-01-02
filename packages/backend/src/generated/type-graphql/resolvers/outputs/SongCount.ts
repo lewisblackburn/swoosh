@@ -11,4 +11,14 @@ export class SongCount {
     nullable: false
   })
   artists!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  songInShow!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  songInMovie!: number;
 }

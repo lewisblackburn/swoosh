@@ -12,4 +12,9 @@ export class PersonAvgOrderByAggregateInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  age?: "asc" | "desc" | undefined;
 }

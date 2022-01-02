@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieCreateNestedManyWithoutMovieInput } from "../inputs/ActorInMovieCreateNestedManyWithoutMovieInput";
+import { PlatformOnMovieCreateNestedManyWithoutMovieInput } from "../inputs/PlatformOnMovieCreateNestedManyWithoutMovieInput";
+import { SongInMovieCreateNestedManyWithoutMovieInput } from "../inputs/SongInMovieCreateNestedManyWithoutMovieInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -31,6 +33,11 @@ export class MovieCreateInput {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
+  released?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
   createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
@@ -42,4 +49,14 @@ export class MovieCreateInput {
     nullable: true
   })
   actors?: ActorInMovieCreateNestedManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => PlatformOnMovieCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  platforms?: PlatformOnMovieCreateNestedManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongInMovieCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  soundtrack?: SongInMovieCreateNestedManyWithoutMovieInput | undefined;
 }

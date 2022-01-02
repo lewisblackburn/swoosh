@@ -1,10 +1,12 @@
 import * as TypeGraphQL from "type-graphql";
 import { ActorInMovie } from "../../../models/ActorInMovie";
+import { ActorInShow } from "../../../models/ActorInShow";
 import { Book } from "../../../models/Book";
 import { Person } from "../../../models/Person";
 import { Song } from "../../../models/Song";
 import { PersonBooksArgs } from "./args/PersonBooksArgs";
 import { PersonMoviesArgs } from "./args/PersonMoviesArgs";
+import { PersonShowsArgs } from "./args/PersonShowsArgs";
 import { PersonSongsArgs } from "./args/PersonSongsArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -19,6 +21,17 @@ export class PersonRelationsResolver {
         id: person.id,
       },
     }).movies(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ActorInShow], {
+    nullable: false
+  })
+  async shows(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonShowsArgs): Promise<ActorInShow[]> {
+    return getPrismaFromContext(ctx).person.findUnique({
+      where: {
+        id: person.id,
+      },
+    }).shows(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [Book], {

@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
@@ -42,10 +43,20 @@ export class BookWhereInput {
   })
   description?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  thumbnail?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => BoolFilter, {
     nullable: true
   })
   locked?: BoolFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
+    nullable: true
+  })
+  released?: DateTimeNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => PersonListRelationFilter, {
     nullable: true

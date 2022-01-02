@@ -15,6 +15,11 @@ export class PersonCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  shows!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   books!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

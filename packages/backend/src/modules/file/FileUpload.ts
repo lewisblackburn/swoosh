@@ -3,6 +3,7 @@ import {FileUpload, GraphQLUpload} from 'graphql-upload';
 import {Arg, Authorized, Ctx, Int, Mutation, registerEnumType, Resolver, UseMiddleware} from 'type-graphql';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import {UploadType} from './utils/uploadType';
 
 @Resolver()
 export class FileUploadResolver {
@@ -46,13 +47,14 @@ export class FileUploadResolver {
 	async uploadThumbnail(
 		@Ctx() ctx: Context,
 		@Arg('id', () => Int) id: number,
-		@Arg('file', () => GraphQLUpload) file: FileUpload
+		@Arg('file', () => GraphQLUpload) file: FileUpload,
+		@Arg('type', () => UploadType) type: UploadType
 	): Promise<boolean> {
 		const {createReadStream, filename} = file;
 		const filepath = `${__dirname}/../../../images`;
 
-		const folder = `${filepath}/thumbnail/${id}`;
-		const location = `${filepath}/thumbnail/${id}/${filename}`;
+		const folder = `${filepath}/thumbnail/${type}/${id}`;
+		const location = `${filepath}/thumbnail/${type}/${id}/${filename}`;
 
 		try {
 			fs.mkdirSync(folder);
@@ -62,13 +64,46 @@ export class FileUploadResolver {
 			autoClose: true,
 		});
 
-		await ctx.prisma.movie.update({
-			where: {id},
-			data: {
-				// this will need to change dynamically some how depending on the server url
-				thumbnail: `http://localhost:4000/images/thumbnail/${id}/${filename}`,
-			},
-		});
+		// this will need to change dynamically some how depending on the server url
+		const serverLocation = `http://localhost:4000/images/thumbnail/${type}/${id}/${filename}`;
+
+		switch (type) {
+			case UploadType.Movie:
+				await ctx.prisma.movie.update({
+					where: {id},
+					data: {
+						thumbnail: serverLocation,
+					},
+				});
+				break;
+			case UploadType.Person:
+				await ctx.prisma.person.update({
+					where: {id},
+					data: {
+						thumbnail: serverLocation,
+					},
+				});
+				break;
+			case UploadType.Song:
+				await ctx.prisma.song.update({
+					where: {id},
+					data: {
+						thumbnail: serverLocation,
+					},
+				});
+				break;
+			case UploadType.Book:
+				await ctx.prisma.book.update({
+					where: {id},
+					data: {
+						thumbnail: serverLocation,
+					},
+				});
+				break;
+
+			default:
+				break;
+		}
 
 		return new Promise((res, rej) => {
 			createReadStream()

@@ -4,8 +4,11 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
+import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
+import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType({
@@ -42,15 +45,35 @@ export class SongWhereInput {
   })
   description?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  thumbnail?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => BoolFilter, {
     nullable: true
   })
   locked?: BoolFilter | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeNullableFilter, {
+    nullable: true
+  })
+  released?: DateTimeNullableFilter | undefined;
+
   @TypeGraphQL.Field(_type => PersonListRelationFilter, {
     nullable: true
   })
   artists?: PersonListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongInShowListRelationFilter, {
+    nullable: true
+  })
+  songInShow?: SongInShowListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongInMovieListRelationFilter, {
+    nullable: true
+  })
+  songInMovie?: SongInMovieListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

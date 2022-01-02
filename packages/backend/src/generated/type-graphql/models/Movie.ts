@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { ActorInMovie } from "../models/ActorInMovie";
+import { PlatformOnMovie } from "../models/PlatformOnMovie";
+import { SongInMovie } from "../models/SongInMovie";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType({
@@ -34,7 +36,16 @@ export class Movie {
   })
   locked!: boolean;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  released?: Date | null;
+
   actors?: ActorInMovie[];
+
+  platforms?: PlatformOnMovie[];
+
+  soundtrack?: SongInMovie[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

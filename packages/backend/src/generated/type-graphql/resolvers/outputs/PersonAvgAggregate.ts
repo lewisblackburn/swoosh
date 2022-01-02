@@ -11,4 +11,9 @@ export class PersonAvgAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  age!: number | null;
 }

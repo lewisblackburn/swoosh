@@ -11,4 +11,14 @@ export class MovieCount {
     nullable: false
   })
   actors!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  platforms!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  soundtrack!: number;
 }

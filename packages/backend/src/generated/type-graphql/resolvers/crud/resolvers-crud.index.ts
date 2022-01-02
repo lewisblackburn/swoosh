@@ -1,8 +1,15 @@
 export { ActorInMovieCrudResolver } from "./ActorInMovie/ActorInMovieCrudResolver";
+export { ActorInShowCrudResolver } from "./ActorInShow/ActorInShowCrudResolver";
 export { BookCrudResolver } from "./Book/BookCrudResolver";
 export { FollowsCrudResolver } from "./Follows/FollowsCrudResolver";
 export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
 export { NotificationCrudResolver } from "./Notification/NotificationCrudResolver";
 export { PersonCrudResolver } from "./Person/PersonCrudResolver";
+export { PlatformCrudResolver } from "./Platform/PlatformCrudResolver";
+export { PlatformOnMovieCrudResolver } from "./PlatformOnMovie/PlatformOnMovieCrudResolver";
+export { PlatformOnShowCrudResolver } from "./PlatformOnShow/PlatformOnShowCrudResolver";
+export { ShowCrudResolver } from "./Show/ShowCrudResolver";
 export { SongCrudResolver } from "./Song/SongCrudResolver";
+export { SongInMovieCrudResolver } from "./SongInMovie/SongInMovieCrudResolver";
+export { SongInShowCrudResolver } from "./SongInShow/SongInShowCrudResolver";
 export { UserCrudResolver } from "./User/UserCrudResolver";

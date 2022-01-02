@@ -38,6 +38,11 @@ export class MovieGroupBy {
   locked!: boolean;
 
   @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  released!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
   createdAt!: Date;

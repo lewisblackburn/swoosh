@@ -22,10 +22,20 @@ export class BookMinAggregate {
   })
   description!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  thumbnail!: string | null;
+
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
   locked!: boolean | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  released!: Date | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

@@ -35,6 +35,11 @@ export class MovieMaxAggregate {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
+  released!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
   createdAt!: Date | null;
 
   @TypeGraphQL.Field(_type => Date, {
