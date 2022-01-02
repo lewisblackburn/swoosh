@@ -1,17 +1,25 @@
-query Movie($movieId: Int!) {
+query Movie(
+	$movieId: Int!
+	$where: ActorInMovieWhereInput
+	$orderBy: [ActorInMovieOrderByWithRelationInput!]
+	$cursor: ActorInMovieWhereUniqueInput
+) {
 	movie(movieId: $movieId) {
 		id
 		title
 		description
 		thumbnail
+		released
 		locked
+		actors(where: $where, orderBy: $orderBy, cursor: $cursor) {
+			role
+			person {
+				id
+				name
+				thumbnail
+			}
+		}
 		createdAt
 		updatedAt
-		actors {
-			movieId
-			personId
-			role
-		}
 	}
 }
-

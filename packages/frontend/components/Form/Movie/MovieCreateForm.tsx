@@ -1,6 +1,6 @@
 import {Button} from '@components/Button';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {MovieCreateInput, useCreateMovieMutation, useUploadThumbnailMutation} from 'generated/graphql';
+import {MovieCreateInput, UploadType, useCreateMovieMutation, useUploadThumbnailMutation} from 'generated/graphql';
 import {toErrorMap} from 'lib/toErrorMap';
 import {useRouter} from 'next/router';
 import React, {useEffect, useState} from 'react';
@@ -22,7 +22,7 @@ export const MovieCreateForm: React.FC = () => {
 	useEffect(() => {
 		if (data?.createMovie?.id && !loading) {
 			upload({
-				variables: {id: data.createMovie.id, file},
+				variables: {id: data.createMovie.id, file, type: UploadType.Movie},
 			})
 				.catch(error => {
 					console.log(error.message);

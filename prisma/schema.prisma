@@ -52,13 +52,18 @@ model Notification {
 }
 
 model Person {
-  id     Int            @id @default(autoincrement())
-  career Career[]
-  name   String
-  movies ActorInMovie[]
-  shows  ActorInShow[]
-  books  Book[]
-  songs  Song[]
+  id        Int            @id @default(autoincrement())
+  career    Career[]
+  name      String
+  thumbnail String         @default(value: "https://via.placeholder.com/400x600")
+  bio       String?
+  age       Int?
+  movies    ActorInMovie[]
+  shows     ActorInShow[]
+  books     Book[]
+  songs     Song[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 model Movie {
@@ -67,6 +72,7 @@ model Movie {
   description String
   thumbnail   String            @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean           @default(false)
+  released    DateTime?
   actors      ActorInMovie[]
   platforms   PlatformOnMovie[]
   soundtrack  SongInMovie[]
@@ -80,6 +86,7 @@ model Show {
   description String
   thumbnail   String           @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean          @default(false)
+  released    DateTime?
   actors      ActorInShow[]
   platforms   PlatformOnShow[]
   soundtrack  SongInShow[]
@@ -95,6 +102,7 @@ model Platform {
 }
 
 model PlatformOnMovie {
+  price      String
   platform   Platform @relation(fields: [platformId], references: [id])
   platformId Int
   movie      Movie    @relation(fields: [movieId], references: [id])
@@ -104,6 +112,7 @@ model PlatformOnMovie {
 }
 
 model PlatformOnShow {
+  price      String
   platform   Platform @relation(fields: [platformId], references: [id])
   platformId Int
   show       Show     @relation(fields: [showId], references: [id])
@@ -113,23 +122,23 @@ model PlatformOnShow {
 }
 
 model SongInMovie {
+  timestamp   DateTime
+  description String
   song        Song     @relation(fields: [songId], references: [id])
   songId      Int
   movie       Movie    @relation(fields: [movieId], references: [id])
   movieId     Int
-  timestamp   DateTime
-  description String
 
   @@id([songId, movieId])
 }
 
 model SongInShow {
+  timestamp   DateTime
+  description String
   song        Song     @relation(fields: [songId], references: [id])
   songId      Int
   show        Show     @relation(fields: [showId], references: [id])
   showId      Int
-  timestamp   DateTime
-  description String
 
   @@id([songId, showId])
 }
@@ -155,20 +164,24 @@ model ActorInShow {
 }
 
 model Book {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   description String
-  locked      Boolean  @default(false)
+  thumbnail   String    @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean   @default(false)
+  released    DateTime?
   authors     Person[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Song {
   id          Int           @id @default(autoincrement())
   title       String
   description String
+  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean       @default(false)
+  released    DateTime?
   artists     Person[]
   songInShow  SongInShow[]
   songInMovie SongInMovie[]

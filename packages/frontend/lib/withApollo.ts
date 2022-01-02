@@ -13,7 +13,26 @@ const createClient = (ctx?: NextPageContext) =>
 				cookie: (typeof window === 'undefined' ? ctx?.req?.headers.cookie : undefined) || '',
 			},
 		}) as any,
-		cache: new InMemoryCache({}),
+		cache: new InMemoryCache({
+			typePolicies: {
+				Query: {
+					fields: {
+						movies: {
+							keyArgs: [],
+							merge(existing = [], incoming) {
+								return [...existing, ...incoming];
+							},
+						},
+						people: {
+							keyArgs: [],
+							merge(existing = [], incoming) {
+								return [...existing, ...incoming];
+							},
+						},
+					},
+				},
+			},
+		}),
 	});
 
 export default withApollo(createClient);

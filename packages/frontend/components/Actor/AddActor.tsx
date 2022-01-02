@@ -1,55 +1,148 @@
-import {Dialog, Transition} from '@headlessui/react';
-import React, {Fragment, useState} from 'react';
-import {AnimatePresence, motion} from 'framer-motion';
-import InputField from '@components/Form/InputField';
-import {Formik, FormikHelpers} from 'formik';
-import {Career, usePeopleQuery} from 'generated/graphql';
+import {useApolloClient} from '@apollo/client';
+import {Button} from '@components/Button';
+import {Modal} from '@components/Modal';
+import {Dialog} from '@headlessui/react';
+import {
+	Career,
+	MovieDocument,
+	MoviesDocument,
+	PeopleDocument,
+	QueryMode,
+	useAddActorMutation,
+	usePeopleLazyQuery,
+	usePeopleQuery,
+} from 'generated/graphql';
+import useDebounce from 'hooks/useDebounce';
+import {useRouter} from 'next/router';
+import people from 'pages/people';
+import React, {useEffect, useState} from 'react';
 
 interface AddActorProps {
-	open: boolean;
-	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	isOpen: boolean;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	movieId: number;
 }
 
 interface Values {
 	search: string;
 }
 
-export const AddActor: React.FC<AddActorProps> = ({open = false, setOpen}) => {
+export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
+	const router = useRouter();
 	const [search, setSearch] = useState('');
-	const {data, loading} = usePeopleQuery({
+	const debouncedSearch: string = useDebounce<string>(search, 500);
+
+	const [fetchPeople, {data}] = usePeopleLazyQuery({
+		ssr: false,
+		fetchPolicy: 'no-cache', // so the cache doesn't get overidden
 		variables: {
 			where: {
 				career: {
 					has: Career.Actor,
 				},
 				name: {
-					contains: search,
+					contains: debouncedSearch,
+					mode: QueryMode.Insensitive,
 				},
 			},
+			take: 5,
 		},
 	});
 
-	console.log(data, loading);
+	const [actorInMovie, setActorInMovie] = useState({
+		movieId,
+		personId: 0,
+		role: '',
+	});
+	const [actorInMovieIsOpen, setActorInMovieIsOpen] = useState(false);
+	const [addActor] = useAddActorMutation({
+		refetchQueries: [MovieDocument],
+	});
+
+	useEffect(() => {
+		// Only refetch if modal is open
+		if (props.isOpen && debouncedSearch !== '') {
+			fetchPeople();
+		}
+	}, [props.isOpen, debouncedSearch, fetchPeople]);
 
 	return (
-		<Dialog
-			open={open}
-			onClose={setOpen}
-			as="div"
-			className="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto bg-gray-900"
-		>
-			<div className="flex flex-col bg-gray-800 text-white w-96 py-8 px-4 text-center">
-				<Dialog.Overlay />
-				<Dialog.Title className="">Create Actor</Dialog.Title>
-				<Dialog.Description className="">This is a test</Dialog.Description>
-				put actor search form here with debounce
-				<button
-					className="m-4 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-					onClick={() => setOpen(false)}
-				>
-					Cancel
-				</button>
-			</div>
-		</Dialog>
+		<>
+			<Modal {...props}>
+				<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+					Actors
+				</Dialog.Title>
+				<div className="mt-2">
+					<p className="text-sm text-gray-500">If you can't find the person, create one!</p>
+				</div>
+
+				<input
+					type="text"
+					placeholder="search..."
+					className="bg-gray-100 rounded-md p-1 my-4 w-full"
+					value={search}
+					onChange={(e: any) => setSearch(e.target.value)}
+				/>
+
+				<div className="flex flex-col space-y-5">
+					{data?.people?.map(person => (
+						<div
+							key={person.id}
+							className="flex items-center space-x-2 rounded-lg hover:bg-gray-100 p-2"
+							onClick={() => {
+								setActorInMovie({
+									...actorInMovie,
+									personId: person.id,
+								});
+								props.setIsOpen(false);
+								setActorInMovieIsOpen(true);
+							}}
+						>
+							<img src={person.thumbnail} alt="thumbnail" className="w-16 h-16 rounded-lg" />
+							<p>{person.name}</p>
+						</div>
+					))}
+					{data?.people?.length == 0 && (
+						<Button onClick={() => router.push(`/person/create?next=/movie/${movieId}`)}>Create Person</Button>
+					)}
+				</div>
+
+				<div className="mt-4">
+					<Button onClick={() => props.setIsOpen(false)}>No Thanks!</Button>
+				</div>
+			</Modal>
+
+			<Modal isOpen={actorInMovieIsOpen} setIsOpen={setActorInMovieIsOpen}>
+				<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+					Add Actor
+				</Dialog.Title>
+
+				<input
+					type="text"
+					placeholder="role"
+					className="bg-gray-100 rounded-md p-1 mt-4 w-full"
+					onChange={(e: any) =>
+						setActorInMovie({
+							...actorInMovie,
+							role: e.target.value,
+						})
+					}
+				/>
+
+				<div className="flex justify-between mt-4">
+					<Button onClick={() => setActorInMovieIsOpen(false)}>No Thanks!</Button>
+					<Button
+						onClick={() => {
+							addActor({
+								variables: actorInMovie,
+							});
+							setActorInMovieIsOpen(false);
+						}}
+					>
+						Add!
+					</Button>
+				</div>
+			</Modal>
+		</>
 	);
 };

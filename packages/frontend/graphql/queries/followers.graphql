@@ -1,0 +1,13 @@
+query Followers(
+	$where: FollowsWhereInput
+	$orderBy: [FollowsOrderByWithRelationInput!]
+	$cursor: FollowsWhereUniqueInput
+) {
+	follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
+		follower {
+			id
+			username
+			avatar
+		}
+	}
+}

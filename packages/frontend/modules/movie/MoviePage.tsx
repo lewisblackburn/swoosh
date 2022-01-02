@@ -1,10 +1,11 @@
 import {useMovieQuery} from 'generated/graphql';
 import {useRouter} from 'next/router';
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
 import {Layout} from '../layouts/Layout';
 import {FaPlus} from 'react-icons/fa';
 import {AddActor} from '@components/Actor/AddActor';
+import {InternalLink} from '@components/InternalLink';
 
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
@@ -20,40 +21,50 @@ export const MoviePage: React.FC = () => {
 
 	const [open, setOpen] = useState(false);
 
-	return (
-		<Layout>
-			<div className="flex flex-col space-y-5 container mx-auto py-20">
-				<div className="flex">
-					<div className="flex flex-col">
-						<img src={data?.movie?.thumbnail} alt="" className="w-64 h-96" />
-						<div className="flex flex-col py-5">
-							<h1 className="text-xl font-bold">{data?.movie?.title}</h1>
-							<span>{data?.movie?.description}</span>
+	if (data?.movie) {
+		return (
+			<Layout>
+				<div className="flex flex-col space-y-5 container mx-auto py-20">
+					<div className="flex">
+						<div className="flex flex-col">
+							<img src={data?.movie?.thumbnail} alt="" className="w-64 h-96" />
+							<div className="flex flex-col py-5">
+								<h1 className="text-xl font-bold">{data?.movie?.title}</h1>
+								<span>{data?.movie?.description}</span>
+							</div>
+						</div>
+
+						{data?.movie?.locked}
+						{data?.movie?.createdAt}
+						{data?.movie?.updatedAt}
+					</div>
+
+					<AddActor movieId={data.movie.id} isOpen={open} setIsOpen={setOpen} />
+
+					<h1>Actors</h1>
+					<div className="flex space-x-5">
+						{data?.movie?.actors.map(actor => (
+							<div key={actor.person.id}>
+								<InternalLink key={actor.person.id} href={`/person/${actor.person.id}`}>
+									<img src={actor.person.thumbnail} alt="" className="w-32 h-48 rounded-lg" />
+								</InternalLink>
+								<p>{actor.person.name}</p>
+								<p>{actor.role}</p>
+							</div>
+						))}
+						<div
+							className="grid place-items-center w-32 h-48 rounded-md p-2 bg-gray-500 cursor-pointer"
+							onClick={() => {
+								setOpen(true);
+							}}
+						>
+							<FaPlus />
 						</div>
 					</div>
-
-					{data?.movie?.locked}
-					{data?.movie?.createdAt}
-					{data?.movie?.updatedAt}
 				</div>
+			</Layout>
+		);
+	}
 
-				<AddActor open={open} setOpen={setOpen} />
-
-				{data?.movie?.actors.length === 0 ? (
-					<div
-						onClick={() => setOpen(true)}
-						className="grid place-items-center w-32 h-48 rounded-md p-2 bg-gray-500 cursor-pointer"
-					>
-						<FaPlus />
-					</div>
-				) : (
-					<Fragment>
-						{data?.movie?.actors.map(actor => (
-							<div key={actor.personId}>{actor.role}</div>
-						))}
-					</Fragment>
-				)}
-			</div>
-		</Layout>
-	);
+	return null;
 };

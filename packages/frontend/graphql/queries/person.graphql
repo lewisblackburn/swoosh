@@ -1,0 +1,16 @@
+query Person($where: PersonWhereUniqueInput!) {
+	person(where: $where) {
+		id
+		career
+		name
+		thumbnail
+		bio
+		age
+		_count {
+			movies
+			shows
+			books
+			songs
+		}
+	}
+}

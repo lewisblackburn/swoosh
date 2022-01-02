@@ -20,9 +20,11 @@ module.exports = {
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',
 		'react/jsx-tag-spacing': 'off',
-		// '@typescript-eslint/no-unsafe-call': 'off',
-		// '@typescript-eslint/no-unsafe-assignment': 'off',
-		// '@typescript-eslint/no-unsafe-member-access': 'off',
+		"react/no-array-index-key": 'off',
+		'@typescript-eslint/no-unsafe-call': 'off',
+		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'@typescript-eslint/no-unsafe-member-access': 'off',
+		"@typescript-eslint/no-confusing-void-expression": 'off'
 	},
 	ignorePatterns: ['**/*.js'],
 };
