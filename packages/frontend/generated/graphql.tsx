@@ -3554,7 +3554,7 @@ export type FollowersQueryVariables = Exact<{
 	cursor?: InputMaybe<FollowsWhereUniqueInput>;
 }>;
 
-export type FollowersQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; follower: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
+export type FollowersQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; following: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
 
 export type FollowingQueryVariables = Exact<{
 	where?: InputMaybe<FollowsWhereInput>;
@@ -3562,7 +3562,7 @@ export type FollowingQueryVariables = Exact<{
 	cursor?: InputMaybe<FollowsWhereUniqueInput>;
 }>;
 
-export type FollowingQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; following: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
+export type FollowingQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; follower: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
 
 export type MeQueryVariables = Exact<Record<string, never>>;
 
@@ -4001,7 +4001,7 @@ export type UploadThumbnailMutationOptions = Apollo.BaseMutationOptions<UploadTh
 export const FollowersDocument = gql`
     query Followers($where: FollowsWhereInput, $orderBy: [FollowsOrderByWithRelationInput!], $cursor: FollowsWhereUniqueInput) {
   follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
-    follower {
+    following {
       id
       username
       avatar
@@ -4044,7 +4044,7 @@ export type FollowersQueryResult = Apollo.QueryResult<FollowersQuery, FollowersQ
 export const FollowingDocument = gql`
     query Following($where: FollowsWhereInput, $orderBy: [FollowsOrderByWithRelationInput!], $cursor: FollowsWhereUniqueInput) {
   follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
-    following {
+    follower {
       id
       username
       avatar

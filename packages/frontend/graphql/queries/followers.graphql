@@ -4,7 +4,7 @@ query Followers(
 	$cursor: FollowsWhereUniqueInput
 ) {
 	follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
-		follower {
+		following {
 			id
 			username
 			avatar

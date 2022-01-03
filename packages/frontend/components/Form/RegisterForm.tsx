@@ -1,102 +1,93 @@
 import {Form, Formik, FormikHelpers} from 'formik';
 import {useRouter} from 'next/router';
-import React from 'react';
-import {MeDocument, MeQuery, useRegisterMutation} from '../../generated/graphql';
+import React, {useState} from 'react';
+import {MeDocument, MeQuery, useLoginMutation, useRegisterMutation} from '../../generated/graphql';
 import {toErrorMap} from '../../lib/toErrorMap';
 import {Button} from '../Button';
+import {ErrorModal} from './ErrorModal';
+import {FormLayout} from './FormLayout';
 import InputField from './InputField';
 
 interface Values {
-	username: string;
 	displayname: string;
 	email: string;
 	password: string;
+	username: string;
 }
 
 export const RegisterForm: React.FC = () => {
 	const router = useRouter();
 	const [register] = useRegisterMutation();
+	const [isOpen, setIsOpen] = useState(false);
+	const [modalError, setModalError] = useState('');
 
 	return (
-		<Formik
-			initialValues={{
-				username: '',
-				displayname: '',
-				email: '',
-				password: '',
-			}}
-			onSubmit={async (values: Values, {setSubmitting, setErrors}: FormikHelpers<Values>) => {
-				setSubmitting(true);
-				const response = await register({
-					variables: {
-						data: values,
-					},
-					update: (cache, {data}) => {
-						cache.writeQuery<MeQuery>({
-							query: MeDocument,
-							data: {
-								__typename: 'Query',
-								me: data?.register,
+		<>
+			<ErrorModal error={modalError} isOpen={isOpen} setIsOpen={setIsOpen} />
+			<FormLayout>
+				<Formik
+					initialValues={{
+						username: '',
+						displayname: '',
+						email: '',
+						password: '',
+					}}
+					onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
+						setSubmitting(true);
+						const response = await register({
+							variables: {
+								data: values,
 							},
-						});
-						cache.evict({fieldName: 'movies:{}'});
-					},
-				})
-					.then(() => {
-						if (typeof router.query.next === 'string') {
-							router.push(router.query.next);
-						} else {
-							router.push('/confirm');
-						}
-					})
-					.catch((e: any) => {
-						// If graphql error
-						if (e.graphQLErrors[0].extensions.exception.validationErrors) {
-							setErrors(toErrorMap(e));
-						}
-						// Other error, password: as it is last input box
-						else {
-							console.log(e.message);
-						}
-					});
-				setSubmitting(false);
-			}}
-		>
-			{({isSubmitting, errors, touched}) => (
-				<Form className="w-full container">
-					<InputField
-						name="username"
-						placeholder="username"
-						touched={touched.username}
-						errors={errors.username}
-						type="text"
-					/>
-					<InputField
-						name="displayname"
-						placeholder="displayname"
-						touched={touched.displayname}
-						errors={errors.displayname}
-						type="text"
-					/>
-					<InputField
-						name="email"
-						placeholder="email@provider.tdl"
-						touched={touched.email}
-						errors={errors.email}
-						type="email"
-					/>
-					<InputField
-						name="password"
-						placeholder="password"
-						touched={touched.password}
-						errors={errors.password}
-						type="password"
-					/>
-					<Button type="submit" loading={isSubmitting}>
-						Register
-					</Button>
-				</Form>
-			)}
-		</Formik>
+							update: (cache, {data}) => {
+								cache.writeQuery<MeQuery>({
+									query: MeDocument,
+									data: {
+										__typename: 'Query',
+										me: data?.register,
+									},
+								});
+								cache.evict({fieldName: 'movies:{}'});
+							},
+						})
+							.then(async () => {
+								if (typeof router.query.next === 'string') {
+									await router.push(router.query.next);
+								} else {
+									await router.push('/confirm');
+								}
+							})
+							.catch((e: any) => {
+								// If graphql validation error
+								// Else show other errors in modal
+								if (e.graphQLErrors[0].extensions.exception.validationErrors) {
+									const errors = toErrorMap(e);
+									setModalError(errors[Object.keys(errors)[0]]);
+									setIsOpen(true);
+								} else {
+									// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+									setModalError(e.message);
+									setIsOpen(true);
+								}
+							});
+						setSubmitting(false);
+					}}
+				>
+					{({isSubmitting}) => (
+						<Form className="w-1/2 bg-white">
+							<h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+							<p className="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
+
+							<InputField name="username" placeholder="username" type="text" />
+							<InputField name="displayname" placeholder="displayname" type="text" />
+							<InputField name="email" placeholder="email@provider.tdl" type="email" />
+							<InputField name="password" placeholder="password" type="password" />
+							<Button className="w-full" type="submit" loading={isSubmitting}>
+								Register
+							</Button>
+						</Form>
+					)}
+				</Formik>
+			</FormLayout>
+		</>
 	);
 };

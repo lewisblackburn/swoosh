@@ -1,30 +1,15 @@
-import {useApolloClient} from '@apollo/client';
 import {Button} from '@components/Button';
 import {Modal} from '@components/Modal';
 import {Dialog} from '@headlessui/react';
-import {
-	Career,
-	MovieDocument,
-	MoviesDocument,
-	PeopleDocument,
-	QueryMode,
-	useAddActorMutation,
-	usePeopleLazyQuery,
-	usePeopleQuery,
-} from 'generated/graphql';
+import {Career, MovieDocument, QueryMode, useAddActorMutation, usePeopleLazyQuery} from 'generated/graphql';
 import useDebounce from 'hooks/useDebounce';
 import {useRouter} from 'next/router';
-import people from 'pages/people';
 import React, {useEffect, useState} from 'react';
 
 interface AddActorProps {
 	isOpen: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	movieId: number;
-}
-
-interface Values {
-	search: string;
 }
 
 export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
@@ -34,7 +19,7 @@ export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
 
 	const [fetchPeople, {data}] = usePeopleLazyQuery({
 		ssr: false,
-		fetchPolicy: 'no-cache', // so the cache doesn't get overidden
+		fetchPolicy: 'no-cache', // So the cache doesn't get overidden
 		variables: {
 			where: {
 				career: {
@@ -102,8 +87,8 @@ export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
 							<p>{person.name}</p>
 						</div>
 					))}
-					{data?.people?.length == 0 && (
-						<Button onClick={() => router.push(`/person/create?next=/movie/${movieId}`)}>Create Person</Button>
+					{data?.people?.length === 0 && (
+						<Button onClick={async () => router.push(`/person/create?next=/movie/${movieId}`)}>Create Person</Button>
 					)}
 				</div>
 

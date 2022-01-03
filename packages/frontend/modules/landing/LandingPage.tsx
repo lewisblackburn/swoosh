@@ -1,4 +1,6 @@
 import {InternalLink} from '@components';
+import {Palette} from '@components/Palette/Palette';
+import {Thumbnail} from '@components/Thumbnail';
 import {SortOrder, useMoviesQuery} from 'generated/graphql';
 import React from 'react';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
@@ -17,13 +19,14 @@ export const LandingPage: React.FC = () => {
 
 	return (
 		<Layout>
-			<div className="flex flex-wrap justify-center">
+			<Palette />
+			<div className="flex flex-wrap">
 				{data?.movies?.map(movie => {
 					return (
 						<div key={movie.id}>
 							<div className="p-5">
-								<InternalLink href={`movie/${movie.id}`}>
-									<img src={movie.thumbnail} className="w-64 h-96" />
+								<InternalLink href={`/movie/${movie.id}`}>
+									<Thumbnail size="small" src={movie.thumbnail} />
 								</InternalLink>
 							</div>
 						</div>

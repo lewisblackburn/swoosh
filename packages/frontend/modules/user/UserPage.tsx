@@ -29,7 +29,7 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 	const {data: followers} = useFollowersQuery({
 		variables: {
 			where: {
-				following: {
+				follower: {
 					is: {
 						username: {
 							equals: username,
@@ -42,7 +42,7 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 	const {data: following} = useFollowingQuery({
 		variables: {
 			where: {
-				follower: {
+				following: {
 					is: {
 						username: {
 							equals: username,
@@ -55,7 +55,7 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 
 	useEffect(() => {
 		setIsOpen(false);
-	}, [username]);
+	}, [setIsOpen, username]);
 
 	return (
 		<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -67,14 +67,15 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 				{type === 'Followers' ? (
 					<div className="mt-5">
 						{followers?.follows.map(follower => (
-							<Link key={follower.follower.id} href={`/user/${follower.follower.username}`}>
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							<Link key={follower.following.id} href={`/user/${follower.following.username}`}>
 								<a>
 									<div
-										key={follower.follower.id}
+										key={follower.following.id}
 										className="flex items-center space-x-3 hover:bg-gray-100 rounded-md p-5"
 									>
-										<img src={follower.follower.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
-										<p>{follower.follower.username}</p>
+										<img src={follower.following.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
+										<p>{follower.following.username}</p>
 									</div>
 								</a>
 							</Link>
@@ -83,11 +84,12 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 				) : (
 					<div className="mt-5">
 						{following?.follows.map(follow => (
-							<Link key={follow.following.id} href={`/user/${follow.following.username}`}>
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							<Link key={follow.follower.id} href={`/user/${follow.follower.username}`}>
 								<a>
 									<div className="flex items-center space-x-3 hover:bg-gray-100 rounded-md p-5">
-										<img src={follow.following.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
-										<p>{follow.following.username}</p>
+										<img src={follow.follower.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
+										<p>{follow.follower.username}</p>
 									</div>
 								</a>
 							</Link>

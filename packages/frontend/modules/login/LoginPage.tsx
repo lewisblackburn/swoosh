@@ -1,16 +1,9 @@
-import React from "react";
-import { LoginForm } from "../../components/Form/LoginForm";
-import { useNotVerifyLoggedIn } from "../auth/useVerifyNotLoggedIn";
-import { Layout } from "../layouts/Layout";
+import React from 'react';
+import {LoginForm} from '../../components/Form/LoginForm';
+import {useNotVerifyLoggedIn} from '../auth/useVerifyNotLoggedIn';
 
-interface LoginPageProps { }
+export const LoginPage: React.FC = () => {
+	useNotVerifyLoggedIn();
 
-export const LoginPage: React.FC<LoginPageProps> = ({ }) => {
-    useNotVerifyLoggedIn();
-
-    return (
-        <Layout>
-            <LoginForm />
-        </Layout>
-    );
+	return <LoginForm />;
 };

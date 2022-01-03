@@ -1,7 +1,7 @@
 import {Dialog, Transition} from '@headlessui/react';
 import React, {Fragment} from 'react';
 
-interface ModalProps {
+export interface ModalProps {
 	isOpen: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

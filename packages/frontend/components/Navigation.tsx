@@ -1,10 +1,10 @@
 import {useApolloClient} from '@apollo/client';
 import {Dropdown, DropdownButton, InternalLink} from '@components';
-import {Menu, Transition} from '@headlessui/react';
+import {Menu} from '@headlessui/react';
 import {useLogoutMutation, useMeQuery, useNotificationsQuery} from 'generated/graphql';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
-import React, {Fragment} from 'react';
+import React from 'react';
 import {FaBell, FaPlus} from 'react-icons/fa';
 import {FiAirplay, FiArrowRight} from 'react-icons/fi';
 import {Button} from './Button';
@@ -45,7 +45,7 @@ const ProfileDropdown: React.FC = () => {
 					<a>
 						<Menu.Item>
 							<DropdownButton>
-								<p>Settings</p>
+								<p>Preferences</p>
 							</DropdownButton>
 						</Menu.Item>
 					</a>
@@ -55,10 +55,10 @@ const ProfileDropdown: React.FC = () => {
 				<Menu.Item>
 					<DropdownButton
 						loading={loading}
-						onClick={async () => {
-							await logout().then(async () => router.push('/login'));
-							await apolloClient.resetStore();
-						}}
+						onClick={async () =>
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+							logout().then(async () => apolloClient.resetStore().then(async () => router.push('/login')))
+						}
 					>
 						<p>Logout</p>
 					</DropdownButton>
@@ -122,12 +122,16 @@ export const Navigation: React.FC = () => {
 				) : (
 					<div className="flex space-x-5">
 						<Link href="/register">
-							<Button className="mt-4 md:mt-0">Register</Button>
+							<a>
+								<Button className="mt-4 md:mt-0">Register</Button>
+							</a>
 						</Link>
 						<Link href="/login">
-							<Button icon={FiArrowRight} className="mt-4 md:mt-0">
-								Login
-							</Button>
+							<a>
+								<Button icon={FiArrowRight} className="mt-4 md:mt-0">
+									Login
+								</Button>
+							</a>
 						</Link>
 					</div>
 				)}
