@@ -730,7 +730,7 @@ export type Movie = {
 	description: Scalars['String'];
 	id: Scalars['Int'];
 	locked: Scalars['Boolean'];
-	platforms: PlatformOnMovie[];
+	platforms: Platform[];
 	released?: Maybe<Scalars['DateTime']>;
 	soundtrack: SongInMovie[];
 	thumbnail: Scalars['String'];
@@ -748,12 +748,12 @@ export type MovieActorsArgs = {
 };
 
 export type MoviePlatformsArgs = {
-	cursor?: InputMaybe<PlatformOnMovieWhereUniqueInput>;
-	distinct?: InputMaybe<PlatformOnMovieScalarFieldEnum[]>;
-	orderBy?: InputMaybe<PlatformOnMovieOrderByWithRelationInput[]>;
+	cursor?: InputMaybe<PlatformWhereUniqueInput>;
+	distinct?: InputMaybe<PlatformScalarFieldEnum[]>;
+	orderBy?: InputMaybe<PlatformOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<PlatformOnMovieWhereInput>;
+	where?: InputMaybe<PlatformWhereInput>;
 };
 
 export type MovieSoundtrackArgs = {
@@ -777,7 +777,7 @@ export type MovieCreateInput = {
 	createdAt?: InputMaybe<Scalars['DateTime']>;
 	description: Scalars['String'];
 	locked?: InputMaybe<Scalars['Boolean']>;
-	platforms?: InputMaybe<PlatformOnMovieCreateNestedManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformCreateNestedManyWithoutMoviesInput>;
 	released?: InputMaybe<Scalars['DateTime']>;
 	soundtrack?: InputMaybe<SongInMovieCreateNestedManyWithoutMovieInput>;
 	thumbnail?: InputMaybe<Scalars['String']>;
@@ -785,16 +785,16 @@ export type MovieCreateInput = {
 	updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
+export type MovieCreateNestedManyWithoutPlatformsInput = {
+	connect?: InputMaybe<MovieWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutPlatformsInput[]>;
+	create?: InputMaybe<MovieCreateWithoutPlatformsInput[]>;
+};
+
 export type MovieCreateNestedOneWithoutActorsInput = {
 	connect?: InputMaybe<MovieWhereUniqueInput>;
 	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutActorsInput>;
 	create?: InputMaybe<MovieCreateWithoutActorsInput>;
-};
-
-export type MovieCreateNestedOneWithoutPlatformsInput = {
-	connect?: InputMaybe<MovieWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutPlatformsInput>;
-	create?: InputMaybe<MovieCreateWithoutPlatformsInput>;
 };
 
 export type MovieCreateNestedOneWithoutSoundtrackInput = {
@@ -822,7 +822,7 @@ export type MovieCreateWithoutActorsInput = {
 	createdAt?: InputMaybe<Scalars['DateTime']>;
 	description: Scalars['String'];
 	locked?: InputMaybe<Scalars['Boolean']>;
-	platforms?: InputMaybe<PlatformOnMovieCreateNestedManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformCreateNestedManyWithoutMoviesInput>;
 	released?: InputMaybe<Scalars['DateTime']>;
 	soundtrack?: InputMaybe<SongInMovieCreateNestedManyWithoutMovieInput>;
 	thumbnail?: InputMaybe<Scalars['String']>;
@@ -847,11 +847,21 @@ export type MovieCreateWithoutSoundtrackInput = {
 	createdAt?: InputMaybe<Scalars['DateTime']>;
 	description: Scalars['String'];
 	locked?: InputMaybe<Scalars['Boolean']>;
-	platforms?: InputMaybe<PlatformOnMovieCreateNestedManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformCreateNestedManyWithoutMoviesInput>;
 	released?: InputMaybe<Scalars['DateTime']>;
 	thumbnail?: InputMaybe<Scalars['String']>;
 	title: Scalars['String'];
 	updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MovieListRelationFilter = {
+	every?: InputMaybe<MovieWhereInput>;
+	none?: InputMaybe<MovieWhereInput>;
+	some?: InputMaybe<MovieWhereInput>;
+};
+
+export type MovieOrderByRelationAggregateInput = {
+	_count?: InputMaybe<SortOrder>;
 };
 
 export type MovieOrderByWithRelationInput = {
@@ -860,7 +870,7 @@ export type MovieOrderByWithRelationInput = {
 	description?: InputMaybe<SortOrder>;
 	id?: InputMaybe<SortOrder>;
 	locked?: InputMaybe<SortOrder>;
-	platforms?: InputMaybe<PlatformOnMovieOrderByRelationAggregateInput>;
+	platforms?: InputMaybe<PlatformOrderByRelationAggregateInput>;
 	released?: InputMaybe<SortOrder>;
 	soundtrack?: InputMaybe<SongInMovieOrderByRelationAggregateInput>;
 	thumbnail?: InputMaybe<SortOrder>;
@@ -884,17 +894,59 @@ export enum MovieScalarFieldEnum {
 	UpdatedAt = 'updatedAt'
 }
 
+export type MovieScalarWhereInput = {
+	AND?: InputMaybe<MovieScalarWhereInput[]>;
+	NOT?: InputMaybe<MovieScalarWhereInput[]>;
+	OR?: InputMaybe<MovieScalarWhereInput[]>;
+	createdAt?: InputMaybe<DateTimeFilter>;
+	description?: InputMaybe<StringFilter>;
+	id?: InputMaybe<IntFilter>;
+	locked?: InputMaybe<BoolFilter>;
+	released?: InputMaybe<DateTimeNullableFilter>;
+	thumbnail?: InputMaybe<StringFilter>;
+	title?: InputMaybe<StringFilter>;
+	updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
 export type MovieUpdateInput = {
 	actors?: InputMaybe<ActorInMovieUpdateManyWithoutMovieInput>;
 	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 	description?: InputMaybe<StringFieldUpdateOperationsInput>;
 	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-	platforms?: InputMaybe<PlatformOnMovieUpdateManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformUpdateManyWithoutMoviesInput>;
 	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 	soundtrack?: InputMaybe<SongInMovieUpdateManyWithoutMovieInput>;
 	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
 	title?: InputMaybe<StringFieldUpdateOperationsInput>;
 	updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MovieUpdateManyMutationInput = {
+	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+	description?: InputMaybe<StringFieldUpdateOperationsInput>;
+	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
+	title?: InputMaybe<StringFieldUpdateOperationsInput>;
+	updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MovieUpdateManyWithWhereWithoutPlatformsInput = {
+	data: MovieUpdateManyMutationInput;
+	where: MovieScalarWhereInput;
+};
+
+export type MovieUpdateManyWithoutPlatformsInput = {
+	connect?: InputMaybe<MovieWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutPlatformsInput[]>;
+	create?: InputMaybe<MovieCreateWithoutPlatformsInput[]>;
+	delete?: InputMaybe<MovieWhereUniqueInput[]>;
+	deleteMany?: InputMaybe<MovieScalarWhereInput[]>;
+	disconnect?: InputMaybe<MovieWhereUniqueInput[]>;
+	set?: InputMaybe<MovieWhereUniqueInput[]>;
+	update?: InputMaybe<MovieUpdateWithWhereUniqueWithoutPlatformsInput[]>;
+	updateMany?: InputMaybe<MovieUpdateManyWithWhereWithoutPlatformsInput[]>;
+	upsert?: InputMaybe<MovieUpsertWithWhereUniqueWithoutPlatformsInput[]>;
 };
 
 export type MovieUpdateOneRequiredWithoutActorsInput = {
@@ -905,14 +957,6 @@ export type MovieUpdateOneRequiredWithoutActorsInput = {
 	upsert?: InputMaybe<MovieUpsertWithoutActorsInput>;
 };
 
-export type MovieUpdateOneRequiredWithoutPlatformsInput = {
-	connect?: InputMaybe<MovieWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutPlatformsInput>;
-	create?: InputMaybe<MovieCreateWithoutPlatformsInput>;
-	update?: InputMaybe<MovieUpdateWithoutPlatformsInput>;
-	upsert?: InputMaybe<MovieUpsertWithoutPlatformsInput>;
-};
-
 export type MovieUpdateOneRequiredWithoutSoundtrackInput = {
 	connect?: InputMaybe<MovieWhereUniqueInput>;
 	connectOrCreate?: InputMaybe<MovieCreateOrConnectWithoutSoundtrackInput>;
@@ -921,11 +965,16 @@ export type MovieUpdateOneRequiredWithoutSoundtrackInput = {
 	upsert?: InputMaybe<MovieUpsertWithoutSoundtrackInput>;
 };
 
+export type MovieUpdateWithWhereUniqueWithoutPlatformsInput = {
+	data: MovieUpdateWithoutPlatformsInput;
+	where: MovieWhereUniqueInput;
+};
+
 export type MovieUpdateWithoutActorsInput = {
 	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 	description?: InputMaybe<StringFieldUpdateOperationsInput>;
 	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-	platforms?: InputMaybe<PlatformOnMovieUpdateManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformUpdateManyWithoutMoviesInput>;
 	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 	soundtrack?: InputMaybe<SongInMovieUpdateManyWithoutMovieInput>;
 	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -950,21 +999,22 @@ export type MovieUpdateWithoutSoundtrackInput = {
 	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 	description?: InputMaybe<StringFieldUpdateOperationsInput>;
 	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-	platforms?: InputMaybe<PlatformOnMovieUpdateManyWithoutMovieInput>;
+	platforms?: InputMaybe<PlatformUpdateManyWithoutMoviesInput>;
 	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
 	title?: InputMaybe<StringFieldUpdateOperationsInput>;
 	updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type MovieUpsertWithWhereUniqueWithoutPlatformsInput = {
+	create: MovieCreateWithoutPlatformsInput;
+	update: MovieUpdateWithoutPlatformsInput;
+	where: MovieWhereUniqueInput;
+};
+
 export type MovieUpsertWithoutActorsInput = {
 	create: MovieCreateWithoutActorsInput;
 	update: MovieUpdateWithoutActorsInput;
-};
-
-export type MovieUpsertWithoutPlatformsInput = {
-	create: MovieCreateWithoutPlatformsInput;
-	update: MovieUpdateWithoutPlatformsInput;
 };
 
 export type MovieUpsertWithoutSoundtrackInput = {
@@ -981,7 +1031,7 @@ export type MovieWhereInput = {
 	description?: InputMaybe<StringFilter>;
 	id?: InputMaybe<IntFilter>;
 	locked?: InputMaybe<BoolFilter>;
-	platforms?: InputMaybe<PlatformOnMovieListRelationFilter>;
+	platforms?: InputMaybe<PlatformListRelationFilter>;
 	released?: InputMaybe<DateTimeNullableFilter>;
 	soundtrack?: InputMaybe<SongInMovieListRelationFilter>;
 	thumbnail?: InputMaybe<StringFilter>;
@@ -995,13 +1045,16 @@ export type MovieWhereUniqueInput = {
 
 export type Mutation = {
 	__typename?: 'Mutation';
-	addActor?: Maybe<Scalars['Boolean']>;
+	addActorToMovie?: Maybe<Scalars['Boolean']>;
 	addArtist?: Maybe<Song>;
+	addPlatformToMovie: Scalars['Boolean'];
+	addSongToMovie: Scalars['Boolean'];
 	changePassword: User;
 	confirm: Scalars['Boolean'];
 	createBook?: Maybe<Book>;
 	createMovie?: Maybe<Movie>;
 	createPerson: Person;
+	createPlatform: Platform;
 	createSong?: Maybe<Song>;
 	deleteBook?: Maybe<Book>;
 	deleteMovie?: Maybe<Movie>;
@@ -1019,14 +1072,16 @@ export type Mutation = {
 	login: User;
 	logout: Scalars['Boolean'];
 	register: User;
-	removeActor?: Maybe<Movie>;
+	removeActorFromMovie: Scalars['Boolean'];
 	removeArtist?: Maybe<Song>;
+	removePlatformToMovie: Scalars['Boolean'];
+	removeSongFromMovie: Scalars['Boolean'];
 	unfollow: Scalars['Boolean'];
 	uploadAvatar: Scalars['Boolean'];
 	uploadThumbnail: Scalars['Boolean'];
 };
 
-export type MutationAddActorArgs = {
+export type MutationAddActorToMovieArgs = {
 	movieId: Scalars['Int'];
 	personId: Scalars['Int'];
 	role: Scalars['String'];
@@ -1035,6 +1090,18 @@ export type MutationAddActorArgs = {
 export type MutationAddArtistArgs = {
 	personId: Scalars['Int'];
 	songId: Scalars['Int'];
+};
+
+export type MutationAddPlatformToMovieArgs = {
+	movieId: Scalars['Int'];
+	platformId: Scalars['Int'];
+};
+
+export type MutationAddSongToMovieArgs = {
+	description: Scalars['String'];
+	movieId: Scalars['Int'];
+	songId: Scalars['Int'];
+	timestamp: Scalars['DateTime'];
 };
 
 export type MutationChangePasswordArgs = {
@@ -1055,6 +1122,10 @@ export type MutationCreateMovieArgs = {
 
 export type MutationCreatePersonArgs = {
 	data: PersonCreateInput;
+};
+
+export type MutationCreatePlatformArgs = {
+	data: PlatformCreateInput;
 };
 
 export type MutationCreateSongArgs = {
@@ -1128,7 +1199,7 @@ export type MutationRegisterArgs = {
 	data: RegisterInput;
 };
 
-export type MutationRemoveActorArgs = {
+export type MutationRemoveActorFromMovieArgs = {
 	movieId: Scalars['Int'];
 	personId: Scalars['Int'];
 };
@@ -1136,6 +1207,15 @@ export type MutationRemoveActorArgs = {
 export type MutationRemoveArtistArgs = {
 	personId: Scalars['Int'];
 	songId: Scalars['Int'];
+};
+
+export type MutationRemovePlatformToMovieArgs = {
+	movieId: Scalars['Int'];
+	platformId: Scalars['Int'];
+};
+
+export type MutationRemoveSongFromMovieArgs = {
+	where: SongInMovieWhereUniqueInput;
 };
 
 export type MutationUnfollowArgs = {
@@ -1724,505 +1804,196 @@ export type PersonWhereUniqueInput = {
 
 export type Platform = {
 	__typename?: 'Platform';
-	PlatformOnMovie: PlatformOnMovie[];
-	PlatformOnShow: PlatformOnShow[];
 	_count?: Maybe<PlatformCount>;
+	apiKey: Scalars['String'];
 	id: Scalars['Int'];
+	movies: Movie[];
 	name: Scalars['String'];
+	shows: Show[];
 };
 
-export type PlatformPlatformOnMovieArgs = {
-	cursor?: InputMaybe<PlatformOnMovieWhereUniqueInput>;
-	distinct?: InputMaybe<PlatformOnMovieScalarFieldEnum[]>;
-	orderBy?: InputMaybe<PlatformOnMovieOrderByWithRelationInput[]>;
+export type PlatformMoviesArgs = {
+	cursor?: InputMaybe<MovieWhereUniqueInput>;
+	distinct?: InputMaybe<MovieScalarFieldEnum[]>;
+	orderBy?: InputMaybe<MovieOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<PlatformOnMovieWhereInput>;
+	where?: InputMaybe<MovieWhereInput>;
 };
 
-export type PlatformPlatformOnShowArgs = {
-	cursor?: InputMaybe<PlatformOnShowWhereUniqueInput>;
-	distinct?: InputMaybe<PlatformOnShowScalarFieldEnum[]>;
-	orderBy?: InputMaybe<PlatformOnShowOrderByWithRelationInput[]>;
+export type PlatformShowsArgs = {
+	cursor?: InputMaybe<ShowWhereUniqueInput>;
+	distinct?: InputMaybe<ShowScalarFieldEnum[]>;
+	orderBy?: InputMaybe<ShowOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<PlatformOnShowWhereInput>;
+	where?: InputMaybe<ShowWhereInput>;
 };
 
 export type PlatformCount = {
 	__typename?: 'PlatformCount';
-	PlatformOnMovie: Scalars['Int'];
-	PlatformOnShow: Scalars['Int'];
+	movies: Scalars['Int'];
+	shows: Scalars['Int'];
 };
 
-export type PlatformCreateNestedOneWithoutPlatformOnMovieInput = {
-	connect?: InputMaybe<PlatformWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutPlatformOnMovieInput>;
-	create?: InputMaybe<PlatformCreateWithoutPlatformOnMovieInput>;
+export type PlatformCreateInput = {
+	apiKey: Scalars['String'];
+	movies?: InputMaybe<MovieCreateNestedManyWithoutPlatformsInput>;
+	name: Scalars['String'];
+	shows?: InputMaybe<ShowCreateNestedManyWithoutPlatformsInput>;
 };
 
-export type PlatformCreateNestedOneWithoutPlatformOnShowInput = {
-	connect?: InputMaybe<PlatformWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutPlatformOnShowInput>;
-	create?: InputMaybe<PlatformCreateWithoutPlatformOnShowInput>;
+export type PlatformCreateNestedManyWithoutMoviesInput = {
+	connect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutMoviesInput[]>;
+	create?: InputMaybe<PlatformCreateWithoutMoviesInput[]>;
 };
 
-export type PlatformCreateOrConnectWithoutPlatformOnMovieInput = {
-	create: PlatformCreateWithoutPlatformOnMovieInput;
+export type PlatformCreateNestedManyWithoutShowsInput = {
+	connect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutShowsInput[]>;
+	create?: InputMaybe<PlatformCreateWithoutShowsInput[]>;
+};
+
+export type PlatformCreateOrConnectWithoutMoviesInput = {
+	create: PlatformCreateWithoutMoviesInput;
 	where: PlatformWhereUniqueInput;
 };
 
-export type PlatformCreateOrConnectWithoutPlatformOnShowInput = {
-	create: PlatformCreateWithoutPlatformOnShowInput;
+export type PlatformCreateOrConnectWithoutShowsInput = {
+	create: PlatformCreateWithoutShowsInput;
 	where: PlatformWhereUniqueInput;
 };
 
-export type PlatformCreateWithoutPlatformOnMovieInput = {
-	PlatformOnShow?: InputMaybe<PlatformOnShowCreateNestedManyWithoutPlatformInput>;
+export type PlatformCreateWithoutMoviesInput = {
+	apiKey: Scalars['String'];
+	name: Scalars['String'];
+	shows?: InputMaybe<ShowCreateNestedManyWithoutPlatformsInput>;
+};
+
+export type PlatformCreateWithoutShowsInput = {
+	apiKey: Scalars['String'];
+	movies?: InputMaybe<MovieCreateNestedManyWithoutPlatformsInput>;
 	name: Scalars['String'];
 };
 
-export type PlatformCreateWithoutPlatformOnShowInput = {
-	PlatformOnMovie?: InputMaybe<PlatformOnMovieCreateNestedManyWithoutPlatformInput>;
-	name: Scalars['String'];
+export type PlatformListRelationFilter = {
+	every?: InputMaybe<PlatformWhereInput>;
+	none?: InputMaybe<PlatformWhereInput>;
+	some?: InputMaybe<PlatformWhereInput>;
 };
 
-export type PlatformOnMovie = {
-	__typename?: 'PlatformOnMovie';
-	movie: Movie;
-	movieId: Scalars['Int'];
-	platform: Platform;
-	platformId: Scalars['Int'];
-	price: Scalars['String'];
-};
-
-export type PlatformOnMovieCreateManyMovieInput = {
-	platformId: Scalars['Int'];
-	price: Scalars['String'];
-};
-
-export type PlatformOnMovieCreateManyMovieInputEnvelope = {
-	data: PlatformOnMovieCreateManyMovieInput[];
-	skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PlatformOnMovieCreateManyPlatformInput = {
-	movieId: Scalars['Int'];
-	price: Scalars['String'];
-};
-
-export type PlatformOnMovieCreateManyPlatformInputEnvelope = {
-	data: PlatformOnMovieCreateManyPlatformInput[];
-	skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PlatformOnMovieCreateNestedManyWithoutMovieInput = {
-	connect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnMovieCreateOrConnectWithoutMovieInput[]>;
-	create?: InputMaybe<PlatformOnMovieCreateWithoutMovieInput[]>;
-	createMany?: InputMaybe<PlatformOnMovieCreateManyMovieInputEnvelope>;
-};
-
-export type PlatformOnMovieCreateNestedManyWithoutPlatformInput = {
-	connect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnMovieCreateOrConnectWithoutPlatformInput[]>;
-	create?: InputMaybe<PlatformOnMovieCreateWithoutPlatformInput[]>;
-	createMany?: InputMaybe<PlatformOnMovieCreateManyPlatformInputEnvelope>;
-};
-
-export type PlatformOnMovieCreateOrConnectWithoutMovieInput = {
-	create: PlatformOnMovieCreateWithoutMovieInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieCreateOrConnectWithoutPlatformInput = {
-	create: PlatformOnMovieCreateWithoutPlatformInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieCreateWithoutMovieInput = {
-	platform: PlatformCreateNestedOneWithoutPlatformOnMovieInput;
-	price: Scalars['String'];
-};
-
-export type PlatformOnMovieCreateWithoutPlatformInput = {
-	movie: MovieCreateNestedOneWithoutPlatformsInput;
-	price: Scalars['String'];
-};
-
-export type PlatformOnMovieListRelationFilter = {
-	every?: InputMaybe<PlatformOnMovieWhereInput>;
-	none?: InputMaybe<PlatformOnMovieWhereInput>;
-	some?: InputMaybe<PlatformOnMovieWhereInput>;
-};
-
-export type PlatformOnMovieOrderByRelationAggregateInput = {
+export type PlatformOrderByRelationAggregateInput = {
 	_count?: InputMaybe<SortOrder>;
-};
-
-export type PlatformOnMovieOrderByWithRelationInput = {
-	movie?: InputMaybe<MovieOrderByWithRelationInput>;
-	movieId?: InputMaybe<SortOrder>;
-	platform?: InputMaybe<PlatformOrderByWithRelationInput>;
-	platformId?: InputMaybe<SortOrder>;
-	price?: InputMaybe<SortOrder>;
-};
-
-export type PlatformOnMoviePlatformIdMovieIdCompoundUniqueInput = {
-	movieId: Scalars['Int'];
-	platformId: Scalars['Int'];
-};
-
-export enum PlatformOnMovieScalarFieldEnum {
-	MovieId = 'movieId',
-	PlatformId = 'platformId',
-	Price = 'price'
-}
-
-export type PlatformOnMovieScalarWhereInput = {
-	AND?: InputMaybe<PlatformOnMovieScalarWhereInput[]>;
-	NOT?: InputMaybe<PlatformOnMovieScalarWhereInput[]>;
-	OR?: InputMaybe<PlatformOnMovieScalarWhereInput[]>;
-	movieId?: InputMaybe<IntFilter>;
-	platformId?: InputMaybe<IntFilter>;
-	price?: InputMaybe<StringFilter>;
-};
-
-export type PlatformOnMovieUpdateManyMutationInput = {
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PlatformOnMovieUpdateManyWithWhereWithoutMovieInput = {
-	data: PlatformOnMovieUpdateManyMutationInput;
-	where: PlatformOnMovieScalarWhereInput;
-};
-
-export type PlatformOnMovieUpdateManyWithWhereWithoutPlatformInput = {
-	data: PlatformOnMovieUpdateManyMutationInput;
-	where: PlatformOnMovieScalarWhereInput;
-};
-
-export type PlatformOnMovieUpdateManyWithoutMovieInput = {
-	connect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnMovieCreateOrConnectWithoutMovieInput[]>;
-	create?: InputMaybe<PlatformOnMovieCreateWithoutMovieInput[]>;
-	createMany?: InputMaybe<PlatformOnMovieCreateManyMovieInputEnvelope>;
-	delete?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	deleteMany?: InputMaybe<PlatformOnMovieScalarWhereInput[]>;
-	disconnect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	set?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	update?: InputMaybe<PlatformOnMovieUpdateWithWhereUniqueWithoutMovieInput[]>;
-	updateMany?: InputMaybe<PlatformOnMovieUpdateManyWithWhereWithoutMovieInput[]>;
-	upsert?: InputMaybe<PlatformOnMovieUpsertWithWhereUniqueWithoutMovieInput[]>;
-};
-
-export type PlatformOnMovieUpdateManyWithoutPlatformInput = {
-	connect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnMovieCreateOrConnectWithoutPlatformInput[]>;
-	create?: InputMaybe<PlatformOnMovieCreateWithoutPlatformInput[]>;
-	createMany?: InputMaybe<PlatformOnMovieCreateManyPlatformInputEnvelope>;
-	delete?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	deleteMany?: InputMaybe<PlatformOnMovieScalarWhereInput[]>;
-	disconnect?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	set?: InputMaybe<PlatformOnMovieWhereUniqueInput[]>;
-	update?: InputMaybe<PlatformOnMovieUpdateWithWhereUniqueWithoutPlatformInput[]>;
-	updateMany?: InputMaybe<PlatformOnMovieUpdateManyWithWhereWithoutPlatformInput[]>;
-	upsert?: InputMaybe<PlatformOnMovieUpsertWithWhereUniqueWithoutPlatformInput[]>;
-};
-
-export type PlatformOnMovieUpdateWithWhereUniqueWithoutMovieInput = {
-	data: PlatformOnMovieUpdateWithoutMovieInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieUpdateWithWhereUniqueWithoutPlatformInput = {
-	data: PlatformOnMovieUpdateWithoutPlatformInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieUpdateWithoutMovieInput = {
-	platform?: InputMaybe<PlatformUpdateOneRequiredWithoutPlatformOnMovieInput>;
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PlatformOnMovieUpdateWithoutPlatformInput = {
-	movie?: InputMaybe<MovieUpdateOneRequiredWithoutPlatformsInput>;
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PlatformOnMovieUpsertWithWhereUniqueWithoutMovieInput = {
-	create: PlatformOnMovieCreateWithoutMovieInput;
-	update: PlatformOnMovieUpdateWithoutMovieInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieUpsertWithWhereUniqueWithoutPlatformInput = {
-	create: PlatformOnMovieCreateWithoutPlatformInput;
-	update: PlatformOnMovieUpdateWithoutPlatformInput;
-	where: PlatformOnMovieWhereUniqueInput;
-};
-
-export type PlatformOnMovieWhereInput = {
-	AND?: InputMaybe<PlatformOnMovieWhereInput[]>;
-	NOT?: InputMaybe<PlatformOnMovieWhereInput[]>;
-	OR?: InputMaybe<PlatformOnMovieWhereInput[]>;
-	movie?: InputMaybe<MovieRelationFilter>;
-	movieId?: InputMaybe<IntFilter>;
-	platform?: InputMaybe<PlatformRelationFilter>;
-	platformId?: InputMaybe<IntFilter>;
-	price?: InputMaybe<StringFilter>;
-};
-
-export type PlatformOnMovieWhereUniqueInput = {
-	platformId_movieId?: InputMaybe<PlatformOnMoviePlatformIdMovieIdCompoundUniqueInput>;
-};
-
-export type PlatformOnShow = {
-	__typename?: 'PlatformOnShow';
-	platform: Platform;
-	platformId: Scalars['Int'];
-	price: Scalars['String'];
-	show: Show;
-	showId: Scalars['Int'];
-};
-
-export type PlatformOnShowCreateManyPlatformInput = {
-	price: Scalars['String'];
-	showId: Scalars['Int'];
-};
-
-export type PlatformOnShowCreateManyPlatformInputEnvelope = {
-	data: PlatformOnShowCreateManyPlatformInput[];
-	skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PlatformOnShowCreateManyShowInput = {
-	platformId: Scalars['Int'];
-	price: Scalars['String'];
-};
-
-export type PlatformOnShowCreateManyShowInputEnvelope = {
-	data: PlatformOnShowCreateManyShowInput[];
-	skipDuplicates?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PlatformOnShowCreateNestedManyWithoutPlatformInput = {
-	connect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnShowCreateOrConnectWithoutPlatformInput[]>;
-	create?: InputMaybe<PlatformOnShowCreateWithoutPlatformInput[]>;
-	createMany?: InputMaybe<PlatformOnShowCreateManyPlatformInputEnvelope>;
-};
-
-export type PlatformOnShowCreateNestedManyWithoutShowInput = {
-	connect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnShowCreateOrConnectWithoutShowInput[]>;
-	create?: InputMaybe<PlatformOnShowCreateWithoutShowInput[]>;
-	createMany?: InputMaybe<PlatformOnShowCreateManyShowInputEnvelope>;
-};
-
-export type PlatformOnShowCreateOrConnectWithoutPlatformInput = {
-	create: PlatformOnShowCreateWithoutPlatformInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowCreateOrConnectWithoutShowInput = {
-	create: PlatformOnShowCreateWithoutShowInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowCreateWithoutPlatformInput = {
-	price: Scalars['String'];
-	show: ShowCreateNestedOneWithoutPlatformsInput;
-};
-
-export type PlatformOnShowCreateWithoutShowInput = {
-	platform: PlatformCreateNestedOneWithoutPlatformOnShowInput;
-	price: Scalars['String'];
-};
-
-export type PlatformOnShowListRelationFilter = {
-	every?: InputMaybe<PlatformOnShowWhereInput>;
-	none?: InputMaybe<PlatformOnShowWhereInput>;
-	some?: InputMaybe<PlatformOnShowWhereInput>;
-};
-
-export type PlatformOnShowOrderByRelationAggregateInput = {
-	_count?: InputMaybe<SortOrder>;
-};
-
-export type PlatformOnShowOrderByWithRelationInput = {
-	platform?: InputMaybe<PlatformOrderByWithRelationInput>;
-	platformId?: InputMaybe<SortOrder>;
-	price?: InputMaybe<SortOrder>;
-	show?: InputMaybe<ShowOrderByWithRelationInput>;
-	showId?: InputMaybe<SortOrder>;
-};
-
-export type PlatformOnShowPlatformIdShowIdCompoundUniqueInput = {
-	platformId: Scalars['Int'];
-	showId: Scalars['Int'];
-};
-
-export enum PlatformOnShowScalarFieldEnum {
-	PlatformId = 'platformId',
-	Price = 'price',
-	ShowId = 'showId'
-}
-
-export type PlatformOnShowScalarWhereInput = {
-	AND?: InputMaybe<PlatformOnShowScalarWhereInput[]>;
-	NOT?: InputMaybe<PlatformOnShowScalarWhereInput[]>;
-	OR?: InputMaybe<PlatformOnShowScalarWhereInput[]>;
-	platformId?: InputMaybe<IntFilter>;
-	price?: InputMaybe<StringFilter>;
-	showId?: InputMaybe<IntFilter>;
-};
-
-export type PlatformOnShowUpdateManyMutationInput = {
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PlatformOnShowUpdateManyWithWhereWithoutPlatformInput = {
-	data: PlatformOnShowUpdateManyMutationInput;
-	where: PlatformOnShowScalarWhereInput;
-};
-
-export type PlatformOnShowUpdateManyWithWhereWithoutShowInput = {
-	data: PlatformOnShowUpdateManyMutationInput;
-	where: PlatformOnShowScalarWhereInput;
-};
-
-export type PlatformOnShowUpdateManyWithoutPlatformInput = {
-	connect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnShowCreateOrConnectWithoutPlatformInput[]>;
-	create?: InputMaybe<PlatformOnShowCreateWithoutPlatformInput[]>;
-	createMany?: InputMaybe<PlatformOnShowCreateManyPlatformInputEnvelope>;
-	delete?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	deleteMany?: InputMaybe<PlatformOnShowScalarWhereInput[]>;
-	disconnect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	set?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	update?: InputMaybe<PlatformOnShowUpdateWithWhereUniqueWithoutPlatformInput[]>;
-	updateMany?: InputMaybe<PlatformOnShowUpdateManyWithWhereWithoutPlatformInput[]>;
-	upsert?: InputMaybe<PlatformOnShowUpsertWithWhereUniqueWithoutPlatformInput[]>;
-};
-
-export type PlatformOnShowUpdateManyWithoutShowInput = {
-	connect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	connectOrCreate?: InputMaybe<PlatformOnShowCreateOrConnectWithoutShowInput[]>;
-	create?: InputMaybe<PlatformOnShowCreateWithoutShowInput[]>;
-	createMany?: InputMaybe<PlatformOnShowCreateManyShowInputEnvelope>;
-	delete?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	deleteMany?: InputMaybe<PlatformOnShowScalarWhereInput[]>;
-	disconnect?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	set?: InputMaybe<PlatformOnShowWhereUniqueInput[]>;
-	update?: InputMaybe<PlatformOnShowUpdateWithWhereUniqueWithoutShowInput[]>;
-	updateMany?: InputMaybe<PlatformOnShowUpdateManyWithWhereWithoutShowInput[]>;
-	upsert?: InputMaybe<PlatformOnShowUpsertWithWhereUniqueWithoutShowInput[]>;
-};
-
-export type PlatformOnShowUpdateWithWhereUniqueWithoutPlatformInput = {
-	data: PlatformOnShowUpdateWithoutPlatformInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowUpdateWithWhereUniqueWithoutShowInput = {
-	data: PlatformOnShowUpdateWithoutShowInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowUpdateWithoutPlatformInput = {
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-	show?: InputMaybe<ShowUpdateOneRequiredWithoutPlatformsInput>;
-};
-
-export type PlatformOnShowUpdateWithoutShowInput = {
-	platform?: InputMaybe<PlatformUpdateOneRequiredWithoutPlatformOnShowInput>;
-	price?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PlatformOnShowUpsertWithWhereUniqueWithoutPlatformInput = {
-	create: PlatformOnShowCreateWithoutPlatformInput;
-	update: PlatformOnShowUpdateWithoutPlatformInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowUpsertWithWhereUniqueWithoutShowInput = {
-	create: PlatformOnShowCreateWithoutShowInput;
-	update: PlatformOnShowUpdateWithoutShowInput;
-	where: PlatformOnShowWhereUniqueInput;
-};
-
-export type PlatformOnShowWhereInput = {
-	AND?: InputMaybe<PlatformOnShowWhereInput[]>;
-	NOT?: InputMaybe<PlatformOnShowWhereInput[]>;
-	OR?: InputMaybe<PlatformOnShowWhereInput[]>;
-	platform?: InputMaybe<PlatformRelationFilter>;
-	platformId?: InputMaybe<IntFilter>;
-	price?: InputMaybe<StringFilter>;
-	show?: InputMaybe<ShowRelationFilter>;
-	showId?: InputMaybe<IntFilter>;
-};
-
-export type PlatformOnShowWhereUniqueInput = {
-	platformId_showId?: InputMaybe<PlatformOnShowPlatformIdShowIdCompoundUniqueInput>;
 };
 
 export type PlatformOrderByWithRelationInput = {
-	PlatformOnMovie?: InputMaybe<PlatformOnMovieOrderByRelationAggregateInput>;
-	PlatformOnShow?: InputMaybe<PlatformOnShowOrderByRelationAggregateInput>;
+	apiKey?: InputMaybe<SortOrder>;
 	id?: InputMaybe<SortOrder>;
+	movies?: InputMaybe<MovieOrderByRelationAggregateInput>;
 	name?: InputMaybe<SortOrder>;
+	shows?: InputMaybe<ShowOrderByRelationAggregateInput>;
 };
 
-export type PlatformRelationFilter = {
-	is?: InputMaybe<PlatformWhereInput>;
-	isNot?: InputMaybe<PlatformWhereInput>;
+export enum PlatformScalarFieldEnum {
+	ApiKey = 'apiKey',
+	Id = 'id',
+	Name = 'name'
+}
+
+export type PlatformScalarWhereInput = {
+	AND?: InputMaybe<PlatformScalarWhereInput[]>;
+	NOT?: InputMaybe<PlatformScalarWhereInput[]>;
+	OR?: InputMaybe<PlatformScalarWhereInput[]>;
+	apiKey?: InputMaybe<StringFilter>;
+	id?: InputMaybe<IntFilter>;
+	name?: InputMaybe<StringFilter>;
 };
 
-export type PlatformUpdateOneRequiredWithoutPlatformOnMovieInput = {
-	connect?: InputMaybe<PlatformWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutPlatformOnMovieInput>;
-	create?: InputMaybe<PlatformCreateWithoutPlatformOnMovieInput>;
-	update?: InputMaybe<PlatformUpdateWithoutPlatformOnMovieInput>;
-	upsert?: InputMaybe<PlatformUpsertWithoutPlatformOnMovieInput>;
-};
-
-export type PlatformUpdateOneRequiredWithoutPlatformOnShowInput = {
-	connect?: InputMaybe<PlatformWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutPlatformOnShowInput>;
-	create?: InputMaybe<PlatformCreateWithoutPlatformOnShowInput>;
-	update?: InputMaybe<PlatformUpdateWithoutPlatformOnShowInput>;
-	upsert?: InputMaybe<PlatformUpsertWithoutPlatformOnShowInput>;
-};
-
-export type PlatformUpdateWithoutPlatformOnMovieInput = {
-	PlatformOnShow?: InputMaybe<PlatformOnShowUpdateManyWithoutPlatformInput>;
+export type PlatformUpdateManyMutationInput = {
+	apiKey?: InputMaybe<StringFieldUpdateOperationsInput>;
 	name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
-export type PlatformUpdateWithoutPlatformOnShowInput = {
-	PlatformOnMovie?: InputMaybe<PlatformOnMovieUpdateManyWithoutPlatformInput>;
+export type PlatformUpdateManyWithWhereWithoutMoviesInput = {
+	data: PlatformUpdateManyMutationInput;
+	where: PlatformScalarWhereInput;
+};
+
+export type PlatformUpdateManyWithWhereWithoutShowsInput = {
+	data: PlatformUpdateManyMutationInput;
+	where: PlatformScalarWhereInput;
+};
+
+export type PlatformUpdateManyWithoutMoviesInput = {
+	connect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutMoviesInput[]>;
+	create?: InputMaybe<PlatformCreateWithoutMoviesInput[]>;
+	delete?: InputMaybe<PlatformWhereUniqueInput[]>;
+	deleteMany?: InputMaybe<PlatformScalarWhereInput[]>;
+	disconnect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	set?: InputMaybe<PlatformWhereUniqueInput[]>;
+	update?: InputMaybe<PlatformUpdateWithWhereUniqueWithoutMoviesInput[]>;
+	updateMany?: InputMaybe<PlatformUpdateManyWithWhereWithoutMoviesInput[]>;
+	upsert?: InputMaybe<PlatformUpsertWithWhereUniqueWithoutMoviesInput[]>;
+};
+
+export type PlatformUpdateManyWithoutShowsInput = {
+	connect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<PlatformCreateOrConnectWithoutShowsInput[]>;
+	create?: InputMaybe<PlatformCreateWithoutShowsInput[]>;
+	delete?: InputMaybe<PlatformWhereUniqueInput[]>;
+	deleteMany?: InputMaybe<PlatformScalarWhereInput[]>;
+	disconnect?: InputMaybe<PlatformWhereUniqueInput[]>;
+	set?: InputMaybe<PlatformWhereUniqueInput[]>;
+	update?: InputMaybe<PlatformUpdateWithWhereUniqueWithoutShowsInput[]>;
+	updateMany?: InputMaybe<PlatformUpdateManyWithWhereWithoutShowsInput[]>;
+	upsert?: InputMaybe<PlatformUpsertWithWhereUniqueWithoutShowsInput[]>;
+};
+
+export type PlatformUpdateWithWhereUniqueWithoutMoviesInput = {
+	data: PlatformUpdateWithoutMoviesInput;
+	where: PlatformWhereUniqueInput;
+};
+
+export type PlatformUpdateWithWhereUniqueWithoutShowsInput = {
+	data: PlatformUpdateWithoutShowsInput;
+	where: PlatformWhereUniqueInput;
+};
+
+export type PlatformUpdateWithoutMoviesInput = {
+	apiKey?: InputMaybe<StringFieldUpdateOperationsInput>;
+	name?: InputMaybe<StringFieldUpdateOperationsInput>;
+	shows?: InputMaybe<ShowUpdateManyWithoutPlatformsInput>;
+};
+
+export type PlatformUpdateWithoutShowsInput = {
+	apiKey?: InputMaybe<StringFieldUpdateOperationsInput>;
+	movies?: InputMaybe<MovieUpdateManyWithoutPlatformsInput>;
 	name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
-export type PlatformUpsertWithoutPlatformOnMovieInput = {
-	create: PlatformCreateWithoutPlatformOnMovieInput;
-	update: PlatformUpdateWithoutPlatformOnMovieInput;
+export type PlatformUpsertWithWhereUniqueWithoutMoviesInput = {
+	create: PlatformCreateWithoutMoviesInput;
+	update: PlatformUpdateWithoutMoviesInput;
+	where: PlatformWhereUniqueInput;
 };
 
-export type PlatformUpsertWithoutPlatformOnShowInput = {
-	create: PlatformCreateWithoutPlatformOnShowInput;
-	update: PlatformUpdateWithoutPlatformOnShowInput;
+export type PlatformUpsertWithWhereUniqueWithoutShowsInput = {
+	create: PlatformCreateWithoutShowsInput;
+	update: PlatformUpdateWithoutShowsInput;
+	where: PlatformWhereUniqueInput;
 };
 
 export type PlatformWhereInput = {
 	AND?: InputMaybe<PlatformWhereInput[]>;
 	NOT?: InputMaybe<PlatformWhereInput[]>;
 	OR?: InputMaybe<PlatformWhereInput[]>;
-	PlatformOnMovie?: InputMaybe<PlatformOnMovieListRelationFilter>;
-	PlatformOnShow?: InputMaybe<PlatformOnShowListRelationFilter>;
+	apiKey?: InputMaybe<StringFilter>;
 	id?: InputMaybe<IntFilter>;
+	movies?: InputMaybe<MovieListRelationFilter>;
 	name?: InputMaybe<StringFilter>;
+	shows?: InputMaybe<ShowListRelationFilter>;
 };
 
 export type PlatformWhereUniqueInput = {
@@ -2240,6 +2011,8 @@ export type Query = {
 	notifications: Notification[];
 	people?: Maybe<Person[]>;
 	person?: Maybe<Person>;
+	platform?: Maybe<Platform>;
+	platforms: Platform[];
 	song?: Maybe<Song>;
 	songs?: Maybe<Song[]>;
 	user?: Maybe<User>;
@@ -2298,6 +2071,14 @@ export type QueryPersonArgs = {
 	where: PersonWhereUniqueInput;
 };
 
+export type QueryPlatformArgs = {
+	where: PlatformWhereUniqueInput;
+};
+
+export type QueryPlatformsArgs = {
+	where: PlatformWhereUniqueInput;
+};
+
 export type QuerySongArgs = {
 	songId: Scalars['Int'];
 };
@@ -2344,7 +2125,7 @@ export type Show = {
 	description: Scalars['String'];
 	id: Scalars['Int'];
 	locked: Scalars['Boolean'];
-	platforms: PlatformOnShow[];
+	platforms: Platform[];
 	released?: Maybe<Scalars['DateTime']>;
 	soundtrack: SongInShow[];
 	thumbnail: Scalars['String'];
@@ -2362,12 +2143,12 @@ export type ShowActorsArgs = {
 };
 
 export type ShowPlatformsArgs = {
-	cursor?: InputMaybe<PlatformOnShowWhereUniqueInput>;
-	distinct?: InputMaybe<PlatformOnShowScalarFieldEnum[]>;
-	orderBy?: InputMaybe<PlatformOnShowOrderByWithRelationInput[]>;
+	cursor?: InputMaybe<PlatformWhereUniqueInput>;
+	distinct?: InputMaybe<PlatformScalarFieldEnum[]>;
+	orderBy?: InputMaybe<PlatformOrderByWithRelationInput[]>;
 	skip?: InputMaybe<Scalars['Int']>;
 	take?: InputMaybe<Scalars['Int']>;
-	where?: InputMaybe<PlatformOnShowWhereInput>;
+	where?: InputMaybe<PlatformWhereInput>;
 };
 
 export type ShowSoundtrackArgs = {
@@ -2386,16 +2167,16 @@ export type ShowCount = {
 	soundtrack: Scalars['Int'];
 };
 
+export type ShowCreateNestedManyWithoutPlatformsInput = {
+	connect?: InputMaybe<ShowWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutPlatformsInput[]>;
+	create?: InputMaybe<ShowCreateWithoutPlatformsInput[]>;
+};
+
 export type ShowCreateNestedOneWithoutActorsInput = {
 	connect?: InputMaybe<ShowWhereUniqueInput>;
 	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutActorsInput>;
 	create?: InputMaybe<ShowCreateWithoutActorsInput>;
-};
-
-export type ShowCreateNestedOneWithoutPlatformsInput = {
-	connect?: InputMaybe<ShowWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutPlatformsInput>;
-	create?: InputMaybe<ShowCreateWithoutPlatformsInput>;
 };
 
 export type ShowCreateNestedOneWithoutSoundtrackInput = {
@@ -2423,7 +2204,7 @@ export type ShowCreateWithoutActorsInput = {
 	createdAt?: InputMaybe<Scalars['DateTime']>;
 	description: Scalars['String'];
 	locked?: InputMaybe<Scalars['Boolean']>;
-	platforms?: InputMaybe<PlatformOnShowCreateNestedManyWithoutShowInput>;
+	platforms?: InputMaybe<PlatformCreateNestedManyWithoutShowsInput>;
 	released?: InputMaybe<Scalars['DateTime']>;
 	soundtrack?: InputMaybe<SongInShowCreateNestedManyWithoutShowInput>;
 	thumbnail?: InputMaybe<Scalars['String']>;
@@ -2448,11 +2229,21 @@ export type ShowCreateWithoutSoundtrackInput = {
 	createdAt?: InputMaybe<Scalars['DateTime']>;
 	description: Scalars['String'];
 	locked?: InputMaybe<Scalars['Boolean']>;
-	platforms?: InputMaybe<PlatformOnShowCreateNestedManyWithoutShowInput>;
+	platforms?: InputMaybe<PlatformCreateNestedManyWithoutShowsInput>;
 	released?: InputMaybe<Scalars['DateTime']>;
 	thumbnail?: InputMaybe<Scalars['String']>;
 	title: Scalars['String'];
 	updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShowListRelationFilter = {
+	every?: InputMaybe<ShowWhereInput>;
+	none?: InputMaybe<ShowWhereInput>;
+	some?: InputMaybe<ShowWhereInput>;
+};
+
+export type ShowOrderByRelationAggregateInput = {
+	_count?: InputMaybe<SortOrder>;
 };
 
 export type ShowOrderByWithRelationInput = {
@@ -2461,7 +2252,7 @@ export type ShowOrderByWithRelationInput = {
 	description?: InputMaybe<SortOrder>;
 	id?: InputMaybe<SortOrder>;
 	locked?: InputMaybe<SortOrder>;
-	platforms?: InputMaybe<PlatformOnShowOrderByRelationAggregateInput>;
+	platforms?: InputMaybe<PlatformOrderByRelationAggregateInput>;
 	released?: InputMaybe<SortOrder>;
 	soundtrack?: InputMaybe<SongInShowOrderByRelationAggregateInput>;
 	thumbnail?: InputMaybe<SortOrder>;
@@ -2474,20 +2265,65 @@ export type ShowRelationFilter = {
 	isNot?: InputMaybe<ShowWhereInput>;
 };
 
+export enum ShowScalarFieldEnum {
+	CreatedAt = 'createdAt',
+	Description = 'description',
+	Id = 'id',
+	Locked = 'locked',
+	Released = 'released',
+	Thumbnail = 'thumbnail',
+	Title = 'title',
+	UpdatedAt = 'updatedAt'
+}
+
+export type ShowScalarWhereInput = {
+	AND?: InputMaybe<ShowScalarWhereInput[]>;
+	NOT?: InputMaybe<ShowScalarWhereInput[]>;
+	OR?: InputMaybe<ShowScalarWhereInput[]>;
+	createdAt?: InputMaybe<DateTimeFilter>;
+	description?: InputMaybe<StringFilter>;
+	id?: InputMaybe<IntFilter>;
+	locked?: InputMaybe<BoolFilter>;
+	released?: InputMaybe<DateTimeNullableFilter>;
+	thumbnail?: InputMaybe<StringFilter>;
+	title?: InputMaybe<StringFilter>;
+	updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type ShowUpdateManyMutationInput = {
+	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+	description?: InputMaybe<StringFieldUpdateOperationsInput>;
+	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
+	title?: InputMaybe<StringFieldUpdateOperationsInput>;
+	updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ShowUpdateManyWithWhereWithoutPlatformsInput = {
+	data: ShowUpdateManyMutationInput;
+	where: ShowScalarWhereInput;
+};
+
+export type ShowUpdateManyWithoutPlatformsInput = {
+	connect?: InputMaybe<ShowWhereUniqueInput[]>;
+	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutPlatformsInput[]>;
+	create?: InputMaybe<ShowCreateWithoutPlatformsInput[]>;
+	delete?: InputMaybe<ShowWhereUniqueInput[]>;
+	deleteMany?: InputMaybe<ShowScalarWhereInput[]>;
+	disconnect?: InputMaybe<ShowWhereUniqueInput[]>;
+	set?: InputMaybe<ShowWhereUniqueInput[]>;
+	update?: InputMaybe<ShowUpdateWithWhereUniqueWithoutPlatformsInput[]>;
+	updateMany?: InputMaybe<ShowUpdateManyWithWhereWithoutPlatformsInput[]>;
+	upsert?: InputMaybe<ShowUpsertWithWhereUniqueWithoutPlatformsInput[]>;
+};
+
 export type ShowUpdateOneRequiredWithoutActorsInput = {
 	connect?: InputMaybe<ShowWhereUniqueInput>;
 	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutActorsInput>;
 	create?: InputMaybe<ShowCreateWithoutActorsInput>;
 	update?: InputMaybe<ShowUpdateWithoutActorsInput>;
 	upsert?: InputMaybe<ShowUpsertWithoutActorsInput>;
-};
-
-export type ShowUpdateOneRequiredWithoutPlatformsInput = {
-	connect?: InputMaybe<ShowWhereUniqueInput>;
-	connectOrCreate?: InputMaybe<ShowCreateOrConnectWithoutPlatformsInput>;
-	create?: InputMaybe<ShowCreateWithoutPlatformsInput>;
-	update?: InputMaybe<ShowUpdateWithoutPlatformsInput>;
-	upsert?: InputMaybe<ShowUpsertWithoutPlatformsInput>;
 };
 
 export type ShowUpdateOneRequiredWithoutSoundtrackInput = {
@@ -2498,11 +2334,16 @@ export type ShowUpdateOneRequiredWithoutSoundtrackInput = {
 	upsert?: InputMaybe<ShowUpsertWithoutSoundtrackInput>;
 };
 
+export type ShowUpdateWithWhereUniqueWithoutPlatformsInput = {
+	data: ShowUpdateWithoutPlatformsInput;
+	where: ShowWhereUniqueInput;
+};
+
 export type ShowUpdateWithoutActorsInput = {
 	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 	description?: InputMaybe<StringFieldUpdateOperationsInput>;
 	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-	platforms?: InputMaybe<PlatformOnShowUpdateManyWithoutShowInput>;
+	platforms?: InputMaybe<PlatformUpdateManyWithoutShowsInput>;
 	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 	soundtrack?: InputMaybe<SongInShowUpdateManyWithoutShowInput>;
 	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -2527,21 +2368,22 @@ export type ShowUpdateWithoutSoundtrackInput = {
 	createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 	description?: InputMaybe<StringFieldUpdateOperationsInput>;
 	locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
-	platforms?: InputMaybe<PlatformOnShowUpdateManyWithoutShowInput>;
+	platforms?: InputMaybe<PlatformUpdateManyWithoutShowsInput>;
 	released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 	thumbnail?: InputMaybe<StringFieldUpdateOperationsInput>;
 	title?: InputMaybe<StringFieldUpdateOperationsInput>;
 	updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type ShowUpsertWithWhereUniqueWithoutPlatformsInput = {
+	create: ShowCreateWithoutPlatformsInput;
+	update: ShowUpdateWithoutPlatformsInput;
+	where: ShowWhereUniqueInput;
+};
+
 export type ShowUpsertWithoutActorsInput = {
 	create: ShowCreateWithoutActorsInput;
 	update: ShowUpdateWithoutActorsInput;
-};
-
-export type ShowUpsertWithoutPlatformsInput = {
-	create: ShowCreateWithoutPlatformsInput;
-	update: ShowUpdateWithoutPlatformsInput;
 };
 
 export type ShowUpsertWithoutSoundtrackInput = {
@@ -2558,7 +2400,7 @@ export type ShowWhereInput = {
 	description?: InputMaybe<StringFilter>;
 	id?: InputMaybe<IntFilter>;
 	locked?: InputMaybe<BoolFilter>;
-	platforms?: InputMaybe<PlatformOnShowListRelationFilter>;
+	platforms?: InputMaybe<PlatformListRelationFilter>;
 	released?: InputMaybe<DateTimeNullableFilter>;
 	soundtrack?: InputMaybe<SongInShowListRelationFilter>;
 	thumbnail?: InputMaybe<StringFilter>;
@@ -3480,13 +3322,29 @@ export type UserWhereUniqueInput = {
 
 export type RegularUserFragment = {__typename?: 'User'; id: number; email: string; username: string; avatar: string};
 
-export type AddActorMutationVariables = Exact<{
+export type AddActorToMovieMutationVariables = Exact<{
 	role: Scalars['String'];
 	movieId: Scalars['Int'];
 	personId: Scalars['Int'];
 }>;
 
-export type AddActorMutation = {__typename?: 'Mutation'; addActor?: boolean | null | undefined};
+export type AddActorToMovieMutation = {__typename?: 'Mutation'; addActorToMovie?: boolean | null | undefined};
+
+export type AddPlatformToMovieMutationVariables = Exact<{
+	platformId: Scalars['Int'];
+	movieId: Scalars['Int'];
+}>;
+
+export type AddPlatformToMovieMutation = {__typename?: 'Mutation'; addPlatformToMovie: boolean};
+
+export type AddSongToMovieMutationVariables = Exact<{
+	movieId: Scalars['Int'];
+	songId: Scalars['Int'];
+	timestamp: Scalars['DateTime'];
+	description: Scalars['String'];
+}>;
+
+export type AddSongToMovieMutation = {__typename?: 'Mutation'; addSongToMovie: boolean};
 
 export type ConfirmMutationVariables = Exact<{
 	token: Scalars['String'];
@@ -3527,6 +3385,26 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 export type RegisterMutation = {__typename?: 'Mutation'; register: {__typename?: 'User'; id: number; email: string; username: string; avatar: string}};
+
+export type RemoveActorFromMovieMutationVariables = Exact<{
+	movieId: Scalars['Int'];
+	personId: Scalars['Int'];
+}>;
+
+export type RemoveActorFromMovieMutation = {__typename?: 'Mutation'; removeActorFromMovie: boolean};
+
+export type RemovePlatformFromMovieMutationVariables = Exact<{
+	platformId: Scalars['Int'];
+	movieId: Scalars['Int'];
+}>;
+
+export type RemovePlatformFromMovieMutation = {__typename?: 'Mutation'; removePlatformToMovie: boolean};
+
+export type RemoveSongFromMovieMutationVariables = Exact<{
+	where: SongInMovieWhereUniqueInput;
+}>;
+
+export type RemoveSongFromMovieMutation = {__typename?: 'Mutation'; removeSongFromMovie: boolean};
 
 export type UnfollowMutationVariables = Exact<{
 	userId: Scalars['Int'];
@@ -3624,25 +3502,25 @@ export const RegularUserFragmentDoc = gql`
   avatar
 }
     `;
-export const AddActorDocument = gql`
-    mutation addActor($role: String!, $movieId: Int!, $personId: Int!) {
-  addActor(role: $role, movieId: $movieId, personId: $personId)
+export const AddActorToMovieDocument = gql`
+    mutation addActorToMovie($role: String!, $movieId: Int!, $personId: Int!) {
+  addActorToMovie(role: $role, movieId: $movieId, personId: $personId)
 }
     `;
-export type AddActorMutationFn = Apollo.MutationFunction<AddActorMutation, AddActorMutationVariables>;
+export type AddActorToMovieMutationFn = Apollo.MutationFunction<AddActorToMovieMutation, AddActorToMovieMutationVariables>;
 
 /**
- * __useAddActorMutation__
+ * __useAddActorToMovieMutation__
  *
- * To run a mutation, you first call `useAddActorMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddActorMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useAddActorToMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddActorToMovieMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [addActorMutation, { data, loading, error }] = useAddActorMutation({
+ * const [addActorToMovieMutation, { data, loading, error }] = useAddActorToMovieMutation({
  *   variables: {
  *      role: // value for 'role'
  *      movieId: // value for 'movieId'
@@ -3650,14 +3528,87 @@ export type AddActorMutationFn = Apollo.MutationFunction<AddActorMutation, AddAc
  *   },
  * });
  */
-export function useAddActorMutation(baseOptions?: Apollo.MutationHookOptions<AddActorMutation, AddActorMutationVariables>) {
+export function useAddActorToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddActorToMovieMutation, AddActorToMovieMutationVariables>) {
 	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<AddActorMutation, AddActorMutationVariables>(AddActorDocument, options);
+	return Apollo.useMutation<AddActorToMovieMutation, AddActorToMovieMutationVariables>(AddActorToMovieDocument, options);
 }
 
-export type AddActorMutationHookResult = ReturnType<typeof useAddActorMutation>;
-export type AddActorMutationResult = Apollo.MutationResult<AddActorMutation>;
-export type AddActorMutationOptions = Apollo.BaseMutationOptions<AddActorMutation, AddActorMutationVariables>;
+export type AddActorToMovieMutationHookResult = ReturnType<typeof useAddActorToMovieMutation>;
+export type AddActorToMovieMutationResult = Apollo.MutationResult<AddActorToMovieMutation>;
+export type AddActorToMovieMutationOptions = Apollo.BaseMutationOptions<AddActorToMovieMutation, AddActorToMovieMutationVariables>;
+export const AddPlatformToMovieDocument = gql`
+    mutation addPlatformToMovie($platformId: Int!, $movieId: Int!) {
+  addPlatformToMovie(platformId: $platformId, movieId: $movieId)
+}
+    `;
+export type AddPlatformToMovieMutationFn = Apollo.MutationFunction<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>;
+
+/**
+ * __useAddPlatformToMovieMutation__
+ *
+ * To run a mutation, you first call `useAddPlatformToMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddPlatformToMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addPlatformToMovieMutation, { data, loading, error }] = useAddPlatformToMovieMutation({
+ *   variables: {
+ *      platformId: // value for 'platformId'
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function useAddPlatformToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>(AddPlatformToMovieDocument, options);
+}
+
+export type AddPlatformToMovieMutationHookResult = ReturnType<typeof useAddPlatformToMovieMutation>;
+export type AddPlatformToMovieMutationResult = Apollo.MutationResult<AddPlatformToMovieMutation>;
+export type AddPlatformToMovieMutationOptions = Apollo.BaseMutationOptions<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>;
+export const AddSongToMovieDocument = gql`
+    mutation addSongToMovie($movieId: Int!, $songId: Int!, $timestamp: DateTime!, $description: String!) {
+  addSongToMovie(
+    movieId: $movieId
+    songId: $songId
+    timestamp: $timestamp
+    description: $description
+  )
+}
+    `;
+export type AddSongToMovieMutationFn = Apollo.MutationFunction<AddSongToMovieMutation, AddSongToMovieMutationVariables>;
+
+/**
+ * __useAddSongToMovieMutation__
+ *
+ * To run a mutation, you first call `useAddSongToMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddSongToMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addSongToMovieMutation, { data, loading, error }] = useAddSongToMovieMutation({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *      songId: // value for 'songId'
+ *      timestamp: // value for 'timestamp'
+ *      description: // value for 'description'
+ *   },
+ * });
+ */
+export function useAddSongToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddSongToMovieMutation, AddSongToMovieMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<AddSongToMovieMutation, AddSongToMovieMutationVariables>(AddSongToMovieDocument, options);
+}
+
+export type AddSongToMovieMutationHookResult = ReturnType<typeof useAddSongToMovieMutation>;
+export type AddSongToMovieMutationResult = Apollo.MutationResult<AddSongToMovieMutation>;
+export type AddSongToMovieMutationOptions = Apollo.BaseMutationOptions<AddSongToMovieMutation, AddSongToMovieMutationVariables>;
 export const ConfirmDocument = gql`
     mutation Confirm($token: String!) {
   confirm(token: $token)
@@ -3900,6 +3851,104 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const RemoveActorFromMovieDocument = gql`
+    mutation removeActorFromMovie($movieId: Int!, $personId: Int!) {
+  removeActorFromMovie(movieId: $movieId, personId: $personId)
+}
+    `;
+export type RemoveActorFromMovieMutationFn = Apollo.MutationFunction<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>;
+
+/**
+ * __useRemoveActorFromMovieMutation__
+ *
+ * To run a mutation, you first call `useRemoveActorFromMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveActorFromMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeActorFromMovieMutation, { data, loading, error }] = useRemoveActorFromMovieMutation({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *      personId: // value for 'personId'
+ *   },
+ * });
+ */
+export function useRemoveActorFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>(RemoveActorFromMovieDocument, options);
+}
+
+export type RemoveActorFromMovieMutationHookResult = ReturnType<typeof useRemoveActorFromMovieMutation>;
+export type RemoveActorFromMovieMutationResult = Apollo.MutationResult<RemoveActorFromMovieMutation>;
+export type RemoveActorFromMovieMutationOptions = Apollo.BaseMutationOptions<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>;
+export const RemovePlatformFromMovieDocument = gql`
+    mutation removePlatformFromMovie($platformId: Int!, $movieId: Int!) {
+  removePlatformToMovie(platformId: $platformId, movieId: $movieId)
+}
+    `;
+export type RemovePlatformFromMovieMutationFn = Apollo.MutationFunction<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>;
+
+/**
+ * __useRemovePlatformFromMovieMutation__
+ *
+ * To run a mutation, you first call `useRemovePlatformFromMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemovePlatformFromMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removePlatformFromMovieMutation, { data, loading, error }] = useRemovePlatformFromMovieMutation({
+ *   variables: {
+ *      platformId: // value for 'platformId'
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function useRemovePlatformFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>(RemovePlatformFromMovieDocument, options);
+}
+
+export type RemovePlatformFromMovieMutationHookResult = ReturnType<typeof useRemovePlatformFromMovieMutation>;
+export type RemovePlatformFromMovieMutationResult = Apollo.MutationResult<RemovePlatformFromMovieMutation>;
+export type RemovePlatformFromMovieMutationOptions = Apollo.BaseMutationOptions<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>;
+export const RemoveSongFromMovieDocument = gql`
+    mutation removeSongFromMovie($where: SongInMovieWhereUniqueInput!) {
+  removeSongFromMovie(where: $where)
+}
+    `;
+export type RemoveSongFromMovieMutationFn = Apollo.MutationFunction<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>;
+
+/**
+ * __useRemoveSongFromMovieMutation__
+ *
+ * To run a mutation, you first call `useRemoveSongFromMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveSongFromMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeSongFromMovieMutation, { data, loading, error }] = useRemoveSongFromMovieMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useRemoveSongFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>) {
+	const options = {...defaultOptions, ...baseOptions};
+	return Apollo.useMutation<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>(RemoveSongFromMovieDocument, options);
+}
+
+export type RemoveSongFromMovieMutationHookResult = ReturnType<typeof useRemoveSongFromMovieMutation>;
+export type RemoveSongFromMovieMutationResult = Apollo.MutationResult<RemoveSongFromMovieMutation>;
+export type RemoveSongFromMovieMutationOptions = Apollo.BaseMutationOptions<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>;
 export const UnfollowDocument = gql`
     mutation Unfollow($userId: Int!) {
   unfollow(userId: $userId)

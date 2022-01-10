@@ -1,0 +1,3 @@
+mutation removeActorFromMovie($movieId: Int!, $personId: Int!) {
+	removeActorFromMovie(movieId: $movieId, personId: $personId)
+}

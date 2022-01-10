@@ -1,5 +1,4 @@
 import {InternalLink} from '@components';
-import {Palette} from '@components/Palette/Palette';
 import {Thumbnail} from '@components/Thumbnail';
 import {SortOrder, useMoviesQuery} from 'generated/graphql';
 import React from 'react';
@@ -19,7 +18,6 @@ export const LandingPage: React.FC = () => {
 
 	return (
 		<Layout>
-			<Palette />
 			<div className="flex flex-wrap">
 				{data?.movies?.map(movie => {
 					return (

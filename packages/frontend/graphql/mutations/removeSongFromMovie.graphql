@@ -1,0 +1,3 @@
+mutation removeSongFromMovie($where: SongInMovieWhereUniqueInput!) {
+	removeSongFromMovie(where: $where)
+}

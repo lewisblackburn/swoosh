@@ -17,7 +17,7 @@ export const ErrorModal: React.FC<ErrorModalProps> = ({error, ...props}) => {
 				<p className="text-sm text-gray-500">{error}</p>
 			</div>
 			{/* eslint-disable-next-line @typescript-eslint/no-unsafe-return */}
-			<Button onClick={() => props.setIsOpen(false)} className="mt-4">
+			<Button className="mt-4" onClick={() => props.setIsOpen(false)}>
 				Try Again
 			</Button>
 		</Modal>

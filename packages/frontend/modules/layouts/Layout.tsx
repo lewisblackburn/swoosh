@@ -1,13 +1,15 @@
+import {PaletteWrapper} from '@components/Form/Palette/PaletteWrapper';
 import React from 'react';
 import {Navigation} from '../../components/Navigation';
 
 export const Layout: React.FC = ({children}) => {
 	return (
-		<div className="p-5 bg-primary text-typography transition-all transform">
-			<div>
+		<>
+			<PaletteWrapper />
+			<div className="p-5 transition-all transform">
 				<Navigation />
-				{children}
+				<div>{children}</div>
 			</div>
-		</div>
+		</>
 	);
 };
