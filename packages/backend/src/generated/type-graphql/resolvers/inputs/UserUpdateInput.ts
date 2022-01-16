@@ -5,10 +5,14 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
+import { FavouriteUpdateOneWithoutUserInput } from "../inputs/FavouriteUpdateOneWithoutUserInput";
 import { FollowsUpdateManyWithoutFollowerInput } from "../inputs/FollowsUpdateManyWithoutFollowerInput";
 import { FollowsUpdateManyWithoutFollowingInput } from "../inputs/FollowsUpdateManyWithoutFollowingInput";
 import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
+import { ReviewUpdateManyWithoutUserInput } from "../inputs/ReviewUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { VoteUpdateManyWithoutUserInput } from "../inputs/VoteUpdateManyWithoutUserInput";
+import { WatchlistUpdateOneWithoutUserInput } from "../inputs/WatchlistUpdateOneWithoutUserInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -93,4 +97,24 @@ export class UserUpdateInput {
     nullable: true
   })
   notifications?: NotificationUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => WatchlistUpdateOneWithoutUserInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistUpdateOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateOneWithoutUserInput, {
+    nullable: true
+  })
+  favourites?: FavouriteUpdateOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  reviews?: ReviewUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => VoteUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  Vote?: VoteUpdateManyWithoutUserInput | undefined;
 }

@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PlatformOnMovieOrderByRelationAggregateInput } from "../inputs/PlatformOnMovieOrderByRelationAggregateInput";
-import { PlatformOnShowOrderByRelationAggregateInput } from "../inputs/PlatformOnShowOrderByRelationAggregateInput";
+import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
+import { ShowOrderByRelationAggregateInput } from "../inputs/ShowOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType({
@@ -20,13 +20,18 @@ export class PlatformOrderByWithRelationInput {
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnMovieOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  PlatformOnMovie?: PlatformOnMovieOrderByRelationAggregateInput | undefined;
+  apiKey?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => ShowOrderByRelationAggregateInput, {
     nullable: true
   })
-  PlatformOnShow?: PlatformOnShowOrderByRelationAggregateInput | undefined;
+  shows?: ShowOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  movies?: MovieOrderByRelationAggregateInput | undefined;
 }

@@ -5,5 +5,5 @@ interface AvatarProps {
 }
 
 export const Avatar: React.FC<AvatarProps> = ({url}) => {
-	return <img src={url} alt="avatar" className="w-24 h-24 rounded-full" />;
+	return <img src={url} alt="avatar" className="w-10 h-10 rounded-full" />;
 };

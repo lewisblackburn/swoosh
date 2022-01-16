@@ -3,8 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { ActorInShow } from "../models/ActorInShow";
-import { PlatformOnShow } from "../models/PlatformOnShow";
+import { Favourite } from "../models/Favourite";
+import { Genre } from "../models/Genre";
+import { Platform } from "../models/Platform";
+import { Rating } from "../models/Rating";
+import { Review } from "../models/Review";
 import { SongInShow } from "../models/SongInShow";
+import { Watchlist } from "../models/Watchlist";
 import { ShowCount } from "../resolvers/outputs/ShowCount";
 
 @TypeGraphQL.ObjectType({
@@ -41,11 +46,21 @@ export class Show {
   })
   released?: Date | null;
 
+  rating?: Rating[];
+
   actors?: ActorInShow[];
 
-  platforms?: PlatformOnShow[];
+  genres?: Genre[];
+
+  platforms?: Platform[];
 
   soundtrack?: SongInShow[];
+
+  favourite?: Favourite[];
+
+  watchlist?: Watchlist[];
+
+  reviews?: Review[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

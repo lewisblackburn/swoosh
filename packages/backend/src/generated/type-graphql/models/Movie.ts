@@ -3,8 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { ActorInMovie } from "../models/ActorInMovie";
-import { PlatformOnMovie } from "../models/PlatformOnMovie";
+import { Favourite } from "../models/Favourite";
+import { Genre } from "../models/Genre";
+import { Platform } from "../models/Platform";
+import { Rating } from "../models/Rating";
+import { Review } from "../models/Review";
 import { SongInMovie } from "../models/SongInMovie";
+import { Watchlist } from "../models/Watchlist";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType({
@@ -24,7 +29,7 @@ export class Movie {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -41,11 +46,41 @@ export class Movie {
   })
   released?: Date | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  status!: string;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime?: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  revenue?: number | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer?: string | null;
+
+  rating?: Rating[];
+
   actors?: ActorInMovie[];
 
-  platforms?: PlatformOnMovie[];
+  genres?: Genre[];
+
+  platforms?: Platform[];
 
   soundtrack?: SongInMovie[];
+
+  favourites?: Favourite[];
+
+  watchlist?: Watchlist[];
+
+  reviews?: Review[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

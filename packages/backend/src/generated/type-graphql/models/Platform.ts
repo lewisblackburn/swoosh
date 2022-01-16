@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { PlatformOnMovie } from "../models/PlatformOnMovie";
-import { PlatformOnShow } from "../models/PlatformOnShow";
+import { Movie } from "../models/Movie";
+import { Show } from "../models/Show";
 import { PlatformCount } from "../resolvers/outputs/PlatformCount";
 
 @TypeGraphQL.ObjectType({
@@ -20,9 +20,14 @@ export class Platform {
   })
   name!: string;
 
-  PlatformOnMovie?: PlatformOnMovie[];
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  apiKey!: string;
 
-  PlatformOnShow?: PlatformOnShow[];
+  shows?: Show[];
+
+  movies?: Movie[];
 
   @TypeGraphQL.Field(_type => PlatformCount, {
     nullable: true

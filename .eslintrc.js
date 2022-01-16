@@ -16,6 +16,8 @@ module.exports = {
 	},
 	plugins: ['react', '@typescript-eslint'],
 	rules: {
+		"new-cap": "off",
+		"curly": "off",
 		'@typescript-eslint/comma-dangle': 'off',
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',
@@ -24,7 +26,7 @@ module.exports = {
 		'@typescript-eslint/no-unsafe-call': 'off',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'@typescript-eslint/no-unsafe-member-access': 'off',
-		"@typescript-eslint/no-confusing-void-expression": 'off'
+		"@typescript-eslint/no-confusing-void-expression": 'off',
 	},
 	ignorePatterns: ['**/*.js'],
 };

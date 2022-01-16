@@ -3,8 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
-import { PlatformOnMovieListRelationFilter } from "../inputs/PlatformOnMovieListRelationFilter";
-import { PlatformOnShowListRelationFilter } from "../inputs/PlatformOnShowListRelationFilter";
+import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
+import { ShowListRelationFilter } from "../inputs/ShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType({
@@ -36,13 +36,18 @@ export class PlatformWhereInput {
   })
   name?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnMovieListRelationFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  PlatformOnMovie?: PlatformOnMovieListRelationFilter | undefined;
+  apiKey?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowListRelationFilter, {
+  @TypeGraphQL.Field(_type => ShowListRelationFilter, {
     nullable: true
   })
-  PlatformOnShow?: PlatformOnShowListRelationFilter | undefined;
+  shows?: ShowListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListRelationFilter, {
+    nullable: true
+  })
+  movies?: MovieListRelationFilter | undefined;
 }

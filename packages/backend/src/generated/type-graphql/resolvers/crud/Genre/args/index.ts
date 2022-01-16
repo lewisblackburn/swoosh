@@ -1,0 +1,12 @@
+export { AggregateGenreArgs } from "./AggregateGenreArgs";
+export { CreateGenreArgs } from "./CreateGenreArgs";
+export { CreateManyGenreArgs } from "./CreateManyGenreArgs";
+export { DeleteGenreArgs } from "./DeleteGenreArgs";
+export { DeleteManyGenreArgs } from "./DeleteManyGenreArgs";
+export { FindFirstGenreArgs } from "./FindFirstGenreArgs";
+export { FindManyGenreArgs } from "./FindManyGenreArgs";
+export { FindUniqueGenreArgs } from "./FindUniqueGenreArgs";
+export { GroupByGenreArgs } from "./GroupByGenreArgs";
+export { UpdateGenreArgs } from "./UpdateGenreArgs";
+export { UpdateManyGenreArgs } from "./UpdateManyGenreArgs";
+export { UpsertGenreArgs } from "./UpsertGenreArgs";

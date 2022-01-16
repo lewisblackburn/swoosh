@@ -20,7 +20,7 @@ export class MovieCreateManyInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
@@ -36,6 +36,26 @@ export class MovieCreateManyInput {
     nullable: true
   })
   released?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  status?: string | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  revenue?: number | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer?: string | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

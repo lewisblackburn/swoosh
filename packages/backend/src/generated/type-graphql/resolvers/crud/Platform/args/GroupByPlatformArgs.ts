@@ -20,7 +20,7 @@ export class GroupByPlatformArgs {
   @TypeGraphQL.Field(_type => [PlatformScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "name">;
+  by!: Array<"id" | "name" | "apiKey">;
 
   @TypeGraphQL.Field(_type => PlatformScalarWhereWithAggregatesInput, {
     nullable: true

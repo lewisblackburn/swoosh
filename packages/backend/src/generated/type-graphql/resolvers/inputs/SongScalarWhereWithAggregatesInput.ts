@@ -61,9 +61,4 @@ export class SongScalarWhereWithAggregatesInput {
     nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
-    nullable: true
-  })
-  updatedAt?: DateTimeWithAggregatesFilter | undefined;
 }

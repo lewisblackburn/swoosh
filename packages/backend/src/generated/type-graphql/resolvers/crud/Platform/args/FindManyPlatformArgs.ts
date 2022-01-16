@@ -35,5 +35,5 @@ export class FindManyPlatformArgs {
   @TypeGraphQL.Field(_type => [PlatformScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "name"> | undefined;
+  distinct?: Array<"id" | "name" | "apiKey"> | undefined;
 }

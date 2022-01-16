@@ -7,9 +7,6 @@ import {
 	MovieRelationsResolver,
 	NotificationRelationsResolver,
 	PersonRelationsResolver,
-	PlatformOnMovieRelationsResolver,
-	PlatformOnShowRelationsResolver,
-	PlatformRelationFilter,
 	PlatformRelationsResolver,
 	ShowRelationsResolver,
 	SongInMovieRelationsResolver,
@@ -23,6 +20,7 @@ import {authChecker} from '../modules/middleware/authChecker';
 import {MovieResolver} from '../modules/movie/Movie';
 import {NotificationResolver} from '../modules/notification/Notification';
 import {PersonResolver} from '../modules/person/Person';
+import {PlatformResolver} from '../modules/platform/Platform';
 import {SongResolver} from '../modules/song/Song';
 import {ChangePasswordResolver} from '../modules/user/ChangePassword';
 import {ConfirmUserResolver} from '../modules/user/ConfirmUser';
@@ -52,6 +50,7 @@ export const createSchema = async () =>
 			BookResolver,
 			FileUploadResolver,
 			NotificationResolver,
+			PlatformResolver,
 			ActorInMovieRelationsResolver,
 			ActorInShowRelationsResolver,
 			BookRelationsResolver,
@@ -60,8 +59,6 @@ export const createSchema = async () =>
 			NotificationRelationsResolver,
 			PersonRelationsResolver,
 			PlatformRelationsResolver,
-			PlatformOnMovieRelationsResolver,
-			PlatformOnShowRelationsResolver,
 			ShowRelationsResolver,
 			SongRelationsResolver,
 			SongInMovieRelationsResolver,

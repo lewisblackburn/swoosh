@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { PlatformOnShowOrderByWithRelationInput } from "../../../inputs/PlatformOnShowOrderByWithRelationInput";
-import { PlatformOnShowWhereInput } from "../../../inputs/PlatformOnShowWhereInput";
-import { PlatformOnShowWhereUniqueInput } from "../../../inputs/PlatformOnShowWhereUniqueInput";
-import { PlatformOnShowScalarFieldEnum } from "../../../../enums/PlatformOnShowScalarFieldEnum";
+import { PlatformOrderByWithRelationInput } from "../../../inputs/PlatformOrderByWithRelationInput";
+import { PlatformWhereInput } from "../../../inputs/PlatformWhereInput";
+import { PlatformWhereUniqueInput } from "../../../inputs/PlatformWhereUniqueInput";
+import { PlatformScalarFieldEnum } from "../../../../enums/PlatformScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class ShowPlatformsArgs {
-  @TypeGraphQL.Field(_type => PlatformOnShowWhereInput, {
+  @TypeGraphQL.Field(_type => PlatformWhereInput, {
     nullable: true
   })
-  where?: PlatformOnShowWhereInput | undefined;
+  where?: PlatformWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [PlatformOnShowOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [PlatformOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: PlatformOnShowOrderByWithRelationInput[] | undefined;
+  orderBy?: PlatformOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => PlatformWhereUniqueInput, {
     nullable: true
   })
-  cursor?: PlatformOnShowWhereUniqueInput | undefined;
+  cursor?: PlatformWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class ShowPlatformsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [PlatformOnShowScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [PlatformScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"price" | "platformId" | "showId"> | undefined;
+  distinct?: Array<"id" | "name" | "apiKey"> | undefined;
 }

@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PlatformOnMovieCreateNestedManyWithoutPlatformInput } from "../inputs/PlatformOnMovieCreateNestedManyWithoutPlatformInput";
-import { PlatformOnShowCreateNestedManyWithoutPlatformInput } from "../inputs/PlatformOnShowCreateNestedManyWithoutPlatformInput";
+import { MovieCreateNestedManyWithoutPlatformsInput } from "../inputs/MovieCreateNestedManyWithoutPlatformsInput";
+import { ShowCreateNestedManyWithoutPlatformsInput } from "../inputs/ShowCreateNestedManyWithoutPlatformsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -14,13 +14,18 @@ export class PlatformCreateInput {
   })
   name!: string;
 
-  @TypeGraphQL.Field(_type => PlatformOnMovieCreateNestedManyWithoutPlatformInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
-  PlatformOnMovie?: PlatformOnMovieCreateNestedManyWithoutPlatformInput | undefined;
+  apiKey!: string;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowCreateNestedManyWithoutPlatformInput, {
+  @TypeGraphQL.Field(_type => ShowCreateNestedManyWithoutPlatformsInput, {
     nullable: true
   })
-  PlatformOnShow?: PlatformOnShowCreateNestedManyWithoutPlatformInput | undefined;
+  shows?: ShowCreateNestedManyWithoutPlatformsInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutPlatformsInput, {
+    nullable: true
+  })
+  movies?: MovieCreateNestedManyWithoutPlatformsInput | undefined;
 }

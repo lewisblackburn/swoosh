@@ -12,4 +12,9 @@ export class PlatformUpdateManyMutationInput {
     nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  apiKey?: StringFieldUpdateOperationsInput | undefined;
 }

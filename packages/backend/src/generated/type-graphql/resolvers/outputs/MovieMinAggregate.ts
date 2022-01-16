@@ -20,7 +20,7 @@ export class MovieMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  description!: string | null;
+  overview!: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
@@ -36,6 +36,26 @@ export class MovieMinAggregate {
     nullable: true
   })
   released!: Date | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  status!: string | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  revenue!: number | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

@@ -1,7 +1,7 @@
 export default interface Command {
-	key: number;
+	key: string;
 	label: string;
-	shortcut: string[];
-	icon: null;
 	link: string;
+	icon: null;
+	shortcut: string[];
 }

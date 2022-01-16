@@ -1,0 +1,12 @@
+export { AggregateWatchlistArgs } from "./AggregateWatchlistArgs";
+export { CreateManyWatchlistArgs } from "./CreateManyWatchlistArgs";
+export { CreateWatchlistArgs } from "./CreateWatchlistArgs";
+export { DeleteManyWatchlistArgs } from "./DeleteManyWatchlistArgs";
+export { DeleteWatchlistArgs } from "./DeleteWatchlistArgs";
+export { FindFirstWatchlistArgs } from "./FindFirstWatchlistArgs";
+export { FindManyWatchlistArgs } from "./FindManyWatchlistArgs";
+export { FindUniqueWatchlistArgs } from "./FindUniqueWatchlistArgs";
+export { GroupByWatchlistArgs } from "./GroupByWatchlistArgs";
+export { UpdateManyWatchlistArgs } from "./UpdateManyWatchlistArgs";
+export { UpdateWatchlistArgs } from "./UpdateWatchlistArgs";
+export { UpsertWatchlistArgs } from "./UpsertWatchlistArgs";

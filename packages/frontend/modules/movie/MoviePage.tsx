@@ -6,7 +6,7 @@ import {Layout} from '../layouts/Layout';
 import {FaPlus} from 'react-icons/fa';
 import {InternalLink} from '@components/InternalLink';
 import {AddActor} from '@components/Form/Movie/AddActorForm';
-import {Thumbnail} from '@components/Thumbnail';
+import {Thumbnail} from '@components/Card/Thumbnail';
 
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
@@ -25,7 +25,7 @@ export const MoviePage: React.FC = () => {
 	if (data?.movie) {
 		return (
 			<Layout>
-				<div className="flex flex-col space-y-5 container mx-auto py-20">
+				<div className="flex flex-col space-y-5 container mx-auto">
 					<div className="flex">
 						<div className="flex flex-col">
 							<Thumbnail size="large" src={data?.movie?.thumbnail} />

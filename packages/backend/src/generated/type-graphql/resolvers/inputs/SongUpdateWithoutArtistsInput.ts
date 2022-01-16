@@ -4,7 +4,10 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { FavouriteUpdateManyWithoutSongsInput } from "../inputs/FavouriteUpdateManyWithoutSongsInput";
+import { GenreUpdateManyWithoutSongsInput } from "../inputs/GenreUpdateManyWithoutSongsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
+import { ReviewUpdateManyWithoutSongInput } from "../inputs/ReviewUpdateManyWithoutSongInput";
 import { SongInMovieUpdateManyWithoutSongInput } from "../inputs/SongInMovieUpdateManyWithoutSongInput";
 import { SongInShowUpdateManyWithoutSongInput } from "../inputs/SongInShowUpdateManyWithoutSongInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
@@ -43,11 +46,6 @@ export class SongUpdateWithoutArtistsInput {
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
-
   @TypeGraphQL.Field(_type => SongInShowUpdateManyWithoutSongInput, {
     nullable: true
   })
@@ -57,4 +55,19 @@ export class SongUpdateWithoutArtistsInput {
     nullable: true
   })
   songInMovie?: SongInMovieUpdateManyWithoutSongInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutSongsInput, {
+    nullable: true
+  })
+  favourites?: FavouriteUpdateManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => GenreUpdateManyWithoutSongsInput, {
+    nullable: true
+  })
+  genres?: GenreUpdateManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutSongInput, {
+    nullable: true
+  })
+  reviews?: ReviewUpdateManyWithoutSongInput | undefined;
 }

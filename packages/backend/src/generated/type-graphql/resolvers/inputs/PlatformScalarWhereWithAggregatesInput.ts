@@ -33,4 +33,9 @@ export class PlatformScalarWhereWithAggregatesInput {
     nullable: true
   })
   name?: StringWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  apiKey?: StringWithAggregatesFilter | undefined;
 }

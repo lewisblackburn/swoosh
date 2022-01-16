@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { PlatformOnMovieOrderByWithRelationInput } from "../../../inputs/PlatformOnMovieOrderByWithRelationInput";
-import { PlatformOnMovieWhereInput } from "../../../inputs/PlatformOnMovieWhereInput";
-import { PlatformOnMovieWhereUniqueInput } from "../../../inputs/PlatformOnMovieWhereUniqueInput";
-import { PlatformOnMovieScalarFieldEnum } from "../../../../enums/PlatformOnMovieScalarFieldEnum";
+import { PlatformOrderByWithRelationInput } from "../../../inputs/PlatformOrderByWithRelationInput";
+import { PlatformWhereInput } from "../../../inputs/PlatformWhereInput";
+import { PlatformWhereUniqueInput } from "../../../inputs/PlatformWhereUniqueInput";
+import { PlatformScalarFieldEnum } from "../../../../enums/PlatformScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class MoviePlatformsArgs {
-  @TypeGraphQL.Field(_type => PlatformOnMovieWhereInput, {
+  @TypeGraphQL.Field(_type => PlatformWhereInput, {
     nullable: true
   })
-  where?: PlatformOnMovieWhereInput | undefined;
+  where?: PlatformWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [PlatformOnMovieOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [PlatformOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: PlatformOnMovieOrderByWithRelationInput[] | undefined;
+  orderBy?: PlatformOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnMovieWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => PlatformWhereUniqueInput, {
     nullable: true
   })
-  cursor?: PlatformOnMovieWhereUniqueInput | undefined;
+  cursor?: PlatformWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class MoviePlatformsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [PlatformOnMovieScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [PlatformScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"price" | "platformId" | "movieId"> | undefined;
+  distinct?: Array<"id" | "name" | "apiKey"> | undefined;
 }

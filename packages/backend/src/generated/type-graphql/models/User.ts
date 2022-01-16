@@ -2,8 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Favourite } from "../models/Favourite";
 import { Follows } from "../models/Follows";
 import { Notification } from "../models/Notification";
+import { Review } from "../models/Review";
+import { Vote } from "../models/Vote";
+import { Watchlist } from "../models/Watchlist";
 import { Role } from "../enums/Role";
 import { UserCount } from "../resolvers/outputs/UserCount";
 
@@ -74,6 +78,12 @@ export class User {
 
   notifications?: Notification[];
 
+  watchlist?: Watchlist | null;
+
+  favourites?: Favourite | null;
+
+  reviews?: Review[];
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
@@ -83,6 +93,8 @@ export class User {
     nullable: false
   })
   updatedAt!: Date;
+
+  Vote?: Vote[];
 
   @TypeGraphQL.Field(_type => UserCount, {
     nullable: true

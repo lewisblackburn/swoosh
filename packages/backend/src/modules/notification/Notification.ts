@@ -9,7 +9,6 @@ import {Context} from '../../interfaces/context';
 import graphqlFields from 'graphql-fields';
 import {GraphQLResolveInfo} from 'graphql';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
-import {isContext} from 'vm';
 
 @Resolver(Notification)
 export class NotificationResolver {

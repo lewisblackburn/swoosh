@@ -2,8 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FavouriteOrderByWithRelationInput } from "../inputs/FavouriteOrderByWithRelationInput";
 import { FollowsOrderByRelationAggregateInput } from "../inputs/FollowsOrderByRelationAggregateInput";
 import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
+import { ReviewOrderByRelationAggregateInput } from "../inputs/ReviewOrderByRelationAggregateInput";
+import { VoteOrderByRelationAggregateInput } from "../inputs/VoteOrderByRelationAggregateInput";
+import { WatchlistOrderByWithRelationInput } from "../inputs/WatchlistOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType({
@@ -85,6 +89,21 @@ export class UserOrderByWithRelationInput {
   })
   notifications?: NotificationOrderByRelationAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => WatchlistOrderByWithRelationInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteOrderByWithRelationInput, {
+    nullable: true
+  })
+  favourites?: FavouriteOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  reviews?: ReviewOrderByRelationAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -94,4 +113,9 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => VoteOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  Vote?: VoteOrderByRelationAggregateInput | undefined;
 }

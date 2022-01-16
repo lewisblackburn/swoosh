@@ -22,6 +22,11 @@ export class PlatformGroupBy {
   })
   name!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  apiKey!: string;
+
   @TypeGraphQL.Field(_type => PlatformCountAggregate, {
     nullable: true
   })

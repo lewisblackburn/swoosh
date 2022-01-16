@@ -2,33 +2,50 @@ import Option from 'types/option';
 
 export const options: Option[] = [
 	{
-		key: 0,
+		key: 'navigation',
 		label: 'Navigation',
 		commands: [
 			{
-				key: 0,
+				key: 'home',
 				label: 'Home',
 				link: '/',
 				icon: null,
 				shortcut: [],
 			},
+
 			{
-				key: 1,
-				label: 'My Account',
+				key: 'movies',
+				label: 'Movies',
+				link: '/',
+				icon: null,
+				shortcut: [],
+			},
+
+			{
+				key: 'tv',
+				label: 'TV',
+				link: '/',
+				icon: null,
+				shortcut: [],
+			},
+
+			{
+				key: 'music',
+				label: 'Music',
 				link: '/',
 				icon: null,
 				shortcut: [],
 			},
 			{
-				key: 2,
-				label: 'Edit Profile',
+				key: 'books',
+				label: 'Books',
 				link: '/',
 				icon: null,
 				shortcut: [],
 			},
 			{
-				key: 3,
-				label: 'Preferences',
+				key: 'people',
+				label: 'People',
 				link: '/',
 				icon: null,
 				shortcut: [],
@@ -36,19 +53,33 @@ export const options: Option[] = [
 		],
 	},
 	{
-		key: 1,
-		label: 'Query',
+		key: 'settings',
+		label: 'Settings',
 		commands: [
 			{
-				key: 4,
-				label: 'Find Movie',
-				link: '',
+				key: 'my-account',
+				label: 'My Account',
+				link: '/',
 				icon: null,
 				shortcut: [],
 			},
 			{
-				key: 5,
-				label: 'Find People',
+				key: 'edit-profile',
+				label: 'Edit Profile',
+				link: '/',
+				icon: null,
+				shortcut: [],
+			},
+			{
+				key: 'preferences',
+				label: 'Preferences',
+				link: '/',
+				icon: null,
+				shortcut: [],
+			},
+			{
+				key: 'logout',
+				label: 'Logout',
 				link: '',
 				icon: null,
 				shortcut: [],

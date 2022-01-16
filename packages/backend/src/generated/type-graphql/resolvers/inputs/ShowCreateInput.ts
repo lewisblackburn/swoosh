@@ -3,8 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowCreateNestedManyWithoutShowInput } from "../inputs/ActorInShowCreateNestedManyWithoutShowInput";
-import { PlatformOnShowCreateNestedManyWithoutShowInput } from "../inputs/PlatformOnShowCreateNestedManyWithoutShowInput";
+import { FavouriteCreateNestedManyWithoutShowsInput } from "../inputs/FavouriteCreateNestedManyWithoutShowsInput";
+import { GenreCreateNestedManyWithoutShowsInput } from "../inputs/GenreCreateNestedManyWithoutShowsInput";
+import { PlatformCreateNestedManyWithoutShowsInput } from "../inputs/PlatformCreateNestedManyWithoutShowsInput";
+import { RatingCreateNestedManyWithoutShowsInput } from "../inputs/RatingCreateNestedManyWithoutShowsInput";
+import { ReviewCreateNestedManyWithoutShowInput } from "../inputs/ReviewCreateNestedManyWithoutShowInput";
 import { SongInShowCreateNestedManyWithoutShowInput } from "../inputs/SongInShowCreateNestedManyWithoutShowInput";
+import { WatchlistCreateNestedManyWithoutShowsInput } from "../inputs/WatchlistCreateNestedManyWithoutShowsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -45,18 +50,43 @@ export class ShowCreateInput {
   })
   updatedAt?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => RatingCreateNestedManyWithoutShowsInput, {
+    nullable: true
+  })
+  rating?: RatingCreateNestedManyWithoutShowsInput | undefined;
+
   @TypeGraphQL.Field(_type => ActorInShowCreateNestedManyWithoutShowInput, {
     nullable: true
   })
   actors?: ActorInShowCreateNestedManyWithoutShowInput | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowCreateNestedManyWithoutShowInput, {
+  @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutShowsInput, {
     nullable: true
   })
-  platforms?: PlatformOnShowCreateNestedManyWithoutShowInput | undefined;
+  genres?: GenreCreateNestedManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => PlatformCreateNestedManyWithoutShowsInput, {
+    nullable: true
+  })
+  platforms?: PlatformCreateNestedManyWithoutShowsInput | undefined;
 
   @TypeGraphQL.Field(_type => SongInShowCreateNestedManyWithoutShowInput, {
     nullable: true
   })
   soundtrack?: SongInShowCreateNestedManyWithoutShowInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutShowsInput, {
+    nullable: true
+  })
+  favourite?: FavouriteCreateNestedManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => WatchlistCreateNestedManyWithoutShowsInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistCreateNestedManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutShowInput, {
+    nullable: true
+  })
+  reviews?: ReviewCreateNestedManyWithoutShowInput | undefined;
 }

@@ -1,7 +1,7 @@
 import {Button} from '@components/Button';
 import {Modal} from '@components/Modal';
 import {Dialog} from '@headlessui/react';
-import {Career, MovieDocument, QueryMode, useAddActorMutation, usePeopleLazyQuery} from 'generated/graphql';
+import {Career, MovieDocument, QueryMode, useAddActorToMovieMutation, usePeopleLazyQuery} from 'generated/graphql';
 import useDebounce from 'hooks/useDebounce';
 import {useRouter} from 'next/router';
 import React, {useEffect, useState} from 'react';
@@ -40,7 +40,7 @@ export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
 		role: '',
 	});
 	const [actorInMovieIsOpen, setActorInMovieIsOpen] = useState(false);
-	const [addActor] = useAddActorMutation({
+	const [addActor] = useAddActorToMovieMutation({
 		refetchQueries: [MovieDocument],
 	});
 

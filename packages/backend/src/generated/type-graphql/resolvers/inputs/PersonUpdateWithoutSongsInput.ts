@@ -6,6 +6,7 @@ import { ActorInMovieUpdateManyWithoutPersonInput } from "../inputs/ActorInMovie
 import { ActorInShowUpdateManyWithoutPersonInput } from "../inputs/ActorInShowUpdateManyWithoutPersonInput";
 import { BookUpdateManyWithoutAuthorsInput } from "../inputs/BookUpdateManyWithoutAuthorsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { FavouriteUpdateManyWithoutPeopleInput } from "../inputs/FavouriteUpdateManyWithoutPeopleInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
@@ -64,4 +65,9 @@ export class PersonUpdateWithoutSongsInput {
     nullable: true
   })
   books?: BookUpdateManyWithoutAuthorsInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutPeopleInput, {
+    nullable: true
+  })
+  favourites?: FavouriteUpdateManyWithoutPeopleInput | undefined;
 }

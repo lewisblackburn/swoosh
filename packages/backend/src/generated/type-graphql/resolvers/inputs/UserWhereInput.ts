@@ -5,10 +5,14 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
+import { FavouriteRelationFilter } from "../inputs/FavouriteRelationFilter";
 import { FollowsListRelationFilter } from "../inputs/FollowsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
+import { ReviewListRelationFilter } from "../inputs/ReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { VoteListRelationFilter } from "../inputs/VoteListRelationFilter";
+import { WatchlistRelationFilter } from "../inputs/WatchlistRelationFilter";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -104,6 +108,21 @@ export class UserWhereInput {
   })
   notifications?: NotificationListRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => WatchlistRelationFilter, {
+    nullable: true
+  })
+  watchlist?: WatchlistRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteRelationFilter, {
+    nullable: true
+  })
+  favourites?: FavouriteRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewListRelationFilter, {
+    nullable: true
+  })
+  reviews?: ReviewListRelationFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
@@ -113,4 +132,9 @@ export class UserWhereInput {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => VoteListRelationFilter, {
+    nullable: true
+  })
+  Vote?: VoteListRelationFilter | undefined;
 }

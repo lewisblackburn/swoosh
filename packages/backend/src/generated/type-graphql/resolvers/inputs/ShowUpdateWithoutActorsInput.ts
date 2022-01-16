@@ -4,10 +4,15 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { FavouriteUpdateManyWithoutShowsInput } from "../inputs/FavouriteUpdateManyWithoutShowsInput";
+import { GenreUpdateManyWithoutShowsInput } from "../inputs/GenreUpdateManyWithoutShowsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
-import { PlatformOnShowUpdateManyWithoutShowInput } from "../inputs/PlatformOnShowUpdateManyWithoutShowInput";
+import { PlatformUpdateManyWithoutShowsInput } from "../inputs/PlatformUpdateManyWithoutShowsInput";
+import { RatingUpdateManyWithoutShowsInput } from "../inputs/RatingUpdateManyWithoutShowsInput";
+import { ReviewUpdateManyWithoutShowInput } from "../inputs/ReviewUpdateManyWithoutShowInput";
 import { SongInShowUpdateManyWithoutShowInput } from "../inputs/SongInShowUpdateManyWithoutShowInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { WatchlistUpdateManyWithoutShowsInput } from "../inputs/WatchlistUpdateManyWithoutShowsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -48,13 +53,38 @@ export class ShowUpdateWithoutActorsInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => PlatformOnShowUpdateManyWithoutShowInput, {
+  @TypeGraphQL.Field(_type => RatingUpdateManyWithoutShowsInput, {
     nullable: true
   })
-  platforms?: PlatformOnShowUpdateManyWithoutShowInput | undefined;
+  rating?: RatingUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => GenreUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  genres?: GenreUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => PlatformUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  platforms?: PlatformUpdateManyWithoutShowsInput | undefined;
 
   @TypeGraphQL.Field(_type => SongInShowUpdateManyWithoutShowInput, {
     nullable: true
   })
   soundtrack?: SongInShowUpdateManyWithoutShowInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  favourite?: FavouriteUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => WatchlistUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutShowInput, {
+    nullable: true
+  })
+  reviews?: ReviewUpdateManyWithoutShowInput | undefined;
 }

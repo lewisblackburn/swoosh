@@ -10,10 +10,10 @@ export class PlatformCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  PlatformOnMovie!: number;
+  shows!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  PlatformOnShow!: number;
+  movies!: number;
 }

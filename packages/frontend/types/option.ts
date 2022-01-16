@@ -1,7 +1,7 @@
 import Command from './command';
 
 export default interface Option {
-	key: number;
+	key: string;
 	label: string;
 	commands: Command[];
 }

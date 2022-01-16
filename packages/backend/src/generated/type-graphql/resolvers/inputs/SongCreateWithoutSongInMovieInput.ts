@@ -2,7 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FavouriteCreateNestedManyWithoutSongsInput } from "../inputs/FavouriteCreateNestedManyWithoutSongsInput";
+import { GenreCreateNestedManyWithoutSongsInput } from "../inputs/GenreCreateNestedManyWithoutSongsInput";
 import { PersonCreateNestedManyWithoutSongsInput } from "../inputs/PersonCreateNestedManyWithoutSongsInput";
+import { ReviewCreateNestedManyWithoutSongInput } from "../inputs/ReviewCreateNestedManyWithoutSongInput";
 import { SongInShowCreateNestedManyWithoutSongInput } from "../inputs/SongInShowCreateNestedManyWithoutSongInput";
 
 @TypeGraphQL.InputType({
@@ -39,11 +42,6 @@ export class SongCreateWithoutSongInMovieInput {
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updatedAt?: Date | undefined;
-
   @TypeGraphQL.Field(_type => PersonCreateNestedManyWithoutSongsInput, {
     nullable: true
   })
@@ -53,4 +51,19 @@ export class SongCreateWithoutSongInMovieInput {
     nullable: true
   })
   songInShow?: SongInShowCreateNestedManyWithoutSongInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutSongsInput, {
+    nullable: true
+  })
+  favourites?: FavouriteCreateNestedManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutSongsInput, {
+    nullable: true
+  })
+  genres?: GenreCreateNestedManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutSongInput, {
+    nullable: true
+  })
+  reviews?: ReviewCreateNestedManyWithoutSongInput | undefined;
 }

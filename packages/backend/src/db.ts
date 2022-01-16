@@ -18,7 +18,7 @@ prisma.$use(async (params, next) => {
 
 // Max query return limit
 prisma.$use(async (params, next) => {
-	const limit = 20;
+	const limit = 30;
 
 	const isFindMany = params.action === 'findMany';
 	const isNested = Boolean(params.args.select);

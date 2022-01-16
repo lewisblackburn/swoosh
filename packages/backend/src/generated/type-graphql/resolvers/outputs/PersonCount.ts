@@ -26,4 +26,9 @@ export class PersonCount {
     nullable: false
   })
   songs!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  favourites!: number;
 }

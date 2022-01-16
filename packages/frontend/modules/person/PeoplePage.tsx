@@ -1,6 +1,9 @@
 import {InternalLink} from '@components';
-import {SortOrder, useMoviesQuery, usePeopleQuery} from 'generated/graphql';
+import {Card} from '@components/Card/Card';
+import {IconCard} from '@components/Card/IconCard';
+import {SortOrder, usePeopleQuery} from 'generated/graphql';
 import React from 'react';
+import {AiOutlinePlus} from 'react-icons/ai';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
 import {Layout} from '../layouts/Layout';
 
@@ -15,19 +18,19 @@ export const PeoplePage: React.FC = () => {
 		},
 	});
 
-	console.log(data);
-
 	return (
 		<Layout>
-			<div className="flex flex-wrap justify-center">
+			<div className="flex flex-wrap gap-5">
+				<InternalLink href="person/create?next=/people">
+					<IconCard icon={AiOutlinePlus} size="large" />
+				</InternalLink>
 				{data?.people?.map(person => {
 					return (
 						<div key={person.id}>
-							<div className="p-5">
-								<InternalLink href={`person/${person.id}`}>
-									<img src={person.thumbnail} className="w-64 h-96" />
-								</InternalLink>
-							</div>
+							{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
+							<InternalLink href={`person/${person.id}`}>
+								<Card src={person.thumbnail} size="large" />
+							</InternalLink>
 						</div>
 					);
 				})}

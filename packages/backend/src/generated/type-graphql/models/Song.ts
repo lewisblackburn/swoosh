@@ -2,7 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Favourite } from "../models/Favourite";
+import { Genre } from "../models/Genre";
 import { Person } from "../models/Person";
+import { Review } from "../models/Review";
 import { SongInMovie } from "../models/SongInMovie";
 import { SongInShow } from "../models/SongInShow";
 import { SongCount } from "../resolvers/outputs/SongCount";
@@ -47,15 +50,16 @@ export class Song {
 
   songInMovie?: SongInMovie[];
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
-  })
-  createdAt!: Date;
+  favourites?: Favourite[];
+
+  genres?: Genre[];
+
+  reviews?: Review[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  updatedAt!: Date;
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => SongCount, {
     nullable: true

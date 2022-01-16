@@ -2,8 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FavouriteCreateNestedOneWithoutUserInput } from "../inputs/FavouriteCreateNestedOneWithoutUserInput";
 import { FollowsCreateNestedManyWithoutFollowerInput } from "../inputs/FollowsCreateNestedManyWithoutFollowerInput";
 import { FollowsCreateNestedManyWithoutFollowingInput } from "../inputs/FollowsCreateNestedManyWithoutFollowingInput";
+import { ReviewCreateNestedManyWithoutUserInput } from "../inputs/ReviewCreateNestedManyWithoutUserInput";
+import { VoteCreateNestedManyWithoutUserInput } from "../inputs/VoteCreateNestedManyWithoutUserInput";
+import { WatchlistCreateNestedOneWithoutUserInput } from "../inputs/WatchlistCreateNestedOneWithoutUserInput";
 import { Role } from "../../enums/Role";
 
 @TypeGraphQL.InputType({
@@ -84,4 +88,24 @@ export class UserCreateWithoutNotificationsInput {
     nullable: true
   })
   followers?: FollowsCreateNestedManyWithoutFollowerInput | undefined;
+
+  @TypeGraphQL.Field(_type => WatchlistCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistCreateNestedOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteCreateNestedOneWithoutUserInput, {
+    nullable: true
+  })
+  favourites?: FavouriteCreateNestedOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  reviews?: ReviewCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => VoteCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  Vote?: VoteCreateNestedManyWithoutUserInput | undefined;
 }

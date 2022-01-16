@@ -29,8 +29,12 @@ model User {
   following     Follows[]      @relation(name: "following")
   followers     Follows[]      @relation(name: "follower")
   notifications Notification[]
+  watchlist     Watchlist?
+  favourites    Favourite?
+  reviews       Review[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  Vote          Vote[]
 }
 
 model Follows {
@@ -51,74 +55,96 @@ model Notification {
   createdAt DateTime @default(now())
 }
 
+model Watchlist {
+  id     Int     @id @default(autoincrement())
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+  movies Movie[]
+  shows  Show[]
+}
+
+model Favourite {
+  id     Int      @id @default(autoincrement())
+  user   User     @relation(fields: [userId], references: [id])
+  userId Int      @unique
+  movies Movie[]
+  shows  Show[]
+  songs  Song[]
+  books  Book[]
+  people Person[]
+}
+
 model Person {
-  id        Int            @id @default(autoincrement())
-  career    Career[]
-  name      String
-  thumbnail String         @default(value: "https://via.placeholder.com/400x600")
-  bio       String?
-  age       Int?
-  movies    ActorInMovie[]
-  shows     ActorInShow[]
-  books     Book[]
-  songs     Song[]
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+  id         Int            @id @default(autoincrement())
+  career     Career[]
+  name       String
+  thumbnail  String         @default(value: "https://via.placeholder.com/400x600")
+  bio        String?
+  age        Int?
+  movies     ActorInMovie[]
+  shows      ActorInShow[]
+  books      Book[]
+  songs      Song[]
+  favourites Favourite[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
 }
 
 model Movie {
-  id          Int               @id @default(autoincrement())
-  title       String
-  description String
-  thumbnail   String            @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean           @default(false)
-  released    DateTime?
-  actors      ActorInMovie[]
-  platforms   PlatformOnMovie[]
-  soundtrack  SongInMovie[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id         Int            @id @default(autoincrement())
+  title      String
+  overview   String
+  thumbnail  String         @default(value: "https://via.placeholder.com/400x600")
+  locked     Boolean        @default(false)
+  released   DateTime?
+  status     String         @default("Released")
+  runtime    Float?
+  revenue    Int?
+  trailer    String?
+  rating     Rating[]
+  actors     ActorInMovie[]
+  genres     Genre[]
+  platforms  Platform[]
+  soundtrack SongInMovie[]
+  favourites Favourite[]
+  watchlist  Watchlist[]
+  reviews    Review[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
 }
 
 model Show {
-  id          Int              @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String           @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean          @default(false)
+  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean       @default(false)
   released    DateTime?
+  rating      Rating[]
   actors      ActorInShow[]
-  platforms   PlatformOnShow[]
+  genres      Genre[]
+  platforms   Platform[]
   soundtrack  SongInShow[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  favourite   Favourite[]
+  watchlist   Watchlist[]
+  reviews     Review[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Rating {
+  id     Int     @id @default(autoincrement())
+  age    String
+  movies Movie[]
+  shows  Show[]
 }
 
 model Platform {
-  id              Int               @id @default(autoincrement())
-  name            String
-  PlatformOnMovie PlatformOnMovie[]
-  PlatformOnShow  PlatformOnShow[]
-}
-
-model PlatformOnMovie {
-  price      String
-  platform   Platform @relation(fields: [platformId], references: [id])
-  platformId Int
-  movie      Movie    @relation(fields: [movieId], references: [id])
-  movieId    Int
-
-  @@id([platformId, movieId])
-}
-
-model PlatformOnShow {
-  price      String
-  platform   Platform @relation(fields: [platformId], references: [id])
-  platformId Int
-  show       Show     @relation(fields: [showId], references: [id])
-  showId     Int
-
-  @@id([platformId, showId])
+  id     Int     @id @default(autoincrement())
+  name   String
+  apiKey String
+  shows  Show[]
+  movies Movie[]
 }
 
 model SongInMovie {
@@ -164,15 +190,18 @@ model ActorInShow {
 }
 
 model Book {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String    @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean   @default(false)
+  thumbnail   String      @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean     @default(false)
   released    DateTime?
   authors     Person[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  favourites  Favourite[]
+  genres      Genre[]
+  reviews     Review[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 model Song {
@@ -185,8 +214,45 @@ model Song {
   artists     Person[]
   songInShow  SongInShow[]
   songInMovie SongInMovie[]
+  favourites  Favourite[]
+  genres      Genre[]
+  reviews     Review[]
   createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+}
+
+model Genre {
+  id     Int     @id @default(autoincrement())
+  name   String
+  movies Movie[]
+  shows  Show[]
+  songs  Song[]
+  books  Book[]
+}
+
+model Review {
+  id      Int    @id @default(autoincrement())
+  title   String
+  review  String
+  user    User?  @relation(fields: [userId], references: [id])
+  userId  Int?
+  movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
+  show    Show?  @relation(fields: [showId], references: [id])
+  showId  Int?
+  book    Book?  @relation(fields: [bookId], references: [id])
+  bookId  Int?
+  song    Song?  @relation(fields: [songId], references: [id])
+  songId  Int?
+  vote    Vote[]
+}
+
+model Vote {
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
+  review   Review @relation(fields: [reviewId], references: [id])
+  reviewId Int
+
+  @@id([userId, reviewId])
 }
 
 enum Career {

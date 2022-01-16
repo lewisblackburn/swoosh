@@ -21,4 +21,14 @@ export class UserCount {
     nullable: false
   })
   notifications!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  reviews!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  Vote!: number;
 }

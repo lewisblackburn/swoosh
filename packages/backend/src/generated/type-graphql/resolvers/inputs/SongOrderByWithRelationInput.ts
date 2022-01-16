@@ -2,7 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FavouriteOrderByRelationAggregateInput } from "../inputs/FavouriteOrderByRelationAggregateInput";
+import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
 import { PersonOrderByRelationAggregateInput } from "../inputs/PersonOrderByRelationAggregateInput";
+import { ReviewOrderByRelationAggregateInput } from "../inputs/ReviewOrderByRelationAggregateInput";
 import { SongInMovieOrderByRelationAggregateInput } from "../inputs/SongInMovieOrderByRelationAggregateInput";
 import { SongInShowOrderByRelationAggregateInput } from "../inputs/SongInShowOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
@@ -56,13 +59,23 @@ export class SongOrderByWithRelationInput {
   })
   songInMovie?: SongInMovieOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => SortOrder, {
+  @TypeGraphQL.Field(_type => FavouriteOrderByRelationAggregateInput, {
     nullable: true
   })
-  createdAt?: "asc" | "desc" | undefined;
+  favourites?: FavouriteOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => GenreOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  genres?: GenreOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  reviews?: ReviewOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  updatedAt?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 }

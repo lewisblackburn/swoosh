@@ -41,9 +41,4 @@ export class SongCreateManyInput {
     nullable: true
   })
   createdAt?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updatedAt?: Date | undefined;
 }

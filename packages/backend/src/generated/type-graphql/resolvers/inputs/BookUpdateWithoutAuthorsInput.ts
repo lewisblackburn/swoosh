@@ -4,7 +4,10 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { FavouriteUpdateManyWithoutBooksInput } from "../inputs/FavouriteUpdateManyWithoutBooksInput";
+import { GenreUpdateManyWithoutBooksInput } from "../inputs/GenreUpdateManyWithoutBooksInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
+import { ReviewUpdateManyWithoutBookInput } from "../inputs/ReviewUpdateManyWithoutBookInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
@@ -45,4 +48,19 @@ export class BookUpdateWithoutAuthorsInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutBooksInput, {
+    nullable: true
+  })
+  favourites?: FavouriteUpdateManyWithoutBooksInput | undefined;
+
+  @TypeGraphQL.Field(_type => GenreUpdateManyWithoutBooksInput, {
+    nullable: true
+  })
+  genres?: GenreUpdateManyWithoutBooksInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutBookInput, {
+    nullable: true
+  })
+  reviews?: ReviewUpdateManyWithoutBookInput | undefined;
 }

@@ -1,2 +1,2 @@
-export { PlatformPlatformOnMovieArgs } from "./PlatformPlatformOnMovieArgs";
-export { PlatformPlatformOnShowArgs } from "./PlatformPlatformOnShowArgs";
+export { PlatformMoviesArgs } from "./PlatformMoviesArgs";
+export { PlatformShowsArgs } from "./PlatformShowsArgs";

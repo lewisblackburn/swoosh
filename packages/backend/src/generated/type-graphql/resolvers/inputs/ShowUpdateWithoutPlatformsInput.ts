@@ -5,9 +5,14 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowUpdateManyWithoutShowInput } from "../inputs/ActorInShowUpdateManyWithoutShowInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { FavouriteUpdateManyWithoutShowsInput } from "../inputs/FavouriteUpdateManyWithoutShowsInput";
+import { GenreUpdateManyWithoutShowsInput } from "../inputs/GenreUpdateManyWithoutShowsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
+import { RatingUpdateManyWithoutShowsInput } from "../inputs/RatingUpdateManyWithoutShowsInput";
+import { ReviewUpdateManyWithoutShowInput } from "../inputs/ReviewUpdateManyWithoutShowInput";
 import { SongInShowUpdateManyWithoutShowInput } from "../inputs/SongInShowUpdateManyWithoutShowInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { WatchlistUpdateManyWithoutShowsInput } from "../inputs/WatchlistUpdateManyWithoutShowsInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true
@@ -48,13 +53,38 @@ export class ShowUpdateWithoutPlatformsInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => RatingUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  rating?: RatingUpdateManyWithoutShowsInput | undefined;
+
   @TypeGraphQL.Field(_type => ActorInShowUpdateManyWithoutShowInput, {
     nullable: true
   })
   actors?: ActorInShowUpdateManyWithoutShowInput | undefined;
 
+  @TypeGraphQL.Field(_type => GenreUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  genres?: GenreUpdateManyWithoutShowsInput | undefined;
+
   @TypeGraphQL.Field(_type => SongInShowUpdateManyWithoutShowInput, {
     nullable: true
   })
   soundtrack?: SongInShowUpdateManyWithoutShowInput | undefined;
+
+  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  favourite?: FavouriteUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => WatchlistUpdateManyWithoutShowsInput, {
+    nullable: true
+  })
+  watchlist?: WatchlistUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutShowInput, {
+    nullable: true
+  })
+  reviews?: ReviewUpdateManyWithoutShowInput | undefined;
 }
