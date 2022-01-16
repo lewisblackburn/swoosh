@@ -1,13 +1,13 @@
-import {Button} from '@components/Button';
-import {Modal, ModalProps} from '@components/Modal';
-import {Dialog} from '@headlessui/react';
+import { Button } from '@components/Button';
+import { Modal, ModalProps } from '@components/Modal';
+import { Dialog } from '@headlessui/react';
 import React from 'react';
 
 interface ErrorModalProps extends ModalProps {
 	error: string;
 }
 
-export const ErrorModal: React.FC<ErrorModalProps> = ({error, ...props}) => {
+export const ErrorModal: React.FC<ErrorModalProps> = ({ error, ...props }) => {
 	return (
 		<Modal {...props}>
 			<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">

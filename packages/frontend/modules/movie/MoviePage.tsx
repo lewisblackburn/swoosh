@@ -1,20 +1,20 @@
-import {useMovieQuery} from 'generated/graphql';
-import {useRouter} from 'next/router';
-import React, {useState} from 'react';
-import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
-import {Layout} from '../layouts/Layout';
-import {FaPlus} from 'react-icons/fa';
-import {InternalLink} from '@components/InternalLink';
-import {AddActor} from '@components/Form/Movie/AddActorForm';
-import {Thumbnail} from '@components/Card/Thumbnail';
+import { useMovieQuery } from 'generated/graphql';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useVerifyLoggedIn } from '../auth/useVerifyLoggedIn';
+import { Layout } from '../layouts/Layout';
+import { FaPlus } from 'react-icons/fa';
+import { InternalLink } from '@components/InternalLink';
+import { AddActor } from '@components/Form/Movie/AddActorForm';
+import { Thumbnail } from '@components/Card/Thumbnail';
 
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
 
 	const router = useRouter();
-	const {id: movieId} = router.query;
+	const { id: movieId } = router.query;
 
-	const {data} = useMovieQuery({
+	const { data } = useMovieQuery({
 		variables: {
 			movieId: parseInt(movieId!.toString()),
 		},

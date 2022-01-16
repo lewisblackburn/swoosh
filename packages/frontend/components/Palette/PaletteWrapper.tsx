@@ -1,6 +1,6 @@
-import {Dialog, Transition} from '@headlessui/react';
-import {useRouter} from 'next/router';
-import React, {Fragment, useEffect, useState} from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { useRouter } from 'next/router';
+import React, { Fragment, useEffect, useState } from 'react';
 
 export const PaletteWrapper: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);

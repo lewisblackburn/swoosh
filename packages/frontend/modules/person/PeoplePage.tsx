@@ -1,16 +1,16 @@
-import {InternalLink} from '@components';
-import {Card} from '@components/Card/Card';
-import {IconCard} from '@components/Card/IconCard';
-import {SortOrder, usePeopleQuery} from 'generated/graphql';
+import { InternalLink } from '@components';
+import { Card } from '@components/Card/Card';
+import { IconCard } from '@components/Card/IconCard';
+import { SortOrder, usePeopleQuery } from 'generated/graphql';
 import React from 'react';
-import {AiOutlinePlus} from 'react-icons/ai';
-import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
-import {Layout} from '../layouts/Layout';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { useVerifyLoggedIn } from '../auth/useVerifyLoggedIn';
+import { Layout } from '../layouts/Layout';
 
 export const PeoplePage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const {data} = usePeopleQuery({
+	const { data } = usePeopleQuery({
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,

@@ -1,10 +1,10 @@
-import {Button} from '@components/Button';
-import {Modal} from '@components/Modal';
-import {Dialog} from '@headlessui/react';
-import {Career, MovieDocument, QueryMode, useAddActorToMovieMutation, usePeopleLazyQuery} from 'generated/graphql';
+import { Button } from '@components/Button';
+import { Modal } from '@components/Modal';
+import { Dialog } from '@headlessui/react';
+import { Career, MovieDocument, QueryMode, useAddActorToMovieMutation, usePeopleLazyQuery } from 'generated/graphql';
 import useDebounce from 'hooks/useDebounce';
-import {useRouter} from 'next/router';
-import React, {useEffect, useState} from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 interface AddActorProps {
 	isOpen: boolean;
@@ -12,12 +12,12 @@ interface AddActorProps {
 	movieId: number;
 }
 
-export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
+export const AddActor: React.FC<AddActorProps> = ({ movieId, ...props }) => {
 	const router = useRouter();
 	const [search, setSearch] = useState('');
 	const debouncedSearch: string = useDebounce<string>(search, 500);
 
-	const [fetchPeople, {data}] = usePeopleLazyQuery({
+	const [fetchPeople, { data }] = usePeopleLazyQuery({
 		ssr: false,
 		fetchPolicy: 'no-cache', // So the cache doesn't get overidden
 		variables: {
@@ -88,7 +88,9 @@ export const AddActor: React.FC<AddActorProps> = ({movieId, ...props}) => {
 						</div>
 					))}
 					{data?.people?.length === 0 && (
-						<Button onClick={async () => router.push(`/person/create?next=/movie/${movieId}`)}>Create Person</Button>
+						<Button onClick={async () => router.push(`/person/create?next=/movie/${movieId}`)}>
+							Create Person
+						</Button>
 					)}
 				</div>
 

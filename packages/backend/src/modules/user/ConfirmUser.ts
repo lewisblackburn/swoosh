@@ -1,7 +1,7 @@
-import {Arg, Ctx, Mutation, Resolver} from 'type-graphql';
-import {Context} from '../../interfaces/context';
-import {redis} from '../../redis';
-import {UserConfirmationPrefixes} from '../shared/userConfirmationPrefixes';
+import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
+import { Context } from '../../interfaces/context';
+import { redis } from '../../redis';
+import { UserConfirmationPrefixes } from '../shared/userConfirmationPrefixes';
 
 @Resolver()
 export class ConfirmUserResolver {

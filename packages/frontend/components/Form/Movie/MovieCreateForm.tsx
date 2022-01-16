@@ -1,9 +1,9 @@
-import {Button} from '@components/Button';
-import {Form, Formik, FormikHelpers} from 'formik';
-import {MovieCreateInput, UploadType, useCreateMovieMutation, useUploadThumbnailMutation} from 'generated/graphql';
-import {toErrorMap} from 'lib/toErrorMap';
-import {useRouter} from 'next/router';
-import React, {useEffect, useState} from 'react';
+import { Button } from '@components/Button';
+import { Form, Formik, FormikHelpers } from 'formik';
+import { MovieCreateInput, UploadType, useCreateMovieMutation, useUploadThumbnailMutation } from 'generated/graphql';
+import { toErrorMap } from 'lib/toErrorMap';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import InputField from '../InputField';
 
 interface ThumbnailUpload {
@@ -12,7 +12,7 @@ interface ThumbnailUpload {
 
 export const MovieCreateForm: React.FC = () => {
 	const router = useRouter();
-	const [createMovie, {data, loading}] = useCreateMovieMutation();
+	const [createMovie, { data, loading }] = useCreateMovieMutation();
 
 	const [upload] = useUploadThumbnailMutation();
 	const [file, setFile] = useState();
@@ -22,7 +22,7 @@ export const MovieCreateForm: React.FC = () => {
 	useEffect(() => {
 		if (data?.createMovie?.id && !loading) {
 			upload({
-				variables: {id: data.createMovie.id, file, type: UploadType.Movie},
+				variables: { id: data.createMovie.id, file, type: UploadType.Movie },
 			})
 				.catch(error => {
 					console.log(error.message);
@@ -39,14 +39,17 @@ export const MovieCreateForm: React.FC = () => {
 					description: '',
 					locked: false,
 				}}
-				onSubmit={async (values: MovieCreateInput, {setSubmitting, setErrors}: FormikHelpers<MovieCreateInput>) => {
+				onSubmit={async (
+					values: MovieCreateInput,
+					{ setSubmitting, setErrors }: FormikHelpers<MovieCreateInput>
+				) => {
 					setSubmitting(true);
 					const response = await createMovie({
 						variables: {
 							data: values,
 						},
 						update: cache => {
-							cache.evict({fieldName: 'movies:{}'});
+							cache.evict({ fieldName: 'movies:{}' });
 						},
 					})
 						.then(() => {
@@ -67,9 +70,15 @@ export const MovieCreateForm: React.FC = () => {
 					setSubmitting(false);
 				}}
 			>
-				{({isSubmitting, errors, touched}) => (
+				{({ isSubmitting, errors, touched }) => (
 					<Form className="w-full container">
-						<InputField name="title" placeholder="title" touched={touched.title} errors={errors.title} type="text" />
+						<InputField
+							name="title"
+							placeholder="title"
+							touched={touched.title}
+							errors={errors.title}
+							type="text"
+						/>
 						<InputField
 							name="description"
 							placeholder="description"

@@ -1,7 +1,7 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
-import {IconType} from 'react-icons';
-import {Icon} from './Icon';
-import {Spinner} from './Spinner';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { IconType } from 'react-icons';
+import { Icon } from './Icon';
+import { Spinner } from './Spinner';
 
 interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	icon: IconType;
@@ -9,7 +9,7 @@ interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
 	loading?: boolean;
 }
 
-export const IconButton: React.FC<IconButtonProps> = ({icon, className, loading, ...props}) => {
+export const IconButton: React.FC<IconButtonProps> = ({ icon, className, loading, ...props }) => {
 	return (
 		<button type="button" {...props}>
 			{loading ? (

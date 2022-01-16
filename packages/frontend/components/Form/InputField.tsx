@@ -1,4 +1,4 @@
-import {Field} from 'formik';
+import { Field } from 'formik';
 import React from 'react';
 
 interface InputFieldProps {
@@ -7,7 +7,7 @@ interface InputFieldProps {
 	placeholder: string;
 }
 
-export const InputField: React.FC<InputFieldProps> = ({name, type, placeholder}) => {
+export const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder }) => {
 	return (
 		<div className="my-5">
 			<Field

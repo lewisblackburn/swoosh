@@ -1,7 +1,7 @@
 import React from 'react';
-import {Layout} from './Layout';
+import { Layout } from './Layout';
 
-export const PreferencesLayout: React.FC = ({children}) => {
+export const PreferencesLayout: React.FC = ({ children }) => {
 	return (
 		<Layout>
 			<div className="flex justify-between">

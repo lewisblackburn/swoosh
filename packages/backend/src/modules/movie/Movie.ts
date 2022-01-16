@@ -1,5 +1,5 @@
-import {GraphQLResolveInfo} from 'graphql';
-import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
+import { GraphQLResolveInfo } from 'graphql';
+import { Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
 import {
 	CreateMovieArgs,
 	DeleteMovieArgs,
@@ -8,14 +8,14 @@ import {
 	Movie,
 	UpdateMovieArgs,
 } from '../../generated/type-graphql';
-import {Context} from '../../interfaces/context';
-import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import { Context } from '../../interfaces/context';
+import { ErrorInterceptor } from '../middleware/ErrorInterceptor';
 
 @Resolver(Movie)
 export class MovieResolver {
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Movie, {nullable: true})
+	@Mutation(() => Movie, { nullable: true })
 	async createMovie(@Ctx() ctx: Context, @Args() args: CreateMovieArgs): Promise<Movie | null> {
 		return ctx.prisma.movie.create({
 			data: {
@@ -27,7 +27,7 @@ export class MovieResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Movie, {nullable: true})
+	@Mutation(() => Movie, { nullable: true })
 	async editMovie(@Ctx() ctx: Context, @Args() args: UpdateMovieArgs): Promise<Movie | null> {
 		return ctx.prisma.movie.update({
 			data: {
@@ -42,7 +42,7 @@ export class MovieResolver {
 
 	@Authorized(['ADMIN'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Movie, {nullable: true})
+	@Mutation(() => Movie, { nullable: true })
 	async lockMovie(
 		@Ctx() ctx: Context,
 		@Arg('movieId', () => Int) movieId: number,
@@ -60,7 +60,7 @@ export class MovieResolver {
 
 	@Authorized(['ADMIN'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Movie, {nullable: true})
+	@Mutation(() => Movie, { nullable: true })
 	async deleteMovie(@Ctx() ctx: Context, @Args() args: DeleteMovieArgs): Promise<Movie | null> {
 		return ctx.prisma.movie.delete({
 			...args,
@@ -69,7 +69,7 @@ export class MovieResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Boolean, {nullable: true})
+	@Mutation(() => Boolean, { nullable: true })
 	async addActorToMovie(
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
@@ -89,7 +89,7 @@ export class MovieResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Boolean, {nullable: false})
+	@Mutation(() => Boolean, { nullable: false })
 	async removeActorFromMovie(
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
@@ -202,7 +202,7 @@ export class MovieResolver {
 		return Boolean(platform);
 	}
 
-	@Query(() => Movie, {nullable: true})
+	@Query(() => Movie, { nullable: true })
 	async movie(@Arg('movieId', () => Int) movieId: number, @Ctx() ctx: Context): Promise<Movie | null> {
 		return ctx.prisma.movie.findUnique({
 			where: {
@@ -211,7 +211,7 @@ export class MovieResolver {
 		});
 	}
 
-	@Query(() => [Movie], {nullable: true})
+	@Query(() => [Movie], { nullable: true })
 	async movies(@Args() args: FindManyMovieArgs, @Ctx() ctx: Context): Promise<Movie[] | null> {
 		return ctx.prisma.movie.findMany({
 			...args,

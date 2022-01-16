@@ -1,8 +1,8 @@
-import {ButtonProps} from '@components/Button';
-import {Spinner} from '@components/Spinner';
+import { ButtonProps } from '@components/Button';
+import { Spinner } from '@components/Spinner';
 import React from 'react';
 
-export const DropdownButton: React.FC<ButtonProps> = ({children, disabled, loading, icon, className, ...props}) => {
+export const DropdownButton: React.FC<ButtonProps> = ({ children, disabled, loading, icon, className, ...props }) => {
 	return (
 		<button
 			type="button"

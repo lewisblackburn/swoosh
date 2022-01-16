@@ -1,3 +1,3 @@
 mutation Confirm($token: String!) {
-  confirm(token: $token)
+	confirm(token: $token)
 }

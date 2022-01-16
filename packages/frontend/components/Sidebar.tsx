@@ -1,4 +1,4 @@
-import {useMeQuery} from 'generated/graphql';
+import { useMeQuery } from 'generated/graphql';
 import Link from 'next/link';
 import React from 'react';
 import {
@@ -12,12 +12,12 @@ import {
 	AiOutlineUser,
 	AiOutlineVideoCamera,
 } from 'react-icons/ai';
-import {Avatar} from './Avatar';
-import {IconLink} from './IconLink';
-import {LogoutButton} from './LogoutButton';
+import { Avatar } from './Avatar';
+import { IconLink } from './IconLink';
+import { LogoutButton } from './LogoutButton';
 
 export const Sidebar: React.FC = () => {
-	const {data} = useMeQuery();
+	const { data } = useMeQuery();
 
 	return (
 		<div className="flex flex-col items-center justify-between h-screen px-5 py-10 border-r border-gray-100">

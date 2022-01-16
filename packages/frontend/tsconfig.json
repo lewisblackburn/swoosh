@@ -1,38 +1,20 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "module": "esnext",
-    "jsx": "preserve",
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@components": [
-        "components"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@modules": [
-        "modules"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@public": [
-        "public"
-      ],
-    },
-    "incremental": true
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"module": "esnext",
+		"jsx": "preserve",
+		"noEmit": true,
+		"baseUrl": ".",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@components": ["components"],
+			"@modules/*": ["modules/*"],
+			"@modules": ["modules"],
+			"@public/*": ["public/*"],
+			"@public": ["public"]
+		},
+		"incremental": true
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }

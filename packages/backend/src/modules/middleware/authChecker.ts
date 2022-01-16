@@ -1,8 +1,8 @@
-import {AuthChecker} from 'type-graphql';
-import {Context} from '../../interfaces/context';
+import { AuthChecker } from 'type-graphql';
+import { Context } from '../../interfaces/context';
 
 // create auth checker function
-export const authChecker: AuthChecker<Context> = async ({context}, roles) => {
+export const authChecker: AuthChecker<Context> = async ({ context }, roles) => {
 	const user = context.req.session.userId;
 	const role = context.req.session.role;
 

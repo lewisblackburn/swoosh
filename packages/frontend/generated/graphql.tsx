@@ -1,10 +1,10 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends Record<string, unknown>> = {[K in keyof T]: T[K]};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {[SubKey in K]?: Maybe<T[SubKey]>};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {[SubKey in K]: Maybe<T[SubKey]>};
+export type Exact<T extends Record<string, unknown>> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -108,7 +108,7 @@ export type ActorInMoviePersonIdMovieIdCompoundUniqueInput = {
 export enum ActorInMovieScalarFieldEnum {
 	MovieId = 'movieId',
 	PersonId = 'personId',
-	Role = 'role'
+	Role = 'role',
 }
 
 export type ActorInMovieScalarWhereInput = {
@@ -298,7 +298,7 @@ export type ActorInShowPersonIdShowIdCompoundUniqueInput = {
 export enum ActorInShowScalarFieldEnum {
 	PersonId = 'personId',
 	Role = 'role',
-	ShowId = 'showId'
+	ShowId = 'showId',
 }
 
 export type ActorInShowScalarWhereInput = {
@@ -489,7 +489,7 @@ export enum BookScalarFieldEnum {
 	Released = 'released',
 	Thumbnail = 'thumbnail',
 	Title = 'title',
-	UpdatedAt = 'updatedAt'
+	UpdatedAt = 'updatedAt',
 }
 
 export type BookScalarWhereInput = {
@@ -597,7 +597,7 @@ export type BoolFilter = {
 export enum Career {
 	Actor = 'ACTOR',
 	Artist = 'ARTIST',
-	Author = 'AUTHOR'
+	Author = 'AUTHOR',
 }
 
 export type ChangePasswordInput = {
@@ -678,7 +678,7 @@ export type FollowsOrderByWithRelationInput = {
 
 export enum FollowsScalarFieldEnum {
 	FollowerId = 'followerId',
-	FollowingId = 'followingId'
+	FollowingId = 'followingId',
 }
 
 export type FollowsWhereInput = {
@@ -891,7 +891,7 @@ export enum MovieScalarFieldEnum {
 	Released = 'released',
 	Thumbnail = 'thumbnail',
 	Title = 'title',
-	UpdatedAt = 'updatedAt'
+	UpdatedAt = 'updatedAt',
 }
 
 export type MovieScalarWhereInput = {
@@ -1350,7 +1350,7 @@ export enum NotificationScalarFieldEnum {
 	Id = 'id',
 	Message = 'message',
 	Read = 'read',
-	UserId = 'userId'
+	UserId = 'userId',
 }
 
 export type NotificationWhereInput = {
@@ -1598,7 +1598,7 @@ export enum PersonScalarFieldEnum {
 	Id = 'id',
 	Name = 'name',
 	Thumbnail = 'thumbnail',
-	UpdatedAt = 'updatedAt'
+	UpdatedAt = 'updatedAt',
 }
 
 export type PersonScalarWhereInput = {
@@ -1898,7 +1898,7 @@ export type PlatformOrderByWithRelationInput = {
 export enum PlatformScalarFieldEnum {
 	ApiKey = 'apiKey',
 	Id = 'id',
-	Name = 'name'
+	Name = 'name',
 }
 
 export type PlatformScalarWhereInput = {
@@ -2102,7 +2102,7 @@ export type QueryUsersArgs = {
 
 export enum QueryMode {
 	Default = 'default',
-	Insensitive = 'insensitive'
+	Insensitive = 'insensitive',
 }
 
 export type RegisterInput = {
@@ -2114,7 +2114,7 @@ export type RegisterInput = {
 
 export enum Role {
 	Admin = 'ADMIN',
-	User = 'USER'
+	User = 'USER',
 }
 
 export type Show = {
@@ -2273,7 +2273,7 @@ export enum ShowScalarFieldEnum {
 	Released = 'released',
 	Thumbnail = 'thumbnail',
 	Title = 'title',
-	UpdatedAt = 'updatedAt'
+	UpdatedAt = 'updatedAt',
 }
 
 export type ShowScalarWhereInput = {
@@ -2635,7 +2635,7 @@ export enum SongInMovieScalarFieldEnum {
 	Description = 'description',
 	MovieId = 'movieId',
 	SongId = 'songId',
-	Timestamp = 'timestamp'
+	Timestamp = 'timestamp',
 }
 
 export type SongInMovieScalarWhereInput = {
@@ -2837,7 +2837,7 @@ export enum SongInShowScalarFieldEnum {
 	Description = 'description',
 	ShowId = 'showId',
 	SongId = 'songId',
-	Timestamp = 'timestamp'
+	Timestamp = 'timestamp',
 }
 
 export type SongInShowScalarWhereInput = {
@@ -2985,7 +2985,7 @@ export enum SongScalarFieldEnum {
 	Released = 'released',
 	Thumbnail = 'thumbnail',
 	Title = 'title',
-	UpdatedAt = 'updatedAt'
+	UpdatedAt = 'updatedAt',
 }
 
 export type SongScalarWhereInput = {
@@ -3139,7 +3139,7 @@ export type SongWhereUniqueInput = {
 
 export enum SortOrder {
 	Asc = 'asc',
-	Desc = 'desc'
+	Desc = 'desc',
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -3190,7 +3190,7 @@ export enum UploadType {
 	Book = 'Book',
 	Movie = 'Movie',
 	Person = 'Person',
-	Song = 'Song'
+	Song = 'Song',
 }
 
 export type User = {
@@ -3288,7 +3288,7 @@ export enum UserScalarFieldEnum {
 	Role = 'role',
 	UpdatedAt = 'updatedAt',
 	Username = 'username',
-	Website = 'website'
+	Website = 'website',
 }
 
 export type UserWhereInput = {
@@ -3320,7 +3320,7 @@ export type UserWhereUniqueInput = {
 	username?: InputMaybe<Scalars['String']>;
 };
 
-export type RegularUserFragment = {__typename?: 'User'; id: number; email: string; username: string; avatar: string};
+export type RegularUserFragment = { __typename?: 'User'; id: number; email: string; username: string; avatar: string };
 
 export type AddActorToMovieMutationVariables = Exact<{
 	role: Scalars['String'];
@@ -3328,14 +3328,14 @@ export type AddActorToMovieMutationVariables = Exact<{
 	personId: Scalars['Int'];
 }>;
 
-export type AddActorToMovieMutation = {__typename?: 'Mutation'; addActorToMovie?: boolean | null | undefined};
+export type AddActorToMovieMutation = { __typename?: 'Mutation'; addActorToMovie?: boolean | null | undefined };
 
 export type AddPlatformToMovieMutationVariables = Exact<{
 	platformId: Scalars['Int'];
 	movieId: Scalars['Int'];
 }>;
 
-export type AddPlatformToMovieMutation = {__typename?: 'Mutation'; addPlatformToMovie: boolean};
+export type AddPlatformToMovieMutation = { __typename?: 'Mutation'; addPlatformToMovie: boolean };
 
 export type AddSongToMovieMutationVariables = Exact<{
 	movieId: Scalars['Int'];
@@ -3344,79 +3344,111 @@ export type AddSongToMovieMutationVariables = Exact<{
 	description: Scalars['String'];
 }>;
 
-export type AddSongToMovieMutation = {__typename?: 'Mutation'; addSongToMovie: boolean};
+export type AddSongToMovieMutation = { __typename?: 'Mutation'; addSongToMovie: boolean };
 
 export type ConfirmMutationVariables = Exact<{
 	token: Scalars['String'];
 }>;
 
-export type ConfirmMutation = {__typename?: 'Mutation'; confirm: boolean};
+export type ConfirmMutation = { __typename?: 'Mutation'; confirm: boolean };
 
 export type CreateMovieMutationVariables = Exact<{
 	data: MovieCreateInput;
 }>;
 
-export type CreateMovieMutation = {__typename?: 'Mutation'; createMovie?: {__typename?: 'Movie'; id: number; title: string; description: string; thumbnail: string; locked: boolean; createdAt: any; updatedAt: any} | null | undefined};
+export type CreateMovieMutation = {
+	__typename?: 'Mutation';
+	createMovie?:
+		| {
+				__typename?: 'Movie';
+				id: number;
+				title: string;
+				description: string;
+				thumbnail: string;
+				locked: boolean;
+				createdAt: any;
+				updatedAt: any;
+		  }
+		| null
+		| undefined;
+};
 
 export type CreatePersonMutationVariables = Exact<{
 	data: PersonCreateInput;
 }>;
 
-export type CreatePersonMutation = {__typename?: 'Mutation'; createPerson: {__typename?: 'Person'; id: number; career: Career[]; name: string; thumbnail: string; bio?: string | null | undefined; age?: number | null | undefined}};
+export type CreatePersonMutation = {
+	__typename?: 'Mutation';
+	createPerson: {
+		__typename?: 'Person';
+		id: number;
+		career: Career[];
+		name: string;
+		thumbnail: string;
+		bio?: string | null | undefined;
+		age?: number | null | undefined;
+	};
+};
 
 export type FollowMutationVariables = Exact<{
 	userId: Scalars['Int'];
 }>;
 
-export type FollowMutation = {__typename?: 'Mutation'; follow: boolean};
+export type FollowMutation = { __typename?: 'Mutation'; follow: boolean };
 
 export type LoginMutationVariables = Exact<{
 	data: LoginInput;
 }>;
 
-export type LoginMutation = {__typename?: 'Mutation'; login: {__typename?: 'User'; id: number; email: string; username: string; avatar: string}};
+export type LoginMutation = {
+	__typename?: 'Mutation';
+	login: { __typename?: 'User'; id: number; email: string; username: string; avatar: string };
+};
 
 export type LogoutMutationVariables = Exact<Record<string, never>>;
 
-export type LogoutMutation = {__typename?: 'Mutation'; logout: boolean};
+export type LogoutMutation = { __typename?: 'Mutation'; logout: boolean };
 
 export type RegisterMutationVariables = Exact<{
 	data: RegisterInput;
 }>;
 
-export type RegisterMutation = {__typename?: 'Mutation'; register: {__typename?: 'User'; id: number; email: string; username: string; avatar: string}};
+export type RegisterMutation = {
+	__typename?: 'Mutation';
+	register: { __typename?: 'User'; id: number; email: string; username: string; avatar: string };
+};
 
 export type RemoveActorFromMovieMutationVariables = Exact<{
 	movieId: Scalars['Int'];
 	personId: Scalars['Int'];
 }>;
 
-export type RemoveActorFromMovieMutation = {__typename?: 'Mutation'; removeActorFromMovie: boolean};
+export type RemoveActorFromMovieMutation = { __typename?: 'Mutation'; removeActorFromMovie: boolean };
 
 export type RemovePlatformFromMovieMutationVariables = Exact<{
 	platformId: Scalars['Int'];
 	movieId: Scalars['Int'];
 }>;
 
-export type RemovePlatformFromMovieMutation = {__typename?: 'Mutation'; removePlatformToMovie: boolean};
+export type RemovePlatformFromMovieMutation = { __typename?: 'Mutation'; removePlatformToMovie: boolean };
 
 export type RemoveSongFromMovieMutationVariables = Exact<{
 	where: SongInMovieWhereUniqueInput;
 }>;
 
-export type RemoveSongFromMovieMutation = {__typename?: 'Mutation'; removeSongFromMovie: boolean};
+export type RemoveSongFromMovieMutation = { __typename?: 'Mutation'; removeSongFromMovie: boolean };
 
 export type UnfollowMutationVariables = Exact<{
 	userId: Scalars['Int'];
 }>;
 
-export type UnfollowMutation = {__typename?: 'Mutation'; unfollow: boolean};
+export type UnfollowMutation = { __typename?: 'Mutation'; unfollow: boolean };
 
 export type UploadAvatarMutationVariables = Exact<{
 	file: Scalars['Upload'];
 }>;
 
-export type UploadAvatarMutation = {__typename?: 'Mutation'; uploadAvatar: boolean};
+export type UploadAvatarMutation = { __typename?: 'Mutation'; uploadAvatar: boolean };
 
 export type UploadThumbnailMutationVariables = Exact<{
 	id: Scalars['Int'];
@@ -3424,7 +3456,7 @@ export type UploadThumbnailMutationVariables = Exact<{
 	type: UploadType;
 }>;
 
-export type UploadThumbnailMutation = {__typename?: 'Mutation'; uploadThumbnail: boolean};
+export type UploadThumbnailMutation = { __typename?: 'Mutation'; uploadThumbnail: boolean };
 
 export type FollowersQueryVariables = Exact<{
 	where?: InputMaybe<FollowsWhereInput>;
@@ -3432,7 +3464,13 @@ export type FollowersQueryVariables = Exact<{
 	cursor?: InputMaybe<FollowsWhereUniqueInput>;
 }>;
 
-export type FollowersQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; following: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
+export type FollowersQuery = {
+	__typename?: 'Query';
+	follows: Array<{
+		__typename?: 'Follows';
+		following: { __typename?: 'User'; id: number; username: string; avatar: string };
+	}>;
+};
 
 export type FollowingQueryVariables = Exact<{
 	where?: InputMaybe<FollowsWhereInput>;
@@ -3440,11 +3478,20 @@ export type FollowingQueryVariables = Exact<{
 	cursor?: InputMaybe<FollowsWhereUniqueInput>;
 }>;
 
-export type FollowingQuery = {__typename?: 'Query'; follows: Array<{__typename?: 'Follows'; follower: {__typename?: 'User'; id: number; username: string; avatar: string}}>};
+export type FollowingQuery = {
+	__typename?: 'Query';
+	follows: Array<{
+		__typename?: 'Follows';
+		follower: { __typename?: 'User'; id: number; username: string; avatar: string };
+	}>;
+};
 
 export type MeQueryVariables = Exact<Record<string, never>>;
 
-export type MeQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; email: string; username: string; avatar: string} | null | undefined};
+export type MeQuery = {
+	__typename?: 'Query';
+	me?: { __typename?: 'User'; id: number; email: string; username: string; avatar: string } | null | undefined;
+};
 
 export type MovieQueryVariables = Exact<{
 	movieId: Scalars['Int'];
@@ -3453,7 +3500,28 @@ export type MovieQueryVariables = Exact<{
 	cursor?: InputMaybe<ActorInMovieWhereUniqueInput>;
 }>;
 
-export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; description: string; thumbnail: string; released?: any | null | undefined; locked: boolean; createdAt: any; updatedAt: any; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; thumbnail: string}}>} | null | undefined};
+export type MovieQuery = {
+	__typename?: 'Query';
+	movie?:
+		| {
+				__typename?: 'Movie';
+				id: number;
+				title: string;
+				description: string;
+				thumbnail: string;
+				released?: any | null | undefined;
+				locked: boolean;
+				createdAt: any;
+				updatedAt: any;
+				actors: Array<{
+					__typename?: 'ActorInMovie';
+					role: string;
+					person: { __typename?: 'Person'; id: number; name: string; thumbnail: string };
+				}>;
+		  }
+		| null
+		| undefined;
+};
 
 export type MoviesQueryVariables = Exact<{
 	where?: InputMaybe<MovieWhereInput>;
@@ -3461,11 +3529,27 @@ export type MoviesQueryVariables = Exact<{
 	cursor?: InputMaybe<MovieWhereUniqueInput>;
 }>;
 
-export type MoviesQuery = {__typename?: 'Query'; movies?: Array<{__typename?: 'Movie'; id: number; title: string; description: string; thumbnail: string; locked: boolean}> | null | undefined};
+export type MoviesQuery = {
+	__typename?: 'Query';
+	movies?:
+		| Array<{
+				__typename?: 'Movie';
+				id: number;
+				title: string;
+				description: string;
+				thumbnail: string;
+				locked: boolean;
+		  }>
+		| null
+		| undefined;
+};
 
 export type NotificationsQueryVariables = Exact<Record<string, never>>;
 
-export type NotificationsQuery = {__typename?: 'Query'; notifications: Array<{__typename?: 'Notification'; id: number; message: string; read: boolean; createdAt: any}>};
+export type NotificationsQuery = {
+	__typename?: 'Query';
+	notifications: Array<{ __typename?: 'Notification'; id: number; message: string; read: boolean; createdAt: any }>;
+};
 
 export type PeopleQueryVariables = Exact<{
 	where?: InputMaybe<PersonWhereInput>;
@@ -3474,40 +3558,108 @@ export type PeopleQueryVariables = Exact<{
 	take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type PeopleQuery = {__typename?: 'Query'; people?: Array<{__typename?: 'Person'; id: number; career: Career[]; name: string; thumbnail: string; createdAt: any; updatedAt: any}> | null | undefined};
+export type PeopleQuery = {
+	__typename?: 'Query';
+	people?:
+		| Array<{
+				__typename?: 'Person';
+				id: number;
+				career: Career[];
+				name: string;
+				thumbnail: string;
+				createdAt: any;
+				updatedAt: any;
+		  }>
+		| null
+		| undefined;
+};
 
 export type PersonQueryVariables = Exact<{
 	where: PersonWhereUniqueInput;
 }>;
 
-export type PersonQuery = {__typename?: 'Query'; person?: {__typename?: 'Person'; id: number; career: Career[]; name: string; thumbnail: string; bio?: string | null | undefined; age?: number | null | undefined; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null | undefined} | null | undefined};
+export type PersonQuery = {
+	__typename?: 'Query';
+	person?:
+		| {
+				__typename?: 'Person';
+				id: number;
+				career: Career[];
+				name: string;
+				thumbnail: string;
+				bio?: string | null | undefined;
+				age?: number | null | undefined;
+				_count?:
+					| { __typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number }
+					| null
+					| undefined;
+		  }
+		| null
+		| undefined;
+};
 
 export type UserQueryVariables = Exact<{
 	username: Scalars['String'];
 }>;
 
-export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null | undefined} | null | undefined};
+export type UserQuery = {
+	__typename?: 'Query';
+	user?:
+		| {
+				__typename?: 'User';
+				id: number;
+				confirmed: boolean;
+				email: string;
+				username: string;
+				displayname: string;
+				role: Role;
+				avatar: string;
+				bio: string;
+				location: string;
+				website: string;
+				dob: string;
+				isFollowing: boolean;
+				createdAt: any;
+				updatedAt: any;
+				_count?: { __typename?: 'UserCount'; following: number; followers: number } | null | undefined;
+		  }
+		| null
+		| undefined;
+};
 
 export type NotificationListenerSubscriptionVariables = Exact<{
 	listenerId: Scalars['Int'];
 }>;
 
-export type NotificationListenerSubscription = {__typename?: 'Subscription'; notificationListener: {__typename?: 'Notification'; id: number; userId?: number | null | undefined; message: string; read: boolean; createdAt: any}};
+export type NotificationListenerSubscription = {
+	__typename?: 'Subscription';
+	notificationListener: {
+		__typename?: 'Notification';
+		id: number;
+		userId?: number | null | undefined;
+		message: string;
+		read: boolean;
+		createdAt: any;
+	};
+};
 
 export const RegularUserFragmentDoc = gql`
-    fragment RegularUser on User {
-  id
-  email
-  username
-  avatar
-}
-    `;
+	fragment RegularUser on User {
+		id
+		email
+		username
+		avatar
+	}
+`;
 export const AddActorToMovieDocument = gql`
-    mutation addActorToMovie($role: String!, $movieId: Int!, $personId: Int!) {
-  addActorToMovie(role: $role, movieId: $movieId, personId: $personId)
-}
-    `;
-export type AddActorToMovieMutationFn = Apollo.MutationFunction<AddActorToMovieMutation, AddActorToMovieMutationVariables>;
+	mutation addActorToMovie($role: String!, $movieId: Int!, $personId: Int!) {
+		addActorToMovie(role: $role, movieId: $movieId, personId: $personId)
+	}
+`;
+export type AddActorToMovieMutationFn = Apollo.MutationFunction<
+	AddActorToMovieMutation,
+	AddActorToMovieMutationVariables
+>;
 
 /**
  * __useAddActorToMovieMutation__
@@ -3528,20 +3680,31 @@ export type AddActorToMovieMutationFn = Apollo.MutationFunction<AddActorToMovieM
  *   },
  * });
  */
-export function useAddActorToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddActorToMovieMutation, AddActorToMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<AddActorToMovieMutation, AddActorToMovieMutationVariables>(AddActorToMovieDocument, options);
+export function useAddActorToMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<AddActorToMovieMutation, AddActorToMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<AddActorToMovieMutation, AddActorToMovieMutationVariables>(
+		AddActorToMovieDocument,
+		options
+	);
 }
 
 export type AddActorToMovieMutationHookResult = ReturnType<typeof useAddActorToMovieMutation>;
 export type AddActorToMovieMutationResult = Apollo.MutationResult<AddActorToMovieMutation>;
-export type AddActorToMovieMutationOptions = Apollo.BaseMutationOptions<AddActorToMovieMutation, AddActorToMovieMutationVariables>;
+export type AddActorToMovieMutationOptions = Apollo.BaseMutationOptions<
+	AddActorToMovieMutation,
+	AddActorToMovieMutationVariables
+>;
 export const AddPlatformToMovieDocument = gql`
-    mutation addPlatformToMovie($platformId: Int!, $movieId: Int!) {
-  addPlatformToMovie(platformId: $platformId, movieId: $movieId)
-}
-    `;
-export type AddPlatformToMovieMutationFn = Apollo.MutationFunction<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>;
+	mutation addPlatformToMovie($platformId: Int!, $movieId: Int!) {
+		addPlatformToMovie(platformId: $platformId, movieId: $movieId)
+	}
+`;
+export type AddPlatformToMovieMutationFn = Apollo.MutationFunction<
+	AddPlatformToMovieMutation,
+	AddPlatformToMovieMutationVariables
+>;
 
 /**
  * __useAddPlatformToMovieMutation__
@@ -3561,24 +3724,27 @@ export type AddPlatformToMovieMutationFn = Apollo.MutationFunction<AddPlatformTo
  *   },
  * });
  */
-export function useAddPlatformToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>(AddPlatformToMovieDocument, options);
+export function useAddPlatformToMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>(
+		AddPlatformToMovieDocument,
+		options
+	);
 }
 
 export type AddPlatformToMovieMutationHookResult = ReturnType<typeof useAddPlatformToMovieMutation>;
 export type AddPlatformToMovieMutationResult = Apollo.MutationResult<AddPlatformToMovieMutation>;
-export type AddPlatformToMovieMutationOptions = Apollo.BaseMutationOptions<AddPlatformToMovieMutation, AddPlatformToMovieMutationVariables>;
+export type AddPlatformToMovieMutationOptions = Apollo.BaseMutationOptions<
+	AddPlatformToMovieMutation,
+	AddPlatformToMovieMutationVariables
+>;
 export const AddSongToMovieDocument = gql`
-    mutation addSongToMovie($movieId: Int!, $songId: Int!, $timestamp: DateTime!, $description: String!) {
-  addSongToMovie(
-    movieId: $movieId
-    songId: $songId
-    timestamp: $timestamp
-    description: $description
-  )
-}
-    `;
+	mutation addSongToMovie($movieId: Int!, $songId: Int!, $timestamp: DateTime!, $description: String!) {
+		addSongToMovie(movieId: $movieId, songId: $songId, timestamp: $timestamp, description: $description)
+	}
+`;
 export type AddSongToMovieMutationFn = Apollo.MutationFunction<AddSongToMovieMutation, AddSongToMovieMutationVariables>;
 
 /**
@@ -3601,19 +3767,24 @@ export type AddSongToMovieMutationFn = Apollo.MutationFunction<AddSongToMovieMut
  *   },
  * });
  */
-export function useAddSongToMovieMutation(baseOptions?: Apollo.MutationHookOptions<AddSongToMovieMutation, AddSongToMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useAddSongToMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<AddSongToMovieMutation, AddSongToMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<AddSongToMovieMutation, AddSongToMovieMutationVariables>(AddSongToMovieDocument, options);
 }
 
 export type AddSongToMovieMutationHookResult = ReturnType<typeof useAddSongToMovieMutation>;
 export type AddSongToMovieMutationResult = Apollo.MutationResult<AddSongToMovieMutation>;
-export type AddSongToMovieMutationOptions = Apollo.BaseMutationOptions<AddSongToMovieMutation, AddSongToMovieMutationVariables>;
+export type AddSongToMovieMutationOptions = Apollo.BaseMutationOptions<
+	AddSongToMovieMutation,
+	AddSongToMovieMutationVariables
+>;
 export const ConfirmDocument = gql`
-    mutation Confirm($token: String!) {
-  confirm(token: $token)
-}
-    `;
+	mutation Confirm($token: String!) {
+		confirm(token: $token)
+	}
+`;
 export type ConfirmMutationFn = Apollo.MutationFunction<ConfirmMutation, ConfirmMutationVariables>;
 
 /**
@@ -3633,8 +3804,10 @@ export type ConfirmMutationFn = Apollo.MutationFunction<ConfirmMutation, Confirm
  *   },
  * });
  */
-export function useConfirmMutation(baseOptions?: Apollo.MutationHookOptions<ConfirmMutation, ConfirmMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useConfirmMutation(
+	baseOptions?: Apollo.MutationHookOptions<ConfirmMutation, ConfirmMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<ConfirmMutation, ConfirmMutationVariables>(ConfirmDocument, options);
 }
 
@@ -3642,18 +3815,18 @@ export type ConfirmMutationHookResult = ReturnType<typeof useConfirmMutation>;
 export type ConfirmMutationResult = Apollo.MutationResult<ConfirmMutation>;
 export type ConfirmMutationOptions = Apollo.BaseMutationOptions<ConfirmMutation, ConfirmMutationVariables>;
 export const CreateMovieDocument = gql`
-    mutation CreateMovie($data: MovieCreateInput!) {
-  createMovie(data: $data) {
-    id
-    title
-    description
-    thumbnail
-    locked
-    createdAt
-    updatedAt
-  }
-}
-    `;
+	mutation CreateMovie($data: MovieCreateInput!) {
+		createMovie(data: $data) {
+			id
+			title
+			description
+			thumbnail
+			locked
+			createdAt
+			updatedAt
+		}
+	}
+`;
 export type CreateMovieMutationFn = Apollo.MutationFunction<CreateMovieMutation, CreateMovieMutationVariables>;
 
 /**
@@ -3673,8 +3846,10 @@ export type CreateMovieMutationFn = Apollo.MutationFunction<CreateMovieMutation,
  *   },
  * });
  */
-export function useCreateMovieMutation(baseOptions?: Apollo.MutationHookOptions<CreateMovieMutation, CreateMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useCreateMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<CreateMovieMutation, CreateMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<CreateMovieMutation, CreateMovieMutationVariables>(CreateMovieDocument, options);
 }
 
@@ -3682,17 +3857,17 @@ export type CreateMovieMutationHookResult = ReturnType<typeof useCreateMovieMuta
 export type CreateMovieMutationResult = Apollo.MutationResult<CreateMovieMutation>;
 export type CreateMovieMutationOptions = Apollo.BaseMutationOptions<CreateMovieMutation, CreateMovieMutationVariables>;
 export const CreatePersonDocument = gql`
-    mutation CreatePerson($data: PersonCreateInput!) {
-  createPerson(data: $data) {
-    id
-    career
-    name
-    thumbnail
-    bio
-    age
-  }
-}
-    `;
+	mutation CreatePerson($data: PersonCreateInput!) {
+		createPerson(data: $data) {
+			id
+			career
+			name
+			thumbnail
+			bio
+			age
+		}
+	}
+`;
 export type CreatePersonMutationFn = Apollo.MutationFunction<CreatePersonMutation, CreatePersonMutationVariables>;
 
 /**
@@ -3712,19 +3887,24 @@ export type CreatePersonMutationFn = Apollo.MutationFunction<CreatePersonMutatio
  *   },
  * });
  */
-export function useCreatePersonMutation(baseOptions?: Apollo.MutationHookOptions<CreatePersonMutation, CreatePersonMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useCreatePersonMutation(
+	baseOptions?: Apollo.MutationHookOptions<CreatePersonMutation, CreatePersonMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<CreatePersonMutation, CreatePersonMutationVariables>(CreatePersonDocument, options);
 }
 
 export type CreatePersonMutationHookResult = ReturnType<typeof useCreatePersonMutation>;
 export type CreatePersonMutationResult = Apollo.MutationResult<CreatePersonMutation>;
-export type CreatePersonMutationOptions = Apollo.BaseMutationOptions<CreatePersonMutation, CreatePersonMutationVariables>;
+export type CreatePersonMutationOptions = Apollo.BaseMutationOptions<
+	CreatePersonMutation,
+	CreatePersonMutationVariables
+>;
 export const FollowDocument = gql`
-    mutation Follow($userId: Int!) {
-  follow(userId: $userId)
-}
-    `;
+	mutation Follow($userId: Int!) {
+		follow(userId: $userId)
+	}
+`;
 export type FollowMutationFn = Apollo.MutationFunction<FollowMutation, FollowMutationVariables>;
 
 /**
@@ -3745,7 +3925,7 @@ export type FollowMutationFn = Apollo.MutationFunction<FollowMutation, FollowMut
  * });
  */
 export function useFollowMutation(baseOptions?: Apollo.MutationHookOptions<FollowMutation, FollowMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<FollowMutation, FollowMutationVariables>(FollowDocument, options);
 }
 
@@ -3753,12 +3933,13 @@ export type FollowMutationHookResult = ReturnType<typeof useFollowMutation>;
 export type FollowMutationResult = Apollo.MutationResult<FollowMutation>;
 export type FollowMutationOptions = Apollo.BaseMutationOptions<FollowMutation, FollowMutationVariables>;
 export const LoginDocument = gql`
-    mutation Login($data: LoginInput!) {
-  login(data: $data) {
-    ...RegularUser
-  }
-}
-    ${RegularUserFragmentDoc}`;
+	mutation Login($data: LoginInput!) {
+		login(data: $data) {
+			...RegularUser
+		}
+	}
+	${RegularUserFragmentDoc}
+`;
 export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
@@ -3779,7 +3960,7 @@ export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutati
  * });
  */
 export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
 }
 
@@ -3787,10 +3968,10 @@ export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const LogoutDocument = gql`
-    mutation Logout {
-  logout
-}
-    `;
+	mutation Logout {
+		logout
+	}
+`;
 export type LogoutMutationFn = Apollo.MutationFunction<LogoutMutation, LogoutMutationVariables>;
 
 /**
@@ -3810,7 +3991,7 @@ export type LogoutMutationFn = Apollo.MutationFunction<LogoutMutation, LogoutMut
  * });
  */
 export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<LogoutMutation, LogoutMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument, options);
 }
 
@@ -3818,12 +3999,13 @@ export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
 export const RegisterDocument = gql`
-    mutation Register($data: RegisterInput!) {
-  register(data: $data) {
-    ...RegularUser
-  }
-}
-    ${RegularUserFragmentDoc}`;
+	mutation Register($data: RegisterInput!) {
+		register(data: $data) {
+			...RegularUser
+		}
+	}
+	${RegularUserFragmentDoc}
+`;
 export type RegisterMutationFn = Apollo.MutationFunction<RegisterMutation, RegisterMutationVariables>;
 
 /**
@@ -3843,8 +4025,10 @@ export type RegisterMutationFn = Apollo.MutationFunction<RegisterMutation, Regis
  *   },
  * });
  */
-export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useRegisterMutation(
+	baseOptions?: Apollo.MutationHookOptions<RegisterMutation, RegisterMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, options);
 }
 
@@ -3852,11 +4036,14 @@ export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
 export const RemoveActorFromMovieDocument = gql`
-    mutation removeActorFromMovie($movieId: Int!, $personId: Int!) {
-  removeActorFromMovie(movieId: $movieId, personId: $personId)
-}
-    `;
-export type RemoveActorFromMovieMutationFn = Apollo.MutationFunction<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>;
+	mutation removeActorFromMovie($movieId: Int!, $personId: Int!) {
+		removeActorFromMovie(movieId: $movieId, personId: $personId)
+	}
+`;
+export type RemoveActorFromMovieMutationFn = Apollo.MutationFunction<
+	RemoveActorFromMovieMutation,
+	RemoveActorFromMovieMutationVariables
+>;
 
 /**
  * __useRemoveActorFromMovieMutation__
@@ -3876,20 +4063,31 @@ export type RemoveActorFromMovieMutationFn = Apollo.MutationFunction<RemoveActor
  *   },
  * });
  */
-export function useRemoveActorFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>(RemoveActorFromMovieDocument, options);
+export function useRemoveActorFromMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>(
+		RemoveActorFromMovieDocument,
+		options
+	);
 }
 
 export type RemoveActorFromMovieMutationHookResult = ReturnType<typeof useRemoveActorFromMovieMutation>;
 export type RemoveActorFromMovieMutationResult = Apollo.MutationResult<RemoveActorFromMovieMutation>;
-export type RemoveActorFromMovieMutationOptions = Apollo.BaseMutationOptions<RemoveActorFromMovieMutation, RemoveActorFromMovieMutationVariables>;
+export type RemoveActorFromMovieMutationOptions = Apollo.BaseMutationOptions<
+	RemoveActorFromMovieMutation,
+	RemoveActorFromMovieMutationVariables
+>;
 export const RemovePlatformFromMovieDocument = gql`
-    mutation removePlatformFromMovie($platformId: Int!, $movieId: Int!) {
-  removePlatformToMovie(platformId: $platformId, movieId: $movieId)
-}
-    `;
-export type RemovePlatformFromMovieMutationFn = Apollo.MutationFunction<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>;
+	mutation removePlatformFromMovie($platformId: Int!, $movieId: Int!) {
+		removePlatformToMovie(platformId: $platformId, movieId: $movieId)
+	}
+`;
+export type RemovePlatformFromMovieMutationFn = Apollo.MutationFunction<
+	RemovePlatformFromMovieMutation,
+	RemovePlatformFromMovieMutationVariables
+>;
 
 /**
  * __useRemovePlatformFromMovieMutation__
@@ -3909,20 +4107,31 @@ export type RemovePlatformFromMovieMutationFn = Apollo.MutationFunction<RemovePl
  *   },
  * });
  */
-export function useRemovePlatformFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>(RemovePlatformFromMovieDocument, options);
+export function useRemovePlatformFromMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>(
+		RemovePlatformFromMovieDocument,
+		options
+	);
 }
 
 export type RemovePlatformFromMovieMutationHookResult = ReturnType<typeof useRemovePlatformFromMovieMutation>;
 export type RemovePlatformFromMovieMutationResult = Apollo.MutationResult<RemovePlatformFromMovieMutation>;
-export type RemovePlatformFromMovieMutationOptions = Apollo.BaseMutationOptions<RemovePlatformFromMovieMutation, RemovePlatformFromMovieMutationVariables>;
+export type RemovePlatformFromMovieMutationOptions = Apollo.BaseMutationOptions<
+	RemovePlatformFromMovieMutation,
+	RemovePlatformFromMovieMutationVariables
+>;
 export const RemoveSongFromMovieDocument = gql`
-    mutation removeSongFromMovie($where: SongInMovieWhereUniqueInput!) {
-  removeSongFromMovie(where: $where)
-}
-    `;
-export type RemoveSongFromMovieMutationFn = Apollo.MutationFunction<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>;
+	mutation removeSongFromMovie($where: SongInMovieWhereUniqueInput!) {
+		removeSongFromMovie(where: $where)
+	}
+`;
+export type RemoveSongFromMovieMutationFn = Apollo.MutationFunction<
+	RemoveSongFromMovieMutation,
+	RemoveSongFromMovieMutationVariables
+>;
 
 /**
  * __useRemoveSongFromMovieMutation__
@@ -3941,19 +4150,27 @@ export type RemoveSongFromMovieMutationFn = Apollo.MutationFunction<RemoveSongFr
  *   },
  * });
  */
-export function useRemoveSongFromMovieMutation(baseOptions?: Apollo.MutationHookOptions<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>(RemoveSongFromMovieDocument, options);
+export function useRemoveSongFromMovieMutation(
+	baseOptions?: Apollo.MutationHookOptions<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>(
+		RemoveSongFromMovieDocument,
+		options
+	);
 }
 
 export type RemoveSongFromMovieMutationHookResult = ReturnType<typeof useRemoveSongFromMovieMutation>;
 export type RemoveSongFromMovieMutationResult = Apollo.MutationResult<RemoveSongFromMovieMutation>;
-export type RemoveSongFromMovieMutationOptions = Apollo.BaseMutationOptions<RemoveSongFromMovieMutation, RemoveSongFromMovieMutationVariables>;
+export type RemoveSongFromMovieMutationOptions = Apollo.BaseMutationOptions<
+	RemoveSongFromMovieMutation,
+	RemoveSongFromMovieMutationVariables
+>;
 export const UnfollowDocument = gql`
-    mutation Unfollow($userId: Int!) {
-  unfollow(userId: $userId)
-}
-    `;
+	mutation Unfollow($userId: Int!) {
+		unfollow(userId: $userId)
+	}
+`;
 export type UnfollowMutationFn = Apollo.MutationFunction<UnfollowMutation, UnfollowMutationVariables>;
 
 /**
@@ -3973,8 +4190,10 @@ export type UnfollowMutationFn = Apollo.MutationFunction<UnfollowMutation, Unfol
  *   },
  * });
  */
-export function useUnfollowMutation(baseOptions?: Apollo.MutationHookOptions<UnfollowMutation, UnfollowMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useUnfollowMutation(
+	baseOptions?: Apollo.MutationHookOptions<UnfollowMutation, UnfollowMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<UnfollowMutation, UnfollowMutationVariables>(UnfollowDocument, options);
 }
 
@@ -3982,10 +4201,10 @@ export type UnfollowMutationHookResult = ReturnType<typeof useUnfollowMutation>;
 export type UnfollowMutationResult = Apollo.MutationResult<UnfollowMutation>;
 export type UnfollowMutationOptions = Apollo.BaseMutationOptions<UnfollowMutation, UnfollowMutationVariables>;
 export const UploadAvatarDocument = gql`
-    mutation UploadAvatar($file: Upload!) {
-  uploadAvatar(file: $file)
-}
-    `;
+	mutation UploadAvatar($file: Upload!) {
+		uploadAvatar(file: $file)
+	}
+`;
 export type UploadAvatarMutationFn = Apollo.MutationFunction<UploadAvatarMutation, UploadAvatarMutationVariables>;
 
 /**
@@ -4005,20 +4224,28 @@ export type UploadAvatarMutationFn = Apollo.MutationFunction<UploadAvatarMutatio
  *   },
  * });
  */
-export function useUploadAvatarMutation(baseOptions?: Apollo.MutationHookOptions<UploadAvatarMutation, UploadAvatarMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useUploadAvatarMutation(
+	baseOptions?: Apollo.MutationHookOptions<UploadAvatarMutation, UploadAvatarMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useMutation<UploadAvatarMutation, UploadAvatarMutationVariables>(UploadAvatarDocument, options);
 }
 
 export type UploadAvatarMutationHookResult = ReturnType<typeof useUploadAvatarMutation>;
 export type UploadAvatarMutationResult = Apollo.MutationResult<UploadAvatarMutation>;
-export type UploadAvatarMutationOptions = Apollo.BaseMutationOptions<UploadAvatarMutation, UploadAvatarMutationVariables>;
+export type UploadAvatarMutationOptions = Apollo.BaseMutationOptions<
+	UploadAvatarMutation,
+	UploadAvatarMutationVariables
+>;
 export const UploadThumbnailDocument = gql`
-    mutation UploadThumbnail($id: Int!, $file: Upload!, $type: UploadType!) {
-  uploadThumbnail(id: $id, file: $file, type: $type)
-}
-    `;
-export type UploadThumbnailMutationFn = Apollo.MutationFunction<UploadThumbnailMutation, UploadThumbnailMutationVariables>;
+	mutation UploadThumbnail($id: Int!, $file: Upload!, $type: UploadType!) {
+		uploadThumbnail(id: $id, file: $file, type: $type)
+	}
+`;
+export type UploadThumbnailMutationFn = Apollo.MutationFunction<
+	UploadThumbnailMutation,
+	UploadThumbnailMutationVariables
+>;
 
 /**
  * __useUploadThumbnailMutation__
@@ -4039,25 +4266,37 @@ export type UploadThumbnailMutationFn = Apollo.MutationFunction<UploadThumbnailM
  *   },
  * });
  */
-export function useUploadThumbnailMutation(baseOptions?: Apollo.MutationHookOptions<UploadThumbnailMutation, UploadThumbnailMutationVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useMutation<UploadThumbnailMutation, UploadThumbnailMutationVariables>(UploadThumbnailDocument, options);
+export function useUploadThumbnailMutation(
+	baseOptions?: Apollo.MutationHookOptions<UploadThumbnailMutation, UploadThumbnailMutationVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<UploadThumbnailMutation, UploadThumbnailMutationVariables>(
+		UploadThumbnailDocument,
+		options
+	);
 }
 
 export type UploadThumbnailMutationHookResult = ReturnType<typeof useUploadThumbnailMutation>;
 export type UploadThumbnailMutationResult = Apollo.MutationResult<UploadThumbnailMutation>;
-export type UploadThumbnailMutationOptions = Apollo.BaseMutationOptions<UploadThumbnailMutation, UploadThumbnailMutationVariables>;
+export type UploadThumbnailMutationOptions = Apollo.BaseMutationOptions<
+	UploadThumbnailMutation,
+	UploadThumbnailMutationVariables
+>;
 export const FollowersDocument = gql`
-    query Followers($where: FollowsWhereInput, $orderBy: [FollowsOrderByWithRelationInput!], $cursor: FollowsWhereUniqueInput) {
-  follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
-    following {
-      id
-      username
-      avatar
-    }
-  }
-}
-    `;
+	query Followers(
+		$where: FollowsWhereInput
+		$orderBy: [FollowsOrderByWithRelationInput!]
+		$cursor: FollowsWhereUniqueInput
+	) {
+		follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
+			following {
+				id
+				username
+				avatar
+			}
+		}
+	}
+`;
 
 /**
  * __useFollowersQuery__
@@ -4078,12 +4317,14 @@ export const FollowersDocument = gql`
  * });
  */
 export function useFollowersQuery(baseOptions?: Apollo.QueryHookOptions<FollowersQuery, FollowersQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<FollowersQuery, FollowersQueryVariables>(FollowersDocument, options);
 }
 
-export function useFollowersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FollowersQuery, FollowersQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useFollowersLazyQuery(
+	baseOptions?: Apollo.LazyQueryHookOptions<FollowersQuery, FollowersQueryVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<FollowersQuery, FollowersQueryVariables>(FollowersDocument, options);
 }
 
@@ -4091,16 +4332,20 @@ export type FollowersQueryHookResult = ReturnType<typeof useFollowersQuery>;
 export type FollowersLazyQueryHookResult = ReturnType<typeof useFollowersLazyQuery>;
 export type FollowersQueryResult = Apollo.QueryResult<FollowersQuery, FollowersQueryVariables>;
 export const FollowingDocument = gql`
-    query Following($where: FollowsWhereInput, $orderBy: [FollowsOrderByWithRelationInput!], $cursor: FollowsWhereUniqueInput) {
-  follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
-    follower {
-      id
-      username
-      avatar
-    }
-  }
-}
-    `;
+	query Following(
+		$where: FollowsWhereInput
+		$orderBy: [FollowsOrderByWithRelationInput!]
+		$cursor: FollowsWhereUniqueInput
+	) {
+		follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
+			follower {
+				id
+				username
+				avatar
+			}
+		}
+	}
+`;
 
 /**
  * __useFollowingQuery__
@@ -4121,12 +4366,14 @@ export const FollowingDocument = gql`
  * });
  */
 export function useFollowingQuery(baseOptions?: Apollo.QueryHookOptions<FollowingQuery, FollowingQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<FollowingQuery, FollowingQueryVariables>(FollowingDocument, options);
 }
 
-export function useFollowingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FollowingQuery, FollowingQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useFollowingLazyQuery(
+	baseOptions?: Apollo.LazyQueryHookOptions<FollowingQuery, FollowingQueryVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<FollowingQuery, FollowingQueryVariables>(FollowingDocument, options);
 }
 
@@ -4134,12 +4381,13 @@ export type FollowingQueryHookResult = ReturnType<typeof useFollowingQuery>;
 export type FollowingLazyQueryHookResult = ReturnType<typeof useFollowingLazyQuery>;
 export type FollowingQueryResult = Apollo.QueryResult<FollowingQuery, FollowingQueryVariables>;
 export const MeDocument = gql`
-    query Me {
-  me {
-    ...RegularUser
-  }
-}
-    ${RegularUserFragmentDoc}`;
+	query Me {
+		me {
+			...RegularUser
+		}
+	}
+	${RegularUserFragmentDoc}
+`;
 
 /**
  * __useMeQuery__
@@ -4157,12 +4405,12 @@ export const MeDocument = gql`
  * });
  */
 export function useMeQuery(baseOptions?: Apollo.QueryHookOptions<MeQuery, MeQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<MeQuery, MeQueryVariables>(MeDocument, options);
 }
 
 export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, options);
 }
 
@@ -4170,27 +4418,32 @@ export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
 export const MovieDocument = gql`
-    query Movie($movieId: Int!, $where: ActorInMovieWhereInput, $orderBy: [ActorInMovieOrderByWithRelationInput!], $cursor: ActorInMovieWhereUniqueInput) {
-  movie(movieId: $movieId) {
-    id
-    title
-    description
-    thumbnail
-    released
-    locked
-    actors(where: $where, orderBy: $orderBy, cursor: $cursor) {
-      role
-      person {
-        id
-        name
-        thumbnail
-      }
-    }
-    createdAt
-    updatedAt
-  }
-}
-    `;
+	query Movie(
+		$movieId: Int!
+		$where: ActorInMovieWhereInput
+		$orderBy: [ActorInMovieOrderByWithRelationInput!]
+		$cursor: ActorInMovieWhereUniqueInput
+	) {
+		movie(movieId: $movieId) {
+			id
+			title
+			description
+			thumbnail
+			released
+			locked
+			actors(where: $where, orderBy: $orderBy, cursor: $cursor) {
+				role
+				person {
+					id
+					name
+					thumbnail
+				}
+			}
+			createdAt
+			updatedAt
+		}
+	}
+`;
 
 /**
  * __useMovieQuery__
@@ -4212,12 +4465,12 @@ export const MovieDocument = gql`
  * });
  */
 export function useMovieQuery(baseOptions: Apollo.QueryHookOptions<MovieQuery, MovieQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<MovieQuery, MovieQueryVariables>(MovieDocument, options);
 }
 
 export function useMovieLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieQuery, MovieQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<MovieQuery, MovieQueryVariables>(MovieDocument, options);
 }
 
@@ -4225,16 +4478,16 @@ export type MovieQueryHookResult = ReturnType<typeof useMovieQuery>;
 export type MovieLazyQueryHookResult = ReturnType<typeof useMovieLazyQuery>;
 export type MovieQueryResult = Apollo.QueryResult<MovieQuery, MovieQueryVariables>;
 export const MoviesDocument = gql`
-    query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
-  movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
-    id
-    title
-    description
-    thumbnail
-    locked
-  }
-}
-    `;
+	query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
+		movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
+			id
+			title
+			description
+			thumbnail
+			locked
+		}
+	}
+`;
 
 /**
  * __useMoviesQuery__
@@ -4255,12 +4508,12 @@ export const MoviesDocument = gql`
  * });
  */
 export function useMoviesQuery(baseOptions?: Apollo.QueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
 }
 
 export function useMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
 }
 
@@ -4268,15 +4521,15 @@ export type MoviesQueryHookResult = ReturnType<typeof useMoviesQuery>;
 export type MoviesLazyQueryHookResult = ReturnType<typeof useMoviesLazyQuery>;
 export type MoviesQueryResult = Apollo.QueryResult<MoviesQuery, MoviesQueryVariables>;
 export const NotificationsDocument = gql`
-    query Notifications {
-  notifications {
-    id
-    message
-    read
-    createdAt
-  }
-}
-    `;
+	query Notifications {
+		notifications {
+			id
+			message
+			read
+			createdAt
+		}
+	}
+`;
 
 /**
  * __useNotificationsQuery__
@@ -4293,13 +4546,17 @@ export const NotificationsDocument = gql`
  *   },
  * });
  */
-export function useNotificationsQuery(baseOptions?: Apollo.QueryHookOptions<NotificationsQuery, NotificationsQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useNotificationsQuery(
+	baseOptions?: Apollo.QueryHookOptions<NotificationsQuery, NotificationsQueryVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<NotificationsQuery, NotificationsQueryVariables>(NotificationsDocument, options);
 }
 
-export function useNotificationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NotificationsQuery, NotificationsQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+export function useNotificationsLazyQuery(
+	baseOptions?: Apollo.LazyQueryHookOptions<NotificationsQuery, NotificationsQueryVariables>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<NotificationsQuery, NotificationsQueryVariables>(NotificationsDocument, options);
 }
 
@@ -4307,17 +4564,22 @@ export type NotificationsQueryHookResult = ReturnType<typeof useNotificationsQue
 export type NotificationsLazyQueryHookResult = ReturnType<typeof useNotificationsLazyQuery>;
 export type NotificationsQueryResult = Apollo.QueryResult<NotificationsQuery, NotificationsQueryVariables>;
 export const PeopleDocument = gql`
-    query People($where: PersonWhereInput, $orderBy: [PersonOrderByWithRelationInput!], $cursor: PersonWhereUniqueInput, $take: Int) {
-  people(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
-    id
-    career
-    name
-    thumbnail
-    createdAt
-    updatedAt
-  }
-}
-    `;
+	query People(
+		$where: PersonWhereInput
+		$orderBy: [PersonOrderByWithRelationInput!]
+		$cursor: PersonWhereUniqueInput
+		$take: Int
+	) {
+		people(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+			id
+			career
+			name
+			thumbnail
+			createdAt
+			updatedAt
+		}
+	}
+`;
 
 /**
  * __usePeopleQuery__
@@ -4339,12 +4601,12 @@ export const PeopleDocument = gql`
  * });
  */
 export function usePeopleQuery(baseOptions?: Apollo.QueryHookOptions<PeopleQuery, PeopleQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<PeopleQuery, PeopleQueryVariables>(PeopleDocument, options);
 }
 
 export function usePeopleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PeopleQuery, PeopleQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<PeopleQuery, PeopleQueryVariables>(PeopleDocument, options);
 }
 
@@ -4352,23 +4614,23 @@ export type PeopleQueryHookResult = ReturnType<typeof usePeopleQuery>;
 export type PeopleLazyQueryHookResult = ReturnType<typeof usePeopleLazyQuery>;
 export type PeopleQueryResult = Apollo.QueryResult<PeopleQuery, PeopleQueryVariables>;
 export const PersonDocument = gql`
-    query Person($where: PersonWhereUniqueInput!) {
-  person(where: $where) {
-    id
-    career
-    name
-    thumbnail
-    bio
-    age
-    _count {
-      movies
-      shows
-      books
-      songs
-    }
-  }
-}
-    `;
+	query Person($where: PersonWhereUniqueInput!) {
+		person(where: $where) {
+			id
+			career
+			name
+			thumbnail
+			bio
+			age
+			_count {
+				movies
+				shows
+				books
+				songs
+			}
+		}
+	}
+`;
 
 /**
  * __usePersonQuery__
@@ -4387,12 +4649,12 @@ export const PersonDocument = gql`
  * });
  */
 export function usePersonQuery(baseOptions: Apollo.QueryHookOptions<PersonQuery, PersonQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<PersonQuery, PersonQueryVariables>(PersonDocument, options);
 }
 
 export function usePersonLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PersonQuery, PersonQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<PersonQuery, PersonQueryVariables>(PersonDocument, options);
 }
 
@@ -4400,29 +4662,29 @@ export type PersonQueryHookResult = ReturnType<typeof usePersonQuery>;
 export type PersonLazyQueryHookResult = ReturnType<typeof usePersonLazyQuery>;
 export type PersonQueryResult = Apollo.QueryResult<PersonQuery, PersonQueryVariables>;
 export const UserDocument = gql`
-    query User($username: String!) {
-  user(username: $username) {
-    id
-    confirmed
-    email
-    username
-    displayname
-    role
-    avatar
-    bio
-    location
-    website
-    dob
-    isFollowing
-    createdAt
-    updatedAt
-    _count {
-      following
-      followers
-    }
-  }
-}
-    `;
+	query User($username: String!) {
+		user(username: $username) {
+			id
+			confirmed
+			email
+			username
+			displayname
+			role
+			avatar
+			bio
+			location
+			website
+			dob
+			isFollowing
+			createdAt
+			updatedAt
+			_count {
+				following
+				followers
+			}
+		}
+	}
+`;
 
 /**
  * __useUserQuery__
@@ -4441,12 +4703,12 @@ export const UserDocument = gql`
  * });
  */
 export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
 }
 
 export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
+	const options = { ...defaultOptions, ...baseOptions };
 	return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
 }
 
@@ -4454,16 +4716,16 @@ export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const NotificationListenerDocument = gql`
-    subscription NotificationListener($listenerId: Int!) {
-  notificationListener(listenerId: $listenerId) {
-    id
-    userId
-    message
-    read
-    createdAt
-  }
-}
-    `;
+	subscription NotificationListener($listenerId: Int!) {
+		notificationListener(listenerId: $listenerId) {
+			id
+			userId
+			message
+			read
+			createdAt
+		}
+	}
+`;
 
 /**
  * __useNotificationListenerSubscription__
@@ -4481,9 +4743,17 @@ export const NotificationListenerDocument = gql`
  *   },
  * });
  */
-export function useNotificationListenerSubscription(baseOptions: Apollo.SubscriptionHookOptions<NotificationListenerSubscription, NotificationListenerSubscriptionVariables>) {
-	const options = {...defaultOptions, ...baseOptions};
-	return Apollo.useSubscription<NotificationListenerSubscription, NotificationListenerSubscriptionVariables>(NotificationListenerDocument, options);
+export function useNotificationListenerSubscription(
+	baseOptions: Apollo.SubscriptionHookOptions<
+		NotificationListenerSubscription,
+		NotificationListenerSubscriptionVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useSubscription<NotificationListenerSubscription, NotificationListenerSubscriptionVariables>(
+		NotificationListenerDocument,
+		options
+	);
 }
 
 export type NotificationListenerSubscriptionHookResult = ReturnType<typeof useNotificationListenerSubscription>;

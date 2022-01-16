@@ -1,9 +1,9 @@
-import {Button} from '@components/Button';
-import {ErrorModal} from '@components/Form/ErrorModal';
-import {useRouter} from 'next/router';
-import React, {useState} from 'react';
-import {useConfirmMutation} from '../../generated/graphql';
-import {useVerifyLoggedIn} from './useVerifyLoggedIn';
+import { Button } from '@components/Button';
+import { ErrorModal } from '@components/Form/ErrorModal';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useConfirmMutation } from '../../generated/graphql';
+import { useVerifyLoggedIn } from './useVerifyLoggedIn';
 
 export const ConfirmationPage: React.FC = () => {
 	useVerifyLoggedIn();
@@ -11,7 +11,7 @@ export const ConfirmationPage: React.FC = () => {
 	const [confirm] = useConfirmMutation();
 
 	const router = useRouter();
-	const {token} = router.query;
+	const { token } = router.query;
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [modalError, setModalError] = useState('');

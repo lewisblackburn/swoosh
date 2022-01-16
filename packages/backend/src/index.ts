@@ -1,21 +1,21 @@
-import {ApolloServer} from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
 import 'dotenv-safe/config';
 import express from 'express';
 import session from 'express-session';
-import {fieldExtensionsEstimator, getComplexity, simpleEstimator} from 'graphql-query-complexity';
-import {graphqlUploadExpress} from 'graphql-upload';
+import { fieldExtensionsEstimator, getComplexity, simpleEstimator } from 'graphql-query-complexity';
+import { graphqlUploadExpress } from 'graphql-upload';
 import path from 'path';
 import 'reflect-metadata';
-import {COOKIE_NAME, __prod__} from './constants';
-import {prisma} from './db';
-import {Context} from './interfaces/context';
-import {redis} from './redis';
-import {createSchema} from './utils/createSchema';
-import {SubscriptionServer} from 'subscriptions-transport-ws';
-import {execute, subscribe} from 'graphql';
-import {createServer} from 'http';
+import { COOKIE_NAME, __prod__ } from './constants';
+import { prisma } from './db';
+import { Context } from './interfaces/context';
+import { redis } from './redis';
+import { createSchema } from './utils/createSchema';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { execute, subscribe } from 'graphql';
+import { createServer } from 'http';
 
 const PORT = parseInt(process.env.PORT ?? '4000');
 
@@ -56,25 +56,25 @@ const driver = async () => {
 		})
 	);
 
-	app.use(graphqlUploadExpress({maxFileSize: 10000000, maxFiles: 1}));
+	app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }));
 	app.use('/images', express.static(path.join(__dirname, '../images')));
 
 	const schema = await createSchema();
 	const apolloServer = new ApolloServer({
 		schema,
-		context: ({req, res}): Context => ({prisma, req, res, redis}),
+		context: ({ req, res }): Context => ({ prisma, req, res, redis }),
 		uploads: false,
 		introspection: !__prod__,
 		playground: !__prod__,
 		plugins: [
 			{
 				requestDidStart: () => ({
-					didResolveOperation({request, document}) {
+					didResolveOperation({ request, document }) {
 						const complexity = getComplexity({
 							schema,
 							query: document,
 							variables: request.variables,
-							estimators: [fieldExtensionsEstimator(), simpleEstimator({defaultComplexity: 1})],
+							estimators: [fieldExtensionsEstimator(), simpleEstimator({ defaultComplexity: 1 })],
 						});
 						const limit = 30;
 						if (complexity > limit) {
@@ -95,8 +95,8 @@ const driver = async () => {
 
 	// codesandbox.io/s/github/apollographql/docs-examples/tree/main/apollo-server/v3/subscriptions?fontsize=14&hidenavigation=1&initialpath=/graphql&theme=dark&file=/index.js:489-529
 	https: SubscriptionServer.create(
-		{schema, execute: execute, subscribe: subscribe},
-		{server: httpServer, path: apolloServer.graphqlPath}
+		{ schema, execute: execute, subscribe: subscribe },
+		{ server: httpServer, path: apolloServer.graphqlPath }
 	);
 
 	httpServer.listen(PORT, () => {

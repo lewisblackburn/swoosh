@@ -1,5 +1,5 @@
-import {GraphQLResolveInfo} from 'graphql';
-import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
+import { GraphQLResolveInfo } from 'graphql';
+import { Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
 import {
 	CreateShowArgs,
 	DeletePlatformOnShowArgs,
@@ -9,14 +9,14 @@ import {
 	Show,
 	UpdateShowArgs,
 } from '../../generated/type-graphql';
-import {Context} from '../../interfaces/context';
-import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import { Context } from '../../interfaces/context';
+import { ErrorInterceptor } from '../middleware/ErrorInterceptor';
 
 @Resolver(Show)
 export class ShowResolver {
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Show, {nullable: true})
+	@Mutation(() => Show, { nullable: true })
 	async createShow(@Ctx() ctx: Context, @Args() args: CreateShowArgs): Promise<Show | null> {
 		return ctx.prisma.show.create({
 			data: {
@@ -28,7 +28,7 @@ export class ShowResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Show, {nullable: true})
+	@Mutation(() => Show, { nullable: true })
 	async editShow(@Ctx() ctx: Context, @Args() args: UpdateShowArgs): Promise<Show | null> {
 		return ctx.prisma.show.update({
 			data: {
@@ -43,7 +43,7 @@ export class ShowResolver {
 
 	@Authorized(['ADMIN'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Show, {nullable: true})
+	@Mutation(() => Show, { nullable: true })
 	async lockShow(
 		@Ctx() ctx: Context,
 		@Arg('showId', () => Int) movieId: number,
@@ -61,7 +61,7 @@ export class ShowResolver {
 
 	@Authorized(['ADMIN'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Show, {nullable: true})
+	@Mutation(() => Show, { nullable: true })
 	async deleteShow(@Ctx() ctx: Context, @Args() args: DeleteShowArgs): Promise<Show | null> {
 		return ctx.prisma.movie.delete({
 			...args,
@@ -70,7 +70,7 @@ export class ShowResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Boolean, {nullable: true})
+	@Mutation(() => Boolean, { nullable: true })
 	async addActorToShow(
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
@@ -90,7 +90,7 @@ export class ShowResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => Show, {nullable: true})
+	@Mutation(() => Show, { nullable: true })
 	async removeActorFromShow(
 		@Ctx() ctx: Context,
 		@Arg('personId', () => Int) personId: number,
@@ -185,7 +185,7 @@ export class ShowResolver {
 		return Boolean(platform);
 	}
 
-	@Query(() => Show, {nullable: true})
+	@Query(() => Show, { nullable: true })
 	async show(@Arg('showId', () => Int) showId: number, @Ctx() ctx: Context): Promise<Show | null> {
 		return ctx.prisma.show.findUnique({
 			where: {
@@ -194,7 +194,7 @@ export class ShowResolver {
 		});
 	}
 
-	@Query(() => [Show], {nullable: true})
+	@Query(() => [Show], { nullable: true })
 	async shows(@Args() args: FindManyShowArgs, @Ctx() ctx: Context): Promise<Show[] | null> {
 		return ctx.prisma.show.findMany({
 			...args,

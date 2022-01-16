@@ -1,7 +1,7 @@
-import {Avatar} from '@components/Avatar';
-import {Button} from '@components/Button';
-import {Layout} from '@modules/layouts/Layout';
-import {MeDocument, useMeQuery, useUploadAvatarMutation} from 'generated/graphql';
+import { Avatar } from '@components/Avatar';
+import { Button } from '@components/Button';
+import { Layout } from '@modules/layouts/Layout';
+import { MeDocument, useMeQuery, useUploadAvatarMutation } from 'generated/graphql';
 import React from 'react';
 
 const AvatarUpload: React.FC = () => {
@@ -18,7 +18,7 @@ const AvatarUpload: React.FC = () => {
 	const handleChange = (event: any) => {
 		const fileUploaded = event.target.files[0];
 		upload({
-			variables: {file: fileUploaded},
+			variables: { file: fileUploaded },
 		}).catch(error => {
 			console.log(error.message);
 		});
@@ -36,7 +36,7 @@ const AvatarUpload: React.FC = () => {
 			<input
 				ref={hiddenFileInput}
 				type="file"
-				style={{display: 'none'}}
+				style={{ display: 'none' }}
 				onChange={e => {
 					handleChange(e);
 				}}
@@ -46,7 +46,7 @@ const AvatarUpload: React.FC = () => {
 };
 
 export const ProfilePage: React.FC = () => {
-	const {data} = useMeQuery();
+	const { data } = useMeQuery();
 
 	return (
 		<Layout>

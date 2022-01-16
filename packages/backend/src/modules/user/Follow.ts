@@ -1,9 +1,9 @@
-import {FindManyFollowsArgs, Follows, Notification, User} from '../../generated/type-graphql';
-import {Context} from '../../interfaces/context';
-import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, PubSub, Query, Resolver, UseMiddleware} from 'type-graphql';
-import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
-import {PubSubEngine} from 'apollo-server-express';
-import {GraphQLResolveInfo} from 'graphql';
+import { FindManyFollowsArgs, Follows, Notification, User } from '../../generated/type-graphql';
+import { Context } from '../../interfaces/context';
+import { Arg, Args, Authorized, Ctx, Info, Int, Mutation, PubSub, Query, Resolver, UseMiddleware } from 'type-graphql';
+import { ErrorInterceptor } from '../middleware/ErrorInterceptor';
+import { PubSubEngine } from 'apollo-server-express';
+import { GraphQLResolveInfo } from 'graphql';
 import {
 	transformFields,
 	getPrismaFromContext,
@@ -96,7 +96,7 @@ export class FollowResolver {
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: FindManyFollowsArgs
 	): Promise<Follows[]> {
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		return getPrismaFromContext(ctx).follows.findMany({
 			...args,
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),

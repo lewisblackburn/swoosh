@@ -1,11 +1,11 @@
-import {useApolloClient} from '@apollo/client';
-import {useLogoutMutation} from 'generated/graphql';
+import { useApolloClient } from '@apollo/client';
+import { useLogoutMutation } from 'generated/graphql';
 import React from 'react';
-import {AiOutlineLogout} from 'react-icons/ai';
-import {IconButton} from './IconButton';
+import { AiOutlineLogout } from 'react-icons/ai';
+import { IconButton } from './IconButton';
 
 export const LogoutButton: React.FC = () => {
-	const [logout, {loading}] = useLogoutMutation();
+	const [logout, { loading }] = useLogoutMutation();
 	const apolloClient = useApolloClient();
 
 	return (

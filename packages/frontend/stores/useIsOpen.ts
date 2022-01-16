@@ -9,7 +9,7 @@ type IsOpenStore = {
 
 export const useIsOpen = create<IsOpenStore>(set => ({
 	isOpen: false,
-	open: () => set(state => ({...state, isOpen: true})),
-	close: () => set(state => ({...state, isOpen: false})),
-	toggle: () => set(state => ({...state, isOpen: !state.isOpen})),
+	open: () => set(state => ({ ...state, isOpen: true })),
+	close: () => set(state => ({ ...state, isOpen: false })),
+	toggle: () => set(state => ({ ...state, isOpen: !state.isOpen })),
 }));

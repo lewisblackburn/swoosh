@@ -1,12 +1,12 @@
-import {Dialog, Transition} from '@headlessui/react';
-import React, {Fragment} from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import React, { Fragment } from 'react';
 
 export interface ModalProps {
 	isOpen: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Modal: React.FC<ModalProps> = ({isOpen = false, setIsOpen, children}) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen = false, setIsOpen, children }) => {
 	function closeModal() {
 		setIsOpen(false);
 	}

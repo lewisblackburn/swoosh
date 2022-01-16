@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import {Tab} from '@headlessui/react';
+import { Tab } from '@headlessui/react';
 import React from 'react';
-import {InternalLink} from '.';
-import {Thumbnail} from './Thumbnail';
+import { InternalLink } from '.';
+import { Thumbnail } from './Card/Thumbnail';
 
 interface TabsProps {
 	tabs: any;
@@ -12,7 +12,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export const Tabs: React.FC<TabsProps> = ({tabs}) => {
+export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
 	return (
 		<div className="grid place-items-center">
 			<Tab.Group>
@@ -20,7 +20,7 @@ export const Tabs: React.FC<TabsProps> = ({tabs}) => {
 					{Object.keys(tabs).map(tab => (
 						<Tab
 							key={tab}
-							className={({selected}) =>
+							className={({ selected }) =>
 								classNames(
 									'w-full py-2.5 px-6 text-sm leading-5 font-medium rounded-lg transition-all transform',
 									selected ? 'bg-white shadow' : 'text-black bg-gray-100 hover:bg-white/[0.12]'

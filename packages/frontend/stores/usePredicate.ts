@@ -7,5 +7,5 @@ type PredicateStore = {
 
 export const usePredicate = create<PredicateStore>(set => ({
 	predicate: '',
-	setPredicate: predicate => set({predicate}),
+	setPredicate: predicate => set({ predicate }),
 }));

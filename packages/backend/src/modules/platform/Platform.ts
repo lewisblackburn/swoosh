@@ -1,8 +1,8 @@
-import {CreatePlatformArgs, FindUniquePlatformArgs, Platform} from '../../generated/type-graphql';
-import {Context} from '../../interfaces/context';
-import {GraphQLResolveInfo} from 'graphql';
-import {Args, Authorized, Ctx, Info, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
-import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import { CreatePlatformArgs, FindUniquePlatformArgs, Platform } from '../../generated/type-graphql';
+import { Context } from '../../interfaces/context';
+import { GraphQLResolveInfo } from 'graphql';
+import { Args, Authorized, Ctx, Info, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
+import { ErrorInterceptor } from '../middleware/ErrorInterceptor';
 import graphqlFields from 'graphql-fields';
 import {
 	transformFields,
@@ -23,7 +23,7 @@ export class PlatformResolver {
 		@Args() args: FindUniquePlatformArgs
 	): Promise<Platform | null> {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		return ctx.prisma.platform.findUnique({
 			...args,
@@ -42,7 +42,7 @@ export class PlatformResolver {
 		@Args() args: FindUniquePlatformArgs
 	): Promise<Platform[]> {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		return ctx.prisma.platform.findMany({
 			...args,
@@ -61,7 +61,7 @@ export class PlatformResolver {
 		@Args() args: CreatePlatformArgs
 	): Promise<Platform> {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return getPrismaFromContext(ctx).platform.create({
 			...args,

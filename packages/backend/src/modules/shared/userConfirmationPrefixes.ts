@@ -1,4 +1,4 @@
 export enum UserConfirmationPrefixes {
-  confirmUser = "confirmUser",
-  forgotPassword = "forgotPassword",
+	confirmUser = 'confirmUser',
+	forgotPassword = 'forgotPassword',
 }

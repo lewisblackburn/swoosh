@@ -1,11 +1,11 @@
-import {Form, Formik, FormikHelpers} from 'formik';
-import {useRouter} from 'next/router';
-import React, {useState} from 'react';
-import {MeDocument, MeQuery, useLoginMutation, useRegisterMutation} from '../../generated/graphql';
-import {toErrorMap} from '../../lib/toErrorMap';
-import {Button} from '../Button';
-import {ErrorModal} from './ErrorModal';
-import {FormLayout} from './FormLayout';
+import { Form, Formik, FormikHelpers } from 'formik';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { MeDocument, MeQuery, useLoginMutation, useRegisterMutation } from '../../generated/graphql';
+import { toErrorMap } from '../../lib/toErrorMap';
+import { Button } from '../Button';
+import { ErrorModal } from './ErrorModal';
+import { FormLayout } from './FormLayout';
 import InputField from './InputField';
 
 interface Values {
@@ -32,13 +32,13 @@ export const RegisterForm: React.FC = () => {
 						email: '',
 						password: '',
 					}}
-					onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
+					onSubmit={async (values: Values, { setSubmitting }: FormikHelpers<Values>) => {
 						setSubmitting(true);
 						const response = await register({
 							variables: {
 								data: values,
 							},
-							update: (cache, {data}) => {
+							update: (cache, { data }) => {
 								cache.writeQuery<MeQuery>({
 									query: MeDocument,
 									data: {
@@ -46,7 +46,7 @@ export const RegisterForm: React.FC = () => {
 										me: data?.register,
 									},
 								});
-								cache.evict({fieldName: 'movies:{}'});
+								cache.evict({ fieldName: 'movies:{}' });
 							},
 						})
 							.then(async () => {
@@ -72,7 +72,7 @@ export const RegisterForm: React.FC = () => {
 						setSubmitting(false);
 					}}
 				>
-					{({isSubmitting}) => (
+					{({ isSubmitting }) => (
 						<Form className="w-1/2 bg-white">
 							<h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
 							<p className="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>

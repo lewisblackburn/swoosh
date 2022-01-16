@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import React from 'react';
-import {IconType} from 'react-icons';
-import {Icon} from './Icon';
+import { IconType } from 'react-icons';
+import { Icon } from './Icon';
 
 interface IconLinkProps {
 	icon: IconType;
 	href: string;
 }
 
-export const IconLink: React.FC<IconLinkProps> = ({icon, href}) => {
-	const {pathname} = useRouter();
+export const IconLink: React.FC<IconLinkProps> = ({ icon, href }) => {
+	const { pathname } = useRouter();
 	const active = pathname === href;
 
 	return (

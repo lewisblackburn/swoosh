@@ -1,14 +1,14 @@
-import React, {Fragment, ReactElement} from 'react';
-import {Menu, Transition} from '@headlessui/react';
-import {IconType} from 'react-icons';
+import React, { Fragment, ReactElement } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { IconType } from 'react-icons';
 
 interface DropdownProps {
 	title: ReactElement | IconType;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({title, children}) => {
+export const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 	return (
-		<Menu as="div" className="relative inline-block text-left text-sm" style={{zIndex: 1}}>
+		<Menu as="div" className="relative inline-block text-left text-sm" style={{ zIndex: 1 }}>
 			<div>
 				<Menu.Button>{title}</Menu.Button>
 			</div>

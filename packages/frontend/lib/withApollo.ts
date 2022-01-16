@@ -1,8 +1,8 @@
-import {ApolloClient, InMemoryCache} from '@apollo/client';
-import {createUploadLink} from 'apollo-upload-client';
-import {NextPageContext} from 'next';
-import {withApollo} from 'next-apollo';
-import {apiBaseUrl} from './constants';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
+import { NextPageContext } from 'next';
+import { withApollo } from 'next-apollo';
+import { apiBaseUrl } from './constants';
 
 const createClient = (ctx?: NextPageContext) =>
 	new ApolloClient({

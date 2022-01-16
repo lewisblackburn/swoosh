@@ -1,4 +1,4 @@
-import {ProfilePage} from '@modules/preferences/ProfilePage';
+import { ProfilePage } from '@modules/preferences/ProfilePage';
 import withApollo from 'lib/withApollo';
 
-export default withApollo({ssr: false})(ProfilePage);
+export default withApollo({ ssr: false })(ProfilePage);

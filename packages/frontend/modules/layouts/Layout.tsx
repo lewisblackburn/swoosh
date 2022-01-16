@@ -1,5 +1,5 @@
-import {Sidebar} from '@components/Sidebar';
-import {motion} from 'framer-motion';
+import { Sidebar } from '@components/Sidebar';
+import { motion } from 'framer-motion';
 import React from 'react';
 
 const pageVariants = {
@@ -22,13 +22,13 @@ const pageTransition = {
 	duration: 0.4,
 };
 
-export const Layout: React.FC = ({children}) => {
+export const Layout: React.FC = ({ children }) => {
 	return (
 		<div className="relative">
-			<div className="fixed min-h-screen inset-0" style={{width: 100}}>
+			<div className="fixed min-h-screen inset-0" style={{ width: 100 }}>
 				<Sidebar />
 			</div>
-			<div className="p-5 min-h-screen" style={{marginLeft: 100}}>
+			<div className="p-5 min-h-screen" style={{ marginLeft: 100 }}>
 				<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
 					{children}
 				</motion.div>

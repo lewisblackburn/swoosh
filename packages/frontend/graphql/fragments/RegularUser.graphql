@@ -1,6 +1,6 @@
 fragment RegularUser on User {
-  id
-  email
-  username
-  avatar
+	id
+	email
+	username
+	avatar
 }

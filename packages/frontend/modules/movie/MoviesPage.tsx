@@ -1,16 +1,16 @@
-import {Card} from '@components/Card/Card';
-import {IconCard} from '@components/Card/IconCard';
-import {InternalLink} from '@components/InternalLink';
-import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
-import {Layout} from '@modules/layouts/Layout';
-import {SortOrder, useMoviesQuery} from 'generated/graphql';
+import { Card } from '@components/Card/Card';
+import { IconCard } from '@components/Card/IconCard';
+import { InternalLink } from '@components/InternalLink';
+import { useVerifyLoggedIn } from '@modules/auth/useVerifyLoggedIn';
+import { Layout } from '@modules/layouts/Layout';
+import { SortOrder, useMoviesQuery } from 'generated/graphql';
 import React from 'react';
-import {AiOutlinePlus} from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 export const MoviesPage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const {data} = useMoviesQuery({
+	const { data } = useMoviesQuery({
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,

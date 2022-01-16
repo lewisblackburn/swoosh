@@ -1,10 +1,10 @@
-import {Button} from '@components/Button';
-import {Modal} from '@components/Modal';
-import {Dialog} from '@headlessui/react';
+import { Button } from '@components/Button';
+import { Modal } from '@components/Modal';
+import { Dialog } from '@headlessui/react';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
-import React, {useEffect, useState} from 'react';
-import {Avatar} from '../../components/Avatar';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { Avatar } from '../../components/Avatar';
 import {
 	FollowersDocument,
 	FollowingDocument,
@@ -16,7 +16,7 @@ import {
 	useUnfollowMutation,
 	useUserQuery,
 } from '../../generated/graphql';
-import {Layout} from '../layouts/Layout';
+import { Layout } from '../layouts/Layout';
 
 interface FollowsModalProps {
 	isOpen: boolean;
@@ -25,8 +25,8 @@ interface FollowsModalProps {
 	username: string;
 }
 
-const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, username}) => {
-	const {data: followers} = useFollowersQuery({
+const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, username }) => {
+	const { data: followers } = useFollowersQuery({
 		variables: {
 			where: {
 				follower: {
@@ -39,7 +39,7 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 			},
 		},
 	});
-	const {data: following} = useFollowingQuery({
+	const { data: following } = useFollowingQuery({
 		variables: {
 			where: {
 				following: {
@@ -103,21 +103,21 @@ const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, use
 
 export const UserPage: React.FC = () => {
 	const router = useRouter();
-	const {username} = router.query;
+	const { username } = router.query;
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [type, setType] = useState<'Followers' | 'Following'>();
 
-	const {data: me} = useMeQuery();
-	const {data} = useUserQuery({
+	const { data: me } = useMeQuery();
+	const { data } = useUserQuery({
 		variables: {
 			username: username!.toString(),
 		},
 	});
-	const [follow, {loading: following}] = useFollowMutation({
+	const [follow, { loading: following }] = useFollowMutation({
 		refetchQueries: [UserDocument, FollowingDocument, FollowersDocument],
 	});
-	const [unfollow, {loading: unfollowing}] = useUnfollowMutation({
+	const [unfollow, { loading: unfollowing }] = useUnfollowMutation({
 		refetchQueries: [UserDocument, FollowingDocument, FollowersDocument],
 	});
 
@@ -134,7 +134,10 @@ export const UserPage: React.FC = () => {
 									<span>{data.user.displayname}</span>
 									<span>
 										Member since{' '}
-										{new Date(data.user.createdAt).toLocaleDateString('en-gb', {year: 'numeric', month: 'long'})}
+										{new Date(data.user.createdAt).toLocaleDateString('en-gb', {
+											year: 'numeric',
+											month: 'long',
+										})}
 									</span>
 								</div>
 							</div>

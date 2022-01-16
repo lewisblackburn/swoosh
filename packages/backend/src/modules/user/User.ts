@@ -3,11 +3,11 @@ import {
 	transformCountFieldIntoSelectRelationsCount,
 	transformFields,
 } from '../../generated/type-graphql/helpers';
-import {GraphQLResolveInfo} from 'graphql';
+import { GraphQLResolveInfo } from 'graphql';
 import graphqlFields from 'graphql-fields';
-import {Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root} from 'type-graphql';
-import {FindManyUserArgs, UpsertBookArgs, User} from '../../generated/type-graphql';
-import {Context} from '../../interfaces/context';
+import { Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root } from 'type-graphql';
+import { FindManyUserArgs, UpsertBookArgs, User } from '../../generated/type-graphql';
+import { Context } from '../../interfaces/context';
 
 @Resolver(User)
 export class UserResolver {
@@ -41,9 +41,9 @@ export class UserResolver {
 		@Info() info: GraphQLResolveInfo,
 		@Arg('username', () => String) username: String
 	): Promise<User | null> {
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		return getPrismaFromContext(ctx).user.findUnique({
-			where: {username},
+			where: { username },
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 	}
@@ -52,7 +52,7 @@ export class UserResolver {
 		nullable: false,
 	})
 	async users(@Ctx() ctx: Context, @Info() info: GraphQLResolveInfo, @Args() args: FindManyUserArgs): Promise<User[]> {
-		const {_count} = transformFields(graphqlFields(info as any));
+		const { _count } = transformFields(graphqlFields(info as any));
 		return ctx.prisma.user.findMany({
 			...args,
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
