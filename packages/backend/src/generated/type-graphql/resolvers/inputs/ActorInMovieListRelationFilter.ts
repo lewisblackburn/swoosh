@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieWhereInput } from "../inputs/ActorInMovieWhereInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInMovieListRelationFilter", {
   isAbstract: true
 })
 export class ActorInMovieListRelationFilter {

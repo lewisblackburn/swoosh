@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NotificationWhereInput } from "../inputs/NotificationWhereInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationListRelationFilter", {
   isAbstract: true
 })
 export class NotificationListRelationFilter {

@@ -1,19 +1,19 @@
-import { useMovieQuery, usePersonQuery } from 'generated/graphql';
-import { useRouter } from 'next/router';
-import React, { Fragment, useState } from 'react';
-import { useVerifyLoggedIn } from '../auth/useVerifyLoggedIn';
-import { Layout } from '../layouts/Layout';
+import {usePersonQuery} from 'generated/graphql';
+import {useRouter} from 'next/router';
+import React, {useState} from 'react';
+import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
+import {Layout} from '../layouts/Layout';
 
 export const PersonPage: React.FC = () => {
 	useVerifyLoggedIn();
 
 	const router = useRouter();
-	const { id: personId } = router.query;
+	const {id: personId} = router.query;
 
-	const { data } = usePersonQuery({
+	const {data} = usePersonQuery({
 		variables: {
 			where: {
-				id: parseInt(personId!.toString()),
+				id: parseInt(personId?.toString(), 10),
 			},
 		},
 	});

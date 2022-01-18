@@ -7,7 +7,7 @@ import { Show } from "../models/Show";
 import { User } from "../models/User";
 import { WatchlistCount } from "../resolvers/outputs/WatchlistCount";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Watchlist", {
   isAbstract: true
 })
 export class Watchlist {
@@ -26,6 +26,11 @@ export class Watchlist {
   movies?: Movie[];
 
   shows?: Show[];
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => WatchlistCount, {
     nullable: true

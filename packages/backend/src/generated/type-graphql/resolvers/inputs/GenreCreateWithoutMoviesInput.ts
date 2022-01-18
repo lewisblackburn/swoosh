@@ -6,7 +6,7 @@ import { BookCreateNestedManyWithoutGenresInput } from "../inputs/BookCreateNest
 import { ShowCreateNestedManyWithoutGenresInput } from "../inputs/ShowCreateNestedManyWithoutGenresInput";
 import { SongCreateNestedManyWithoutGenresInput } from "../inputs/SongCreateNestedManyWithoutGenresInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreCreateWithoutMoviesInput", {
   isAbstract: true
 })
 export class GenreCreateWithoutMoviesInput {

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { PersonCreateWithoutMoviesInput } from "../inputs/PersonCreateWithoutMoviesInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonCreateOrConnectWithoutMoviesInput", {
   isAbstract: true
 })
 export class PersonCreateOrConnectWithoutMoviesInput {

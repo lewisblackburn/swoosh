@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { GenreCreateWithoutBooksInput } from "../inputs/GenreCreateWithoutBooksInput";
 import { GenreWhereUniqueInput } from "../inputs/GenreWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreCreateOrConnectWithoutBooksInput", {
   isAbstract: true
 })
 export class GenreCreateOrConnectWithoutBooksInput {

@@ -8,7 +8,7 @@ import { BookMaxAggregate } from "../outputs/BookMaxAggregate";
 import { BookMinAggregate } from "../outputs/BookMinAggregate";
 import { BookSumAggregate } from "../outputs/BookSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("BookGroupBy", {
   isAbstract: true
 })
 export class BookGroupBy {

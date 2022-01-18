@@ -11,6 +11,7 @@ export enum MovieScalarFieldEnum {
   runtime = "runtime",
   revenue = "revenue",
   trailer = "trailer",
+  rating = "rating",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

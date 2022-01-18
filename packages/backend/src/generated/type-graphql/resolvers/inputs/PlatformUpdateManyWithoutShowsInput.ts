@@ -10,7 +10,7 @@ import { PlatformUpdateWithWhereUniqueWithoutShowsInput } from "../inputs/Platfo
 import { PlatformUpsertWithWhereUniqueWithoutShowsInput } from "../inputs/PlatformUpsertWithWhereUniqueWithoutShowsInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpdateManyWithoutShowsInput", {
   isAbstract: true
 })
 export class PlatformUpdateManyWithoutShowsInput {
@@ -32,11 +32,6 @@ export class PlatformUpdateManyWithoutShowsInput {
   @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
     nullable: true
   })
-  connect?: PlatformWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
-    nullable: true
-  })
   set?: PlatformWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class PlatformUpdateManyWithoutShowsInput {
     nullable: true
   })
   delete?: PlatformWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: PlatformWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PlatformUpdateWithWhereUniqueWithoutShowsInput], {
     nullable: true

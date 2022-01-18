@@ -6,7 +6,7 @@ import { FollowsCreateWithoutFollowerInput } from "../inputs/FollowsCreateWithou
 import { FollowsUpdateWithoutFollowerInput } from "../inputs/FollowsUpdateWithoutFollowerInput";
 import { FollowsWhereUniqueInput } from "../inputs/FollowsWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsUpsertWithWhereUniqueWithoutFollowerInput", {
   isAbstract: true
 })
 export class FollowsUpsertWithWhereUniqueWithoutFollowerInput {

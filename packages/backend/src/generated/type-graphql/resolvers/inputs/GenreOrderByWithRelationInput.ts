@@ -8,7 +8,7 @@ import { ShowOrderByRelationAggregateInput } from "../inputs/ShowOrderByRelation
 import { SongOrderByRelationAggregateInput } from "../inputs/SongOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreOrderByWithRelationInput", {
   isAbstract: true
 })
 export class GenreOrderByWithRelationInput {

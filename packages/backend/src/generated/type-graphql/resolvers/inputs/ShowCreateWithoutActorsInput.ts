@@ -2,15 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { FavouriteCreateNestedManyWithoutShowsInput } from "../inputs/FavouriteCreateNestedManyWithoutShowsInput";
 import { GenreCreateNestedManyWithoutShowsInput } from "../inputs/GenreCreateNestedManyWithoutShowsInput";
 import { PlatformCreateNestedManyWithoutShowsInput } from "../inputs/PlatformCreateNestedManyWithoutShowsInput";
-import { RatingCreateNestedManyWithoutShowsInput } from "../inputs/RatingCreateNestedManyWithoutShowsInput";
-import { ReviewCreateNestedManyWithoutShowInput } from "../inputs/ReviewCreateNestedManyWithoutShowInput";
 import { SongInShowCreateNestedManyWithoutShowInput } from "../inputs/SongInShowCreateNestedManyWithoutShowInput";
 import { WatchlistCreateNestedManyWithoutShowsInput } from "../inputs/WatchlistCreateNestedManyWithoutShowsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateWithoutActorsInput", {
   isAbstract: true
 })
 export class ShowCreateWithoutActorsInput {
@@ -49,11 +46,6 @@ export class ShowCreateWithoutActorsInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => RatingCreateNestedManyWithoutShowsInput, {
-    nullable: true
-  })
-  rating?: RatingCreateNestedManyWithoutShowsInput | undefined;
-
   @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutShowsInput, {
     nullable: true
   })
@@ -69,18 +61,8 @@ export class ShowCreateWithoutActorsInput {
   })
   soundtrack?: SongInShowCreateNestedManyWithoutShowInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutShowsInput, {
-    nullable: true
-  })
-  favourite?: FavouriteCreateNestedManyWithoutShowsInput | undefined;
-
   @TypeGraphQL.Field(_type => WatchlistCreateNestedManyWithoutShowsInput, {
     nullable: true
   })
   watchlist?: WatchlistCreateNestedManyWithoutShowsInput | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutShowInput, {
-    nullable: true
-  })
-  reviews?: ReviewCreateNestedManyWithoutShowInput | undefined;
 }

@@ -6,7 +6,7 @@ import { GenreCreateOrConnectWithoutBooksInput } from "../inputs/GenreCreateOrCo
 import { GenreCreateWithoutBooksInput } from "../inputs/GenreCreateWithoutBooksInput";
 import { GenreWhereUniqueInput } from "../inputs/GenreWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreCreateNestedManyWithoutBooksInput", {
   isAbstract: true
 })
 export class GenreCreateNestedManyWithoutBooksInput {

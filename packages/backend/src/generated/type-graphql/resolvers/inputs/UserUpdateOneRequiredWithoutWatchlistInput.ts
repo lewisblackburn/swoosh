@@ -8,7 +8,7 @@ import { UserUpdateWithoutWatchlistInput } from "../inputs/UserUpdateWithoutWatc
 import { UserUpsertWithoutWatchlistInput } from "../inputs/UserUpsertWithoutWatchlistInput";
 import { UserWhereUniqueInput } from "../inputs/UserWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserUpdateOneRequiredWithoutWatchlistInput", {
   isAbstract: true
 })
 export class UserUpdateOneRequiredWithoutWatchlistInput {

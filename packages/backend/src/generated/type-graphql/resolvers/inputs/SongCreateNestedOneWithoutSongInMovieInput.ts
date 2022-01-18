@@ -6,7 +6,7 @@ import { SongCreateOrConnectWithoutSongInMovieInput } from "../inputs/SongCreate
 import { SongCreateWithoutSongInMovieInput } from "../inputs/SongCreateWithoutSongInMovieInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongCreateNestedOneWithoutSongInMovieInput", {
   isAbstract: true
 })
 export class SongCreateNestedOneWithoutSongInMovieInput {

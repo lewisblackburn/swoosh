@@ -8,7 +8,7 @@ import { UserUpdateWithoutFollowersInput } from "../inputs/UserUpdateWithoutFoll
 import { UserUpsertWithoutFollowersInput } from "../inputs/UserUpsertWithoutFollowersInput";
 import { UserWhereUniqueInput } from "../inputs/UserWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserUpdateOneRequiredWithoutFollowersInput", {
   isAbstract: true
 })
 export class UserUpdateOneRequiredWithoutFollowersInput {

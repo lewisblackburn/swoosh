@@ -11,7 +11,7 @@ import { FollowsUpdateWithWhereUniqueWithoutFollowerInput } from "../inputs/Foll
 import { FollowsUpsertWithWhereUniqueWithoutFollowerInput } from "../inputs/FollowsUpsertWithWhereUniqueWithoutFollowerInput";
 import { FollowsWhereUniqueInput } from "../inputs/FollowsWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsUpdateManyWithoutFollowerInput", {
   isAbstract: true
 })
 export class FollowsUpdateManyWithoutFollowerInput {
@@ -38,11 +38,6 @@ export class FollowsUpdateManyWithoutFollowerInput {
   @TypeGraphQL.Field(_type => [FollowsWhereUniqueInput], {
     nullable: true
   })
-  connect?: FollowsWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [FollowsWhereUniqueInput], {
-    nullable: true
-  })
   set?: FollowsWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [FollowsWhereUniqueInput], {
@@ -54,6 +49,11 @@ export class FollowsUpdateManyWithoutFollowerInput {
     nullable: true
   })
   delete?: FollowsWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [FollowsWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: FollowsWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [FollowsUpdateWithWhereUniqueWithoutFollowerInput], {
     nullable: true

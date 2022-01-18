@@ -1,16 +1,15 @@
 import * as TypeGraphQL from "type-graphql";
-import { Favourite } from "../../../models/Favourite";
 import { Follows } from "../../../models/Follows";
+import { MovieReview } from "../../../models/MovieReview";
+import { MovieReviewLike } from "../../../models/MovieReviewLike";
 import { Notification } from "../../../models/Notification";
-import { Review } from "../../../models/Review";
 import { User } from "../../../models/User";
-import { Vote } from "../../../models/Vote";
 import { Watchlist } from "../../../models/Watchlist";
 import { UserFollowersArgs } from "./args/UserFollowersArgs";
 import { UserFollowingArgs } from "./args/UserFollowingArgs";
+import { UserLikedMovieReviewsArgs } from "./args/UserLikedMovieReviewsArgs";
+import { UserMovieReviewsArgs } from "./args/UserMovieReviewsArgs";
 import { UserNotificationsArgs } from "./args/UserNotificationsArgs";
-import { UserReviewsArgs } from "./args/UserReviewsArgs";
-import { UserVoteArgs } from "./args/UserVoteArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => User)
@@ -59,36 +58,25 @@ export class UserRelationsResolver {
     }).watchlist({});
   }
 
-  @TypeGraphQL.FieldResolver(_type => Favourite, {
-    nullable: true
-  })
-  async favourites(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any): Promise<Favourite | null> {
-    return getPrismaFromContext(ctx).user.findUnique({
-      where: {
-        id: user.id,
-      },
-    }).favourites({});
-  }
-
-  @TypeGraphQL.FieldResolver(_type => [Review], {
+  @TypeGraphQL.FieldResolver(_type => [MovieReview], {
     nullable: false
   })
-  async reviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserReviewsArgs): Promise<Review[]> {
+  async movieReviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserMovieReviewsArgs): Promise<MovieReview[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         id: user.id,
       },
-    }).reviews(args);
+    }).movieReviews(args);
   }
 
-  @TypeGraphQL.FieldResolver(_type => [Vote], {
+  @TypeGraphQL.FieldResolver(_type => [MovieReviewLike], {
     nullable: false
   })
-  async Vote(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserVoteArgs): Promise<Vote[]> {
+  async likedMovieReviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserLikedMovieReviewsArgs): Promise<MovieReviewLike[]> {
     return getPrismaFromContext(ctx).user.findUnique({
       where: {
         id: user.id,
       },
-    }).Vote(args);
+    }).likedMovieReviews(args);
   }
 }

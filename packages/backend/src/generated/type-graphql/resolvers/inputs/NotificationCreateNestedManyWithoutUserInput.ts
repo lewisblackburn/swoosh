@@ -7,7 +7,7 @@ import { NotificationCreateOrConnectWithoutUserInput } from "../inputs/Notificat
 import { NotificationCreateWithoutUserInput } from "../inputs/NotificationCreateWithoutUserInput";
 import { NotificationWhereUniqueInput } from "../inputs/NotificationWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationCreateNestedManyWithoutUserInput", {
   isAbstract: true
 })
 export class NotificationCreateNestedManyWithoutUserInput {

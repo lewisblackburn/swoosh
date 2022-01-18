@@ -12,8 +12,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
-	return (
+export const Tabs: React.FC<TabsProps> = ({ tabs }) => (
 		<div className="grid place-items-center">
 			<Tab.Group>
 				<Tab.List className="flex max-w-md p-1 space-x-1 bg-gray-100 rounded-xl">
@@ -52,4 +51,3 @@ export const Tabs: React.FC<TabsProps> = ({ tabs }) => {
 			</Tab.Group>
 		</div>
 	);
-};

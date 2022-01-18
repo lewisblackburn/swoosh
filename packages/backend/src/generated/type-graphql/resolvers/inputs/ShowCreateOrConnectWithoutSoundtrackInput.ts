@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateWithoutSoundtrackInput } from "../inputs/ShowCreateWithoutSoundtrackInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateOrConnectWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class ShowCreateOrConnectWithoutSoundtrackInput {

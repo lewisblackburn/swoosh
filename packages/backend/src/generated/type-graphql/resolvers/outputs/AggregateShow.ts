@@ -8,7 +8,7 @@ import { ShowMaxAggregate } from "../outputs/ShowMaxAggregate";
 import { ShowMinAggregate } from "../outputs/ShowMinAggregate";
 import { ShowSumAggregate } from "../outputs/ShowSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateShow", {
   isAbstract: true
 })
 export class AggregateShow {

@@ -8,7 +8,7 @@ import { PlatformMaxAggregate } from "../outputs/PlatformMaxAggregate";
 import { PlatformMinAggregate } from "../outputs/PlatformMinAggregate";
 import { PlatformSumAggregate } from "../outputs/PlatformSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregatePlatform", {
   isAbstract: true
 })
 export class AggregatePlatform {

@@ -8,7 +8,7 @@ import { PersonUpdateWithoutShowsInput } from "../inputs/PersonUpdateWithoutShow
 import { PersonUpsertWithoutShowsInput } from "../inputs/PersonUpsertWithoutShowsInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpdateOneRequiredWithoutShowsInput", {
   isAbstract: true
 })
 export class PersonUpdateOneRequiredWithoutShowsInput {

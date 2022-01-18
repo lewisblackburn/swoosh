@@ -10,7 +10,7 @@ import { PersonUpdateWithWhereUniqueWithoutBooksInput } from "../inputs/PersonUp
 import { PersonUpsertWithWhereUniqueWithoutBooksInput } from "../inputs/PersonUpsertWithWhereUniqueWithoutBooksInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpdateManyWithoutBooksInput", {
   isAbstract: true
 })
 export class PersonUpdateManyWithoutBooksInput {
@@ -32,11 +32,6 @@ export class PersonUpdateManyWithoutBooksInput {
   @TypeGraphQL.Field(_type => [PersonWhereUniqueInput], {
     nullable: true
   })
-  connect?: PersonWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [PersonWhereUniqueInput], {
-    nullable: true
-  })
   set?: PersonWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PersonWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class PersonUpdateManyWithoutBooksInput {
     nullable: true
   })
   delete?: PersonWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [PersonWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: PersonWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PersonUpdateWithWhereUniqueWithoutBooksInput], {
     nullable: true

@@ -6,7 +6,7 @@ import { MovieCreateOrConnectWithoutPlatformsInput } from "../inputs/MovieCreate
 import { MovieCreateWithoutPlatformsInput } from "../inputs/MovieCreateWithoutPlatformsInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieCreateNestedManyWithoutPlatformsInput", {
   isAbstract: true
 })
 export class MovieCreateNestedManyWithoutPlatformsInput {

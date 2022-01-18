@@ -2,13 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { FavouriteOrderByRelationAggregateInput } from "../inputs/FavouriteOrderByRelationAggregateInput";
 import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
 import { PersonOrderByRelationAggregateInput } from "../inputs/PersonOrderByRelationAggregateInput";
-import { ReviewOrderByRelationAggregateInput } from "../inputs/ReviewOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookOrderByWithRelationInput", {
   isAbstract: true
 })
 export class BookOrderByWithRelationInput {
@@ -47,20 +45,10 @@ export class BookOrderByWithRelationInput {
   })
   authors?: PersonOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  favourites?: FavouriteOrderByRelationAggregateInput | undefined;
-
   @TypeGraphQL.Field(_type => GenreOrderByRelationAggregateInput, {
     nullable: true
   })
   genres?: GenreOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  reviews?: ReviewOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

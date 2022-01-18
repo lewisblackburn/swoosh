@@ -1,11 +1,11 @@
+import { GraphQLResolveInfo } from 'graphql';
+import graphqlFields from 'graphql-fields';
+import { Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root } from 'type-graphql';
 import {
 	getPrismaFromContext,
 	transformCountFieldIntoSelectRelationsCount,
 	transformFields,
 } from '../../generated/type-graphql/helpers';
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import { Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root } from 'type-graphql';
 import { FindManyUserArgs, UpsertBookArgs, User } from '../../generated/type-graphql';
 import { Context } from '../../interfaces/context';
 

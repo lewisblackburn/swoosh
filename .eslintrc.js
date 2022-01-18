@@ -1,20 +1,10 @@
 module.exports = {
-	root: true,
 	env: {
 		browser: true,
 		es2021: true,
 		node: true,
 	},
-	extends: [
-		'plugin:react/recommended',
-		'prettier',
-		'xo',
-		'xo-typescript',
-		'xo-react',
-		'eslint:recommended',
-		'plugin:@typescript-eslint/eslint-recommended',
-		'plugin:@typescript-eslint/recommended',
-	],
+	extends: ['plugin:react/recommended', 'xo', 'xo-typescript', 'xo-react'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaFeatures: {
@@ -24,16 +14,15 @@ module.exports = {
 		sourceType: 'module',
 		project: 'tsconfig.json',
 	},
-	plugins: ['react', 'prettier', '@typescript-eslint'],
+	plugins: ['react', '@typescript-eslint'],
 	rules: {
-		'no-console': 1, // Means warning
-		'prettier/prettier': 1, // Means warning
 		'new-cap': 'off',
 		curly: 'off',
-		// https://github.com/typescript-eslint/typescript-eslint/blob/v4.33.0/packages/eslint-plugin/docs/rules/indent.md
+		quotes: ['error', 'single', 'avoid-escape'],
 		indent: 'off',
-		'@typescript-eslint/indent': ['error'],
+		'@typescript-eslint/indent': 'off',
 		'@typescript-eslint/comma-dangle': 'off',
+		'@typescript-eslint/no-unsafe-argument': 'off',
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',
 		'react/jsx-tag-spacing': 'off',

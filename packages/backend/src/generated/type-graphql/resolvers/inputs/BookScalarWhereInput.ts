@@ -8,7 +8,7 @@ import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookScalarWhereInput", {
   isAbstract: true
 })
 export class BookScalarWhereInput {

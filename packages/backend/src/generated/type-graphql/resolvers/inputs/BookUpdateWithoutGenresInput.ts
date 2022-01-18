@@ -4,13 +4,11 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { FavouriteUpdateManyWithoutBooksInput } from "../inputs/FavouriteUpdateManyWithoutBooksInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { PersonUpdateManyWithoutBooksInput } from "../inputs/PersonUpdateManyWithoutBooksInput";
-import { ReviewUpdateManyWithoutBookInput } from "../inputs/ReviewUpdateManyWithoutBookInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookUpdateWithoutGenresInput", {
   isAbstract: true
 })
 export class BookUpdateWithoutGenresInput {
@@ -53,14 +51,4 @@ export class BookUpdateWithoutGenresInput {
     nullable: true
   })
   authors?: PersonUpdateManyWithoutBooksInput | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutBooksInput, {
-    nullable: true
-  })
-  favourites?: FavouriteUpdateManyWithoutBooksInput | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutBookInput, {
-    nullable: true
-  })
-  reviews?: ReviewUpdateManyWithoutBookInput | undefined;
 }

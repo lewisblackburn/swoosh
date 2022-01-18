@@ -6,7 +6,7 @@ import { PlatformCreateWithoutShowsInput } from "../inputs/PlatformCreateWithout
 import { PlatformUpdateWithoutShowsInput } from "../inputs/PlatformUpdateWithoutShowsInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpsertWithWhereUniqueWithoutShowsInput", {
   isAbstract: true
 })
 export class PlatformUpsertWithWhereUniqueWithoutShowsInput {

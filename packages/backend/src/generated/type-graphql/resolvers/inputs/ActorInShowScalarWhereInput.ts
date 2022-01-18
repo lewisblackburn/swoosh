@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowScalarWhereInput", {
   isAbstract: true
 })
 export class ActorInShowScalarWhereInput {

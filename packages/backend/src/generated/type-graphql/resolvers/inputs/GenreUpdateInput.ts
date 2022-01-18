@@ -8,7 +8,7 @@ import { ShowUpdateManyWithoutGenresInput } from "../inputs/ShowUpdateManyWithou
 import { SongUpdateManyWithoutGenresInput } from "../inputs/SongUpdateManyWithoutGenresInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreUpdateInput", {
   isAbstract: true
 })
 export class GenreUpdateInput {

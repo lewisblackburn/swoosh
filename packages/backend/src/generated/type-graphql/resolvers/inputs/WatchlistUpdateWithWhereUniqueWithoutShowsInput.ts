@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { WatchlistUpdateWithoutShowsInput } from "../inputs/WatchlistUpdateWithoutShowsInput";
 import { WatchlistWhereUniqueInput } from "../inputs/WatchlistWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistUpdateWithWhereUniqueWithoutShowsInput", {
   isAbstract: true
 })
 export class WatchlistUpdateWithWhereUniqueWithoutShowsInput {

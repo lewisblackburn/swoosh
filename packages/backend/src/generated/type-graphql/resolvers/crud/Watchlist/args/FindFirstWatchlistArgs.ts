@@ -35,5 +35,5 @@ export class FindFirstWatchlistArgs {
   @TypeGraphQL.Field(_type => [WatchlistScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "userId"> | undefined;
+  distinct?: Array<"id" | "userId" | "createdAt"> | undefined;
 }

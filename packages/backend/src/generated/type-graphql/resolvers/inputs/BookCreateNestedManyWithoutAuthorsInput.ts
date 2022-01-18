@@ -6,7 +6,7 @@ import { BookCreateOrConnectWithoutAuthorsInput } from "../inputs/BookCreateOrCo
 import { BookCreateWithoutAuthorsInput } from "../inputs/BookCreateWithoutAuthorsInput";
 import { BookWhereUniqueInput } from "../inputs/BookWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookCreateNestedManyWithoutAuthorsInput", {
   isAbstract: true
 })
 export class BookCreateNestedManyWithoutAuthorsInput {

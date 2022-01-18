@@ -6,7 +6,7 @@ import { ShowCreateOrConnectWithoutWatchlistInput } from "../inputs/ShowCreateOr
 import { ShowCreateWithoutWatchlistInput } from "../inputs/ShowCreateWithoutWatchlistInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateNestedManyWithoutWatchlistInput", {
   isAbstract: true
 })
 export class ShowCreateNestedManyWithoutWatchlistInput {

@@ -9,7 +9,7 @@ import { WatchlistMinOrderByAggregateInput } from "../inputs/WatchlistMinOrderBy
 import { WatchlistSumOrderByAggregateInput } from "../inputs/WatchlistSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class WatchlistOrderByWithAggregationInput {
@@ -22,6 +22,11 @@ export class WatchlistOrderByWithAggregationInput {
     nullable: true
   })
   userId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => WatchlistCountOrderByAggregateInput, {
     nullable: true

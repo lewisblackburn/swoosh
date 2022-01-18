@@ -6,7 +6,7 @@ import { MovieCreateOrConnectWithoutSoundtrackInput } from "../inputs/MovieCreat
 import { MovieCreateWithoutSoundtrackInput } from "../inputs/MovieCreateWithoutSoundtrackInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieCreateNestedOneWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class MovieCreateNestedOneWithoutSoundtrackInput {

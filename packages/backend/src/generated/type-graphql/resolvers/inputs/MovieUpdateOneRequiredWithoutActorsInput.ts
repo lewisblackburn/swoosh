@@ -8,7 +8,7 @@ import { MovieUpdateWithoutActorsInput } from "../inputs/MovieUpdateWithoutActor
 import { MovieUpsertWithoutActorsInput } from "../inputs/MovieUpsertWithoutActorsInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpdateOneRequiredWithoutActorsInput", {
   isAbstract: true
 })
 export class MovieUpdateOneRequiredWithoutActorsInput {

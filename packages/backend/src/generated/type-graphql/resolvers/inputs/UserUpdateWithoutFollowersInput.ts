@@ -5,15 +5,14 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
-import { FavouriteUpdateOneWithoutUserInput } from "../inputs/FavouriteUpdateOneWithoutUserInput";
 import { FollowsUpdateManyWithoutFollowingInput } from "../inputs/FollowsUpdateManyWithoutFollowingInput";
+import { MovieReviewLikeUpdateManyWithoutUserInput } from "../inputs/MovieReviewLikeUpdateManyWithoutUserInput";
+import { MovieReviewUpdateManyWithoutUserInput } from "../inputs/MovieReviewUpdateManyWithoutUserInput";
 import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
-import { ReviewUpdateManyWithoutUserInput } from "../inputs/ReviewUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { VoteUpdateManyWithoutUserInput } from "../inputs/VoteUpdateManyWithoutUserInput";
 import { WatchlistUpdateOneWithoutUserInput } from "../inputs/WatchlistUpdateOneWithoutUserInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserUpdateWithoutFollowersInput", {
   isAbstract: true
 })
 export class UserUpdateWithoutFollowersInput {
@@ -97,18 +96,13 @@ export class UserUpdateWithoutFollowersInput {
   })
   watchlist?: WatchlistUpdateOneWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteUpdateOneWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieReviewUpdateManyWithoutUserInput, {
     nullable: true
   })
-  favourites?: FavouriteUpdateOneWithoutUserInput | undefined;
+  movieReviews?: MovieReviewUpdateManyWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieReviewLikeUpdateManyWithoutUserInput, {
     nullable: true
   })
-  reviews?: ReviewUpdateManyWithoutUserInput | undefined;
-
-  @TypeGraphQL.Field(_type => VoteUpdateManyWithoutUserInput, {
-    nullable: true
-  })
-  Vote?: VoteUpdateManyWithoutUserInput | undefined;
+  likedMovieReviews?: MovieReviewLikeUpdateManyWithoutUserInput | undefined;
 }

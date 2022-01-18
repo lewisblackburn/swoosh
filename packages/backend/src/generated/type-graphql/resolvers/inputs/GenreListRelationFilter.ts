@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { GenreWhereInput } from "../inputs/GenreWhereInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreListRelationFilter", {
   isAbstract: true
 })
 export class GenreListRelationFilter {

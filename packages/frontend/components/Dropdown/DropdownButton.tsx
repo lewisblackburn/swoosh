@@ -2,8 +2,7 @@ import { ButtonProps } from '@components/Button';
 import { Spinner } from '@components/Spinner';
 import React from 'react';
 
-export const DropdownButton: React.FC<ButtonProps> = ({ children, disabled, loading, icon, className, ...props }) => {
-	return (
+export const DropdownButton: React.FC<ButtonProps> = ({ children, disabled, loading, icon, className, ...props }) => (
 		<button
 			type="button"
 			disabled={disabled || loading}
@@ -21,4 +20,3 @@ export const DropdownButton: React.FC<ButtonProps> = ({ children, disabled, load
 			)}
 		</button>
 	);
-};

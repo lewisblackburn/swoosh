@@ -13,35 +13,35 @@ generator typegraphql {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  confirmed     Boolean        @default(false)
-  email         String         @unique
-  username      String         @unique
-  displayname   String
+  id                Int               @id @default(autoincrement())
+  confirmed         Boolean           @default(false)
+  email             String            @unique
+  username          String            @unique
+  displayname       String
   /// @TypeGraphQL.omit(output: true)
-  password      String
-  role          Role           @default(USER)
-  avatar        String         @default(value: "https://via.placeholder.com/400x400")
-  bio           String         @default(value: "")
-  location      String         @default(value: "")
-  website       String         @default(value: "")
-  dob           String         @default(value: "")
-  following     Follows[]      @relation(name: "following")
-  followers     Follows[]      @relation(name: "follower")
-  notifications Notification[]
-  watchlist     Watchlist?
-  favourites    Favourite?
-  reviews       Review[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  Vote          Vote[]
+  password          String
+  role              Role              @default(USER)
+  avatar            String            @default(value: "https://via.placeholder.com/400x400")
+  bio               String            @default(value: "")
+  location          String            @default(value: "")
+  website           String            @default(value: "")
+  dob               String            @default(value: "")
+  following         Follows[]         @relation(name: "following")
+  followers         Follows[]         @relation(name: "follower")
+  notifications     Notification[]
+  watchlist         Watchlist?
+  movieReviews      MovieReview[]
+  likedMovieReviews MovieReviewLike[]
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 }
 
 model Follows {
-  following   User @relation("following", fields: [followingId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
   followingId Int
-  follower    User @relation("follower", fields: [followerId], references: [id])
+  follower    User     @relation("follower", fields: [followerId], references: [id])
   followerId  Int
+  createdAt   DateTime @default(now())
 
   @@id([followerId, followingId])
 }
@@ -61,33 +61,23 @@ model Watchlist {
   userId Int     @unique
   movies Movie[]
   shows  Show[]
-}
 
-model Favourite {
-  id     Int      @id @default(autoincrement())
-  user   User     @relation(fields: [userId], references: [id])
-  userId Int      @unique
-  movies Movie[]
-  shows  Show[]
-  songs  Song[]
-  books  Book[]
-  people Person[]
+  createdAt DateTime @default(now())
 }
 
 model Person {
-  id         Int            @id @default(autoincrement())
-  career     Career[]
-  name       String
-  thumbnail  String         @default(value: "https://via.placeholder.com/400x600")
-  bio        String?
-  age        Int?
-  movies     ActorInMovie[]
-  shows      ActorInShow[]
-  books      Book[]
-  songs      Song[]
-  favourites Favourite[]
-  createdAt  DateTime       @default(now())
-  updatedAt  DateTime       @updatedAt
+  id        Int            @id @default(autoincrement())
+  career    Career[]
+  name      String
+  thumbnail String         @default(value: "https://via.placeholder.com/400x600")
+  bio       String?
+  age       Int?
+  movies    ActorInMovie[]
+  shows     ActorInShow[]
+  books     Book[]
+  songs     Song[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 model Movie {
@@ -101,14 +91,13 @@ model Movie {
   runtime    Float?
   revenue    Int?
   trailer    String?
-  rating     Rating[]
+  rating     String? // age rating of the movie
   actors     ActorInMovie[]
   genres     Genre[]
   platforms  Platform[]
   soundtrack SongInMovie[]
-  favourites Favourite[]
   watchlist  Watchlist[]
-  reviews    Review[]
+  review     MovieReview[] // collective rating will come from rating in reviews
   createdAt  DateTime       @default(now())
   updatedAt  DateTime       @updatedAt
 }
@@ -120,23 +109,13 @@ model Show {
   thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean       @default(false)
   released    DateTime?
-  rating      Rating[]
   actors      ActorInShow[]
   genres      Genre[]
   platforms   Platform[]
   soundtrack  SongInShow[]
-  favourite   Favourite[]
   watchlist   Watchlist[]
-  reviews     Review[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-}
-
-model Rating {
-  id     Int     @id @default(autoincrement())
-  age    String
-  movies Movie[]
-  shows  Show[]
 }
 
 model Platform {
@@ -190,18 +169,16 @@ model ActorInShow {
 }
 
 model Book {
-  id          Int         @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String      @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean     @default(false)
+  thumbnail   String    @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean   @default(false)
   released    DateTime?
   authors     Person[]
-  favourites  Favourite[]
   genres      Genre[]
-  reviews     Review[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Song {
@@ -214,9 +191,7 @@ model Song {
   artists     Person[]
   songInShow  SongInShow[]
   songInMovie SongInMovie[]
-  favourites  Favourite[]
   genres      Genre[]
-  reviews     Review[]
   createdAt   DateTime      @default(now())
 }
 
@@ -229,30 +204,28 @@ model Genre {
   books  Book[]
 }
 
-model Review {
-  id      Int    @id @default(autoincrement())
-  title   String
-  review  String
-  user    User?  @relation(fields: [userId], references: [id])
+model MovieReview {
+  id     Int               @id @default(autoincrement())
+  // These will be blank for users who only want to rate the movie
+  title  String?
+  review String?
+  rating Int
+  likes  MovieReviewLike[]
+
+  User    User?  @relation(fields: [userId], references: [id])
   userId  Int?
-  movie   Movie? @relation(fields: [movieId], references: [id])
+  Movie   Movie? @relation(fields: [movieId], references: [id])
   movieId Int?
-  show    Show?  @relation(fields: [showId], references: [id])
-  showId  Int?
-  book    Book?  @relation(fields: [bookId], references: [id])
-  bookId  Int?
-  song    Song?  @relation(fields: [songId], references: [id])
-  songId  Int?
-  vote    Vote[]
 }
 
-model Vote {
-  user     User   @relation(fields: [userId], references: [id])
-  userId   Int
-  review   Review @relation(fields: [reviewId], references: [id])
-  reviewId Int
+model MovieReviewLike {
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  movieReview   MovieReview @relation(fields: [movieReviewId], references: [id])
+  movieReviewId Int
+  createdAt     DateTime    @default(now())
 
-  @@id([userId, reviewId])
+  @@id([userId, movieReviewId])
 }
 
 enum Career {

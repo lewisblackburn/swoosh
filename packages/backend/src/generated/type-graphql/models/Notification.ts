@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { User } from "../models/User";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Notification", {
   isAbstract: true
 })
 export class Notification {

@@ -9,7 +9,7 @@ import { ShowListRelationFilter } from "../inputs/ShowListRelationFilter";
 import { SongListRelationFilter } from "../inputs/SongListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreWhereInput", {
   isAbstract: true
 })
 export class GenreWhereInput {

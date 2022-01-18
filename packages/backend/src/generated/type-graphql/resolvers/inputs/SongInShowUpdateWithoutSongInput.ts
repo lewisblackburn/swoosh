@@ -6,7 +6,7 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { ShowUpdateOneRequiredWithoutSoundtrackInput } from "../inputs/ShowUpdateOneRequiredWithoutSoundtrackInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInShowUpdateWithoutSongInput", {
   isAbstract: true
 })
 export class SongInShowUpdateWithoutSongInput {

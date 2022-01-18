@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("FollowsMaxAggregate", {
   isAbstract: true
 })
 export class FollowsMaxAggregate {
@@ -16,4 +16,9 @@ export class FollowsMaxAggregate {
     nullable: true
   })
   followerId!: number | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt!: Date | null;
 }

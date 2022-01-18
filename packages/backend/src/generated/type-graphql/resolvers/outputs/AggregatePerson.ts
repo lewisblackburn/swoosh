@@ -8,7 +8,7 @@ import { PersonMaxAggregate } from "../outputs/PersonMaxAggregate";
 import { PersonMinAggregate } from "../outputs/PersonMinAggregate";
 import { PersonSumAggregate } from "../outputs/PersonSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregatePerson", {
   isAbstract: true
 })
 export class AggregatePerson {

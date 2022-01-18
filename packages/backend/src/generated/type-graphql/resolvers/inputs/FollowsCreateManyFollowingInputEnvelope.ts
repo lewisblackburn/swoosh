@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { FollowsCreateManyFollowingInput } from "../inputs/FollowsCreateManyFollowingInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsCreateManyFollowingInputEnvelope", {
   isAbstract: true
 })
 export class FollowsCreateManyFollowingInputEnvelope {

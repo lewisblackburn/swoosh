@@ -8,7 +8,7 @@ import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStri
 import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpdateManyMutationInput", {
   isAbstract: true
 })
 export class PersonUpdateManyMutationInput {

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { SongCreateWithoutSongInShowInput } from "../inputs/SongCreateWithoutSongInShowInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongCreateOrConnectWithoutSongInShowInput", {
   isAbstract: true
 })
 export class SongCreateOrConnectWithoutSongInShowInput {

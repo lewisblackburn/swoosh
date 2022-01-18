@@ -8,7 +8,7 @@ import { Show } from "../models/Show";
 import { Song } from "../models/Song";
 import { GenreCount } from "../resolvers/outputs/GenreCount";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Genre", {
   isAbstract: true
 })
 export class Genre {

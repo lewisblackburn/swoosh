@@ -10,7 +10,7 @@ import { PlatformUpdateWithWhereUniqueWithoutMoviesInput } from "../inputs/Platf
 import { PlatformUpsertWithWhereUniqueWithoutMoviesInput } from "../inputs/PlatformUpsertWithWhereUniqueWithoutMoviesInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpdateManyWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformUpdateManyWithoutMoviesInput {
@@ -32,11 +32,6 @@ export class PlatformUpdateManyWithoutMoviesInput {
   @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
     nullable: true
   })
-  connect?: PlatformWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
-    nullable: true
-  })
   set?: PlatformWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class PlatformUpdateManyWithoutMoviesInput {
     nullable: true
   })
   delete?: PlatformWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [PlatformWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: PlatformWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [PlatformUpdateWithWhereUniqueWithoutMoviesInput], {
     nullable: true

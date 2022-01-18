@@ -5,10 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateNestedManyWithoutWatchlistInput } from "../inputs/ShowCreateNestedManyWithoutWatchlistInput";
 import { UserCreateNestedOneWithoutWatchlistInput } from "../inputs/UserCreateNestedOneWithoutWatchlistInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistCreateWithoutMoviesInput", {
   isAbstract: true
 })
 export class WatchlistCreateWithoutMoviesInput {
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutWatchlistInput, {
     nullable: false
   })

@@ -7,7 +7,7 @@ import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
 import { ShowListRelationFilter } from "../inputs/ShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformWhereInput", {
   isAbstract: true
 })
 export class PlatformWhereInput {

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { WatchlistCreateWithoutUserInput } from "../inputs/WatchlistCreateWithoutUserInput";
 import { WatchlistUpdateWithoutUserInput } from "../inputs/WatchlistUpdateWithoutUserInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistUpsertWithoutUserInput", {
   isAbstract: true
 })
 export class WatchlistUpsertWithoutUserInput {

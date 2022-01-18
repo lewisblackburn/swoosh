@@ -8,7 +8,7 @@ import { ActorInShowMaxAggregate } from "../outputs/ActorInShowMaxAggregate";
 import { ActorInShowMinAggregate } from "../outputs/ActorInShowMinAggregate";
 import { ActorInShowSumAggregate } from "../outputs/ActorInShowSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("ActorInShowGroupBy", {
   isAbstract: true
 })
 export class ActorInShowGroupBy {

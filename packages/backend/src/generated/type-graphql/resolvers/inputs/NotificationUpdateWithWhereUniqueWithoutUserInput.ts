@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { NotificationUpdateWithoutUserInput } from "../inputs/NotificationUpdateWithoutUserInput";
 import { NotificationWhereUniqueInput } from "../inputs/NotificationWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationUpdateWithWhereUniqueWithoutUserInput", {
   isAbstract: true
 })
 export class NotificationUpdateWithWhereUniqueWithoutUserInput {

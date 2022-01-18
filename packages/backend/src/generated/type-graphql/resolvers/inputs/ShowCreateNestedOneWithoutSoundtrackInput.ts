@@ -6,7 +6,7 @@ import { ShowCreateOrConnectWithoutSoundtrackInput } from "../inputs/ShowCreateO
 import { ShowCreateWithoutSoundtrackInput } from "../inputs/ShowCreateWithoutSoundtrackInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateNestedOneWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class ShowCreateNestedOneWithoutSoundtrackInput {

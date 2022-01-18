@@ -5,11 +5,10 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieOrderByRelationAggregateInput } from "../inputs/ActorInMovieOrderByRelationAggregateInput";
 import { ActorInShowOrderByRelationAggregateInput } from "../inputs/ActorInShowOrderByRelationAggregateInput";
 import { BookOrderByRelationAggregateInput } from "../inputs/BookOrderByRelationAggregateInput";
-import { FavouriteOrderByRelationAggregateInput } from "../inputs/FavouriteOrderByRelationAggregateInput";
 import { SongOrderByRelationAggregateInput } from "../inputs/SongOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonOrderByWithRelationInput", {
   isAbstract: true
 })
 export class PersonOrderByWithRelationInput {
@@ -62,11 +61,6 @@ export class PersonOrderByWithRelationInput {
     nullable: true
   })
   songs?: SongOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  favourites?: FavouriteOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

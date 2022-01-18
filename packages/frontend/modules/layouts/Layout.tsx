@@ -22,8 +22,7 @@ const pageTransition = {
 	duration: 0.4,
 };
 
-export const Layout: React.FC = ({ children }) => {
-	return (
+export const Layout: React.FC = ({ children }) => (
 		<div className="relative">
 			<div className="fixed min-h-screen inset-0" style={{ width: 100 }}>
 				<Sidebar />
@@ -35,4 +34,3 @@ export const Layout: React.FC = ({ children }) => {
 			</div>
 		</div>
 	);
-};

@@ -9,14 +9,12 @@ interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
 	loading?: boolean;
 }
 
-export const IconButton: React.FC<IconButtonProps> = ({ icon, className, loading, ...props }) => {
-	return (
+export const IconButton: React.FC<IconButtonProps> = ({ icon, className, loading, ...props }) => (
 		<button type="button" {...props}>
 			{loading ? (
 				<Spinner />
 			) : (
-				<Icon icon={icon} className={`w-10 h-10 p-2 rounded-md ${className ? className : ''}`} />
+				<Icon icon={icon} className={`w-10 h-10 p-2 rounded-md ${className || ''}`} />
 			)}
 		</button>
 	);
-};

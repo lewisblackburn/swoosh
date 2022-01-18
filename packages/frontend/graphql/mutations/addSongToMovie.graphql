@@ -1,3 +1,0 @@
-mutation addSongToMovie($movieId: Int!, $songId: Int!, $timestamp: DateTime!, $description: String!) {
-	addSongToMovie(movieId: $movieId, songId: $songId, timestamp: $timestamp, description: $description)
-}

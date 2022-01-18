@@ -10,7 +10,7 @@ import { ShowUpdateWithWhereUniqueWithoutWatchlistInput } from "../inputs/ShowUp
 import { ShowUpsertWithWhereUniqueWithoutWatchlistInput } from "../inputs/ShowUpsertWithWhereUniqueWithoutWatchlistInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpdateManyWithoutWatchlistInput", {
   isAbstract: true
 })
 export class ShowUpdateManyWithoutWatchlistInput {
@@ -32,11 +32,6 @@ export class ShowUpdateManyWithoutWatchlistInput {
   @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
     nullable: true
   })
-  connect?: ShowWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
-    nullable: true
-  })
   set?: ShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class ShowUpdateManyWithoutWatchlistInput {
     nullable: true
   })
   delete?: ShowWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: ShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ShowUpdateWithWhereUniqueWithoutWatchlistInput], {
     nullable: true

@@ -2,15 +2,14 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { FavouriteOrderByWithRelationInput } from "../inputs/FavouriteOrderByWithRelationInput";
 import { FollowsOrderByRelationAggregateInput } from "../inputs/FollowsOrderByRelationAggregateInput";
+import { MovieReviewLikeOrderByRelationAggregateInput } from "../inputs/MovieReviewLikeOrderByRelationAggregateInput";
+import { MovieReviewOrderByRelationAggregateInput } from "../inputs/MovieReviewOrderByRelationAggregateInput";
 import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
-import { ReviewOrderByRelationAggregateInput } from "../inputs/ReviewOrderByRelationAggregateInput";
-import { VoteOrderByRelationAggregateInput } from "../inputs/VoteOrderByRelationAggregateInput";
 import { WatchlistOrderByWithRelationInput } from "../inputs/WatchlistOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserOrderByWithRelationInput", {
   isAbstract: true
 })
 export class UserOrderByWithRelationInput {
@@ -94,15 +93,15 @@ export class UserOrderByWithRelationInput {
   })
   watchlist?: WatchlistOrderByWithRelationInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteOrderByWithRelationInput, {
+  @TypeGraphQL.Field(_type => MovieReviewOrderByRelationAggregateInput, {
     nullable: true
   })
-  favourites?: FavouriteOrderByWithRelationInput | undefined;
+  movieReviews?: MovieReviewOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => MovieReviewLikeOrderByRelationAggregateInput, {
     nullable: true
   })
-  reviews?: ReviewOrderByRelationAggregateInput | undefined;
+  likedMovieReviews?: MovieReviewLikeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -113,9 +112,4 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => VoteOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  Vote?: VoteOrderByRelationAggregateInput | undefined;
 }

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowScalarWhereInput } from "../inputs/ShowScalarWhereInput";
 import { ShowUpdateManyMutationInput } from "../inputs/ShowUpdateManyMutationInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpdateManyWithWhereWithoutPlatformsInput", {
   isAbstract: true
 })
 export class ShowUpdateManyWithWhereWithoutPlatformsInput {

@@ -20,7 +20,7 @@ export class GroupByWatchlistArgs {
   @TypeGraphQL.Field(_type => [WatchlistScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "userId">;
+  by!: Array<"id" | "userId" | "createdAt">;
 
   @TypeGraphQL.Field(_type => WatchlistScalarWhereWithAggregatesInput, {
     nullable: true

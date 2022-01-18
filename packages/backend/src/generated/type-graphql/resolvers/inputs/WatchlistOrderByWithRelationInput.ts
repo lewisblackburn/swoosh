@@ -7,7 +7,7 @@ import { ShowOrderByRelationAggregateInput } from "../inputs/ShowOrderByRelation
 import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistOrderByWithRelationInput", {
   isAbstract: true
 })
 export class WatchlistOrderByWithRelationInput {
@@ -35,4 +35,9 @@ export class WatchlistOrderByWithRelationInput {
     nullable: true
   })
   shows?: ShowOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 }

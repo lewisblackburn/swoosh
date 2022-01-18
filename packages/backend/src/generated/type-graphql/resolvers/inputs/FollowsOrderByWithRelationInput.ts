@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsOrderByWithRelationInput", {
   isAbstract: true
 })
 export class FollowsOrderByWithRelationInput {
@@ -28,4 +28,9 @@ export class FollowsOrderByWithRelationInput {
     nullable: true
   })
   followerId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 }

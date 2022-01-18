@@ -6,7 +6,7 @@ import { PersonOrderByWithRelationInput } from "../inputs/PersonOrderByWithRelat
 import { ShowOrderByWithRelationInput } from "../inputs/ShowOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowOrderByWithRelationInput", {
   isAbstract: true
 })
 export class ActorInShowOrderByWithRelationInput {

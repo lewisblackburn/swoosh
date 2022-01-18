@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BookUpdateWithoutGenresInput } from "../inputs/BookUpdateWithoutGenresInput";
 import { BookWhereUniqueInput } from "../inputs/BookWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookUpdateWithWhereUniqueWithoutGenresInput", {
   isAbstract: true
 })
 export class BookUpdateWithWhereUniqueWithoutGenresInput {

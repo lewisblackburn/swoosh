@@ -8,7 +8,7 @@ import { SongUpdateWithoutSongInMovieInput } from "../inputs/SongUpdateWithoutSo
 import { SongUpsertWithoutSongInMovieInput } from "../inputs/SongUpsertWithoutSongInMovieInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongUpdateOneRequiredWithoutSongInMovieInput", {
   isAbstract: true
 })
 export class SongUpdateOneRequiredWithoutSongInMovieInput {

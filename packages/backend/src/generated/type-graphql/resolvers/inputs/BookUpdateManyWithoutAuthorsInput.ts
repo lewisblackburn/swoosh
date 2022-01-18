@@ -10,7 +10,7 @@ import { BookUpdateWithWhereUniqueWithoutAuthorsInput } from "../inputs/BookUpda
 import { BookUpsertWithWhereUniqueWithoutAuthorsInput } from "../inputs/BookUpsertWithWhereUniqueWithoutAuthorsInput";
 import { BookWhereUniqueInput } from "../inputs/BookWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookUpdateManyWithoutAuthorsInput", {
   isAbstract: true
 })
 export class BookUpdateManyWithoutAuthorsInput {
@@ -32,11 +32,6 @@ export class BookUpdateManyWithoutAuthorsInput {
   @TypeGraphQL.Field(_type => [BookWhereUniqueInput], {
     nullable: true
   })
-  connect?: BookWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [BookWhereUniqueInput], {
-    nullable: true
-  })
   set?: BookWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [BookWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class BookUpdateManyWithoutAuthorsInput {
     nullable: true
   })
   delete?: BookWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [BookWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: BookWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [BookUpdateWithWhereUniqueWithoutAuthorsInput], {
     nullable: true

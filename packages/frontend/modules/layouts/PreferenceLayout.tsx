@@ -1,8 +1,7 @@
 import React from 'react';
 import { Layout } from './Layout';
 
-export const PreferencesLayout: React.FC = ({ children }) => {
-	return (
+export const PreferencesLayout: React.FC = ({ children }) => (
 		<Layout>
 			<div className="flex justify-between">
 				<div>{children}</div>
@@ -10,4 +9,3 @@ export const PreferencesLayout: React.FC = ({ children }) => {
 			</div>
 		</Layout>
 	);
-};

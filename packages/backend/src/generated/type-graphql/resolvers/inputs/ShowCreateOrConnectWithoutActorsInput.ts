@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateWithoutActorsInput } from "../inputs/ShowCreateWithoutActorsInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateOrConnectWithoutActorsInput", {
   isAbstract: true
 })
 export class ShowCreateOrConnectWithoutActorsInput {

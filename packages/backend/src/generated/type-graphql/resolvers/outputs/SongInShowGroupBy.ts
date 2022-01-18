@@ -8,7 +8,7 @@ import { SongInShowMaxAggregate } from "../outputs/SongInShowMaxAggregate";
 import { SongInShowMinAggregate } from "../outputs/SongInShowMinAggregate";
 import { SongInShowSumAggregate } from "../outputs/SongInShowSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("SongInShowGroupBy", {
   isAbstract: true
 })
 export class SongInShowGroupBy {

@@ -8,7 +8,7 @@ import { GenreMaxAggregate } from "../outputs/GenreMaxAggregate";
 import { GenreMinAggregate } from "../outputs/GenreMinAggregate";
 import { GenreSumAggregate } from "../outputs/GenreSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateGenre", {
   isAbstract: true
 })
 export class AggregateGenre {

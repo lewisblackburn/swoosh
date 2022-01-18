@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationOrderByWithRelationInput", {
   isAbstract: true
 })
 export class NotificationOrderByWithRelationInput {

@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { SongWhereInput } from "../inputs/SongWhereInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongListRelationFilter", {
   isAbstract: true
 })
 export class SongListRelationFilter {

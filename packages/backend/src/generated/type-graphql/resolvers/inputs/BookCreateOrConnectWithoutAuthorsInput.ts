@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BookCreateWithoutAuthorsInput } from "../inputs/BookCreateWithoutAuthorsInput";
 import { BookWhereUniqueInput } from "../inputs/BookWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookCreateOrConnectWithoutAuthorsInput", {
   isAbstract: true
 })
 export class BookCreateOrConnectWithoutAuthorsInput {

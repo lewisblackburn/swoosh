@@ -10,7 +10,7 @@ import { ShowUpdateWithWhereUniqueWithoutGenresInput } from "../inputs/ShowUpdat
 import { ShowUpsertWithWhereUniqueWithoutGenresInput } from "../inputs/ShowUpsertWithWhereUniqueWithoutGenresInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpdateManyWithoutGenresInput", {
   isAbstract: true
 })
 export class ShowUpdateManyWithoutGenresInput {
@@ -32,11 +32,6 @@ export class ShowUpdateManyWithoutGenresInput {
   @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
     nullable: true
   })
-  connect?: ShowWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
-    nullable: true
-  })
   set?: ShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class ShowUpdateManyWithoutGenresInput {
     nullable: true
   })
   delete?: ShowWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [ShowWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: ShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ShowUpdateWithWhereUniqueWithoutGenresInput], {
     nullable: true

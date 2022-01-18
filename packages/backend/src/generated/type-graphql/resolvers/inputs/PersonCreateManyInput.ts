@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PersonCreateManycareerInput } from "../inputs/PersonCreateManycareerInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonCreateManyInput", {
   isAbstract: true
 })
 export class PersonCreateManyInput {

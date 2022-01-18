@@ -9,7 +9,7 @@ import { PersonMinOrderByAggregateInput } from "../inputs/PersonMinOrderByAggreg
 import { PersonSumOrderByAggregateInput } from "../inputs/PersonSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class PersonOrderByWithAggregationInput {

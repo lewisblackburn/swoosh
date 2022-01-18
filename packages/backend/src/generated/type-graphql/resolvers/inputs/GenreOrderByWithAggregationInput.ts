@@ -9,7 +9,7 @@ import { GenreMinOrderByAggregateInput } from "../inputs/GenreMinOrderByAggregat
 import { GenreSumOrderByAggregateInput } from "../inputs/GenreSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class GenreOrderByWithAggregationInput {

@@ -7,8 +7,7 @@ export type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonEleme
 	icon?: IconType;
 };
 
-export const Button: React.FC<ButtonProps> = ({ children, disabled, loading, icon, className = '', ...props }) => {
-	return (
+export const Button: React.FC<ButtonProps> = ({ children, disabled, loading, icon, className = '', ...props }) => (
 		<button
 			type="button"
 			disabled={disabled ?? loading}
@@ -25,4 +24,3 @@ export const Button: React.FC<ButtonProps> = ({ children, disabled, loading, ico
 			)}
 		</button>
 	);
-};

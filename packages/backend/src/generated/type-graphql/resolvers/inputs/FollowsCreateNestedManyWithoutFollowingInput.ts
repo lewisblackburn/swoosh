@@ -7,7 +7,7 @@ import { FollowsCreateOrConnectWithoutFollowingInput } from "../inputs/FollowsCr
 import { FollowsCreateWithoutFollowingInput } from "../inputs/FollowsCreateWithoutFollowingInput";
 import { FollowsWhereUniqueInput } from "../inputs/FollowsWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsCreateNestedManyWithoutFollowingInput", {
   isAbstract: true
 })
 export class FollowsCreateNestedManyWithoutFollowingInput {

@@ -2,8 +2,7 @@ query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!]
 	movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
 		id
 		title
-		description
+		overview
 		thumbnail
-		locked
 	}
 }

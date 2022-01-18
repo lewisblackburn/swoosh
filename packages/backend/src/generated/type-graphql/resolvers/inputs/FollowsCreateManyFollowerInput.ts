@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsCreateManyFollowerInput", {
   isAbstract: true
 })
 export class FollowsCreateManyFollowerInput {
@@ -11,4 +11,9 @@ export class FollowsCreateManyFollowerInput {
     nullable: false
   })
   followingId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
 }

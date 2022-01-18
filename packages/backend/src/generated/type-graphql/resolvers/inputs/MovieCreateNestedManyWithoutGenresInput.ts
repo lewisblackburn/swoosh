@@ -6,7 +6,7 @@ import { MovieCreateOrConnectWithoutGenresInput } from "../inputs/MovieCreateOrC
 import { MovieCreateWithoutGenresInput } from "../inputs/MovieCreateWithoutGenresInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieCreateNestedManyWithoutGenresInput", {
   isAbstract: true
 })
 export class MovieCreateNestedManyWithoutGenresInput {

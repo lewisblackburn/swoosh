@@ -8,7 +8,7 @@ import { WatchlistMaxAggregate } from "../outputs/WatchlistMaxAggregate";
 import { WatchlistMinAggregate } from "../outputs/WatchlistMinAggregate";
 import { WatchlistSumAggregate } from "../outputs/WatchlistSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateWatchlist", {
   isAbstract: true
 })
 export class AggregateWatchlist {

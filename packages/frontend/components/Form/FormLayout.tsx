@@ -1,7 +1,6 @@
 import React from 'react';
 
-export const FormLayout: React.FC = ({ children }) => {
-	return (
+export const FormLayout: React.FC = ({ children }) => (
 		<div className="h-screen flex">
 			<div className="hidden w-1/2 xl:flex bg-gradient-to-tr from-blue-500 to-blue-800 i justify-around items-center">
 				<div>
@@ -12,4 +11,3 @@ export const FormLayout: React.FC = ({ children }) => {
 			<div className="flex w-full xl:w-1/2 justify-center items-center bg-white">{children}</div>
 		</div>
 	);
-};

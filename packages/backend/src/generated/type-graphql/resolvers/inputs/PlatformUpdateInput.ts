@@ -6,7 +6,7 @@ import { MovieUpdateManyWithoutPlatformsInput } from "../inputs/MovieUpdateManyW
 import { ShowUpdateManyWithoutPlatformsInput } from "../inputs/ShowUpdateManyWithoutPlatformsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpdateInput", {
   isAbstract: true
 })
 export class PlatformUpdateInput {

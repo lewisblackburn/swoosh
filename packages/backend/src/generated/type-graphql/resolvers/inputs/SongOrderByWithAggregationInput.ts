@@ -9,7 +9,7 @@ import { SongMinOrderByAggregateInput } from "../inputs/SongMinOrderByAggregateI
 import { SongSumOrderByAggregateInput } from "../inputs/SongSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class SongOrderByWithAggregationInput {

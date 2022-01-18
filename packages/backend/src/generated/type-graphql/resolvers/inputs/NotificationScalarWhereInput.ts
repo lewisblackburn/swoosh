@@ -8,7 +8,7 @@ import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationScalarWhereInput", {
   isAbstract: true
 })
 export class NotificationScalarWhereInput {

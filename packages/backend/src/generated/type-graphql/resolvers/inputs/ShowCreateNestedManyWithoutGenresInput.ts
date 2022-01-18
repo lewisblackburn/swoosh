@@ -6,7 +6,7 @@ import { ShowCreateOrConnectWithoutGenresInput } from "../inputs/ShowCreateOrCon
 import { ShowCreateWithoutGenresInput } from "../inputs/ShowCreateWithoutGenresInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateNestedManyWithoutGenresInput", {
   isAbstract: true
 })
 export class ShowCreateNestedManyWithoutGenresInput {

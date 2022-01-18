@@ -8,7 +8,7 @@ import { MovieRelationFilter } from "../inputs/MovieRelationFilter";
 import { SongRelationFilter } from "../inputs/SongRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInMovieWhereInput", {
   isAbstract: true
 })
 export class SongInMovieWhereInput {

@@ -9,7 +9,7 @@ import { PlatformMinOrderByAggregateInput } from "../inputs/PlatformMinOrderByAg
 import { PlatformSumOrderByAggregateInput } from "../inputs/PlatformSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class PlatformOrderByWithAggregationInput {

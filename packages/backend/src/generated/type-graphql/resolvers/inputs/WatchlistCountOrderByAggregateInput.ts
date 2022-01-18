@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistCountOrderByAggregateInput", {
   isAbstract: true
 })
 export class WatchlistCountOrderByAggregateInput {
@@ -17,4 +17,9 @@ export class WatchlistCountOrderByAggregateInput {
     nullable: true
   })
   userId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 }

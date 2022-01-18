@@ -6,7 +6,7 @@ import { NotificationCreateWithoutUserInput } from "../inputs/NotificationCreate
 import { NotificationUpdateWithoutUserInput } from "../inputs/NotificationUpdateWithoutUserInput";
 import { NotificationWhereUniqueInput } from "../inputs/NotificationWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationUpsertWithWhereUniqueWithoutUserInput", {
   isAbstract: true
 })
 export class NotificationUpsertWithWhereUniqueWithoutUserInput {

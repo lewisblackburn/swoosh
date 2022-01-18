@@ -20,7 +20,7 @@ export class GroupByFollowsArgs {
   @TypeGraphQL.Field(_type => [FollowsScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"followingId" | "followerId">;
+  by!: Array<"followingId" | "followerId" | "createdAt">;
 
   @TypeGraphQL.Field(_type => FollowsScalarWhereWithAggregatesInput, {
     nullable: true

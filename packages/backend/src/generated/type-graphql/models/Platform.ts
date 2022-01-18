@@ -6,7 +6,7 @@ import { Movie } from "../models/Movie";
 import { Show } from "../models/Show";
 import { PlatformCount } from "../resolvers/outputs/PlatformCount";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Platform", {
   isAbstract: true
 })
 export class Platform {

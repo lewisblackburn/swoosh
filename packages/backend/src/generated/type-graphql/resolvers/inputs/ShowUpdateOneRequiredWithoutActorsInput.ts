@@ -8,7 +8,7 @@ import { ShowUpdateWithoutActorsInput } from "../inputs/ShowUpdateWithoutActorsI
 import { ShowUpsertWithoutActorsInput } from "../inputs/ShowUpsertWithoutActorsInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpdateOneRequiredWithoutActorsInput", {
   isAbstract: true
 })
 export class ShowUpdateOneRequiredWithoutActorsInput {

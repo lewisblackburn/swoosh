@@ -6,7 +6,7 @@ import { ShowCreateOrConnectWithoutPlatformsInput } from "../inputs/ShowCreateOr
 import { ShowCreateWithoutPlatformsInput } from "../inputs/ShowCreateWithoutPlatformsInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateNestedManyWithoutPlatformsInput", {
   isAbstract: true
 })
 export class ShowCreateNestedManyWithoutPlatformsInput {

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { WatchlistScalarWhereInput } from "../inputs/WatchlistScalarWhereInput";
 import { WatchlistUpdateManyMutationInput } from "../inputs/WatchlistUpdateManyMutationInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistUpdateManyWithWhereWithoutShowsInput", {
   isAbstract: true
 })
 export class WatchlistUpdateManyWithWhereWithoutShowsInput {

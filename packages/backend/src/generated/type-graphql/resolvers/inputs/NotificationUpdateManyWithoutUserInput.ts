@@ -11,7 +11,7 @@ import { NotificationUpdateWithWhereUniqueWithoutUserInput } from "../inputs/Not
 import { NotificationUpsertWithWhereUniqueWithoutUserInput } from "../inputs/NotificationUpsertWithWhereUniqueWithoutUserInput";
 import { NotificationWhereUniqueInput } from "../inputs/NotificationWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationUpdateManyWithoutUserInput", {
   isAbstract: true
 })
 export class NotificationUpdateManyWithoutUserInput {
@@ -38,11 +38,6 @@ export class NotificationUpdateManyWithoutUserInput {
   @TypeGraphQL.Field(_type => [NotificationWhereUniqueInput], {
     nullable: true
   })
-  connect?: NotificationWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [NotificationWhereUniqueInput], {
-    nullable: true
-  })
   set?: NotificationWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [NotificationWhereUniqueInput], {
@@ -54,6 +49,11 @@ export class NotificationUpdateManyWithoutUserInput {
     nullable: true
   })
   delete?: NotificationWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [NotificationWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: NotificationWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [NotificationUpdateWithWhereUniqueWithoutUserInput], {
     nullable: true

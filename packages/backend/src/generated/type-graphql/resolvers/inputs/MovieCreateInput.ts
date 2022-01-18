@@ -3,15 +3,13 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieCreateNestedManyWithoutMovieInput } from "../inputs/ActorInMovieCreateNestedManyWithoutMovieInput";
-import { FavouriteCreateNestedManyWithoutMoviesInput } from "../inputs/FavouriteCreateNestedManyWithoutMoviesInput";
 import { GenreCreateNestedManyWithoutMoviesInput } from "../inputs/GenreCreateNestedManyWithoutMoviesInput";
+import { MovieReviewCreateNestedManyWithoutMovieInput } from "../inputs/MovieReviewCreateNestedManyWithoutMovieInput";
 import { PlatformCreateNestedManyWithoutMoviesInput } from "../inputs/PlatformCreateNestedManyWithoutMoviesInput";
-import { RatingCreateNestedManyWithoutMoviesInput } from "../inputs/RatingCreateNestedManyWithoutMoviesInput";
-import { ReviewCreateNestedManyWithoutMovieInput } from "../inputs/ReviewCreateNestedManyWithoutMovieInput";
 import { SongInMovieCreateNestedManyWithoutMovieInput } from "../inputs/SongInMovieCreateNestedManyWithoutMovieInput";
 import { WatchlistCreateNestedManyWithoutMoviesInput } from "../inputs/WatchlistCreateNestedManyWithoutMoviesInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieCreateInput", {
   isAbstract: true
 })
 export class MovieCreateInput {
@@ -60,6 +58,11 @@ export class MovieCreateInput {
   })
   trailer?: string | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating?: string | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
@@ -69,11 +72,6 @@ export class MovieCreateInput {
     nullable: true
   })
   updatedAt?: Date | undefined;
-
-  @TypeGraphQL.Field(_type => RatingCreateNestedManyWithoutMoviesInput, {
-    nullable: true
-  })
-  rating?: RatingCreateNestedManyWithoutMoviesInput | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieCreateNestedManyWithoutMovieInput, {
     nullable: true
@@ -95,18 +93,13 @@ export class MovieCreateInput {
   })
   soundtrack?: SongInMovieCreateNestedManyWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutMoviesInput, {
-    nullable: true
-  })
-  favourites?: FavouriteCreateNestedManyWithoutMoviesInput | undefined;
-
   @TypeGraphQL.Field(_type => WatchlistCreateNestedManyWithoutMoviesInput, {
     nullable: true
   })
   watchlist?: WatchlistCreateNestedManyWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutMovieInput, {
+  @TypeGraphQL.Field(_type => MovieReviewCreateNestedManyWithoutMovieInput, {
     nullable: true
   })
-  reviews?: ReviewCreateNestedManyWithoutMovieInput | undefined;
+  review?: MovieReviewCreateNestedManyWithoutMovieInput | undefined;
 }

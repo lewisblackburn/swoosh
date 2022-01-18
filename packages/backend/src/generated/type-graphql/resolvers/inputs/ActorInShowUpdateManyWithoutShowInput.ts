@@ -11,7 +11,7 @@ import { ActorInShowUpdateWithWhereUniqueWithoutShowInput } from "../inputs/Acto
 import { ActorInShowUpsertWithWhereUniqueWithoutShowInput } from "../inputs/ActorInShowUpsertWithWhereUniqueWithoutShowInput";
 import { ActorInShowWhereUniqueInput } from "../inputs/ActorInShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowUpdateManyWithoutShowInput", {
   isAbstract: true
 })
 export class ActorInShowUpdateManyWithoutShowInput {
@@ -38,11 +38,6 @@ export class ActorInShowUpdateManyWithoutShowInput {
   @TypeGraphQL.Field(_type => [ActorInShowWhereUniqueInput], {
     nullable: true
   })
-  connect?: ActorInShowWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [ActorInShowWhereUniqueInput], {
-    nullable: true
-  })
   set?: ActorInShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ActorInShowWhereUniqueInput], {
@@ -54,6 +49,11 @@ export class ActorInShowUpdateManyWithoutShowInput {
     nullable: true
   })
   delete?: ActorInShowWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [ActorInShowWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: ActorInShowWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [ActorInShowUpdateWithWhereUniqueWithoutShowInput], {
     nullable: true

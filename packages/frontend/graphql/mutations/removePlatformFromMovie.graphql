@@ -1,3 +1,0 @@
-mutation removePlatformFromMovie($platformId: Int!, $movieId: Int!) {
-	removePlatformToMovie(platformId: $platformId, movieId: $movieId)
-}

@@ -10,7 +10,7 @@ import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFiel
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpdateManyMutationInput", {
   isAbstract: true
 })
 export class MovieUpdateManyMutationInput {
@@ -58,6 +58,11 @@ export class MovieUpdateManyMutationInput {
     nullable: true
   })
   trailer?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  rating?: NullableStringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true

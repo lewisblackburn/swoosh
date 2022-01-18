@@ -6,17 +6,14 @@ import { ActorInShowListRelationFilter } from "../inputs/ActorInShowListRelation
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
-import { FavouriteListRelationFilter } from "../inputs/FavouriteListRelationFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PlatformListRelationFilter } from "../inputs/PlatformListRelationFilter";
-import { RatingListRelationFilter } from "../inputs/RatingListRelationFilter";
-import { ReviewListRelationFilter } from "../inputs/ReviewListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WatchlistListRelationFilter } from "../inputs/WatchlistListRelationFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowWhereInput", {
   isAbstract: true
 })
 export class ShowWhereInput {
@@ -65,11 +62,6 @@ export class ShowWhereInput {
   })
   released?: DateTimeNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => RatingListRelationFilter, {
-    nullable: true
-  })
-  rating?: RatingListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => ActorInShowListRelationFilter, {
     nullable: true
   })
@@ -90,20 +82,10 @@ export class ShowWhereInput {
   })
   soundtrack?: SongInShowListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteListRelationFilter, {
-    nullable: true
-  })
-  favourite?: FavouriteListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => WatchlistListRelationFilter, {
     nullable: true
   })
   watchlist?: WatchlistListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewListRelationFilter, {
-    nullable: true
-  })
-  reviews?: ReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

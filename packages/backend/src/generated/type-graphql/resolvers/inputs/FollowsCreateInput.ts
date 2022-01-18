@@ -5,10 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { UserCreateNestedOneWithoutFollowersInput } from "../inputs/UserCreateNestedOneWithoutFollowersInput";
 import { UserCreateNestedOneWithoutFollowingInput } from "../inputs/UserCreateNestedOneWithoutFollowingInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsCreateInput", {
   isAbstract: true
 })
 export class FollowsCreateInput {
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutFollowingInput, {
     nullable: false
   })

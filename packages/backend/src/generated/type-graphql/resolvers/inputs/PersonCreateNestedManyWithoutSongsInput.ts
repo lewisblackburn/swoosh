@@ -6,7 +6,7 @@ import { PersonCreateOrConnectWithoutSongsInput } from "../inputs/PersonCreateOr
 import { PersonCreateWithoutSongsInput } from "../inputs/PersonCreateWithoutSongsInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonCreateNestedManyWithoutSongsInput", {
   isAbstract: true
 })
 export class PersonCreateNestedManyWithoutSongsInput {

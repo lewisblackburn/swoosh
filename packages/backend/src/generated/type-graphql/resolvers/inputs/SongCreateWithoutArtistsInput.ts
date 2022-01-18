@@ -2,13 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { FavouriteCreateNestedManyWithoutSongsInput } from "../inputs/FavouriteCreateNestedManyWithoutSongsInput";
 import { GenreCreateNestedManyWithoutSongsInput } from "../inputs/GenreCreateNestedManyWithoutSongsInput";
-import { ReviewCreateNestedManyWithoutSongInput } from "../inputs/ReviewCreateNestedManyWithoutSongInput";
 import { SongInMovieCreateNestedManyWithoutSongInput } from "../inputs/SongInMovieCreateNestedManyWithoutSongInput";
 import { SongInShowCreateNestedManyWithoutSongInput } from "../inputs/SongInShowCreateNestedManyWithoutSongInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongCreateWithoutArtistsInput", {
   isAbstract: true
 })
 export class SongCreateWithoutArtistsInput {
@@ -52,18 +50,8 @@ export class SongCreateWithoutArtistsInput {
   })
   songInMovie?: SongInMovieCreateNestedManyWithoutSongInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutSongsInput, {
-    nullable: true
-  })
-  favourites?: FavouriteCreateNestedManyWithoutSongsInput | undefined;
-
   @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutSongsInput, {
     nullable: true
   })
   genres?: GenreCreateNestedManyWithoutSongsInput | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutSongInput, {
-    nullable: true
-  })
-  reviews?: ReviewCreateNestedManyWithoutSongInput | undefined;
 }

@@ -6,7 +6,7 @@ import { PersonCreateWithoutSongsInput } from "../inputs/PersonCreateWithoutSong
 import { PersonUpdateWithoutSongsInput } from "../inputs/PersonUpdateWithoutSongsInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpsertWithWhereUniqueWithoutSongsInput", {
   isAbstract: true
 })
 export class PersonUpsertWithWhereUniqueWithoutSongsInput {

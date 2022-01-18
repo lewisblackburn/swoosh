@@ -8,7 +8,7 @@ import { EnumRoleWithAggregatesFilter } from "../inputs/EnumRoleWithAggregatesFi
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserScalarWhereWithAggregatesInput", {
   isAbstract: true
 })
 export class UserScalarWhereWithAggregatesInput {

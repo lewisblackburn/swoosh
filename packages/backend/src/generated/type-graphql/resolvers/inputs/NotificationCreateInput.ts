@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { UserCreateNestedOneWithoutNotificationsInput } from "../inputs/UserCreateNestedOneWithoutNotificationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationCreateInput", {
   isAbstract: true
 })
 export class NotificationCreateInput {

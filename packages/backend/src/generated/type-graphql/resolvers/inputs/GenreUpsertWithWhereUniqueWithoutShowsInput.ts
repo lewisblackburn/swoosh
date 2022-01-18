@@ -6,7 +6,7 @@ import { GenreCreateWithoutShowsInput } from "../inputs/GenreCreateWithoutShowsI
 import { GenreUpdateWithoutShowsInput } from "../inputs/GenreUpdateWithoutShowsInput";
 import { GenreWhereUniqueInput } from "../inputs/GenreWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreUpsertWithWhereUniqueWithoutShowsInput", {
   isAbstract: true
 })
 export class GenreUpsertWithWhereUniqueWithoutShowsInput {

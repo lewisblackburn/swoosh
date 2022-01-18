@@ -9,7 +9,7 @@ import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationWhereInput", {
   isAbstract: true
 })
 export class NotificationWhereInput {

@@ -6,10 +6,15 @@ import { MovieCreateNestedManyWithoutWatchlistInput } from "../inputs/MovieCreat
 import { ShowCreateNestedManyWithoutWatchlistInput } from "../inputs/ShowCreateNestedManyWithoutWatchlistInput";
 import { UserCreateNestedOneWithoutWatchlistInput } from "../inputs/UserCreateNestedOneWithoutWatchlistInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistCreateInput", {
   isAbstract: true
 })
 export class WatchlistCreateInput {
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutWatchlistInput, {
     nullable: false
   })

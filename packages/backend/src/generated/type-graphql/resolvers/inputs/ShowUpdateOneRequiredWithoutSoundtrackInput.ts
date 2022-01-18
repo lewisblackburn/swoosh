@@ -8,7 +8,7 @@ import { ShowUpdateWithoutSoundtrackInput } from "../inputs/ShowUpdateWithoutSou
 import { ShowUpsertWithoutSoundtrackInput } from "../inputs/ShowUpsertWithoutSoundtrackInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpdateOneRequiredWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class ShowUpdateOneRequiredWithoutSoundtrackInput {

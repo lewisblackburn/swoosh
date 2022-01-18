@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { PlatformCreateWithoutMoviesInput } from "../inputs/PlatformCreateWithoutMoviesInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformCreateOrConnectWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformCreateOrConnectWithoutMoviesInput {

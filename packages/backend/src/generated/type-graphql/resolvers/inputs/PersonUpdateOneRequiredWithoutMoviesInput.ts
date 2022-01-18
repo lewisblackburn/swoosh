@@ -8,7 +8,7 @@ import { PersonUpdateWithoutMoviesInput } from "../inputs/PersonUpdateWithoutMov
 import { PersonUpsertWithoutMoviesInput } from "../inputs/PersonUpsertWithoutMoviesInput";
 import { PersonWhereUniqueInput } from "../inputs/PersonWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpdateOneRequiredWithoutMoviesInput", {
   isAbstract: true
 })
 export class PersonUpdateOneRequiredWithoutMoviesInput {

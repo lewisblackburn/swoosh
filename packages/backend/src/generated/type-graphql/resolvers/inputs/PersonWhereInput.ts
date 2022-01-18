@@ -7,14 +7,13 @@ import { ActorInShowListRelationFilter } from "../inputs/ActorInShowListRelation
 import { BookListRelationFilter } from "../inputs/BookListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumCareerNullableListFilter } from "../inputs/EnumCareerNullableListFilter";
-import { FavouriteListRelationFilter } from "../inputs/FavouriteListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { SongListRelationFilter } from "../inputs/SongListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonWhereInput", {
   isAbstract: true
 })
 export class PersonWhereInput {
@@ -82,11 +81,6 @@ export class PersonWhereInput {
     nullable: true
   })
   songs?: SongListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteListRelationFilter, {
-    nullable: true
-  })
-  favourites?: FavouriteListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

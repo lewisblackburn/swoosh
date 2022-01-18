@@ -5,11 +5,10 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieCreateNestedManyWithoutPersonInput } from "../inputs/ActorInMovieCreateNestedManyWithoutPersonInput";
 import { ActorInShowCreateNestedManyWithoutPersonInput } from "../inputs/ActorInShowCreateNestedManyWithoutPersonInput";
 import { BookCreateNestedManyWithoutAuthorsInput } from "../inputs/BookCreateNestedManyWithoutAuthorsInput";
-import { FavouriteCreateNestedManyWithoutPeopleInput } from "../inputs/FavouriteCreateNestedManyWithoutPeopleInput";
 import { PersonCreatecareerInput } from "../inputs/PersonCreatecareerInput";
 import { SongCreateNestedManyWithoutArtistsInput } from "../inputs/SongCreateNestedManyWithoutArtistsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonCreateInput", {
   isAbstract: true
 })
 export class PersonCreateInput {
@@ -67,9 +66,4 @@ export class PersonCreateInput {
     nullable: true
   })
   songs?: SongCreateNestedManyWithoutArtistsInput | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutPeopleInput, {
-    nullable: true
-  })
-  favourites?: FavouriteCreateNestedManyWithoutPeopleInput | undefined;
 }

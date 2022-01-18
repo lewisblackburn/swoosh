@@ -6,7 +6,7 @@ import { SongCreateOrConnectWithoutArtistsInput } from "../inputs/SongCreateOrCo
 import { SongCreateWithoutArtistsInput } from "../inputs/SongCreateWithoutArtistsInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongCreateNestedManyWithoutArtistsInput", {
   isAbstract: true
 })
 export class SongCreateNestedManyWithoutArtistsInput {

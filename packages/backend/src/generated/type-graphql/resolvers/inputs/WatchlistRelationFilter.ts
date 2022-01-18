@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { WatchlistWhereInput } from "../inputs/WatchlistWhereInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistRelationFilter", {
   isAbstract: true
 })
 export class WatchlistRelationFilter {

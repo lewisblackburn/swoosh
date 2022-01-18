@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowUpdateOneRequiredWithoutActorsInput } from "../inputs/ShowUpdateOneRequiredWithoutActorsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowUpdateWithoutPersonInput", {
   isAbstract: true
 })
 export class ActorInShowUpdateWithoutPersonInput {

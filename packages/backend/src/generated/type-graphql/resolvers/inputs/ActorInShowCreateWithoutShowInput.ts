@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PersonCreateNestedOneWithoutShowsInput } from "../inputs/PersonCreateNestedOneWithoutShowsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowCreateWithoutShowInput", {
   isAbstract: true
 })
 export class ActorInShowCreateWithoutShowInput {

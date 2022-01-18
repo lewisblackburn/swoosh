@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowCreateManyShowInput } from "../inputs/ActorInShowCreateManyShowInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowCreateManyShowInputEnvelope", {
   isAbstract: true
 })
 export class ActorInShowCreateManyShowInputEnvelope {

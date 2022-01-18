@@ -6,7 +6,7 @@ import { ShowCreateWithoutWatchlistInput } from "../inputs/ShowCreateWithoutWatc
 import { ShowUpdateWithoutWatchlistInput } from "../inputs/ShowUpdateWithoutWatchlistInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpsertWithWhereUniqueWithoutWatchlistInput", {
   isAbstract: true
 })
 export class ShowUpsertWithWhereUniqueWithoutWatchlistInput {

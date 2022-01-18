@@ -9,7 +9,7 @@ import { SongInMovieMinOrderByAggregateInput } from "../inputs/SongInMovieMinOrd
 import { SongInMovieSumOrderByAggregateInput } from "../inputs/SongInMovieSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInMovieOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class SongInMovieOrderByWithAggregationInput {

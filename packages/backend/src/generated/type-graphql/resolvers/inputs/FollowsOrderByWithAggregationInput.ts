@@ -9,7 +9,7 @@ import { FollowsMinOrderByAggregateInput } from "../inputs/FollowsMinOrderByAggr
 import { FollowsSumOrderByAggregateInput } from "../inputs/FollowsSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class FollowsOrderByWithAggregationInput {
@@ -22,6 +22,11 @@ export class FollowsOrderByWithAggregationInput {
     nullable: true
   })
   followerId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => FollowsCountOrderByAggregateInput, {
     nullable: true

@@ -8,7 +8,7 @@ import { SongMaxAggregate } from "../outputs/SongMaxAggregate";
 import { SongMinAggregate } from "../outputs/SongMinAggregate";
 import { SongSumAggregate } from "../outputs/SongSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateSong", {
   isAbstract: true
 })
 export class AggregateSong {

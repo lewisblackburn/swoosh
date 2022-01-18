@@ -10,7 +10,7 @@ import { SongUpdateWithWhereUniqueWithoutArtistsInput } from "../inputs/SongUpda
 import { SongUpsertWithWhereUniqueWithoutArtistsInput } from "../inputs/SongUpsertWithWhereUniqueWithoutArtistsInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongUpdateManyWithoutArtistsInput", {
   isAbstract: true
 })
 export class SongUpdateManyWithoutArtistsInput {
@@ -32,11 +32,6 @@ export class SongUpdateManyWithoutArtistsInput {
   @TypeGraphQL.Field(_type => [SongWhereUniqueInput], {
     nullable: true
   })
-  connect?: SongWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [SongWhereUniqueInput], {
-    nullable: true
-  })
   set?: SongWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [SongWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class SongUpdateManyWithoutArtistsInput {
     nullable: true
   })
   delete?: SongWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [SongWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: SongWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [SongUpdateWithWhereUniqueWithoutArtistsInput], {
     nullable: true

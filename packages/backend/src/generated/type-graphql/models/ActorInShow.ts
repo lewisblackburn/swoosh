@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { Person } from "../models/Person";
 import { Show } from "../models/Show";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("ActorInShow", {
   isAbstract: true
 })
 export class ActorInShow {

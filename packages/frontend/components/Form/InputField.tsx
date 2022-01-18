@@ -7,8 +7,7 @@ interface InputFieldProps {
 	placeholder: string;
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder }) => {
-	return (
+export const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder }) => (
 		<div className="my-5">
 			<Field
 				className="text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
@@ -19,6 +18,5 @@ export const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder 
 			/>
 		</div>
 	);
-};
 
 export default InputField;

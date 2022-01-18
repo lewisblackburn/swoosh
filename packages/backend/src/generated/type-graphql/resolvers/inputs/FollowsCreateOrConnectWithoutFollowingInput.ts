@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { FollowsCreateWithoutFollowingInput } from "../inputs/FollowsCreateWithoutFollowingInput";
 import { FollowsWhereUniqueInput } from "../inputs/FollowsWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsCreateOrConnectWithoutFollowingInput", {
   isAbstract: true
 })
 export class FollowsCreateOrConnectWithoutFollowingInput {

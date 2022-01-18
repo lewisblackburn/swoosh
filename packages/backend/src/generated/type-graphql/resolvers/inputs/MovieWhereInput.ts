@@ -6,20 +6,18 @@ import { ActorInMovieListRelationFilter } from "../inputs/ActorInMovieListRelati
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
-import { FavouriteListRelationFilter } from "../inputs/FavouriteListRelationFilter";
 import { FloatNullableFilter } from "../inputs/FloatNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
+import { MovieReviewListRelationFilter } from "../inputs/MovieReviewListRelationFilter";
 import { PlatformListRelationFilter } from "../inputs/PlatformListRelationFilter";
-import { RatingListRelationFilter } from "../inputs/RatingListRelationFilter";
-import { ReviewListRelationFilter } from "../inputs/ReviewListRelationFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { WatchlistListRelationFilter } from "../inputs/WatchlistListRelationFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieWhereInput", {
   isAbstract: true
 })
 export class MovieWhereInput {
@@ -88,10 +86,10 @@ export class MovieWhereInput {
   })
   trailer?: StringNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => RatingListRelationFilter, {
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  rating?: RatingListRelationFilter | undefined;
+  rating?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieListRelationFilter, {
     nullable: true
@@ -113,20 +111,15 @@ export class MovieWhereInput {
   })
   soundtrack?: SongInMovieListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteListRelationFilter, {
-    nullable: true
-  })
-  favourites?: FavouriteListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => WatchlistListRelationFilter, {
     nullable: true
   })
   watchlist?: WatchlistListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewListRelationFilter, {
+  @TypeGraphQL.Field(_type => MovieReviewListRelationFilter, {
     nullable: true
   })
-  reviews?: ReviewListRelationFilter | undefined;
+  review?: MovieReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

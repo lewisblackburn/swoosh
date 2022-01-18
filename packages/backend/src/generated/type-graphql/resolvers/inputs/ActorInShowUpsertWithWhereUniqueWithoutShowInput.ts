@@ -6,7 +6,7 @@ import { ActorInShowCreateWithoutShowInput } from "../inputs/ActorInShowCreateWi
 import { ActorInShowUpdateWithoutShowInput } from "../inputs/ActorInShowUpdateWithoutShowInput";
 import { ActorInShowWhereUniqueInput } from "../inputs/ActorInShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowUpsertWithWhereUniqueWithoutShowInput", {
   isAbstract: true
 })
 export class ActorInShowUpsertWithWhereUniqueWithoutShowInput {

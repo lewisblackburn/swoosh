@@ -4,7 +4,7 @@ import { Context } from '../../interfaces/context';
 // create auth checker function
 export const authChecker: AuthChecker<Context> = async ({ context }, roles) => {
 	const user = context.req.session.userId;
-	const role = context.req.session.role;
+	const {role} = context.req.session;
 
 	// if no user in session (not logged in)
 	if (!user) return false;

@@ -9,7 +9,7 @@ import { PersonMinAggregate } from "../outputs/PersonMinAggregate";
 import { PersonSumAggregate } from "../outputs/PersonSumAggregate";
 import { Career } from "../../enums/Career";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("PersonGroupBy", {
   isAbstract: true
 })
 export class PersonGroupBy {

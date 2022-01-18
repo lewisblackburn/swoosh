@@ -6,7 +6,7 @@ import { MovieCreateWithoutGenresInput } from "../inputs/MovieCreateWithoutGenre
 import { MovieUpdateWithoutGenresInput } from "../inputs/MovieUpdateWithoutGenresInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpsertWithWhereUniqueWithoutGenresInput", {
   isAbstract: true
 })
 export class MovieUpsertWithWhereUniqueWithoutGenresInput {

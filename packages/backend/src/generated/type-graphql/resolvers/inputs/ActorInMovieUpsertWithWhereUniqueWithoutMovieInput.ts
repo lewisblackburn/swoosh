@@ -6,7 +6,7 @@ import { ActorInMovieCreateWithoutMovieInput } from "../inputs/ActorInMovieCreat
 import { ActorInMovieUpdateWithoutMovieInput } from "../inputs/ActorInMovieUpdateWithoutMovieInput";
 import { ActorInMovieWhereUniqueInput } from "../inputs/ActorInMovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInMovieUpsertWithWhereUniqueWithoutMovieInput", {
   isAbstract: true
 })
 export class ActorInMovieUpsertWithWhereUniqueWithoutMovieInput {

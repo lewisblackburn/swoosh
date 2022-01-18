@@ -5,14 +5,13 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutPersonInput } from "../inputs/ActorInMovieUpdateManyWithoutPersonInput";
 import { ActorInShowUpdateManyWithoutPersonInput } from "../inputs/ActorInShowUpdateManyWithoutPersonInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { FavouriteUpdateManyWithoutPeopleInput } from "../inputs/FavouriteUpdateManyWithoutPeopleInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
 import { SongUpdateManyWithoutArtistsInput } from "../inputs/SongUpdateManyWithoutArtistsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonUpdateWithoutBooksInput", {
   isAbstract: true
 })
 export class PersonUpdateWithoutBooksInput {
@@ -65,9 +64,4 @@ export class PersonUpdateWithoutBooksInput {
     nullable: true
   })
   songs?: SongUpdateManyWithoutArtistsInput | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutPeopleInput, {
-    nullable: true
-  })
-  favourites?: FavouriteUpdateManyWithoutPeopleInput | undefined;
 }

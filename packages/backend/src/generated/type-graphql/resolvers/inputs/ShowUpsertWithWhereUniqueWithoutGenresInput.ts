@@ -6,7 +6,7 @@ import { ShowCreateWithoutGenresInput } from "../inputs/ShowCreateWithoutGenresI
 import { ShowUpdateWithoutGenresInput } from "../inputs/ShowUpdateWithoutGenresInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowUpsertWithWhereUniqueWithoutGenresInput", {
   isAbstract: true
 })
 export class ShowUpsertWithWhereUniqueWithoutGenresInput {

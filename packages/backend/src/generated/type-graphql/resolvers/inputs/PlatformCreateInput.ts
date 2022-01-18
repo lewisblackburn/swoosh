@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieCreateNestedManyWithoutPlatformsInput } from "../inputs/MovieCreateNestedManyWithoutPlatformsInput";
 import { ShowCreateNestedManyWithoutPlatformsInput } from "../inputs/ShowCreateNestedManyWithoutPlatformsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformCreateInput", {
   isAbstract: true
 })
 export class PlatformCreateInput {

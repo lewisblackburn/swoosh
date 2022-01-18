@@ -5,14 +5,12 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
-import { FavouriteListRelationFilter } from "../inputs/FavouriteListRelationFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
-import { ReviewListRelationFilter } from "../inputs/ReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookWhereInput", {
   isAbstract: true
 })
 export class BookWhereInput {
@@ -66,20 +64,10 @@ export class BookWhereInput {
   })
   authors?: PersonListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteListRelationFilter, {
-    nullable: true
-  })
-  favourites?: FavouriteListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => GenreListRelationFilter, {
     nullable: true
   })
   genres?: GenreListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => ReviewListRelationFilter, {
-    nullable: true
-  })
-  reviews?: ReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

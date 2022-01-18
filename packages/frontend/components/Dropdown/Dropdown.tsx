@@ -6,8 +6,7 @@ interface DropdownProps {
 	title: ReactElement | IconType;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
-	return (
+export const Dropdown: React.FC<DropdownProps> = ({ title, children }) => (
 		<Menu as="div" className="relative inline-block text-left text-sm" style={{ zIndex: 1 }}>
 			<div>
 				<Menu.Button>{title}</Menu.Button>
@@ -27,4 +26,3 @@ export const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 			</Transition>
 		</Menu>
 	);
-};

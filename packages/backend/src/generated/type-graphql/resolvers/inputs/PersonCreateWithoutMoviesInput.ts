@@ -4,11 +4,10 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowCreateNestedManyWithoutPersonInput } from "../inputs/ActorInShowCreateNestedManyWithoutPersonInput";
 import { BookCreateNestedManyWithoutAuthorsInput } from "../inputs/BookCreateNestedManyWithoutAuthorsInput";
-import { FavouriteCreateNestedManyWithoutPeopleInput } from "../inputs/FavouriteCreateNestedManyWithoutPeopleInput";
 import { PersonCreatecareerInput } from "../inputs/PersonCreatecareerInput";
 import { SongCreateNestedManyWithoutArtistsInput } from "../inputs/SongCreateNestedManyWithoutArtistsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PersonCreateWithoutMoviesInput", {
   isAbstract: true
 })
 export class PersonCreateWithoutMoviesInput {
@@ -61,9 +60,4 @@ export class PersonCreateWithoutMoviesInput {
     nullable: true
   })
   songs?: SongCreateNestedManyWithoutArtistsInput | undefined;
-
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedManyWithoutPeopleInput, {
-    nullable: true
-  })
-  favourites?: FavouriteCreateNestedManyWithoutPeopleInput | undefined;
 }

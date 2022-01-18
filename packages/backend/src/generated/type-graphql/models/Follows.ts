@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { User } from "../models/User";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Follows", {
   isAbstract: true
 })
 export class Follows {
@@ -21,4 +21,9 @@ export class Follows {
     nullable: false
   })
   followerId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 }

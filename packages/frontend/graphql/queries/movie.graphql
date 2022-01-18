@@ -7,8 +7,12 @@ query Movie(
 	movie(movieId: $movieId) {
 		id
 		title
-		description
+		overview
 		thumbnail
+		status
+		runtime
+		trailer
+		revenue
 		released
 		locked
 		actors(where: $where, orderBy: $orderBy, cursor: $cursor) {
@@ -17,6 +21,22 @@ query Movie(
 				id
 				name
 				thumbnail
+			}
+		}
+		rating {
+			age
+		}
+		genres {
+			name
+		}
+		platforms {
+			name
+		}
+		soundtrack {
+			timestamp
+			description
+			song {
+				title
 			}
 		}
 		createdAt

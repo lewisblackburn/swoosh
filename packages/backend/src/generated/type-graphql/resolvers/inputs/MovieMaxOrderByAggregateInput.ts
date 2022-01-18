@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieMaxOrderByAggregateInput", {
   isAbstract: true
 })
 export class MovieMaxOrderByAggregateInput {
@@ -57,6 +57,11 @@ export class MovieMaxOrderByAggregateInput {
     nullable: true
   })
   trailer?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  rating?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

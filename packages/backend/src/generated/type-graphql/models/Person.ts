@@ -5,12 +5,11 @@ import { DecimalJSScalar } from "../scalars";
 import { ActorInMovie } from "../models/ActorInMovie";
 import { ActorInShow } from "../models/ActorInShow";
 import { Book } from "../models/Book";
-import { Favourite } from "../models/Favourite";
 import { Song } from "../models/Song";
 import { Career } from "../enums/Career";
 import { PersonCount } from "../resolvers/outputs/PersonCount";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("Person", {
   isAbstract: true
 })
 export class Person {
@@ -51,8 +50,6 @@ export class Person {
   books?: Book[];
 
   songs?: Song[];
-
-  favourites?: Favourite[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

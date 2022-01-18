@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { UserCreateWithoutWatchlistInput } from "../inputs/UserCreateWithoutWatchlistInput";
 import { UserWhereUniqueInput } from "../inputs/UserWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserCreateOrConnectWithoutWatchlistInput", {
   isAbstract: true
 })
 export class UserCreateOrConnectWithoutWatchlistInput {

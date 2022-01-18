@@ -9,7 +9,7 @@ import { NotificationMinOrderByAggregateInput } from "../inputs/NotificationMinO
 import { NotificationSumOrderByAggregateInput } from "../inputs/NotificationSumOrderByAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationOrderByWithAggregationInput", {
   isAbstract: true
 })
 export class NotificationOrderByWithAggregationInput {

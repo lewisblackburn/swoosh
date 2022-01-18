@@ -8,7 +8,7 @@ import { FollowsMaxAggregate } from "../outputs/FollowsMaxAggregate";
 import { FollowsMinAggregate } from "../outputs/FollowsMinAggregate";
 import { FollowsSumAggregate } from "../outputs/FollowsSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateFollows", {
   isAbstract: true
 })
 export class AggregateFollows {

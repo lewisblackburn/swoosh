@@ -6,7 +6,7 @@ import { WatchlistCreateOrConnectWithoutShowsInput } from "../inputs/WatchlistCr
 import { WatchlistCreateWithoutShowsInput } from "../inputs/WatchlistCreateWithoutShowsInput";
 import { WatchlistWhereUniqueInput } from "../inputs/WatchlistWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistCreateNestedManyWithoutShowsInput", {
   isAbstract: true
 })
 export class WatchlistCreateNestedManyWithoutShowsInput {

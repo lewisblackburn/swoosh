@@ -11,7 +11,7 @@ import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieScalarWhereWithAggregatesInput", {
   isAbstract: true
 })
 export class MovieScalarWhereWithAggregatesInput {
@@ -79,6 +79,11 @@ export class MovieScalarWhereWithAggregatesInput {
     nullable: true
   })
   trailer?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  rating?: StringNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
     nullable: true

@@ -6,7 +6,7 @@ import { UserCreateOrConnectWithoutWatchlistInput } from "../inputs/UserCreateOr
 import { UserCreateWithoutWatchlistInput } from "../inputs/UserCreateWithoutWatchlistInput";
 import { UserWhereUniqueInput } from "../inputs/UserWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserCreateNestedOneWithoutWatchlistInput", {
   isAbstract: true
 })
 export class UserCreateNestedOneWithoutWatchlistInput {

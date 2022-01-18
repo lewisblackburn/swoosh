@@ -5,19 +5,17 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutMovieInput } from "../inputs/ActorInMovieUpdateManyWithoutMovieInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { FavouriteUpdateManyWithoutMoviesInput } from "../inputs/FavouriteUpdateManyWithoutMoviesInput";
 import { GenreUpdateManyWithoutMoviesInput } from "../inputs/GenreUpdateManyWithoutMoviesInput";
+import { MovieReviewUpdateManyWithoutMovieInput } from "../inputs/MovieReviewUpdateManyWithoutMovieInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableFloatFieldUpdateOperationsInput } from "../inputs/NullableFloatFieldUpdateOperationsInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { RatingUpdateManyWithoutMoviesInput } from "../inputs/RatingUpdateManyWithoutMoviesInput";
-import { ReviewUpdateManyWithoutMovieInput } from "../inputs/ReviewUpdateManyWithoutMovieInput";
 import { SongInMovieUpdateManyWithoutMovieInput } from "../inputs/SongInMovieUpdateManyWithoutMovieInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { WatchlistUpdateManyWithoutMoviesInput } from "../inputs/WatchlistUpdateManyWithoutMoviesInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpdateWithoutPlatformsInput", {
   isAbstract: true
 })
 export class MovieUpdateWithoutPlatformsInput {
@@ -66,6 +64,11 @@ export class MovieUpdateWithoutPlatformsInput {
   })
   trailer?: NullableStringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  rating?: NullableStringFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -75,11 +78,6 @@ export class MovieUpdateWithoutPlatformsInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => RatingUpdateManyWithoutMoviesInput, {
-    nullable: true
-  })
-  rating?: RatingUpdateManyWithoutMoviesInput | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieUpdateManyWithoutMovieInput, {
     nullable: true
@@ -96,18 +94,13 @@ export class MovieUpdateWithoutPlatformsInput {
   })
   soundtrack?: SongInMovieUpdateManyWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteUpdateManyWithoutMoviesInput, {
-    nullable: true
-  })
-  favourites?: FavouriteUpdateManyWithoutMoviesInput | undefined;
-
   @TypeGraphQL.Field(_type => WatchlistUpdateManyWithoutMoviesInput, {
     nullable: true
   })
   watchlist?: WatchlistUpdateManyWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewUpdateManyWithoutMovieInput, {
+  @TypeGraphQL.Field(_type => MovieReviewUpdateManyWithoutMovieInput, {
     nullable: true
   })
-  reviews?: ReviewUpdateManyWithoutMovieInput | undefined;
+  review?: MovieReviewUpdateManyWithoutMovieInput | undefined;
 }

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("WatchlistCreateManyInput", {
   isAbstract: true
 })
 export class WatchlistCreateManyInput {
@@ -16,4 +16,9 @@ export class WatchlistCreateManyInput {
     nullable: false
   })
   userId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
 }

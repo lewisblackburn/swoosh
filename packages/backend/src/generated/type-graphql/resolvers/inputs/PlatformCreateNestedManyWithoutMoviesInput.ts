@@ -6,7 +6,7 @@ import { PlatformCreateOrConnectWithoutMoviesInput } from "../inputs/PlatformCre
 import { PlatformCreateWithoutMoviesInput } from "../inputs/PlatformCreateWithoutMoviesInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformCreateNestedManyWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformCreateNestedManyWithoutMoviesInput {

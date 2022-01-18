@@ -1,5 +1,7 @@
-import { Context } from '../../interfaces/context';
 import { Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
+import { GraphQLResolveInfo } from 'graphql';
+import graphqlFields from 'graphql-fields';
+import { Context } from '../../interfaces/context';
 import {
 	Person,
 	CreatePersonArgs,
@@ -14,8 +16,6 @@ import {
 	getPrismaFromContext,
 	transformCountFieldIntoSelectRelationsCount,
 } from '../../generated/type-graphql/helpers';
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
 
 @Resolver(Person)
 export class PersonResolver {

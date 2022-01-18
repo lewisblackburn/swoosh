@@ -7,10 +7,8 @@ interface IconCardProps extends CardProps {
 	icon: IconType;
 }
 
-export const IconCard: React.FC<IconCardProps> = ({ icon, ...props }) => {
-	return (
+export const IconCard: React.FC<IconCardProps> = ({ icon, ...props }) => (
 		<Card {...props}>
 			<Icon icon={icon} className="w-10 h-10 text-gray-300" />
 		</Card>
 	);
-};

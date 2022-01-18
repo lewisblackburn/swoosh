@@ -6,7 +6,7 @@ import { SongCreateWithoutArtistsInput } from "../inputs/SongCreateWithoutArtist
 import { SongUpdateWithoutArtistsInput } from "../inputs/SongUpdateWithoutArtistsInput";
 import { SongWhereUniqueInput } from "../inputs/SongWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongUpsertWithWhereUniqueWithoutArtistsInput", {
   isAbstract: true
 })
 export class SongUpsertWithWhereUniqueWithoutArtistsInput {

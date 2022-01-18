@@ -2,16 +2,15 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { FavouriteCreateNestedOneWithoutUserInput } from "../inputs/FavouriteCreateNestedOneWithoutUserInput";
 import { FollowsCreateNestedManyWithoutFollowerInput } from "../inputs/FollowsCreateNestedManyWithoutFollowerInput";
 import { FollowsCreateNestedManyWithoutFollowingInput } from "../inputs/FollowsCreateNestedManyWithoutFollowingInput";
+import { MovieReviewCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewCreateNestedManyWithoutUserInput";
+import { MovieReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewLikeCreateNestedManyWithoutUserInput";
 import { NotificationCreateNestedManyWithoutUserInput } from "../inputs/NotificationCreateNestedManyWithoutUserInput";
-import { ReviewCreateNestedManyWithoutUserInput } from "../inputs/ReviewCreateNestedManyWithoutUserInput";
-import { VoteCreateNestedManyWithoutUserInput } from "../inputs/VoteCreateNestedManyWithoutUserInput";
 import { WatchlistCreateNestedOneWithoutUserInput } from "../inputs/WatchlistCreateNestedOneWithoutUserInput";
 import { Role } from "../../enums/Role";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("UserCreateInput", {
   isAbstract: true
 })
 export class UserCreateInput {
@@ -100,18 +99,13 @@ export class UserCreateInput {
   })
   watchlist?: WatchlistCreateNestedOneWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(_type => FavouriteCreateNestedOneWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieReviewCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  favourites?: FavouriteCreateNestedOneWithoutUserInput | undefined;
+  movieReviews?: MovieReviewCreateNestedManyWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(_type => ReviewCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieReviewLikeCreateNestedManyWithoutUserInput, {
     nullable: true
   })
-  reviews?: ReviewCreateNestedManyWithoutUserInput | undefined;
-
-  @TypeGraphQL.Field(_type => VoteCreateNestedManyWithoutUserInput, {
-    nullable: true
-  })
-  Vote?: VoteCreateNestedManyWithoutUserInput | undefined;
+  likedMovieReviews?: MovieReviewLikeCreateNestedManyWithoutUserInput | undefined;
 }

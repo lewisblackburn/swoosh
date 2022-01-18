@@ -7,11 +7,9 @@ interface InternalLinkProps {
 	className?: string;
 }
 
-export const InternalLink: React.FC<InternalLinkProps> = ({ href, children, className }) => {
-	return (
+export const InternalLink: React.FC<InternalLinkProps> = ({ href, children, className }) => (
 		<Link href={href}>
 			{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
 			<a className={`${className}`}>{children}</a>
 		</Link>
 	);
-};

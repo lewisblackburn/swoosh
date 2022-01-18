@@ -2,9 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("FollowsScalarWhereInput", {
   isAbstract: true
 })
 export class FollowsScalarWhereInput {
@@ -32,4 +33,9 @@ export class FollowsScalarWhereInput {
     nullable: true
   })
   followerId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeFilter | undefined;
 }

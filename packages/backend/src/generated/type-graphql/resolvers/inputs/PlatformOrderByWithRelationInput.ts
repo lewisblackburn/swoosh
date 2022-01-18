@@ -6,7 +6,7 @@ import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelati
 import { ShowOrderByRelationAggregateInput } from "../inputs/ShowOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformOrderByWithRelationInput", {
   isAbstract: true
 })
 export class PlatformOrderByWithRelationInput {

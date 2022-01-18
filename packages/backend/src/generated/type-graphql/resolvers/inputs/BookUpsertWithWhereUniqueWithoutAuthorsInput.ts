@@ -6,7 +6,7 @@ import { BookCreateWithoutAuthorsInput } from "../inputs/BookCreateWithoutAuthor
 import { BookUpdateWithoutAuthorsInput } from "../inputs/BookUpdateWithoutAuthorsInput";
 import { BookWhereUniqueInput } from "../inputs/BookWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("BookUpsertWithWhereUniqueWithoutAuthorsInput", {
   isAbstract: true
 })
 export class BookUpsertWithWhereUniqueWithoutAuthorsInput {

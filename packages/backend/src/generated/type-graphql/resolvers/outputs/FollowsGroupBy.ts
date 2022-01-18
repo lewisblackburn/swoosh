@@ -8,7 +8,7 @@ import { FollowsMaxAggregate } from "../outputs/FollowsMaxAggregate";
 import { FollowsMinAggregate } from "../outputs/FollowsMinAggregate";
 import { FollowsSumAggregate } from "../outputs/FollowsSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("FollowsGroupBy", {
   isAbstract: true
 })
 export class FollowsGroupBy {
@@ -21,6 +21,11 @@ export class FollowsGroupBy {
     nullable: false
   })
   followerId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => FollowsCountAggregate, {
     nullable: true

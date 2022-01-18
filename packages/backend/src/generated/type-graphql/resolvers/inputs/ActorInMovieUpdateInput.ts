@@ -6,7 +6,7 @@ import { MovieUpdateOneRequiredWithoutActorsInput } from "../inputs/MovieUpdateO
 import { PersonUpdateOneRequiredWithoutMoviesInput } from "../inputs/PersonUpdateOneRequiredWithoutMoviesInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInMovieUpdateInput", {
   isAbstract: true
 })
 export class ActorInMovieUpdateInput {

@@ -1,9 +1,9 @@
-import { transformFields, transformCountFieldIntoSelectRelationsCount } from '../../generated/type-graphql/helpers';
 import { Ctx, Info, Query, Resolver } from 'type-graphql';
-import { User } from '../../generated/type-graphql';
-import { Context } from '../../interfaces/context';
 import graphqlFields from 'graphql-fields';
 import { GraphQLResolveInfo } from 'graphql';
+import { transformFields, transformCountFieldIntoSelectRelationsCount } from '../../generated/type-graphql/helpers';
+import { User } from '../../generated/type-graphql';
+import { Context } from '../../interfaces/context';
 
 @Resolver(User)
 export class MeResolver {

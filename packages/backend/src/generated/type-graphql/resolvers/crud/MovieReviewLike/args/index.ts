@@ -1,0 +1,12 @@
+export { AggregateMovieReviewLikeArgs } from "./AggregateMovieReviewLikeArgs";
+export { CreateManyMovieReviewLikeArgs } from "./CreateManyMovieReviewLikeArgs";
+export { CreateMovieReviewLikeArgs } from "./CreateMovieReviewLikeArgs";
+export { DeleteManyMovieReviewLikeArgs } from "./DeleteManyMovieReviewLikeArgs";
+export { DeleteMovieReviewLikeArgs } from "./DeleteMovieReviewLikeArgs";
+export { FindFirstMovieReviewLikeArgs } from "./FindFirstMovieReviewLikeArgs";
+export { FindManyMovieReviewLikeArgs } from "./FindManyMovieReviewLikeArgs";
+export { FindUniqueMovieReviewLikeArgs } from "./FindUniqueMovieReviewLikeArgs";
+export { GroupByMovieReviewLikeArgs } from "./GroupByMovieReviewLikeArgs";
+export { UpdateManyMovieReviewLikeArgs } from "./UpdateManyMovieReviewLikeArgs";
+export { UpdateMovieReviewLikeArgs } from "./UpdateMovieReviewLikeArgs";
+export { UpsertMovieReviewLikeArgs } from "./UpsertMovieReviewLikeArgs";

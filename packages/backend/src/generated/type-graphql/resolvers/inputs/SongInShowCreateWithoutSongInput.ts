@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateNestedOneWithoutSoundtrackInput } from "../inputs/ShowCreateNestedOneWithoutSoundtrackInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInShowCreateWithoutSongInput", {
   isAbstract: true
 })
 export class SongInShowCreateWithoutSongInput {

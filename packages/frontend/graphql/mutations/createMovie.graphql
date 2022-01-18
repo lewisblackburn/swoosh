@@ -2,10 +2,6 @@ mutation CreateMovie($data: MovieCreateInput!) {
 	createMovie(data: $data) {
 		id
 		title
-		description
-		thumbnail
-		locked
-		createdAt
-		updatedAt
+		overview
 	}
 }

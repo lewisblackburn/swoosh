@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieCreateWithoutSoundtrackInput } from "../inputs/MovieCreateWithoutSoundtrackInput";
 import { MovieUpdateWithoutSoundtrackInput } from "../inputs/MovieUpdateWithoutSoundtrackInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpsertWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class MovieUpsertWithoutSoundtrackInput {

@@ -6,7 +6,7 @@ import { PlatformCreateWithoutMoviesInput } from "../inputs/PlatformCreateWithou
 import { PlatformUpdateWithoutMoviesInput } from "../inputs/PlatformUpdateWithoutMoviesInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpsertWithWhereUniqueWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformUpsertWithWhereUniqueWithoutMoviesInput {

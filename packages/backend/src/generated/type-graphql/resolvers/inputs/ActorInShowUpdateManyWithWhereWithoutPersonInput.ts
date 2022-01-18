@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowScalarWhereInput } from "../inputs/ActorInShowScalarWhereInput";
 import { ActorInShowUpdateManyMutationInput } from "../inputs/ActorInShowUpdateManyMutationInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowUpdateManyWithWhereWithoutPersonInput", {
   isAbstract: true
 })
 export class ActorInShowUpdateManyWithWhereWithoutPersonInput {

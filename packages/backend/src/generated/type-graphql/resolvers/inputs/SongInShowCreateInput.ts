@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateNestedOneWithoutSoundtrackInput } from "../inputs/ShowCreateNestedOneWithoutSoundtrackInput";
 import { SongCreateNestedOneWithoutSongInShowInput } from "../inputs/SongCreateNestedOneWithoutSongInShowInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInShowCreateInput", {
   isAbstract: true
 })
 export class SongInShowCreateInput {

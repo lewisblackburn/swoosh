@@ -6,7 +6,7 @@ import { ShowCreateOrConnectWithoutActorsInput } from "../inputs/ShowCreateOrCon
 import { ShowCreateWithoutActorsInput } from "../inputs/ShowCreateWithoutActorsInput";
 import { ShowWhereUniqueInput } from "../inputs/ShowWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ShowCreateNestedOneWithoutActorsInput", {
   isAbstract: true
 })
 export class ShowCreateNestedOneWithoutActorsInput {

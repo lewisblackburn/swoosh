@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { PlatformUpdateWithoutMoviesInput } from "../inputs/PlatformUpdateWithoutMoviesInput";
 import { PlatformWhereUniqueInput } from "../inputs/PlatformWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformUpdateWithWhereUniqueWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformUpdateWithWhereUniqueWithoutMoviesInput {

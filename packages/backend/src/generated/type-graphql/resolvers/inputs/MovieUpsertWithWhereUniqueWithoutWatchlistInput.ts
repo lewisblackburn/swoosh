@@ -6,7 +6,7 @@ import { MovieCreateWithoutWatchlistInput } from "../inputs/MovieCreateWithoutWa
 import { MovieUpdateWithoutWatchlistInput } from "../inputs/MovieUpdateWithoutWatchlistInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpsertWithWhereUniqueWithoutWatchlistInput", {
   isAbstract: true
 })
 export class MovieUpsertWithWhereUniqueWithoutWatchlistInput {

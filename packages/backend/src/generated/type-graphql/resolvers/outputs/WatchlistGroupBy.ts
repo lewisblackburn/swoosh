@@ -8,7 +8,7 @@ import { WatchlistMaxAggregate } from "../outputs/WatchlistMaxAggregate";
 import { WatchlistMinAggregate } from "../outputs/WatchlistMinAggregate";
 import { WatchlistSumAggregate } from "../outputs/WatchlistSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("WatchlistGroupBy", {
   isAbstract: true
 })
 export class WatchlistGroupBy {
@@ -21,6 +21,11 @@ export class WatchlistGroupBy {
     nullable: false
   })
   userId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => WatchlistCountAggregate, {
     nullable: true

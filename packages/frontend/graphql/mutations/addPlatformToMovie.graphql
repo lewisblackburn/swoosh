@@ -1,3 +1,0 @@
-mutation addPlatformToMovie($platformId: Int!, $movieId: Int!) {
-	addPlatformToMovie(platformId: $platformId, movieId: $movieId)
-}

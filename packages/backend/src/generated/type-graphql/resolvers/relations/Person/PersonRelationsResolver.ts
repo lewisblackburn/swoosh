@@ -2,11 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import { ActorInMovie } from "../../../models/ActorInMovie";
 import { ActorInShow } from "../../../models/ActorInShow";
 import { Book } from "../../../models/Book";
-import { Favourite } from "../../../models/Favourite";
 import { Person } from "../../../models/Person";
 import { Song } from "../../../models/Song";
 import { PersonBooksArgs } from "./args/PersonBooksArgs";
-import { PersonFavouritesArgs } from "./args/PersonFavouritesArgs";
 import { PersonMoviesArgs } from "./args/PersonMoviesArgs";
 import { PersonShowsArgs } from "./args/PersonShowsArgs";
 import { PersonSongsArgs } from "./args/PersonSongsArgs";
@@ -56,16 +54,5 @@ export class PersonRelationsResolver {
         id: person.id,
       },
     }).songs(args);
-  }
-
-  @TypeGraphQL.FieldResolver(_type => [Favourite], {
-    nullable: false
-  })
-  async favourites(@TypeGraphQL.Root() person: Person, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PersonFavouritesArgs): Promise<Favourite[]> {
-    return getPrismaFromContext(ctx).person.findUnique({
-      where: {
-        id: person.id,
-      },
-    }).favourites(args);
   }
 }

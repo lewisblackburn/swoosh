@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { SongInMovieSongIdMovieIdCompoundUniqueInput } from "../inputs/SongInMovieSongIdMovieIdCompoundUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("SongInMovieWhereUniqueInput", {
   isAbstract: true
 })
 export class SongInMovieWhereUniqueInput {

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("MovieMaxAggregate", {
   isAbstract: true
 })
 export class MovieMaxAggregate {
@@ -56,6 +56,11 @@ export class MovieMaxAggregate {
     nullable: true
   })
   trailer!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

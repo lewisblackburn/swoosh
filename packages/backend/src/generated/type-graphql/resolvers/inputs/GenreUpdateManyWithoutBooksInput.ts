@@ -10,7 +10,7 @@ import { GenreUpdateWithWhereUniqueWithoutBooksInput } from "../inputs/GenreUpda
 import { GenreUpsertWithWhereUniqueWithoutBooksInput } from "../inputs/GenreUpsertWithWhereUniqueWithoutBooksInput";
 import { GenreWhereUniqueInput } from "../inputs/GenreWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("GenreUpdateManyWithoutBooksInput", {
   isAbstract: true
 })
 export class GenreUpdateManyWithoutBooksInput {
@@ -32,11 +32,6 @@ export class GenreUpdateManyWithoutBooksInput {
   @TypeGraphQL.Field(_type => [GenreWhereUniqueInput], {
     nullable: true
   })
-  connect?: GenreWhereUniqueInput[] | undefined;
-
-  @TypeGraphQL.Field(_type => [GenreWhereUniqueInput], {
-    nullable: true
-  })
   set?: GenreWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [GenreWhereUniqueInput], {
@@ -48,6 +43,11 @@ export class GenreUpdateManyWithoutBooksInput {
     nullable: true
   })
   delete?: GenreWhereUniqueInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [GenreWhereUniqueInput], {
+    nullable: true
+  })
+  connect?: GenreWhereUniqueInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [GenreUpdateWithWhereUniqueWithoutBooksInput], {
     nullable: true

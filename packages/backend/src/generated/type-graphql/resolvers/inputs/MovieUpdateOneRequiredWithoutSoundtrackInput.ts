@@ -8,7 +8,7 @@ import { MovieUpdateWithoutSoundtrackInput } from "../inputs/MovieUpdateWithoutS
 import { MovieUpsertWithoutSoundtrackInput } from "../inputs/MovieUpsertWithoutSoundtrackInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieUpdateOneRequiredWithoutSoundtrackInput", {
   isAbstract: true
 })
 export class MovieUpdateOneRequiredWithoutSoundtrackInput {

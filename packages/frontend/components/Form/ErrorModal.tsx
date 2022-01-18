@@ -7,8 +7,7 @@ interface ErrorModalProps extends ModalProps {
 	error: string;
 }
 
-export const ErrorModal: React.FC<ErrorModalProps> = ({ error, ...props }) => {
-	return (
+export const ErrorModal: React.FC<ErrorModalProps> = ({ error, ...props }) => (
 		<Modal {...props}>
 			<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
 				Error
@@ -22,4 +21,3 @@ export const ErrorModal: React.FC<ErrorModalProps> = ({ error, ...props }) => {
 			</Button>
 		</Modal>
 	);
-};

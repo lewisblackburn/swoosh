@@ -8,7 +8,7 @@ import { ActorInMovieMaxAggregate } from "../outputs/ActorInMovieMaxAggregate";
 import { ActorInMovieMinAggregate } from "../outputs/ActorInMovieMinAggregate";
 import { ActorInMovieSumAggregate } from "../outputs/ActorInMovieSumAggregate";
 
-@TypeGraphQL.ObjectType({
+@TypeGraphQL.ObjectType("AggregateActorInMovie", {
   isAbstract: true
 })
 export class AggregateActorInMovie {

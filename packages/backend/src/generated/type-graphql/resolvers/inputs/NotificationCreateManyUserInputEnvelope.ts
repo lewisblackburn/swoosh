@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NotificationCreateManyUserInput } from "../inputs/NotificationCreateManyUserInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("NotificationCreateManyUserInputEnvelope", {
   isAbstract: true
 })
 export class NotificationCreateManyUserInputEnvelope {

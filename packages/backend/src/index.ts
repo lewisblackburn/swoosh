@@ -8,14 +8,14 @@ import { fieldExtensionsEstimator, getComplexity, simpleEstimator } from 'graphq
 import { graphqlUploadExpress } from 'graphql-upload';
 import path from 'path';
 import 'reflect-metadata';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { execute, subscribe } from 'graphql';
+import { createServer } from 'http';
 import { COOKIE_NAME, __prod__ } from './constants';
 import { prisma } from './db';
 import { Context } from './interfaces/context';
 import { redis } from './redis';
 import { createSchema } from './utils/createSchema';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
-import { execute, subscribe } from 'graphql';
-import { createServer } from 'http';
 
 const PORT = parseInt(process.env.PORT ?? '4000');
 
@@ -94,8 +94,8 @@ const driver = async () => {
 	});
 
 	// codesandbox.io/s/github/apollographql/docs-examples/tree/main/apollo-server/v3/subscriptions?fontsize=14&hidenavigation=1&initialpath=/graphql&theme=dark&file=/index.js:489-529
-	https: SubscriptionServer.create(
-		{ schema, execute: execute, subscribe: subscribe },
+	SubscriptionServer.create(
+		{ schema, execute, subscribe },
 		{ server: httpServer, path: apolloServer.graphqlPath }
 	);
 

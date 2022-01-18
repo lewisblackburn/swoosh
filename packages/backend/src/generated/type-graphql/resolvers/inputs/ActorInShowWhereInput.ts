@@ -7,7 +7,7 @@ import { PersonRelationFilter } from "../inputs/PersonRelationFilter";
 import { ShowRelationFilter } from "../inputs/ShowRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInShowWhereInput", {
   isAbstract: true
 })
 export class ActorInShowWhereInput {

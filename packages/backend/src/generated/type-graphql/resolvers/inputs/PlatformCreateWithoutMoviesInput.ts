@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ShowCreateNestedManyWithoutPlatformsInput } from "../inputs/ShowCreateNestedManyWithoutPlatformsInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("PlatformCreateWithoutMoviesInput", {
   isAbstract: true
 })
 export class PlatformCreateWithoutMoviesInput {

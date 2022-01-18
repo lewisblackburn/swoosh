@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieCreateNestedOneWithoutActorsInput } from "../inputs/MovieCreateNestedOneWithoutActorsInput";
 import { PersonCreateNestedOneWithoutMoviesInput } from "../inputs/PersonCreateNestedOneWithoutMoviesInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("ActorInMovieCreateInput", {
   isAbstract: true
 })
 export class ActorInMovieCreateInput {

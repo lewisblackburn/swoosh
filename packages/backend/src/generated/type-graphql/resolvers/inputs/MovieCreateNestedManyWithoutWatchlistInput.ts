@@ -6,7 +6,7 @@ import { MovieCreateOrConnectWithoutWatchlistInput } from "../inputs/MovieCreate
 import { MovieCreateWithoutWatchlistInput } from "../inputs/MovieCreateWithoutWatchlistInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType({
+@TypeGraphQL.InputType("MovieCreateNestedManyWithoutWatchlistInput", {
   isAbstract: true
 })
 export class MovieCreateNestedManyWithoutWatchlistInput {
