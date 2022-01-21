@@ -1,0 +1,3 @@
+mutation createSongInMovie($data: SongInMovieCreateInput!) {
+	createSongInMovie(data: $data)
+}

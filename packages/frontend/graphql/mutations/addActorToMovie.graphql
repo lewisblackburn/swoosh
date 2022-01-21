@@ -1,3 +1,0 @@
-mutation addActorToMovie($role: String!, $movieId: Int!, $personId: Int!) {
-	addActorToMovie(role: $role, movieId: $movieId, personId: $personId)
-}

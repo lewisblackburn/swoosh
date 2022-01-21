@@ -1,0 +1,5 @@
+mutation updateGenre($data: GenreUpdateInput!, $where: GenreWhereUniqueInput!) {
+	updateGenre(data: $data, where: $where) {
+		name
+	}
+}

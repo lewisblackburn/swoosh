@@ -1,0 +1,3 @@
+mutation createActorInMovie($data: ActorInMovieCreateInput!) {
+	createActorInMovie(data: $data)
+}

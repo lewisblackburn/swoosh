@@ -1,45 +1,24 @@
-query Movie(
-	$movieId: Int!
-	$where: ActorInMovieWhereInput
-	$orderBy: [ActorInMovieOrderByWithRelationInput!]
-	$cursor: ActorInMovieWhereUniqueInput
-) {
+query Movie($movieId: Int!) {
 	movie(movieId: $movieId) {
 		id
 		title
 		overview
-		thumbnail
-		status
+		poster
+		backdrop
+		locked
+		released
 		runtime
 		trailer
-		revenue
-		released
-		locked
-		actors(where: $where, orderBy: $orderBy, cursor: $cursor) {
+		rating
+		genres {
+			name
+		}
+		actors(take: 8) {
 			role
 			person {
-				id
 				name
 				thumbnail
 			}
 		}
-		rating {
-			age
-		}
-		genres {
-			name
-		}
-		platforms {
-			name
-		}
-		soundtrack {
-			timestamp
-			description
-			song {
-				title
-			}
-		}
-		createdAt
-		updatedAt
 	}
 }

@@ -1,30 +1,30 @@
-import { useMeQuery } from 'generated/graphql';
+import {useMeQuery} from 'generated/graphql';
 import Link from 'next/link';
 import React from 'react';
 import {
 	AiOutlineBell,
 	AiOutlineCustomerService,
 	AiOutlineDesktop,
-	AiOutlineHeart,
 	AiOutlineHome,
+	AiOutlineHourglass,
 	AiOutlineRead,
 	AiOutlineSetting,
 	AiOutlineUser,
 	AiOutlineVideoCamera,
 } from 'react-icons/ai';
-import { Avatar } from './Avatar';
-import { IconLink } from './IconLink';
-import { LogoutButton } from './LogoutButton';
+import {Avatar} from './Avatar';
+import {IconLink} from './IconLink';
+import {LogoutButton} from './LogoutButton';
 
 export const Sidebar: React.FC = () => {
-	const { data } = useMeQuery();
+	const {data} = useMeQuery();
 
 	return (
-		<div className="flex flex-col items-center justify-between h-screen px-5 py-10 border-r border-gray-100">
+		<div className="flex flex-col itemsHeart-center justify-between h-screen px-5 py-10 border-r border-gray-100">
 			<div className="flex flex-col items-center space-y-8">
 				<h1 className="text-xs font-bold text-gray-500 uppercase">home</h1>
 				<IconLink icon={AiOutlineHome} href="/" />
-				<IconLink icon={AiOutlineHeart} href="/favourites" />
+				<IconLink icon={AiOutlineHourglass} href="/watchlist" />
 				<IconLink icon={AiOutlineBell} href="/notifications" />
 				<h1 className="text-xs font-bold text-gray-500 uppercase">content</h1>
 				<IconLink icon={AiOutlineVideoCamera} href="/movies" />

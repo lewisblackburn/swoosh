@@ -1,0 +1,3 @@
+mutation createMovieReview($data: MovieReviewCreateInput!) {
+	createMovieReview(data: $data)
+}

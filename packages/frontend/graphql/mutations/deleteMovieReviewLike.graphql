@@ -1,0 +1,3 @@
+mutation deleteMovieReviewLike($where: MovieReviewLikeWhereUniqueInput!) {
+	deleteMovieReviewLike(where: $where)
+}

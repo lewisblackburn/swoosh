@@ -17,19 +17,18 @@ export const MoviesPage: React.FC = () => {
 			},
 		},
 	});
-	console.log(data);
 
 	return (
 		<Layout>
-			<div className='flex flex-wrap gap-5'>
-				<InternalLink href='movies/create?next=/movies'>
-					<IconCard icon={AiOutlinePlus} size='large' />
+			<div className="flex flex-wrap gap-5">
+				<InternalLink href="movies/create?next=/movies">
+					<IconCard icon={AiOutlinePlus} size="large" />
 				</InternalLink>
 				{data?.movies?.map(movie => (
 					<div key={movie.id}>
 						{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
 						<InternalLink href={`movie/${movie.id}`}>
-							<Card src={movie.thumbnail} size='large' />
+							<Card src={movie.poster} size="large" />
 						</InternalLink>
 					</div>
 				))}

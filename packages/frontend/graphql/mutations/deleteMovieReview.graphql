@@ -1,0 +1,3 @@
+mutation deleteMovieReview($where: MovieReviewWhereUniqueInput!) {
+	deleteMovieReview(where: $where)
+}

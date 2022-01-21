@@ -3,6 +3,6 @@ query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!]
 		id
 		title
 		overview
-		thumbnail
+		poster
 	}
 }
