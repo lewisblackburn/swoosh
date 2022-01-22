@@ -16,10 +16,20 @@ export class MovieReviewLike {
   })
   userId!: number;
 
-  movieReview?: MovieReview;
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  reviewUserId!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  movieReviewId!: number;
+  reviewMovieId!: number;
+
+  movieReview?: MovieReview;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 }

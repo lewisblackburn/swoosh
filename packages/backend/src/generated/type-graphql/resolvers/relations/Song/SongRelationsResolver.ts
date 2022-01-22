@@ -4,8 +4,10 @@ import { Person } from "../../../models/Person";
 import { Song } from "../../../models/Song";
 import { SongInMovie } from "../../../models/SongInMovie";
 import { SongInShow } from "../../../models/SongInShow";
+import { SongReview } from "../../../models/SongReview";
 import { SongArtistsArgs } from "./args/SongArtistsArgs";
 import { SongGenresArgs } from "./args/SongGenresArgs";
+import { SongReviewsArgs } from "./args/SongReviewsArgs";
 import { SongSongInMovieArgs } from "./args/SongSongInMovieArgs";
 import { SongSongInShowArgs } from "./args/SongSongInShowArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
@@ -54,5 +56,16 @@ export class SongRelationsResolver {
         id: song.id,
       },
     }).genres(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [SongReview], {
+    nullable: false
+  })
+  async reviews(@TypeGraphQL.Root() song: Song, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: SongReviewsArgs): Promise<SongReview[]> {
+    return getPrismaFromContext(ctx).song.findUnique({
+      where: {
+        id: song.id,
+      },
+    }).reviews(args);
   }
 }

@@ -2,7 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 
 export enum MovieReviewLikeScalarFieldEnum {
   userId = "userId",
-  movieReviewId = "movieReviewId"
+  reviewUserId = "reviewUserId",
+  reviewMovieId = "reviewMovieId",
+  createdAt = "createdAt"
 }
 TypeGraphQL.registerEnumType(MovieReviewLikeScalarFieldEnum, {
   name: "MovieReviewLikeScalarFieldEnum",

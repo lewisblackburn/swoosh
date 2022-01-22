@@ -7,6 +7,7 @@ import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperati
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { PlatformUpdateManyWithoutShowsInput } from "../inputs/PlatformUpdateManyWithoutShowsInput";
+import { ShowReviewUpdateManyWithoutShowInput } from "../inputs/ShowReviewUpdateManyWithoutShowInput";
 import { SongInShowUpdateManyWithoutShowInput } from "../inputs/SongInShowUpdateManyWithoutShowInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { WatchlistUpdateManyWithoutShowsInput } from "../inputs/WatchlistUpdateManyWithoutShowsInput";
@@ -69,4 +70,9 @@ export class ShowUpdateWithoutGenresInput {
     nullable: true
   })
   watchlist?: WatchlistUpdateManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewUpdateManyWithoutShowInput, {
+    nullable: true
+  })
+  reviews?: ShowReviewUpdateManyWithoutShowInput | undefined;
 }

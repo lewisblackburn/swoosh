@@ -20,7 +20,7 @@ export class GroupByMovieReviewLikeArgs {
   @TypeGraphQL.Field(_type => [MovieReviewLikeScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"userId" | "movieReviewId">;
+  by!: Array<"userId" | "reviewUserId" | "reviewMovieId" | "createdAt">;
 
   @TypeGraphQL.Field(_type => MovieReviewLikeScalarWhereWithAggregatesInput, {
     nullable: true

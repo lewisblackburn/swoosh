@@ -1,6 +1,5 @@
 mutation updateMovieReivew($data: MovieReviewUpdateInput!, $where: MovieReviewWhereUniqueInput!) {
 	updateMovieReview(data: $data, where: $where) {
-		title
 		review
 		rating
 		_count {

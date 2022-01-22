@@ -24,7 +24,7 @@ export class NotificationCreateInput {
   createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutNotificationsInput, {
-    nullable: true
+    nullable: false
   })
-  user?: UserCreateNestedOneWithoutNotificationsInput | undefined;
+  user!: UserCreateNestedOneWithoutNotificationsInput;
 }

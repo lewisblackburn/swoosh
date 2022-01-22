@@ -9,6 +9,7 @@ import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDa
 import { PersonUpdateManyWithoutSongsInput } from "../inputs/PersonUpdateManyWithoutSongsInput";
 import { SongInMovieUpdateManyWithoutSongInput } from "../inputs/SongInMovieUpdateManyWithoutSongInput";
 import { SongInShowUpdateManyWithoutSongInput } from "../inputs/SongInShowUpdateManyWithoutSongInput";
+import { SongReviewUpdateManyWithoutSongInput } from "../inputs/SongReviewUpdateManyWithoutSongInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("SongUpdateInput", {
@@ -64,4 +65,9 @@ export class SongUpdateInput {
     nullable: true
   })
   genres?: GenreUpdateManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewUpdateManyWithoutSongInput, {
+    nullable: true
+  })
+  reviews?: SongReviewUpdateManyWithoutSongInput | undefined;
 }

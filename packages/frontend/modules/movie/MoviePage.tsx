@@ -1,171 +1,218 @@
-import {Avatar} from '@components/Avatar';
-import {Button} from '@components/Button';
-import {AddActor} from '@components/Form/Movie/AddActorForm';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
+import {ReviewModal} from '@components/Modal/ReviewModal';
 import {useMovieQuery} from 'generated/graphql';
-import {useRouter} from 'next/router';
-import React from 'react';
-import {AiFillEye, AiFillPlayCircle, AiOutlineEdit, AiOutlineHeart, AiOutlinePlus, AiOutlineStar} from 'react-icons/ai';
+import Link from 'next/link';
+import React, {useState} from 'react';
+import {
+	AiOutlineCheckCircle,
+	AiOutlineEdit,
+	AiOutlineHeart,
+	AiOutlineHourglass,
+	AiOutlinePlus,
+	AiOutlineStar,
+} from 'react-icons/ai';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
 import {Layout} from '../layouts/Layout';
-
-function minutesToHours(hours: number): string {
-	let h = 0;
-	let m = 0;
-
-	h = Math.floor(hours / 60);
-	m = hours % 60;
-
-	return `${h}h ${m}m`;
-}
 
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const router = useRouter();
-	const {id: movieId} = router.query;
-
 	const {data} = useMovieQuery({variables: {movieId: 1}});
+	const [isOpen, setIsOpen] = useState(false);
 
-	if (data?.movie) {
-		return (
+	return (
+		<>
+			<ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} />
 			<Layout>
-				<div className="flex flex-col space-y-5 max-w-7xl mx-auto">
-					<div className="flex space-x-5">
-						{/* poster */}
-						<img
-							className="w-64 h-96 rounded-md filter hover:brightness-75 transition-all"
-							src={data.movie.poster}
-							alt="poster"
-						/>
-						{/* backdrop */}
-						<div
-							className="w-full h-96 rounded-md cursor-pointer bg-cover grid place-items-center filter hover:brightness-75 transition-all"
-							style={{
-								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-								backgroundImage: `url(${data.movie.backdrop})`,
-							}}
-							onClick={async () => router.push(data.movie.trailer)}
-						>
-							<Icon icon={AiFillPlayCircle} className="w-16 h-16 text-white" />
+				<div className="container px-4 mx-auto">
+					<div className="max-w-2xl mx-auto mb-6">
+						<div className="flex flex-col items-center text-center mb-6">
+							<h2 className="text-2xl md:text-4xl my-2 font-bold font-heading">{data?.movie?.title}</h2>
+							<div className="flex space-x-5">
+								<IconButton icon={AiOutlinePlus} />
+								<IconButton icon={AiOutlineHeart} />
+								<IconButton icon={AiOutlineStar} onClick={() => setIsOpen(prev => !prev)} />
+								<Link href="/edit/movie">
+									<a>
+										<IconButton icon={AiOutlineEdit} />
+									</a>
+								</Link>
+							</div>
 						</div>
 					</div>
-					<div className="flex justify-between">
-						<div className="flex space-x-5">
-							{/* platforms */}
-							<Button>Watch</Button>
-							<IconButton icon={AiOutlineStar} className="bg-gray-100 hover:bg-gray-200" />
-							<IconButton icon={AiOutlineHeart} className="bg-gray-100 hover:bg-gray-200" />
-							<IconButton icon={AiOutlinePlus} className="bg-gray-100 hover:bg-gray-200" />
-						</div>
-						<div className="flex space-x-5 items-center">
-							<div className="bg-gray-100 px-2 py-1 rounded-md">{data.movie.rating}</div>
-							<div className="bg-gray-100 px-2 py-1 rounded-md">
-								{new Date(data.movie.released).toLocaleDateString('en-gb', {
-									dateStyle: 'full',
-								})}
-							</div>
-							<div className="bg-gray-100 px-2 py-1 rounded-md">
-								{/* eslint-disable-next-line @typescript-eslint/no-unsafe-return */}
-								{data.movie.genres.map(genre => genre.name).join(', ')}
-							</div>
-							<div className="bg-gray-100 px-2 py-1 rounded-md">{minutesToHours(data.movie.runtime)}</div>
-							<IconButton icon={AiOutlineEdit} className="bg-gray-100 hover:bg-gray-200" />
-						</div>
+					<div className="flex max-w-5xl mx-auto mb-8">
+						<img className="h-80 w-full object-cover rounded" src={data?.movie?.backdrop} alt="" />
 					</div>
-					<div className="flex flex-col space-y-2 w-3/4">
-						{/* title and year */}
-						<h1 className="font-bold text-xl">
-							{data.movie.title}{' '}
-							<span className="font-normal">
-								({new Date(data.movie.released).toLocaleDateString('en-gb', {year: 'numeric'})})
+					<div className="max-w-2xl mx-auto mb-6">
+						<div className="text-center">
+							<span className="text-xs text-gray-500 font-semibold">
+								{data?.movie?.genres.map(genre => genre.name).join(' / ')}
 							</span>
-						</h1>
-						{/* tagline */}
-						<span className="text-gray-500 text-sm">
+						</div>
+					</div>
+					<div className="max-w-2xl mx-auto">
+						<p className="mb-6 leading-loose text-blueGray-400">
+							{/* Tagline */}
 							You can erase someone from your mind. Getting them out of your heart is another story.
-						</span>
-						{/* overview */}
-						<p>{data.movie.overview}</p>
-					</div>
-
-					<div className="flex truncate space-x-5">
-						{data.movie.actors.map(actor => (
-							<div key={actor.role} className="bg-gray-100 rounded-md">
-								<img
-									className="w-32 h-48 rounded-t-md filter hover:brightness-75 transition-all"
-									src={actor.person.thumbnail}
-								/>
-								<div className="p-2">
-									<h2 className="font-bold text-sm">{actor.person.name}</h2>
-									<h3 className="text-xs">{actor.role}</h3>
-								</div>
-							</div>
-						))}
-						<div className="grid place-items-center w-32 h-48 rounded-t-md filter hover:brightness-75 transition-all bg-gray-100 rounded-md">
-							<Icon icon={AiFillEye} className="w-12 h-12 text-white" />
-						</div>
-					</div>
-					<div className="flex flex-col space-y-5">
-						<div className="flex items-center space-x-5 bg-gray-100 rounded-md p-5">
-							{/* timestamp */}
-							<p>10mins</p>
-							{/* song name and artist */}
-							<h1>Everybody's Got to Learn Sometime - Beck</h1>
-						</div>
-					</div>
-					<div className="flex flex-col space-y-5 bg-gray-100 rounded-md p-5">
-						<div className="flex space-x-2 items-center">
-							<Avatar url="https://a.ltrbxd.com/avatar/upload/1/2/0/3/7/7/7/shard/avtr?k=ff62b2f12e" />
-							<span>James Schaffrillas</span>
-							<div>star rating</div>
-						</div>
-						<p>
-							Wish I could erase this film from my mind just so I can watch it for the first time all over
-							again
 						</p>
-					</div>
-					<div className="flex flex-col space-y-5 bg-gray-100 rounded-md p-5">
-						<div className="flex space-x-2 items-center">
-							<Avatar url="https://a.ltrbxd.com/avatar/upload/1/2/0/3/7/7/7/shard/avtr?k=ff62b2f12e" />
-							<span>James Schaffrillas</span>
-							<div>star rating</div>
-						</div>
-						<p>
-							Wish I could erase this film from my mind just so I can watch it for the first time all over
-							again
-						</p>
+						<p className="mb-6 leading-loose text-blueGray-400">{data?.movie?.overview}</p>
 					</div>
 				</div>
-				{/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
+				<section className="py-8">
+					<div className="container px-4 mx-auto">
+						<div className="flex flex-wrap justify-between">
+							<div className="flex w-1/2 lg:w-auto py-4">
+								<div className="flex justify-center items-center bg-blueGray-50 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+									<Icon icon={AiOutlineStar} className="w-6 h-6" />
+								</div>
+								<div className="sm:py-2 ml-2 sm:ml-6">
+									<span className="sm:text-2xl font-bold font-heading">4.5</span>
+									<p className="text-xs sm:text-base text-blueGray-400">Avg. Rating</p>
+								</div>
+							</div>
+							<div className="flex w-1/2 lg:w-auto py-4">
+								<div className="flex justify-center items-center bg-blueGray-50 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+									<Icon icon={AiOutlineHourglass} className="w-6 h-6" />
+								</div>
+								<div className="sm:py-2 ml-2 sm:ml-6">
+									<span className="sm:text-2xl font-bold font-heading">{data?.movie?.runtime}</span>
+									<p className="text-xs sm:text-base text-blueGray-400">Runtime</p>
+								</div>
+							</div>
+							<div className="flex w-1/2 lg:w-auto py-4">
+								<div className="flex justify-center items-center bg-blueGray-50 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+									<Icon icon={AiOutlineCheckCircle} className="w-6 h-6" />
+								</div>
+								<div className="sm:py-2 ml-2 sm:ml-6">
+									<span className="sm:text-2xl font-bold font-heading">
+										{new Date(data?.movie?.released).toLocaleDateString('en-gb', {year: 'numeric'})}
+									</span>
+									<p className="text-xs sm:text-base text-blueGray-400">Released</p>
+								</div>
+							</div>
+							<div className="flex w-1/2 lg:w-auto py-4">
+								<div className="flex justify-center items-center bg-blueGray-50 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+									<Icon icon={AiOutlineHeart} className="w-6 h-6" />
+								</div>
+								<div className="sm:py-2 ml-2 sm:ml-6">
+									<span className="sm:text-2xl font-bold font-heading">123</span>
+									<p className="text-xs sm:text-base text-blueGray-400">Likes</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section className="py-20">
+					<div className="container px-4 mx-auto text-center">
+						<div className="max-w-lg mx-auto mb-12">
+							<span className="inline-block py-1 px-3 mb-4 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
+								The Cast
+							</span>
+							<p className="text-blueGray-400 leading-loose mt-2 ">
+								This will only include the major cast, not the extras i.e the crew, etc.
+							</p>
+						</div>
+						<div className="flex flex-wrap -mx-3">
+							{data?.movie?.actors.map(actor => (
+								<div key={actor.role} className="w-full md:w-1/2 lg:w-1/4 px-3 mb-12">
+									<img
+										className="h-64 w-64 mx-auto rounded object-cover object-top"
+										src={actor.person.thumbnail}
+										alt=""
+									/>
+									<p className="mt-6 text-xl">{actor.person.name}</p>
+									<p className="mt-2 mb-4 text-blue-600">{actor.role}</p>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="text-center">
+						<a
+							className="inline-block py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
+							href="#"
+						>
+							Show more
+						</a>
+					</div>
+				</section>
+				<section className="py-20">
+					<div className="container px-4 mx-auto">
+						<table className="w-full bg-white rounded shadow">
+							<thead>
+								<tr className="text-left text-xs">
+									<th className="pl-6 py-4 font-normal">Song</th>
+									<th className="px-4 py-4 font-normal">Timestamp</th>
+									<th className="px-4 py-4 font-normal">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								{data?.movie?.soundtrack.map((song, index) => (
+									<tr key={song.song.title} className="border-t border-blueGray-100">
+										<td className="flex px-6 py-4 text-xs">
+											<img className="w-8" src={song.song.thumbnail} />
+											<div className="pl-4">
+												<p className="font-semibold">{song.song.title}</p>
+												<a className="text-blueGray-400" href="#">
+													{song.song.artists.map(artist => artist.name).join(', ')}
+												</a>
+											</div>
+										</td>
+										<td className="px-4 py-2 text-xs font-semibold">
+											{song.song.songInMovie[index].timestamp}
+										</td>
+										<td className="px-4 py-2 text-xs font-semibold">
+											{song.song.songInMovie[index].description}
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+				<section
+					className="py-20 xl:bg-contain bg-top bg-no-repeat"
+					style={{backgroundImage: 'url("metis-assets/backgrounds/intersect.svg")'}}
+				>
+					<div className="container px-4 mx-auto">
+						<div className="max-w-lg mx-auto mb-12 text-center">
+							<img className="mx-auto" src="/quote.svg" alt="" />
+							<h2 className="my-2 text-3xl md:text-4xl font-bold font-heading">Reviews</h2>
+							<p className="text-blueGray-400 leading-loose">
+								This will only include the first eight most recent reviews.
+							</p>
+						</div>
+						<div className="flex flex-wrap max-w-5xl mx-auto mb-6">
+							{data?.movie?.reviews.map(review => (
+								<div key={review.user.id} className="w-full px-3 mb-6">
+									<div className="p-8 bg-white shadow rounded">
+										<div className="flex items-center mb-4">
+											<img
+												className="h-16 w-16 rounded-full object-cover"
+												src={review.user.avatar}
+												alt=""
+											/>
+											<div className="pl-4">
+												<p className="text-xl">{review.user.username}</p>
+												<p className="text-blue-600">{review.rating} / 5</p>
+											</div>
+										</div>
+										<p className="leading-loose text-blueGray-400">{review.review}</p>
+									</div>
+								</div>
+							))}
+						</div>
+						<div className="text-center">
+							<a
+								className="inline-block py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
+								href="#"
+							>
+								Show more
+							</a>
+						</div>
+					</div>
+				</section>
 			</Layout>
-		);
-	}
-
-	return null;
+		</>
+	);
 };
-
-{
-	/* <AddActor movieId={data.movie.id} isOpen={open} setIsOpen={setOpen} /> */
-}
-
-// <div className="flex space-x-5">
-// 	{data?.movie?.actors.map(actor => (
-// 		<div key={actor.person.id}>
-// 			<InternalLink key={actor.person.id} href={`/person/${actor.person.id}`}>
-// 				<Card size="small" src={actor.person.thumbnail} />
-// 			</InternalLink>
-// 			<p>{actor.person.name}</p>
-// 			<p>{actor.role}</p>
-// 		</div>
-// 	))}
-// 	<div
-// 		className="grid place-items-center w-32 h-48 rounded-md p-2 bg-gray-500 cursor-pointer"
-// 		onClick={() => {
-// 			setOpen(true);
-// 		}}
-// 	>
-// 		<FaPlus />
-// 	</div>
-// </div>

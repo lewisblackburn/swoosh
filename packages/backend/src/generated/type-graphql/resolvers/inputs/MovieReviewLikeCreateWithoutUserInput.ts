@@ -8,6 +8,11 @@ import { MovieReviewCreateNestedOneWithoutLikesInput } from "../inputs/MovieRevi
   isAbstract: true
 })
 export class MovieReviewLikeCreateWithoutUserInput {
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => MovieReviewCreateNestedOneWithoutLikesInput, {
     nullable: false
   })

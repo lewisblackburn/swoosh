@@ -2,10 +2,16 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { BookReview } from "../models/BookReview";
+import { BookReviewLike } from "../models/BookReviewLike";
 import { Follows } from "../models/Follows";
 import { MovieReview } from "../models/MovieReview";
 import { MovieReviewLike } from "../models/MovieReviewLike";
 import { Notification } from "../models/Notification";
+import { ShowReview } from "../models/ShowReview";
+import { ShowReviewLike } from "../models/ShowReviewLike";
+import { SongReview } from "../models/SongReview";
+import { SongReviewLike } from "../models/SongReviewLike";
 import { Watchlist } from "../models/Watchlist";
 import { Role } from "../enums/Role";
 import { UserCount } from "../resolvers/outputs/UserCount";
@@ -82,6 +88,18 @@ export class User {
   movieReviews?: MovieReview[];
 
   likedMovieReviews?: MovieReviewLike[];
+
+  showReviews?: ShowReview[];
+
+  showReviewLikes?: ShowReviewLike[];
+
+  bookReviews?: BookReview[];
+
+  bookReviewLikes?: BookReviewLike[];
+
+  songReviews?: SongReview[];
+
+  songReviewLikes?: SongReviewLike[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

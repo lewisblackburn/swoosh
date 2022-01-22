@@ -1,0 +1,12 @@
+export { AggregateSongReviewLikeArgs } from "./AggregateSongReviewLikeArgs";
+export { CreateManySongReviewLikeArgs } from "./CreateManySongReviewLikeArgs";
+export { CreateSongReviewLikeArgs } from "./CreateSongReviewLikeArgs";
+export { DeleteManySongReviewLikeArgs } from "./DeleteManySongReviewLikeArgs";
+export { DeleteSongReviewLikeArgs } from "./DeleteSongReviewLikeArgs";
+export { FindFirstSongReviewLikeArgs } from "./FindFirstSongReviewLikeArgs";
+export { FindManySongReviewLikeArgs } from "./FindManySongReviewLikeArgs";
+export { FindUniqueSongReviewLikeArgs } from "./FindUniqueSongReviewLikeArgs";
+export { GroupBySongReviewLikeArgs } from "./GroupBySongReviewLikeArgs";
+export { UpdateManySongReviewLikeArgs } from "./UpdateManySongReviewLikeArgs";
+export { UpdateSongReviewLikeArgs } from "./UpdateSongReviewLikeArgs";
+export { UpsertSongReviewLikeArgs } from "./UpsertSongReviewLikeArgs";

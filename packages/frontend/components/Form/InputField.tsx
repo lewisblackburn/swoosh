@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import {Field} from 'formik';
 import React from 'react';
 
 interface InputFieldProps {
@@ -7,16 +7,14 @@ interface InputFieldProps {
 	placeholder: string;
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder }) => (
-		<div className="my-5">
-			<Field
-				className="text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-				id={name}
-				name={name}
-				placeholder={placeholder}
-				type={type}
-			/>
-		</div>
-	);
+export const InputField: React.FC<InputFieldProps> = ({name, type, placeholder}) => (
+	<Field
+		className="w-full py-4 text-sm placeholder-blueGray-400 leading-none bg-blueGray-50 outline-none"
+		id={name}
+		name={name}
+		placeholder={placeholder}
+		type={type}
+	/>
+);
 
 export default InputField;

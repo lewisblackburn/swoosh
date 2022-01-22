@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { GenreCreateNestedManyWithoutShowsInput } from "../inputs/GenreCreateNestedManyWithoutShowsInput";
 import { PlatformCreateNestedManyWithoutShowsInput } from "../inputs/PlatformCreateNestedManyWithoutShowsInput";
+import { ShowReviewCreateNestedManyWithoutShowInput } from "../inputs/ShowReviewCreateNestedManyWithoutShowInput";
 import { SongInShowCreateNestedManyWithoutShowInput } from "../inputs/SongInShowCreateNestedManyWithoutShowInput";
 import { WatchlistCreateNestedManyWithoutShowsInput } from "../inputs/WatchlistCreateNestedManyWithoutShowsInput";
 
@@ -65,4 +66,9 @@ export class ShowCreateWithoutActorsInput {
     nullable: true
   })
   watchlist?: WatchlistCreateNestedManyWithoutShowsInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewCreateNestedManyWithoutShowInput, {
+    nullable: true
+  })
+  reviews?: ShowReviewCreateNestedManyWithoutShowInput | undefined;
 }

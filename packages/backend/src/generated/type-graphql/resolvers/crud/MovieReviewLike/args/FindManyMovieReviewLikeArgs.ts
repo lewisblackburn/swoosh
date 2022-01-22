@@ -35,5 +35,5 @@ export class FindManyMovieReviewLikeArgs {
   @TypeGraphQL.Field(_type => [MovieReviewLikeScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"userId" | "movieReviewId"> | undefined;
+  distinct?: Array<"userId" | "reviewUserId" | "reviewMovieId" | "createdAt"> | undefined;
 }

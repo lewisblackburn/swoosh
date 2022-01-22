@@ -21,7 +21,17 @@ export class MovieReviewLikeOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  movieReviewId?: "asc" | "desc" | undefined;
+  reviewUserId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  reviewMovieId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewLikeCountOrderByAggregateInput, {
     nullable: true

@@ -2,6 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewLikeUpdateManyWithoutUserInput } from "../inputs/BookReviewLikeUpdateManyWithoutUserInput";
+import { BookReviewUpdateManyWithoutUserInput } from "../inputs/BookReviewUpdateManyWithoutUserInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
@@ -10,6 +12,10 @@ import { FollowsUpdateManyWithoutFollowingInput } from "../inputs/FollowsUpdateM
 import { MovieReviewLikeUpdateManyWithoutUserInput } from "../inputs/MovieReviewLikeUpdateManyWithoutUserInput";
 import { MovieReviewUpdateManyWithoutUserInput } from "../inputs/MovieReviewUpdateManyWithoutUserInput";
 import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
+import { ShowReviewLikeUpdateManyWithoutUserInput } from "../inputs/ShowReviewLikeUpdateManyWithoutUserInput";
+import { ShowReviewUpdateManyWithoutUserInput } from "../inputs/ShowReviewUpdateManyWithoutUserInput";
+import { SongReviewLikeUpdateManyWithoutUserInput } from "../inputs/SongReviewLikeUpdateManyWithoutUserInput";
+import { SongReviewUpdateManyWithoutUserInput } from "../inputs/SongReviewUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { WatchlistUpdateOneWithoutUserInput } from "../inputs/WatchlistUpdateOneWithoutUserInput";
 
@@ -36,11 +42,6 @@ export class UserUpdateInput {
     nullable: true
   })
   displayname?: StringFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  password?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => EnumRoleFieldUpdateOperationsInput, {
     nullable: true
@@ -111,4 +112,34 @@ export class UserUpdateInput {
     nullable: true
   })
   likedMovieReviews?: MovieReviewLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  showReviews?: ShowReviewUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  showReviewLikes?: ShowReviewLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  bookReviews?: BookReviewUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  bookReviewLikes?: BookReviewLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  songReviews?: SongReviewUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  songReviewLikes?: SongReviewLikeUpdateManyWithoutUserInput | undefined;
 }

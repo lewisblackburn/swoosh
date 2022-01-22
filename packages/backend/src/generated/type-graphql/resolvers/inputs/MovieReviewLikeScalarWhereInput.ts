@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 
 @TypeGraphQL.InputType("MovieReviewLikeScalarWhereInput", {
@@ -31,5 +32,15 @@ export class MovieReviewLikeScalarWhereInput {
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
-  movieReviewId?: IntFilter | undefined;
+  reviewUserId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
+  })
+  reviewMovieId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeFilter | undefined;
 }

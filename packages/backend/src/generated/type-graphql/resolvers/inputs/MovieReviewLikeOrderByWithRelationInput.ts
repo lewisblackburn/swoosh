@@ -10,15 +10,20 @@ import { SortOrder } from "../../enums/SortOrder";
   isAbstract: true
 })
 export class MovieReviewLikeOrderByWithRelationInput {
-  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
-    nullable: true
-  })
-  user?: UserOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   userId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  reviewUserId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  reviewMovieId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewOrderByWithRelationInput, {
     nullable: true
@@ -28,5 +33,5 @@ export class MovieReviewLikeOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  movieReviewId?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 }

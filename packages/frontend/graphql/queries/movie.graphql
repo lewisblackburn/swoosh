@@ -3,9 +3,7 @@ query Movie($movieId: Int!) {
 		id
 		title
 		overview
-		poster
 		backdrop
-		locked
 		released
 		runtime
 		trailer
@@ -18,6 +16,30 @@ query Movie($movieId: Int!) {
 			person {
 				name
 				thumbnail
+			}
+		}
+		soundtrack(where: {}) {
+			song {
+				title
+				thumbnail
+				songInMovie {
+					timestamp
+					description
+				}
+				artists {
+					name
+				}
+			}
+		}
+		reviews(take: 8) {
+			review
+			rating
+			user {
+				username
+				avatar
+			}
+			_count {
+				likes
 			}
 		}
 	}

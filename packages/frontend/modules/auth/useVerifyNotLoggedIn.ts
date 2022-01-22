@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { useMeQuery } from '../../generated/graphql';
+import {useRouter} from 'next/router';
+import {useEffect} from 'react';
+import {useMeQuery} from '../../generated/graphql';
 
 export const useNotVerifyLoggedIn = () => {
-	const { data, loading } = useMeQuery();
+	const {data, loading} = useMeQuery();
 	const router = useRouter();
 
 	useEffect(() => {
 		// if logged in push to home
-		if (!loading && data?.me) router.push('/');
+		if (!loading && data?.me?.username) void router.push('/home');
 	}, [loading, data, router]);
 };

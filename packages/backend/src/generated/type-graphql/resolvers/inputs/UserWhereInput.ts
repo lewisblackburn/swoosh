@@ -2,6 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewLikeListRelationFilter } from "../inputs/BookReviewLikeListRelationFilter";
+import { BookReviewListRelationFilter } from "../inputs/BookReviewListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
@@ -10,6 +12,10 @@ import { IntFilter } from "../inputs/IntFilter";
 import { MovieReviewLikeListRelationFilter } from "../inputs/MovieReviewLikeListRelationFilter";
 import { MovieReviewListRelationFilter } from "../inputs/MovieReviewListRelationFilter";
 import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
+import { ShowReviewLikeListRelationFilter } from "../inputs/ShowReviewLikeListRelationFilter";
+import { ShowReviewListRelationFilter } from "../inputs/ShowReviewListRelationFilter";
+import { SongReviewLikeListRelationFilter } from "../inputs/SongReviewLikeListRelationFilter";
+import { SongReviewListRelationFilter } from "../inputs/SongReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WatchlistRelationFilter } from "../inputs/WatchlistRelationFilter";
 
@@ -56,11 +62,6 @@ export class UserWhereInput {
     nullable: true
   })
   displayname?: StringFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringFilter, {
-    nullable: true
-  })
-  password?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => EnumRoleFilter, {
     nullable: true
@@ -121,6 +122,36 @@ export class UserWhereInput {
     nullable: true
   })
   likedMovieReviews?: MovieReviewLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewListRelationFilter, {
+    nullable: true
+  })
+  showReviews?: ShowReviewListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewLikeListRelationFilter, {
+    nullable: true
+  })
+  showReviewLikes?: ShowReviewLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewListRelationFilter, {
+    nullable: true
+  })
+  bookReviews?: BookReviewListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewLikeListRelationFilter, {
+    nullable: true
+  })
+  bookReviewLikes?: BookReviewLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewListRelationFilter, {
+    nullable: true
+  })
+  songReviews?: SongReviewListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewLikeListRelationFilter, {
+    nullable: true
+  })
+  songReviewLikes?: SongReviewLikeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

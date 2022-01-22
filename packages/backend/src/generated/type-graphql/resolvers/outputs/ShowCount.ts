@@ -31,4 +31,9 @@ export class ShowCount {
     nullable: false
   })
   watchlist!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  reviews!: number;
 }

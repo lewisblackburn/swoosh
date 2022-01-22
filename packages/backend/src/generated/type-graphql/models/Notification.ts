@@ -13,12 +13,12 @@ export class Notification {
   })
   id!: number;
 
-  user?: User | null;
+  user?: User;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  userId?: number | null;
+  userId!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false

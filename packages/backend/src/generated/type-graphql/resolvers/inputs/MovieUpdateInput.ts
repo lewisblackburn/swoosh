@@ -9,7 +9,6 @@ import { GenreUpdateManyWithoutMoviesInput } from "../inputs/GenreUpdateManyWith
 import { MovieReviewUpdateManyWithoutMovieInput } from "../inputs/MovieReviewUpdateManyWithoutMovieInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableFloatFieldUpdateOperationsInput } from "../inputs/NullableFloatFieldUpdateOperationsInput";
-import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PlatformUpdateManyWithoutMoviesInput } from "../inputs/PlatformUpdateManyWithoutMoviesInput";
 import { SongInMovieUpdateManyWithoutMovieInput } from "../inputs/SongInMovieUpdateManyWithoutMovieInput";
@@ -33,7 +32,12 @@ export class MovieUpdateInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  thumbnail?: StringFieldUpdateOperationsInput | undefined;
+  poster?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  backdrop?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
     nullable: true
@@ -45,20 +49,10 @@ export class MovieUpdateInput {
   })
   released?: NullableDateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  status?: StringFieldUpdateOperationsInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableFloatFieldUpdateOperationsInput, {
     nullable: true
   })
   runtime?: NullableFloatFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  revenue?: NullableIntFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
@@ -108,5 +102,5 @@ export class MovieUpdateInput {
   @TypeGraphQL.Field(_type => MovieReviewUpdateManyWithoutMovieInput, {
     nullable: true
   })
-  review?: MovieReviewUpdateManyWithoutMovieInput | undefined;
+  reviews?: MovieReviewUpdateManyWithoutMovieInput | undefined;
 }

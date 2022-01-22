@@ -1,8 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 
 export enum MovieReviewScalarFieldEnum {
-  id = "id",
-  title = "title",
   review = "review",
   rating = "rating",
   userId = "userId",

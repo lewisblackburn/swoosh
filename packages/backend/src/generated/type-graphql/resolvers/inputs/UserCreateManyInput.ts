@@ -33,11 +33,6 @@ export class UserCreateManyInput {
   })
   displayname!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  password!: string;
-
   @TypeGraphQL.Field(_type => Role, {
     nullable: true
   })

@@ -6,6 +6,7 @@ import { Genre } from "../models/Genre";
 import { Person } from "../models/Person";
 import { SongInMovie } from "../models/SongInMovie";
 import { SongInShow } from "../models/SongInShow";
+import { SongReview } from "../models/SongReview";
 import { SongCount } from "../resolvers/outputs/SongCount";
 
 @TypeGraphQL.ObjectType("Song", {
@@ -49,6 +50,8 @@ export class Song {
   songInMovie?: SongInMovie[];
 
   genres?: Genre[];
+
+  reviews?: SongReview[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

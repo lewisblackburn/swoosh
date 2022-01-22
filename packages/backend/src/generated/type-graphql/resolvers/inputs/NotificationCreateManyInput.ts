@@ -13,9 +13,9 @@ export class NotificationCreateManyInput {
   id?: number | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  userId?: number | undefined;
+  userId!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false

@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewListRelationFilter } from "../inputs/BookReviewListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
@@ -68,6 +69,11 @@ export class BookWhereInput {
     nullable: true
   })
   genres?: GenreListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewListRelationFilter, {
+    nullable: true
+  })
+  reviews?: BookReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

@@ -6,6 +6,7 @@ import { GenreCreateNestedManyWithoutSongsInput } from "../inputs/GenreCreateNes
 import { PersonCreateNestedManyWithoutSongsInput } from "../inputs/PersonCreateNestedManyWithoutSongsInput";
 import { SongInMovieCreateNestedManyWithoutSongInput } from "../inputs/SongInMovieCreateNestedManyWithoutSongInput";
 import { SongInShowCreateNestedManyWithoutSongInput } from "../inputs/SongInShowCreateNestedManyWithoutSongInput";
+import { SongReviewCreateNestedManyWithoutSongInput } from "../inputs/SongReviewCreateNestedManyWithoutSongInput";
 
 @TypeGraphQL.InputType("SongCreateInput", {
   isAbstract: true
@@ -60,4 +61,9 @@ export class SongCreateInput {
     nullable: true
   })
   genres?: GenreCreateNestedManyWithoutSongsInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewCreateNestedManyWithoutSongInput, {
+    nullable: true
+  })
+  reviews?: SongReviewCreateNestedManyWithoutSongInput | undefined;
 }

@@ -5,17 +5,12 @@ import { DecimalJSScalar } from "../../scalars";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
 import { MovieReviewLikeUpdateManyWithoutMovieReviewInput } from "../inputs/MovieReviewLikeUpdateManyWithoutMovieReviewInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { UserUpdateOneWithoutMovieReviewsInput } from "../inputs/UserUpdateOneWithoutMovieReviewsInput";
+import { UserUpdateOneRequiredWithoutMovieReviewsInput } from "../inputs/UserUpdateOneRequiredWithoutMovieReviewsInput";
 
 @TypeGraphQL.InputType("MovieReviewUpdateWithoutMovieInput", {
   isAbstract: true
 })
 export class MovieReviewUpdateWithoutMovieInput {
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  title?: NullableStringFieldUpdateOperationsInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -30,9 +25,4 @@ export class MovieReviewUpdateWithoutMovieInput {
     nullable: true
   })
   likes?: MovieReviewLikeUpdateManyWithoutMovieReviewInput | undefined;
-
-  @TypeGraphQL.Field(_type => UserUpdateOneWithoutMovieReviewsInput, {
-    nullable: true
-  })
-  User?: UserUpdateOneWithoutMovieReviewsInput | undefined;
 }

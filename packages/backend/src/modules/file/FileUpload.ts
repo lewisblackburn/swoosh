@@ -1,9 +1,10 @@
-import fs, { createWriteStream } from 'fs';
-import { FileUpload, GraphQLUpload } from 'graphql-upload';
-import { Arg, Authorized, Ctx, Int, Mutation, registerEnumType, Resolver, UseMiddleware } from 'type-graphql';
-import { Context } from '../../interfaces/context';
-import { ErrorInterceptor } from '../middleware/ErrorInterceptor';
-import { UploadType } from './utils/uploadType';
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import fs, {createWriteStream} from 'fs';
+import {FileUpload, GraphQLUpload} from 'graphql-upload';
+import {Arg, Authorized, Ctx, Int, Mutation, Resolver, UseMiddleware} from 'type-graphql';
+import {Context} from '../../interfaces/context';
+import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import {UploadType} from './utils/uploadType';
 
 @Resolver()
 export class FileUploadResolver {
@@ -11,7 +12,7 @@ export class FileUploadResolver {
 	@UseMiddleware(ErrorInterceptor)
 	@Mutation(() => Boolean)
 	async uploadAvatar(@Ctx() ctx: Context, @Arg('file', () => GraphQLUpload) file: FileUpload): Promise<boolean> {
-		const { createReadStream, filename } = file;
+		const {createReadStream, filename} = file;
 		const filepath = `${__dirname}/../../../images`;
 
 		const folder = `${filepath}/${ctx.req.session.userId}`;
@@ -19,14 +20,14 @@ export class FileUploadResolver {
 
 		try {
 			fs.mkdirSync(folder);
-		} catch (error) {}
+		} catch {}
 
 		const writableStream = createWriteStream(location, {
 			autoClose: true,
 		});
 
 		await ctx.prisma.user.update({
-			where: { id: ctx.req.session.userId },
+			where: {id: ctx.req.session.userId},
 			data: {
 				// this will need to change dynamically some how depending on the server url
 				avatar: `http://localhost:4000/images/${ctx.req.session.userId}/${filename}`,
@@ -50,7 +51,7 @@ export class FileUploadResolver {
 		@Arg('file', () => GraphQLUpload) file: FileUpload,
 		@Arg('type', () => UploadType) type: UploadType
 	): Promise<boolean> {
-		const { createReadStream, filename } = file;
+		const {createReadStream, filename} = file;
 		const filepath = `${__dirname}/../../../images`;
 
 		const folder = `${filepath}/thumbnail/${type}/${id}`;
@@ -70,15 +71,15 @@ export class FileUploadResolver {
 		switch (type) {
 			case UploadType.Movie:
 				await ctx.prisma.movie.update({
-					where: { id },
+					where: {id},
 					data: {
-						thumbnail: serverLocation,
+						poster: serverLocation,
 					},
 				});
 				break;
 			case UploadType.Person:
 				await ctx.prisma.person.update({
-					where: { id },
+					where: {id},
 					data: {
 						thumbnail: serverLocation,
 					},
@@ -86,7 +87,7 @@ export class FileUploadResolver {
 				break;
 			case UploadType.Song:
 				await ctx.prisma.song.update({
-					where: { id },
+					where: {id},
 					data: {
 						thumbnail: serverLocation,
 					},
@@ -94,7 +95,7 @@ export class FileUploadResolver {
 				break;
 			case UploadType.Book:
 				await ctx.prisma.book.update({
-					where: { id },
+					where: {id},
 					data: {
 						thumbnail: serverLocation,
 					},

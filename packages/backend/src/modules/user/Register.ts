@@ -5,7 +5,6 @@ import {RegisterInput} from './register/RegisterInput';
 import {createConfirmationLink} from './utils/createConfirmationLink';
 import {Context} from '../../interfaces/context';
 
-/* eslint-disable */
 @Resolver(User)
 export class RegisterResolver {
 	@Mutation(() => User, {
@@ -30,7 +29,7 @@ export class RegisterResolver {
 		}
 
 		const hashedPassword = await argon2.hash(data.password);
-		const user: any = await ctx.prisma.user
+		const user = await ctx.prisma.user
 			.create({
 				data: {
 					displayname: data.displayname,
@@ -49,6 +48,9 @@ export class RegisterResolver {
 						},
 					},
 				});
+
+				// This is to return the data of the user not the watchlist
+				return data;
 			});
 
 		console.log(await createConfirmationLink(user.id));

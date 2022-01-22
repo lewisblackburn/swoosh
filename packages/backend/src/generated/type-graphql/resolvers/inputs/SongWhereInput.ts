@@ -10,6 +10,7 @@ import { IntFilter } from "../inputs/IntFilter";
 import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
+import { SongReviewListRelationFilter } from "../inputs/SongReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("SongWhereInput", {
@@ -80,6 +81,11 @@ export class SongWhereInput {
     nullable: true
   })
   genres?: GenreListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewListRelationFilter, {
+    nullable: true
+  })
+  reviews?: SongReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

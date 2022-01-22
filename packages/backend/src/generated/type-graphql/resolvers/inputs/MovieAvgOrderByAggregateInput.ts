@@ -17,9 +17,4 @@ export class MovieAvgOrderByAggregateInput {
     nullable: true
   })
   runtime?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  revenue?: "asc" | "desc" | undefined;
 }

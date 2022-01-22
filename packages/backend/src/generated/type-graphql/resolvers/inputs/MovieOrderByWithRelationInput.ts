@@ -32,7 +32,12 @@ export class MovieOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  thumbnail?: "asc" | "desc" | undefined;
+  poster?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  backdrop?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -47,17 +52,7 @@ export class MovieOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  status?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
   runtime?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  revenue?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -97,7 +92,7 @@ export class MovieOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => MovieReviewOrderByRelationAggregateInput, {
     nullable: true
   })
-  review?: MovieReviewOrderByRelationAggregateInput | undefined;
+  reviews?: MovieReviewOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

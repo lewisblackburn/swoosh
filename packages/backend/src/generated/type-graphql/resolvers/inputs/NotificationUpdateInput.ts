@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneWithoutNotificationsInput } from "../inputs/UserUpdateOneWithoutNotificationsInput";
+import { UserUpdateOneRequiredWithoutNotificationsInput } from "../inputs/UserUpdateOneRequiredWithoutNotificationsInput";
 
 @TypeGraphQL.InputType("NotificationUpdateInput", {
   isAbstract: true
@@ -26,8 +26,8 @@ export class NotificationUpdateInput {
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneWithoutNotificationsInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutNotificationsInput, {
     nullable: true
   })
-  user?: UserUpdateOneWithoutNotificationsInput | undefined;
+  user?: UserUpdateOneRequiredWithoutNotificationsInput | undefined;
 }

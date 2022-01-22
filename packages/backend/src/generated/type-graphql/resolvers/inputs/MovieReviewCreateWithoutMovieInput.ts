@@ -12,11 +12,6 @@ export class MovieReviewCreateWithoutMovieInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  title?: string | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
   review?: string | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -28,9 +23,4 @@ export class MovieReviewCreateWithoutMovieInput {
     nullable: true
   })
   likes?: MovieReviewLikeCreateNestedManyWithoutMovieReviewInput | undefined;
-
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutMovieReviewsInput, {
-    nullable: true
-  })
-  User?: UserCreateNestedOneWithoutMovieReviewsInput | undefined;
 }

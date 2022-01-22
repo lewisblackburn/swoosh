@@ -1,0 +1,12 @@
+export { AggregateBookReviewLikeArgs } from "./AggregateBookReviewLikeArgs";
+export { CreateBookReviewLikeArgs } from "./CreateBookReviewLikeArgs";
+export { CreateManyBookReviewLikeArgs } from "./CreateManyBookReviewLikeArgs";
+export { DeleteBookReviewLikeArgs } from "./DeleteBookReviewLikeArgs";
+export { DeleteManyBookReviewLikeArgs } from "./DeleteManyBookReviewLikeArgs";
+export { FindFirstBookReviewLikeArgs } from "./FindFirstBookReviewLikeArgs";
+export { FindManyBookReviewLikeArgs } from "./FindManyBookReviewLikeArgs";
+export { FindUniqueBookReviewLikeArgs } from "./FindUniqueBookReviewLikeArgs";
+export { GroupByBookReviewLikeArgs } from "./GroupByBookReviewLikeArgs";
+export { UpdateBookReviewLikeArgs } from "./UpdateBookReviewLikeArgs";
+export { UpdateManyBookReviewLikeArgs } from "./UpdateManyBookReviewLikeArgs";
+export { UpsertBookReviewLikeArgs } from "./UpsertBookReviewLikeArgs";

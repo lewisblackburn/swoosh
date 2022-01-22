@@ -9,7 +9,7 @@ import { Watchlist } from "../../../models/Watchlist";
 import { MovieActorsArgs } from "./args/MovieActorsArgs";
 import { MovieGenresArgs } from "./args/MovieGenresArgs";
 import { MoviePlatformsArgs } from "./args/MoviePlatformsArgs";
-import { MovieReviewArgs } from "./args/MovieReviewArgs";
+import { MovieReviewsArgs } from "./args/MovieReviewsArgs";
 import { MovieSoundtrackArgs } from "./args/MovieSoundtrackArgs";
 import { MovieWatchlistArgs } from "./args/MovieWatchlistArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
@@ -74,11 +74,11 @@ export class MovieRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [MovieReview], {
     nullable: false
   })
-  async review(@TypeGraphQL.Root() movie: Movie, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: MovieReviewArgs): Promise<MovieReview[]> {
+  async reviews(@TypeGraphQL.Root() movie: Movie, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: MovieReviewsArgs): Promise<MovieReview[]> {
     return getPrismaFromContext(ctx).movie.findUnique({
       where: {
         id: movie.id,
       },
-    }).review(args);
+    }).reviews(args);
   }
 }

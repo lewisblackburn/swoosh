@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewUpdateManyWithoutBookInput } from "../inputs/BookReviewUpdateManyWithoutBookInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { GenreUpdateManyWithoutBooksInput } from "../inputs/GenreUpdateManyWithoutBooksInput";
@@ -51,4 +52,9 @@ export class BookUpdateWithoutAuthorsInput {
     nullable: true
   })
   genres?: GenreUpdateManyWithoutBooksInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewUpdateManyWithoutBookInput, {
+    nullable: true
+  })
+  reviews?: BookReviewUpdateManyWithoutBookInput | undefined;
 }

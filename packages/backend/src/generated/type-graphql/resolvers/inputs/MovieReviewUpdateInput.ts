@@ -4,19 +4,14 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
 import { MovieReviewLikeUpdateManyWithoutMovieReviewInput } from "../inputs/MovieReviewLikeUpdateManyWithoutMovieReviewInput";
-import { MovieUpdateOneWithoutReviewInput } from "../inputs/MovieUpdateOneWithoutReviewInput";
+import { MovieUpdateOneRequiredWithoutReviewsInput } from "../inputs/MovieUpdateOneRequiredWithoutReviewsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { UserUpdateOneWithoutMovieReviewsInput } from "../inputs/UserUpdateOneWithoutMovieReviewsInput";
+import { UserUpdateOneRequiredWithoutMovieReviewsInput } from "../inputs/UserUpdateOneRequiredWithoutMovieReviewsInput";
 
 @TypeGraphQL.InputType("MovieReviewUpdateInput", {
   isAbstract: true
 })
 export class MovieReviewUpdateInput {
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  title?: NullableStringFieldUpdateOperationsInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -32,13 +27,8 @@ export class MovieReviewUpdateInput {
   })
   likes?: MovieReviewLikeUpdateManyWithoutMovieReviewInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneWithoutMovieReviewsInput, {
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutReviewsInput, {
     nullable: true
   })
-  User?: UserUpdateOneWithoutMovieReviewsInput | undefined;
-
-  @TypeGraphQL.Field(_type => MovieUpdateOneWithoutReviewInput, {
-    nullable: true
-  })
-  Movie?: MovieUpdateOneWithoutReviewInput | undefined;
+  movie?: MovieUpdateOneRequiredWithoutReviewsInput | undefined;
 }

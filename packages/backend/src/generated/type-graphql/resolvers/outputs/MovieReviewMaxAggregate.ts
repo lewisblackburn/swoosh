@@ -7,16 +7,6 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class MovieReviewMaxAggregate {
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  id!: number | null;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  title!: string | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

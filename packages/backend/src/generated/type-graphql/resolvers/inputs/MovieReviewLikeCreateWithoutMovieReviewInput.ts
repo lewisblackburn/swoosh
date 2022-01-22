@@ -8,8 +8,8 @@ import { UserCreateNestedOneWithoutLikedMovieReviewsInput } from "../inputs/User
   isAbstract: true
 })
 export class MovieReviewLikeCreateWithoutMovieReviewInput {
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutLikedMovieReviewsInput, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
-  user!: UserCreateNestedOneWithoutLikedMovieReviewsInput;
+  createdAt?: Date | undefined;
 }

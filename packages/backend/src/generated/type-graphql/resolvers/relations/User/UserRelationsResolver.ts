@@ -1,15 +1,27 @@
 import * as TypeGraphQL from "type-graphql";
+import { BookReview } from "../../../models/BookReview";
+import { BookReviewLike } from "../../../models/BookReviewLike";
 import { Follows } from "../../../models/Follows";
 import { MovieReview } from "../../../models/MovieReview";
 import { MovieReviewLike } from "../../../models/MovieReviewLike";
 import { Notification } from "../../../models/Notification";
+import { ShowReview } from "../../../models/ShowReview";
+import { ShowReviewLike } from "../../../models/ShowReviewLike";
+import { SongReview } from "../../../models/SongReview";
+import { SongReviewLike } from "../../../models/SongReviewLike";
 import { User } from "../../../models/User";
 import { Watchlist } from "../../../models/Watchlist";
+import { UserBookReviewLikesArgs } from "./args/UserBookReviewLikesArgs";
+import { UserBookReviewsArgs } from "./args/UserBookReviewsArgs";
 import { UserFollowersArgs } from "./args/UserFollowersArgs";
 import { UserFollowingArgs } from "./args/UserFollowingArgs";
 import { UserLikedMovieReviewsArgs } from "./args/UserLikedMovieReviewsArgs";
 import { UserMovieReviewsArgs } from "./args/UserMovieReviewsArgs";
 import { UserNotificationsArgs } from "./args/UserNotificationsArgs";
+import { UserShowReviewLikesArgs } from "./args/UserShowReviewLikesArgs";
+import { UserShowReviewsArgs } from "./args/UserShowReviewsArgs";
+import { UserSongReviewLikesArgs } from "./args/UserSongReviewLikesArgs";
+import { UserSongReviewsArgs } from "./args/UserSongReviewsArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => User)
@@ -78,5 +90,71 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).likedMovieReviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ShowReview], {
+    nullable: false
+  })
+  async showReviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserShowReviewsArgs): Promise<ShowReview[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).showReviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ShowReviewLike], {
+    nullable: false
+  })
+  async showReviewLikes(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserShowReviewLikesArgs): Promise<ShowReviewLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).showReviewLikes(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [BookReview], {
+    nullable: false
+  })
+  async bookReviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserBookReviewsArgs): Promise<BookReview[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).bookReviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [BookReviewLike], {
+    nullable: false
+  })
+  async bookReviewLikes(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserBookReviewLikesArgs): Promise<BookReviewLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).bookReviewLikes(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [SongReview], {
+    nullable: false
+  })
+  async songReviews(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserSongReviewsArgs): Promise<SongReview[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).songReviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [SongReviewLike], {
+    nullable: false
+  })
+  async songReviewLikes(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserSongReviewLikesArgs): Promise<SongReviewLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).songReviewLikes(args);
   }
 }

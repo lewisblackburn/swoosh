@@ -9,6 +9,7 @@ import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PlatformListRelationFilter } from "../inputs/PlatformListRelationFilter";
+import { ShowReviewListRelationFilter } from "../inputs/ShowReviewListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { WatchlistListRelationFilter } from "../inputs/WatchlistListRelationFilter";
@@ -86,6 +87,11 @@ export class ShowWhereInput {
     nullable: true
   })
   watchlist?: WatchlistListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewListRelationFilter, {
+    nullable: true
+  })
+  reviews?: ShowReviewListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

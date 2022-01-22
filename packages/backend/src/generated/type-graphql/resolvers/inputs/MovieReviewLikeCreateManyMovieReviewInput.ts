@@ -11,4 +11,9 @@ export class MovieReviewLikeCreateManyMovieReviewInput {
     nullable: false
   })
   userId!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
 }

@@ -12,16 +12,6 @@ import { MovieReviewSumAggregate } from "../outputs/MovieReviewSumAggregate";
   isAbstract: true
 })
 export class MovieReviewGroupBy {
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  id!: number;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  title!: string | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -33,14 +23,14 @@ export class MovieReviewGroupBy {
   rating!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  userId!: number | null;
+  userId!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  movieId!: number | null;
+  movieId!: number;
 
   @TypeGraphQL.Field(_type => MovieReviewCountAggregate, {
     nullable: true

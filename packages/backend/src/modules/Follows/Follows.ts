@@ -2,7 +2,7 @@ import {PubSubEngine} from 'apollo-server-express';
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
 import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, PubSub, Query, Resolver, UseMiddleware} from 'type-graphql';
-import {FindManyFollowsArgs, Follows, User} from '../../generated/type-graphql';
+import {FindManyFollowsArgs, Follows} from '../../generated/type-graphql';
 import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';

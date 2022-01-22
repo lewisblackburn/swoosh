@@ -1127,7 +1127,6 @@ export type BookReview = {
   likes: BookReviewLike[];
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   user: User;
   userId: Scalars['Int'];
 };
@@ -1165,7 +1164,6 @@ export type BookReviewCountAggregate = {
   bookId: Scalars['Int'];
   rating: Scalars['Int'];
   review: Scalars['Int'];
-  title: Scalars['Int'];
   userId: Scalars['Int'];
 };
 
@@ -1173,7 +1171,6 @@ export type BookReviewCountOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -1182,14 +1179,12 @@ export type BookReviewCreateInput = {
   likes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutBookReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutBookReviewsInput;
 };
 
 export type BookReviewCreateManyBookInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -1202,7 +1197,6 @@ export type BookReviewCreateManyInput = {
   bookId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -1210,7 +1204,6 @@ export type BookReviewCreateManyUserInput = {
   bookId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type BookReviewCreateManyUserInputEnvelope = {
@@ -1257,7 +1250,6 @@ export type BookReviewCreateWithoutBookInput = {
   likes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutBookReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutBookReviewsInput;
 };
 
@@ -1265,7 +1257,6 @@ export type BookReviewCreateWithoutLikesInput = {
   book: BookCreateNestedOneWithoutReviewsInput;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutBookReviewsInput;
 };
 
@@ -1274,7 +1265,6 @@ export type BookReviewCreateWithoutUserInput = {
   likes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutBookReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type BookReviewGroupBy = {
@@ -1287,7 +1277,6 @@ export type BookReviewGroupBy = {
   bookId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -1625,7 +1614,6 @@ export type BookReviewMaxAggregate = {
   bookId?: Maybe<Scalars['Int']>;
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -1633,7 +1621,6 @@ export type BookReviewMaxOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -1642,7 +1629,6 @@ export type BookReviewMinAggregate = {
   bookId?: Maybe<Scalars['Int']>;
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -1650,7 +1636,6 @@ export type BookReviewMinOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -1667,7 +1652,6 @@ export type BookReviewOrderByWithAggregationInput = {
   bookId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -1677,7 +1661,6 @@ export type BookReviewOrderByWithRelationInput = {
   likes?: InputMaybe<BookReviewLikeOrderByRelationAggregateInput>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrder>;
 };
@@ -1691,7 +1674,6 @@ export enum BookReviewScalarFieldEnum {
   BookId = 'bookId',
   Rating = 'rating',
   Review = 'review',
-  Title = 'title',
   UserId = 'userId'
 }
 
@@ -1702,7 +1684,6 @@ export type BookReviewScalarWhereInput = {
   bookId?: InputMaybe<IntFilter>;
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   userId?: InputMaybe<IntFilter>;
 };
 
@@ -1713,7 +1694,6 @@ export type BookReviewScalarWhereWithAggregatesInput = {
   bookId?: InputMaybe<IntWithAggregatesFilter>;
   rating?: InputMaybe<IntWithAggregatesFilter>;
   review?: InputMaybe<StringNullableWithAggregatesFilter>;
-  title?: InputMaybe<StringNullableWithAggregatesFilter>;
   userId?: InputMaybe<IntWithAggregatesFilter>;
 };
 
@@ -1735,14 +1715,12 @@ export type BookReviewUpdateInput = {
   likes?: InputMaybe<BookReviewLikeUpdateManyWithoutBookReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutBookReviewsInput>;
 };
 
 export type BookReviewUpdateManyMutationInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type BookReviewUpdateManyWithWhereWithoutBookInput = {
@@ -1805,7 +1783,6 @@ export type BookReviewUpdateWithoutBookInput = {
   likes?: InputMaybe<BookReviewLikeUpdateManyWithoutBookReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutBookReviewsInput>;
 };
 
@@ -1813,7 +1790,6 @@ export type BookReviewUpdateWithoutLikesInput = {
   book?: InputMaybe<BookUpdateOneRequiredWithoutReviewsInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutBookReviewsInput>;
 };
 
@@ -1822,7 +1798,6 @@ export type BookReviewUpdateWithoutUserInput = {
   likes?: InputMaybe<BookReviewLikeUpdateManyWithoutBookReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type BookReviewUpsertWithWhereUniqueWithoutBookInput = {
@@ -1856,7 +1831,6 @@ export type BookReviewWhereInput = {
   likes?: InputMaybe<BookReviewLikeListRelationFilter>;
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<IntFilter>;
 };
@@ -3488,7 +3462,6 @@ export type MovieReview = {
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   user: User;
   userId: Scalars['Int'];
 };
@@ -3526,7 +3499,6 @@ export type MovieReviewCountAggregate = {
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
   review: Scalars['Int'];
-  title: Scalars['Int'];
   userId: Scalars['Int'];
 };
 
@@ -3534,7 +3506,6 @@ export type MovieReviewCountOrderByAggregateInput = {
   movieId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -3543,7 +3514,6 @@ export type MovieReviewCreateInput = {
   movie: MovieCreateNestedOneWithoutReviewsInput;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutMovieReviewsInput;
 };
 
@@ -3551,14 +3521,12 @@ export type MovieReviewCreateManyInput = {
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
 export type MovieReviewCreateManyMovieInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -3571,7 +3539,6 @@ export type MovieReviewCreateManyUserInput = {
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type MovieReviewCreateManyUserInputEnvelope = {
@@ -3618,7 +3585,6 @@ export type MovieReviewCreateWithoutLikesInput = {
   movie: MovieCreateNestedOneWithoutReviewsInput;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutMovieReviewsInput;
 };
 
@@ -3626,7 +3592,6 @@ export type MovieReviewCreateWithoutMovieInput = {
   likes?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutMovieReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutMovieReviewsInput;
 };
 
@@ -3635,7 +3600,6 @@ export type MovieReviewCreateWithoutUserInput = {
   movie: MovieCreateNestedOneWithoutReviewsInput;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type MovieReviewGroupBy = {
@@ -3648,7 +3612,6 @@ export type MovieReviewGroupBy = {
   movieId: Scalars['Int'];
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -3986,7 +3949,6 @@ export type MovieReviewMaxAggregate = {
   movieId?: Maybe<Scalars['Int']>;
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -3994,7 +3956,6 @@ export type MovieReviewMaxOrderByAggregateInput = {
   movieId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -4003,7 +3964,6 @@ export type MovieReviewMinAggregate = {
   movieId?: Maybe<Scalars['Int']>;
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -4011,7 +3971,6 @@ export type MovieReviewMinOrderByAggregateInput = {
   movieId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -4028,7 +3987,6 @@ export type MovieReviewOrderByWithAggregationInput = {
   movieId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -4038,7 +3996,6 @@ export type MovieReviewOrderByWithRelationInput = {
   movieId?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrder>;
 };
@@ -4052,7 +4009,6 @@ export enum MovieReviewScalarFieldEnum {
   MovieId = 'movieId',
   Rating = 'rating',
   Review = 'review',
-  Title = 'title',
   UserId = 'userId'
 }
 
@@ -4063,7 +4019,6 @@ export type MovieReviewScalarWhereInput = {
   movieId?: InputMaybe<IntFilter>;
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   userId?: InputMaybe<IntFilter>;
 };
 
@@ -4074,7 +4029,6 @@ export type MovieReviewScalarWhereWithAggregatesInput = {
   movieId?: InputMaybe<IntWithAggregatesFilter>;
   rating?: InputMaybe<IntWithAggregatesFilter>;
   review?: InputMaybe<StringNullableWithAggregatesFilter>;
-  title?: InputMaybe<StringNullableWithAggregatesFilter>;
   userId?: InputMaybe<IntWithAggregatesFilter>;
 };
 
@@ -4096,14 +4050,12 @@ export type MovieReviewUpdateInput = {
   movie?: InputMaybe<MovieUpdateOneRequiredWithoutReviewsInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutMovieReviewsInput>;
 };
 
 export type MovieReviewUpdateManyMutationInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type MovieReviewUpdateManyWithWhereWithoutMovieInput = {
@@ -4166,7 +4118,6 @@ export type MovieReviewUpdateWithoutLikesInput = {
   movie?: InputMaybe<MovieUpdateOneRequiredWithoutReviewsInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutMovieReviewsInput>;
 };
 
@@ -4174,7 +4125,6 @@ export type MovieReviewUpdateWithoutMovieInput = {
   likes?: InputMaybe<MovieReviewLikeUpdateManyWithoutMovieReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutMovieReviewsInput>;
 };
 
@@ -4183,7 +4133,6 @@ export type MovieReviewUpdateWithoutUserInput = {
   movie?: InputMaybe<MovieUpdateOneRequiredWithoutReviewsInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type MovieReviewUpsertWithWhereUniqueWithoutMovieInput = {
@@ -4217,7 +4166,6 @@ export type MovieReviewWhereInput = {
   movieId?: InputMaybe<IntFilter>;
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<IntFilter>;
 };
@@ -8443,7 +8391,6 @@ export type ShowReview = {
   review?: Maybe<Scalars['String']>;
   show: Show;
   showId: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
   user: User;
   userId: Scalars['Int'];
 };
@@ -8481,7 +8428,6 @@ export type ShowReviewCountAggregate = {
   rating: Scalars['Int'];
   review: Scalars['Int'];
   showId: Scalars['Int'];
-  title: Scalars['Int'];
   userId: Scalars['Int'];
 };
 
@@ -8489,7 +8435,6 @@ export type ShowReviewCountOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   showId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -8498,7 +8443,6 @@ export type ShowReviewCreateInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   show: ShowCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutShowReviewsInput;
 };
 
@@ -8506,14 +8450,12 @@ export type ShowReviewCreateManyInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   showId: Scalars['Int'];
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
 export type ShowReviewCreateManyShowInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -8526,7 +8468,6 @@ export type ShowReviewCreateManyUserInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   showId: Scalars['Int'];
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ShowReviewCreateManyUserInputEnvelope = {
@@ -8573,7 +8514,6 @@ export type ShowReviewCreateWithoutLikesInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   show: ShowCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutShowReviewsInput;
 };
 
@@ -8581,7 +8521,6 @@ export type ShowReviewCreateWithoutShowInput = {
   likes?: InputMaybe<ShowReviewLikeCreateNestedManyWithoutShowReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutShowReviewsInput;
 };
 
@@ -8590,7 +8529,6 @@ export type ShowReviewCreateWithoutUserInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   show: ShowCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ShowReviewGroupBy = {
@@ -8603,7 +8541,6 @@ export type ShowReviewGroupBy = {
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
   showId: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -8941,7 +8878,6 @@ export type ShowReviewMaxAggregate = {
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
   showId?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -8949,7 +8885,6 @@ export type ShowReviewMaxOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   showId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -8958,7 +8893,6 @@ export type ShowReviewMinAggregate = {
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
   showId?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -8966,7 +8900,6 @@ export type ShowReviewMinOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   showId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -8983,7 +8916,6 @@ export type ShowReviewOrderByWithAggregationInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   showId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -8993,7 +8925,6 @@ export type ShowReviewOrderByWithRelationInput = {
   review?: InputMaybe<SortOrder>;
   show?: InputMaybe<ShowOrderByWithRelationInput>;
   showId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrder>;
 };
@@ -9007,7 +8938,6 @@ export enum ShowReviewScalarFieldEnum {
   Rating = 'rating',
   Review = 'review',
   ShowId = 'showId',
-  Title = 'title',
   UserId = 'userId'
 }
 
@@ -9018,7 +8948,6 @@ export type ShowReviewScalarWhereInput = {
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
   showId?: InputMaybe<IntFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   userId?: InputMaybe<IntFilter>;
 };
 
@@ -9029,7 +8958,6 @@ export type ShowReviewScalarWhereWithAggregatesInput = {
   rating?: InputMaybe<IntWithAggregatesFilter>;
   review?: InputMaybe<StringNullableWithAggregatesFilter>;
   showId?: InputMaybe<IntWithAggregatesFilter>;
-  title?: InputMaybe<StringNullableWithAggregatesFilter>;
   userId?: InputMaybe<IntWithAggregatesFilter>;
 };
 
@@ -9051,14 +8979,12 @@ export type ShowReviewUpdateInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   show?: InputMaybe<ShowUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutShowReviewsInput>;
 };
 
 export type ShowReviewUpdateManyMutationInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type ShowReviewUpdateManyWithWhereWithoutShowInput = {
@@ -9121,7 +9047,6 @@ export type ShowReviewUpdateWithoutLikesInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   show?: InputMaybe<ShowUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutShowReviewsInput>;
 };
 
@@ -9129,7 +9054,6 @@ export type ShowReviewUpdateWithoutShowInput = {
   likes?: InputMaybe<ShowReviewLikeUpdateManyWithoutShowReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutShowReviewsInput>;
 };
 
@@ -9138,7 +9062,6 @@ export type ShowReviewUpdateWithoutUserInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   show?: InputMaybe<ShowUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type ShowReviewUpsertWithWhereUniqueWithoutShowInput = {
@@ -9172,7 +9095,6 @@ export type ShowReviewWhereInput = {
   review?: InputMaybe<StringNullableFilter>;
   show?: InputMaybe<ShowRelationFilter>;
   showId?: InputMaybe<IntFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<IntFilter>;
 };
@@ -10504,7 +10426,6 @@ export type SongReview = {
   review?: Maybe<Scalars['String']>;
   song: Song;
   songId: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
   user: User;
   userId: Scalars['Int'];
 };
@@ -10542,7 +10463,6 @@ export type SongReviewCountAggregate = {
   rating: Scalars['Int'];
   review: Scalars['Int'];
   songId: Scalars['Int'];
-  title: Scalars['Int'];
   userId: Scalars['Int'];
 };
 
@@ -10550,7 +10470,6 @@ export type SongReviewCountOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -10559,7 +10478,6 @@ export type SongReviewCreateInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   song: SongCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutSongReviewsInput;
 };
 
@@ -10567,14 +10485,12 @@ export type SongReviewCreateManyInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   songId: Scalars['Int'];
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
 export type SongReviewCreateManySongInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -10587,7 +10503,6 @@ export type SongReviewCreateManyUserInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   songId: Scalars['Int'];
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type SongReviewCreateManyUserInputEnvelope = {
@@ -10634,7 +10549,6 @@ export type SongReviewCreateWithoutLikesInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   song: SongCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutSongReviewsInput;
 };
 
@@ -10642,7 +10556,6 @@ export type SongReviewCreateWithoutSongInput = {
   likes?: InputMaybe<SongReviewLikeCreateNestedManyWithoutSongReviewInput>;
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
   user: UserCreateNestedOneWithoutSongReviewsInput;
 };
 
@@ -10651,7 +10564,6 @@ export type SongReviewCreateWithoutUserInput = {
   rating: Scalars['Int'];
   review?: InputMaybe<Scalars['String']>;
   song: SongCreateNestedOneWithoutReviewsInput;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type SongReviewGroupBy = {
@@ -10664,7 +10576,6 @@ export type SongReviewGroupBy = {
   rating: Scalars['Int'];
   review?: Maybe<Scalars['String']>;
   songId: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
   userId: Scalars['Int'];
 };
 
@@ -11002,7 +10913,6 @@ export type SongReviewMaxAggregate = {
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
   songId?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -11010,7 +10920,6 @@ export type SongReviewMaxOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -11019,7 +10928,6 @@ export type SongReviewMinAggregate = {
   rating?: Maybe<Scalars['Int']>;
   review?: Maybe<Scalars['String']>;
   songId?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['Int']>;
 };
 
@@ -11027,7 +10935,6 @@ export type SongReviewMinOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -11044,7 +10951,6 @@ export type SongReviewOrderByWithAggregationInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
 };
 
@@ -11054,7 +10960,6 @@ export type SongReviewOrderByWithRelationInput = {
   review?: InputMaybe<SortOrder>;
   song?: InputMaybe<SongOrderByWithRelationInput>;
   songId?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrder>;
 };
@@ -11068,7 +10973,6 @@ export enum SongReviewScalarFieldEnum {
   Rating = 'rating',
   Review = 'review',
   SongId = 'songId',
-  Title = 'title',
   UserId = 'userId'
 }
 
@@ -11079,7 +10983,6 @@ export type SongReviewScalarWhereInput = {
   rating?: InputMaybe<IntFilter>;
   review?: InputMaybe<StringNullableFilter>;
   songId?: InputMaybe<IntFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   userId?: InputMaybe<IntFilter>;
 };
 
@@ -11090,7 +10993,6 @@ export type SongReviewScalarWhereWithAggregatesInput = {
   rating?: InputMaybe<IntWithAggregatesFilter>;
   review?: InputMaybe<StringNullableWithAggregatesFilter>;
   songId?: InputMaybe<IntWithAggregatesFilter>;
-  title?: InputMaybe<StringNullableWithAggregatesFilter>;
   userId?: InputMaybe<IntWithAggregatesFilter>;
 };
 
@@ -11112,14 +11014,12 @@ export type SongReviewUpdateInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   song?: InputMaybe<SongUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutSongReviewsInput>;
 };
 
 export type SongReviewUpdateManyMutationInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type SongReviewUpdateManyWithWhereWithoutSongInput = {
@@ -11182,7 +11082,6 @@ export type SongReviewUpdateWithoutLikesInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   song?: InputMaybe<SongUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutSongReviewsInput>;
 };
 
@@ -11190,7 +11089,6 @@ export type SongReviewUpdateWithoutSongInput = {
   likes?: InputMaybe<SongReviewLikeUpdateManyWithoutSongReviewInput>;
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutSongReviewsInput>;
 };
 
@@ -11199,7 +11097,6 @@ export type SongReviewUpdateWithoutUserInput = {
   rating?: InputMaybe<IntFieldUpdateOperationsInput>;
   review?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   song?: InputMaybe<SongUpdateOneRequiredWithoutReviewsInput>;
-  title?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type SongReviewUpsertWithWhereUniqueWithoutSongInput = {
@@ -11233,7 +11130,6 @@ export type SongReviewWhereInput = {
   review?: InputMaybe<StringNullableFilter>;
   song?: InputMaybe<SongRelationFilter>;
   songId?: InputMaybe<IntFilter>;
-  title?: InputMaybe<StringNullableFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<IntFilter>;
 };
@@ -13487,7 +13383,7 @@ export type UpdateMovieReivewMutationVariables = Exact<{
   where: MovieReviewWhereUniqueInput;
 }>;
 
-export type UpdateMovieReivewMutation = {__typename?: 'Mutation'; updateMovieReview: {__typename?: 'MovieReview'; title?: string | null | undefined; review?: string | null | undefined; rating: number; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}};
+export type UpdateMovieReivewMutation = {__typename?: 'Mutation'; updateMovieReview: {__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}};
 
 export type UploadAvatarMutationVariables = Exact<{
   file: Scalars['Upload'];
@@ -13502,6 +13398,10 @@ export type UploadThumbnailMutationVariables = Exact<{
 }>;
 
 export type UploadThumbnailMutation = {__typename?: 'Mutation'; uploadThumbnail: boolean};
+
+export type CountMediaQueryVariables = Exact<Record<string, never>>;
+
+export type CountMediaQuery = {__typename?: 'Query'; aggregateMovie: {__typename?: 'AggregateMovie'; _count?: {__typename?: 'MovieCountAggregate'; _all: number} | null | undefined}; aggregateShow: {__typename?: 'AggregateShow'; _count?: {__typename?: 'ShowCountAggregate'; _all: number} | null | undefined}; aggregateSong: {__typename?: 'AggregateSong'; _count?: {__typename?: 'SongCountAggregate'; _all: number} | null | undefined}; aggregateBook: {__typename?: 'AggregateBook'; _count?: {__typename?: 'BookCountAggregate'; _all: number} | null | undefined}};
 
 export type FollowersQueryVariables = Exact<{
   where?: InputMaybe<FollowsWhereInput>;
@@ -13527,7 +13427,7 @@ export type MovieQueryVariables = Exact<{
   movieId: Scalars['Int'];
 }>;
 
-export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; overview: string; poster: string; backdrop: string; locked: boolean; released?: any | null | undefined; runtime?: number | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; genres: Array<{__typename?: 'Genre'; name: string}>; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; name: string; thumbnail: string}}>} | null | undefined};
+export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; overview: string; backdrop: string; released?: any | null | undefined; runtime?: number | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; genres: Array<{__typename?: 'Genre'; name: string}>; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; name: string; thumbnail: string}}>; soundtrack: Array<{__typename?: 'SongInMovie'; song: {__typename?: 'Song'; title: string; thumbnail: string; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>; artists: Array<{__typename?: 'Person'; name: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}>} | null | undefined};
 
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
@@ -14108,7 +14008,6 @@ export type UpdateGenreMutationOptions = Apollo.BaseMutationOptions<UpdateGenreM
 export const UpdateMovieReivewDocument = gql`
     mutation updateMovieReivew($data: MovieReviewUpdateInput!, $where: MovieReviewWhereUniqueInput!) {
   updateMovieReview(data: $data, where: $where) {
-    title
     review
     rating
     _count {
@@ -14211,6 +14110,59 @@ export function useUploadThumbnailMutation(baseOptions?: Apollo.MutationHookOpti
 export type UploadThumbnailMutationHookResult = ReturnType<typeof useUploadThumbnailMutation>;
 export type UploadThumbnailMutationResult = Apollo.MutationResult<UploadThumbnailMutation>;
 export type UploadThumbnailMutationOptions = Apollo.BaseMutationOptions<UploadThumbnailMutation, UploadThumbnailMutationVariables>;
+export const CountMediaDocument = gql`
+    query CountMedia {
+  aggregateMovie {
+    _count {
+      _all
+    }
+  }
+  aggregateShow {
+    _count {
+      _all
+    }
+  }
+  aggregateSong {
+    _count {
+      _all
+    }
+  }
+  aggregateBook {
+    _count {
+      _all
+    }
+  }
+}
+    `;
+
+/**
+ * __useCountMediaQuery__
+ *
+ * To run a query within a React component, call `useCountMediaQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountMediaQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountMediaQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCountMediaQuery(baseOptions?: Apollo.QueryHookOptions<CountMediaQuery, CountMediaQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<CountMediaQuery, CountMediaQueryVariables>(CountMediaDocument, options);
+      }
+
+export function useCountMediaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountMediaQuery, CountMediaQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<CountMediaQuery, CountMediaQueryVariables>(CountMediaDocument, options);
+        }
+
+export type CountMediaQueryHookResult = ReturnType<typeof useCountMediaQuery>;
+export type CountMediaLazyQueryHookResult = ReturnType<typeof useCountMediaLazyQuery>;
+export type CountMediaQueryResult = Apollo.QueryResult<CountMediaQuery, CountMediaQueryVariables>;
 export const FollowersDocument = gql`
     query Followers($where: FollowsWhereInput, $orderBy: [FollowsOrderByWithRelationInput!], $cursor: FollowsWhereUniqueInput) {
   follows(where: $where, orderBy: $orderBy, cursor: $cursor) {
@@ -14339,9 +14291,7 @@ export const MovieDocument = gql`
     id
     title
     overview
-    poster
     backdrop
-    locked
     released
     runtime
     trailer
@@ -14354,6 +14304,30 @@ export const MovieDocument = gql`
       person {
         name
         thumbnail
+      }
+    }
+    soundtrack(where: {}) {
+      song {
+        title
+        thumbnail
+        songInMovie {
+          timestamp
+          description
+        }
+        artists {
+          name
+        }
+      }
+    }
+    reviews(take: 8) {
+      review
+      rating
+      user {
+        username
+        avatar
+      }
+      _count {
+        likes
       }
     }
   }

@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { ActorInShow } from "../models/ActorInShow";
 import { Genre } from "../models/Genre";
 import { Platform } from "../models/Platform";
+import { ShowReview } from "../models/ShowReview";
 import { SongInShow } from "../models/SongInShow";
 import { Watchlist } from "../models/Watchlist";
 import { ShowCount } from "../resolvers/outputs/ShowCount";
@@ -52,6 +53,8 @@ export class Show {
   soundtrack?: SongInShow[];
 
   watchlist?: Watchlist[];
+
+  reviews?: ShowReview[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

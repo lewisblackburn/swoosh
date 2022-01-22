@@ -2,10 +2,16 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewLikeOrderByRelationAggregateInput } from "../inputs/BookReviewLikeOrderByRelationAggregateInput";
+import { BookReviewOrderByRelationAggregateInput } from "../inputs/BookReviewOrderByRelationAggregateInput";
 import { FollowsOrderByRelationAggregateInput } from "../inputs/FollowsOrderByRelationAggregateInput";
 import { MovieReviewLikeOrderByRelationAggregateInput } from "../inputs/MovieReviewLikeOrderByRelationAggregateInput";
 import { MovieReviewOrderByRelationAggregateInput } from "../inputs/MovieReviewOrderByRelationAggregateInput";
 import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
+import { ShowReviewLikeOrderByRelationAggregateInput } from "../inputs/ShowReviewLikeOrderByRelationAggregateInput";
+import { ShowReviewOrderByRelationAggregateInput } from "../inputs/ShowReviewOrderByRelationAggregateInput";
+import { SongReviewLikeOrderByRelationAggregateInput } from "../inputs/SongReviewLikeOrderByRelationAggregateInput";
+import { SongReviewOrderByRelationAggregateInput } from "../inputs/SongReviewOrderByRelationAggregateInput";
 import { WatchlistOrderByWithRelationInput } from "../inputs/WatchlistOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -37,11 +43,6 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   displayname?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  password?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -102,6 +103,36 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   likedMovieReviews?: MovieReviewLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  showReviews?: ShowReviewOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  showReviewLikes?: ShowReviewLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  bookReviews?: BookReviewOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  bookReviewLikes?: BookReviewLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  songReviews?: SongReviewOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongReviewLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  songReviewLikes?: SongReviewLikeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

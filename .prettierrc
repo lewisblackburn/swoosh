@@ -4,7 +4,7 @@
 	"arrowParens": "avoid",
 	"bracketSpacing": false,
 	"singleQuote": true,
-	"jsxSingleQuote": true,
+	"jsxSingleQuote": false,
 	"trailingComma": "es5",
 	"tabWidth": 4,
 	"semi": true,

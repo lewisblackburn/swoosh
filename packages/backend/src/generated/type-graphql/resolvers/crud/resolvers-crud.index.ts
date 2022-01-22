@@ -1,6 +1,8 @@
 export { ActorInMovieCrudResolver } from "./ActorInMovie/ActorInMovieCrudResolver";
 export { ActorInShowCrudResolver } from "./ActorInShow/ActorInShowCrudResolver";
 export { BookCrudResolver } from "./Book/BookCrudResolver";
+export { BookReviewCrudResolver } from "./BookReview/BookReviewCrudResolver";
+export { BookReviewLikeCrudResolver } from "./BookReviewLike/BookReviewLikeCrudResolver";
 export { FollowsCrudResolver } from "./Follows/FollowsCrudResolver";
 export { GenreCrudResolver } from "./Genre/GenreCrudResolver";
 export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
@@ -10,8 +12,12 @@ export { NotificationCrudResolver } from "./Notification/NotificationCrudResolve
 export { PersonCrudResolver } from "./Person/PersonCrudResolver";
 export { PlatformCrudResolver } from "./Platform/PlatformCrudResolver";
 export { ShowCrudResolver } from "./Show/ShowCrudResolver";
+export { ShowReviewCrudResolver } from "./ShowReview/ShowReviewCrudResolver";
+export { ShowReviewLikeCrudResolver } from "./ShowReviewLike/ShowReviewLikeCrudResolver";
 export { SongCrudResolver } from "./Song/SongCrudResolver";
 export { SongInMovieCrudResolver } from "./SongInMovie/SongInMovieCrudResolver";
 export { SongInShowCrudResolver } from "./SongInShow/SongInShowCrudResolver";
+export { SongReviewCrudResolver } from "./SongReview/SongReviewCrudResolver";
+export { SongReviewLikeCrudResolver } from "./SongReviewLike/SongReviewLikeCrudResolver";
 export { UserCrudResolver } from "./User/UserCrudResolver";
 export { WatchlistCrudResolver } from "./Watchlist/WatchlistCrudResolver";

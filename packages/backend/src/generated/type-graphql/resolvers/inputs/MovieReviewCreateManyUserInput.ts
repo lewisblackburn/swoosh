@@ -7,16 +7,6 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class MovieReviewCreateManyUserInput {
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  id?: number | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  title?: string | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -28,7 +18,7 @@ export class MovieReviewCreateManyUserInput {
   rating!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  movieId?: number | undefined;
+  movieId!: number;
 }

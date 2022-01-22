@@ -15,5 +15,10 @@ export class MovieReviewLikeSumAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
-  movieReviewId!: number | null;
+  reviewUserId!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  reviewMovieId!: number | null;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable */
 // WARN: This is temporary until I can fix the eslint errors
 
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 
 export const prisma = new PrismaClient({
 	log: ['query', 'warn', 'error'],

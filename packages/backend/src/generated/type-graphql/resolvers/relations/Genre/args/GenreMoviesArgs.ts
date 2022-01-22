@@ -35,5 +35,5 @@ export class GenreMoviesArgs {
   @TypeGraphQL.Field(_type => [MovieScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "overview" | "thumbnail" | "locked" | "released" | "status" | "runtime" | "revenue" | "trailer" | "rating" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "title" | "overview" | "poster" | "backdrop" | "locked" | "released" | "runtime" | "trailer" | "rating" | "createdAt" | "updatedAt"> | undefined;
 }

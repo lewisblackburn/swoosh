@@ -11,11 +11,6 @@ export class MovieReviewAvgOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  id?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
   rating?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

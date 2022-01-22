@@ -2,7 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { IntNullableWithAggregatesFilter } from "../inputs/IntNullableWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 
@@ -25,16 +24,6 @@ export class MovieReviewScalarWhereWithAggregatesInput {
   })
   NOT?: MovieReviewScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
-    nullable: true
-  })
-  id?: IntWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  title?: StringNullableWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
@@ -45,13 +34,13 @@ export class MovieReviewScalarWhereWithAggregatesInput {
   })
   rating?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })
-  userId?: IntNullableWithAggregatesFilter | undefined;
+  userId?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })
-  movieId?: IntNullableWithAggregatesFilter | undefined;
+  movieId?: IntWithAggregatesFilter | undefined;
 }

@@ -11,16 +11,6 @@ import { MovieReviewCount } from "../resolvers/outputs/MovieReviewCount";
   isAbstract: true
 })
 export class MovieReview {
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  id!: number;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  title?: string | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -33,19 +23,19 @@ export class MovieReview {
 
   likes?: MovieReviewLike[];
 
-  User?: User | null;
+  user?: User;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  userId?: number | null;
+  userId!: number;
 
-  Movie?: Movie | null;
+  movie?: Movie;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  movieId?: number | null;
+  movieId!: number;
 
   @TypeGraphQL.Field(_type => MovieReviewCount, {
     nullable: true

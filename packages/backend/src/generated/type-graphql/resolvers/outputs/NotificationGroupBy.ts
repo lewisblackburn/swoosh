@@ -18,9 +18,9 @@ export class NotificationGroupBy {
   id!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
+    nullable: false
   })
-  userId!: number | null;
+  userId!: number;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false

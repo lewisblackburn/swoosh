@@ -3,11 +3,13 @@ import { ActorInShow } from "../../../models/ActorInShow";
 import { Genre } from "../../../models/Genre";
 import { Platform } from "../../../models/Platform";
 import { Show } from "../../../models/Show";
+import { ShowReview } from "../../../models/ShowReview";
 import { SongInShow } from "../../../models/SongInShow";
 import { Watchlist } from "../../../models/Watchlist";
 import { ShowActorsArgs } from "./args/ShowActorsArgs";
 import { ShowGenresArgs } from "./args/ShowGenresArgs";
 import { ShowPlatformsArgs } from "./args/ShowPlatformsArgs";
+import { ShowReviewsArgs } from "./args/ShowReviewsArgs";
 import { ShowSoundtrackArgs } from "./args/ShowSoundtrackArgs";
 import { ShowWatchlistArgs } from "./args/ShowWatchlistArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
@@ -67,5 +69,16 @@ export class ShowRelationsResolver {
         id: show.id,
       },
     }).watchlist(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ShowReview], {
+    nullable: false
+  })
+  async reviews(@TypeGraphQL.Root() show: Show, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ShowReviewsArgs): Promise<ShowReview[]> {
+    return getPrismaFromContext(ctx).show.findUnique({
+      where: {
+        id: show.id,
+      },
+    }).reviews(args);
   }
 }

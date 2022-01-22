@@ -30,7 +30,12 @@ export class MovieGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  thumbnail!: string;
+  poster!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  backdrop!: string;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
@@ -42,20 +47,10 @@ export class MovieGroupBy {
   })
   released!: Date | null;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  status!: string;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
   runtime!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  revenue!: number | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true

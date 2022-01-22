@@ -10,11 +10,6 @@ export class MovieReviewAvgAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  id!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
   rating!: number | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Float, {

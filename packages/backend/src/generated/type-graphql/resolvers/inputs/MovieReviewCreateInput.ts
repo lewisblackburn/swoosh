@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieCreateNestedOneWithoutReviewInput } from "../inputs/MovieCreateNestedOneWithoutReviewInput";
+import { MovieCreateNestedOneWithoutReviewsInput } from "../inputs/MovieCreateNestedOneWithoutReviewsInput";
 import { MovieReviewLikeCreateNestedManyWithoutMovieReviewInput } from "../inputs/MovieReviewLikeCreateNestedManyWithoutMovieReviewInput";
 import { UserCreateNestedOneWithoutMovieReviewsInput } from "../inputs/UserCreateNestedOneWithoutMovieReviewsInput";
 
@@ -10,11 +10,6 @@ import { UserCreateNestedOneWithoutMovieReviewsInput } from "../inputs/UserCreat
   isAbstract: true
 })
 export class MovieReviewCreateInput {
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  title?: string | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -30,13 +25,8 @@ export class MovieReviewCreateInput {
   })
   likes?: MovieReviewLikeCreateNestedManyWithoutMovieReviewInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutMovieReviewsInput, {
-    nullable: true
+  @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutReviewsInput, {
+    nullable: false
   })
-  User?: UserCreateNestedOneWithoutMovieReviewsInput | undefined;
-
-  @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutReviewInput, {
-    nullable: true
-  })
-  Movie?: MovieCreateNestedOneWithoutReviewInput | undefined;
+  movie!: MovieCreateNestedOneWithoutReviewsInput;
 }

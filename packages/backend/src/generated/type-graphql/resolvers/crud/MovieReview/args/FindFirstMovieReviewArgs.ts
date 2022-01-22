@@ -35,5 +35,5 @@ export class FindFirstMovieReviewArgs {
   @TypeGraphQL.Field(_type => [MovieReviewScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "review" | "rating" | "userId" | "movieId"> | undefined;
+  distinct?: Array<"review" | "rating" | "userId" | "movieId"> | undefined;
 }

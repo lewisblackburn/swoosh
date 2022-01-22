@@ -35,5 +35,5 @@ export class MovieCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  review!: number;
+  reviews!: number;
 }

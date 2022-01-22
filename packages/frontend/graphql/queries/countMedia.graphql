@@ -1,0 +1,22 @@
+query CountMedia {
+	aggregateMovie {
+		_count {
+			_all
+		}
+	}
+	aggregateShow {
+		_count {
+			_all
+		}
+	}
+	aggregateSong {
+		_count {
+			_all
+		}
+	}
+	aggregateBook {
+		_count {
+			_all
+		}
+	}
+}

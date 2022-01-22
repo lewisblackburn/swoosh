@@ -52,11 +52,6 @@ export class UserScalarWhereWithAggregatesInput {
   })
   displayname?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
-    nullable: true
-  })
-  password?: StringWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => EnumRoleWithAggregatesFilter, {
     nullable: true
   })

@@ -6,9 +6,9 @@ import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRel
 @TypeGraphQL.Resolver(_of => Notification)
 export class NotificationRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => User, {
-    nullable: true
+    nullable: false
   })
-  async user(@TypeGraphQL.Root() notification: Notification, @TypeGraphQL.Ctx() ctx: any): Promise<User | null> {
+  async user(@TypeGraphQL.Root() notification: Notification, @TypeGraphQL.Ctx() ctx: any): Promise<User> {
     return getPrismaFromContext(ctx).notification.findUnique({
       where: {
         id: notification.id,

@@ -16,9 +16,4 @@ export class MovieAvgAggregate {
     nullable: true
   })
   runtime!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
-  revenue!: number | null;
 }

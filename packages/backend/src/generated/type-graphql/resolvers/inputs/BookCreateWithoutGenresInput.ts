@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookReviewCreateNestedManyWithoutBookInput } from "../inputs/BookReviewCreateNestedManyWithoutBookInput";
 import { PersonCreateNestedManyWithoutBooksInput } from "../inputs/PersonCreateNestedManyWithoutBooksInput";
 
 @TypeGraphQL.InputType("BookCreateWithoutGenresInput", {
@@ -47,4 +48,9 @@ export class BookCreateWithoutGenresInput {
     nullable: true
   })
   authors?: PersonCreateNestedManyWithoutBooksInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookReviewCreateNestedManyWithoutBookInput, {
+    nullable: true
+  })
+  reviews?: BookReviewCreateNestedManyWithoutBookInput | undefined;
 }

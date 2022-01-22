@@ -3,7 +3,6 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
-import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("MovieReviewScalarWhereInput", {
@@ -25,16 +24,6 @@ export class MovieReviewScalarWhereInput {
   })
   NOT?: MovieReviewScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => IntFilter, {
-    nullable: true
-  })
-  id?: IntFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
-  title?: StringNullableFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
@@ -45,13 +34,13 @@ export class MovieReviewScalarWhereInput {
   })
   rating?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableFilter, {
+  @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
-  userId?: IntNullableFilter | undefined;
+  userId?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableFilter, {
+  @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
-  movieId?: IntNullableFilter | undefined;
+  movieId?: IntFilter | undefined;
 }

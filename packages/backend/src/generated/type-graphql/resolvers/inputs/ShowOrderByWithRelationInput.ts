@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowOrderByRelationAggregateInput } from "../inputs/ActorInShowOrderByRelationAggregateInput";
 import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
 import { PlatformOrderByRelationAggregateInput } from "../inputs/PlatformOrderByRelationAggregateInput";
+import { ShowReviewOrderByRelationAggregateInput } from "../inputs/ShowReviewOrderByRelationAggregateInput";
 import { SongInShowOrderByRelationAggregateInput } from "../inputs/SongInShowOrderByRelationAggregateInput";
 import { WatchlistOrderByRelationAggregateInput } from "../inputs/WatchlistOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
@@ -67,6 +68,11 @@ export class ShowOrderByWithRelationInput {
     nullable: true
   })
   watchlist?: WatchlistOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowReviewOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  reviews?: ShowReviewOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
