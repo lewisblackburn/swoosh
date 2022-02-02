@@ -1,11 +1,21 @@
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
 import {ReviewModal} from '@components/Modal/ReviewModal';
-import {useMovieQuery} from 'generated/graphql';
+import {
+	MovieDocument,
+	useDeleteMovieReviewMutation,
+	useLikeMovieMutation,
+	useMovieQuery,
+	useUnlikeMovieMutation,
+} from 'generated/graphql';
+import {useGetIntId} from 'hooks/useGetIntId';
+import {floatToTime} from 'lib/floatToTime';
 import Link from 'next/link';
 import React, {useState} from 'react';
 import {
+	AiFillHeart,
 	AiOutlineCheckCircle,
+	AiOutlineDelete,
 	AiOutlineEdit,
 	AiOutlineHeart,
 	AiOutlineHourglass,
@@ -18,12 +28,42 @@ import {Layout} from '../layouts/Layout';
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const {data} = useMovieQuery({variables: {movieId: 1}});
+	const movieId = useGetIntId();
+	const {data} = useMovieQuery({
+		skip: movieId === -1,
+		variables: {
+			movieId,
+		},
+	});
+
+	const [likeMovie] = useLikeMovieMutation({
+		variables: {
+			data: {
+				movie: {
+					connect: {
+						id: movieId,
+					},
+				},
+			},
+		},
+		refetchQueries: [MovieDocument],
+	});
+	const [unlikeMovie] = useUnlikeMovieMutation({
+		variables: {
+			movieId,
+		},
+		refetchQueries: [MovieDocument],
+	});
+
+	const [deleteMovieReview, {loading: deleteMovieReviewLoading}] = useDeleteMovieReviewMutation({
+		refetchQueries: [MovieDocument],
+	});
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<>
-			<ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} />
+			<ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} movieId={movieId} />
 			<Layout>
 				<div className="container px-4 mx-auto">
 					<div className="max-w-2xl mx-auto mb-6">
@@ -31,9 +71,17 @@ export const MoviePage: React.FC = () => {
 							<h2 className="text-2xl md:text-4xl my-2 font-bold font-heading">{data?.movie?.title}</h2>
 							<div className="flex space-x-5">
 								<IconButton icon={AiOutlinePlus} />
-								<IconButton icon={AiOutlineHeart} />
+								<IconButton
+									icon={data?.movie?.isLiked ? AiFillHeart : AiOutlineHeart}
+									className={data?.movie?.isLiked ? 'text-red-500' : ''}
+									onClick={() => {
+										// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+										likeMovie().catch(() => unlikeMovie());
+									}}
+								/>
 								<IconButton icon={AiOutlineStar} onClick={() => setIsOpen(prev => !prev)} />
-								<Link href="/edit/movie">
+								{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
+								<Link href={`/movie/edit/${movieId}`}>
 									<a>
 										<IconButton icon={AiOutlineEdit} />
 									</a>
@@ -47,15 +95,14 @@ export const MoviePage: React.FC = () => {
 					<div className="max-w-2xl mx-auto mb-6">
 						<div className="text-center">
 							<span className="text-xs text-gray-500 font-semibold">
-								{data?.movie?.genres.map(genre => genre.name).join(' / ')}
+								{data?.movie?.genres.length === 0
+									? 'No genres'
+									: data?.movie?.genres.map(genre => genre.name).join(' / ')}
 							</span>
 						</div>
 					</div>
 					<div className="max-w-2xl mx-auto">
-						<p className="mb-6 leading-loose text-blueGray-400">
-							{/* Tagline */}
-							You can erase someone from your mind. Getting them out of your heart is another story.
-						</p>
+						<p className="mb-6 leading-loose text-blueGray-400">{data?.movie?.tagline}</p>
 						<p className="mb-6 leading-loose text-blueGray-400">{data?.movie?.overview}</p>
 					</div>
 				</div>
@@ -67,7 +114,9 @@ export const MoviePage: React.FC = () => {
 									<Icon icon={AiOutlineStar} className="w-6 h-6" />
 								</div>
 								<div className="sm:py-2 ml-2 sm:ml-6">
-									<span className="sm:text-2xl font-bold font-heading">4.5</span>
+									<span className="sm:text-2xl font-bold font-heading">
+										{data?.movie?.aggregateMovieReview._avg?.rating ?? 0}
+									</span>
 									<p className="text-xs sm:text-base text-blueGray-400">Avg. Rating</p>
 								</div>
 							</div>
@@ -76,7 +125,9 @@ export const MoviePage: React.FC = () => {
 									<Icon icon={AiOutlineHourglass} className="w-6 h-6" />
 								</div>
 								<div className="sm:py-2 ml-2 sm:ml-6">
-									<span className="sm:text-2xl font-bold font-heading">{data?.movie?.runtime}</span>
+									<span className="sm:text-2xl font-bold font-heading">
+										{floatToTime(data?.movie?.runtime) ?? 0}
+									</span>
 									<p className="text-xs sm:text-base text-blueGray-400">Runtime</p>
 								</div>
 							</div>
@@ -86,7 +137,9 @@ export const MoviePage: React.FC = () => {
 								</div>
 								<div className="sm:py-2 ml-2 sm:ml-6">
 									<span className="sm:text-2xl font-bold font-heading">
-										{new Date(data?.movie?.released).toLocaleDateString('en-gb', {year: 'numeric'})}
+										{new Date(data?.movie?.released).toLocaleDateString('en-gb', {
+											year: 'numeric',
+										}) ?? 0}
 									</span>
 									<p className="text-xs sm:text-base text-blueGray-400">Released</p>
 								</div>
@@ -96,7 +149,9 @@ export const MoviePage: React.FC = () => {
 									<Icon icon={AiOutlineHeart} className="w-6 h-6" />
 								</div>
 								<div className="sm:py-2 ml-2 sm:ml-6">
-									<span className="sm:text-2xl font-bold font-heading">123</span>
+									<span className="sm:text-2xl font-bold font-heading">
+										{data?.movie?._count?.likes ?? 0}
+									</span>
 									<p className="text-xs sm:text-base text-blueGray-400">Likes</p>
 								</div>
 							</div>
@@ -118,7 +173,7 @@ export const MoviePage: React.FC = () => {
 								<div key={actor.role} className="w-full md:w-1/2 lg:w-1/4 px-3 mb-12">
 									<img
 										className="h-64 w-64 mx-auto rounded object-cover object-top"
-										src={actor.person.thumbnail}
+										src={actor.person.poster}
 										alt=""
 									/>
 									<p className="mt-6 text-xl">{actor.person.name}</p>
@@ -132,7 +187,7 @@ export const MoviePage: React.FC = () => {
 							className="inline-block py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
 							href="#"
 						>
-							Show more
+							{data?.movie?.actors.length === 0 ? 'No actors' : 'Show more'}
 						</a>
 					</div>
 				</section>
@@ -147,10 +202,15 @@ export const MoviePage: React.FC = () => {
 								</tr>
 							</thead>
 							<tbody>
+								{data?.movie?.soundtrack.length === 0 && (
+									<tr className="border-t border-blueGray-100">
+										<td className="flex px-6 py-4 text-xs">No songs found...</td>
+									</tr>
+								)}
 								{data?.movie?.soundtrack.map((song, index) => (
 									<tr key={song.song.title} className="border-t border-blueGray-100">
 										<td className="flex px-6 py-4 text-xs">
-											<img className="w-8" src={song.song.thumbnail} />
+											<img className="w-8" src={song.song.poster} />
 											<div className="pl-4">
 												<p className="font-semibold">{song.song.title}</p>
 												<a className="text-blueGray-400" href="#">
@@ -170,10 +230,7 @@ export const MoviePage: React.FC = () => {
 						</table>
 					</div>
 				</section>
-				<section
-					className="py-20 xl:bg-contain bg-top bg-no-repeat"
-					style={{backgroundImage: 'url("metis-assets/backgrounds/intersect.svg")'}}
-				>
+				<section className="py-20">
 					<div className="container px-4 mx-auto">
 						<div className="max-w-lg mx-auto mb-12 text-center">
 							<img className="mx-auto" src="/quote.svg" alt="" />
@@ -184,18 +241,32 @@ export const MoviePage: React.FC = () => {
 						</div>
 						<div className="flex flex-wrap max-w-5xl mx-auto mb-6">
 							{data?.movie?.reviews.map(review => (
-								<div key={review.user.id} className="w-full px-3 mb-6">
+								<div key={review.user.username} className="w-full px-3 mb-6">
 									<div className="p-8 bg-white shadow rounded">
-										<div className="flex items-center mb-4">
-											<img
-												className="h-16 w-16 rounded-full object-cover"
-												src={review.user.avatar}
-												alt=""
-											/>
-											<div className="pl-4">
-												<p className="text-xl">{review.user.username}</p>
-												<p className="text-blue-600">{review.rating} / 5</p>
+										<div className="flex items-center justify-between mb-4">
+											<div className="flex items-center">
+												<img
+													className="h-16 w-16 rounded-full object-cover"
+													src={review.user.avatar}
+													alt=""
+												/>
+												<div className="pl-4">
+													<p className="text-xl">{review.user.username}</p>
+													<p className="text-blue-600">{review.rating} / 5</p>
+												</div>
 											</div>
+											<IconButton
+												icon={AiOutlineDelete}
+												loading={deleteMovieReviewLoading}
+												onClick={() =>
+													// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+													deleteMovieReview({
+														variables: {
+															movieId,
+														},
+													})
+												}
+											/>
 										</div>
 										<p className="leading-loose text-blueGray-400">{review.review}</p>
 									</div>
@@ -207,7 +278,7 @@ export const MoviePage: React.FC = () => {
 								className="inline-block py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
 								href="#"
 							>
-								Show more
+								{data?.movie?.reviews.length === 0 ? 'No reviews' : 'Show more'}
 							</a>
 						</div>
 					</div>

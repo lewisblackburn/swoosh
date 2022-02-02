@@ -6,6 +6,7 @@ export { BookReviewLike } from "./BookReviewLike";
 export { Follows } from "./Follows";
 export { Genre } from "./Genre";
 export { Movie } from "./Movie";
+export { MovieLike } from "./MovieLike";
 export { MovieReview } from "./MovieReview";
 export { MovieReviewLike } from "./MovieReviewLike";
 export { Notification } from "./Notification";

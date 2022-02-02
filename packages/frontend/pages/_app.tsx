@@ -1,12 +1,12 @@
 import React from 'react';
 import {AppProps} from 'next/app';
-import {PaletteWrapper} from '@components/Palette/PaletteWrapper';
 import '../styles/index.css';
+import {PaletteProvider} from '@components/Palette/PaletteProvider';
 
 export default function App({Component, pageProps}: AppProps) {
 	return (
 		<>
-			<PaletteWrapper />
+			<PaletteProvider />
 			<Component {...pageProps} />
 		</>
 	);

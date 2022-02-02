@@ -1,5 +1,5 @@
-import { Button } from '@components/Button';
-import { Form, Formik, FormikHelpers } from 'formik';
+import {Button} from '@components/Button';
+import {Form, Formik, FormikHelpers} from 'formik';
 import {
 	Career,
 	MovieCreateInput,
@@ -9,18 +9,14 @@ import {
 	useCreatePersonMutation,
 	useUploadThumbnailMutation,
 } from 'generated/graphql';
-import { toErrorMap } from 'lib/toErrorMap';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import {toErrorMap} from 'lib/toErrorMap';
+import {useRouter} from 'next/router';
+import React, {useEffect, useState} from 'react';
 import InputField from '../InputField';
-
-interface ThumbnailUpload {
-	id: number;
-}
 
 export const PersonCreateForm: React.FC = () => {
 	const router = useRouter();
-	const [createPerson, { data, loading }] = useCreatePersonMutation();
+	const [createPerson, {data, loading}] = useCreatePersonMutation();
 
 	const [upload] = useUploadThumbnailMutation();
 	const [file, setFile] = useState();
@@ -30,7 +26,7 @@ export const PersonCreateForm: React.FC = () => {
 	useEffect(() => {
 		if (data?.createPerson?.id && !loading) {
 			upload({
-				variables: { id: data.createPerson.id, file, type: UploadType.Person },
+				variables: {id: data.createPerson.id, file, type: UploadType.Person},
 			})
 				.catch(error => {
 					console.log(error.message);
@@ -56,7 +52,7 @@ export const PersonCreateForm: React.FC = () => {
 				}}
 				onSubmit={async (
 					values: PersonCreateInput,
-					{ setSubmitting, setErrors }: FormikHelpers<PersonCreateInput>
+					{setSubmitting, setErrors}: FormikHelpers<PersonCreateInput>
 				) => {
 					setSubmitting(true);
 					const response = await createPerson({
@@ -64,7 +60,7 @@ export const PersonCreateForm: React.FC = () => {
 							data: values,
 						},
 						update: cache => {
-							cache.evict({ fieldName: 'people:{}' });
+							cache.evict({fieldName: 'people:{}'});
 						},
 					}).catch((e: any) => {
 						// If graphql error
@@ -79,11 +75,29 @@ export const PersonCreateForm: React.FC = () => {
 					setSubmitting(false);
 				}}
 			>
-				{({ isSubmitting, errors, touched }) => (
+				{({isSubmitting, errors, touched}) => (
 					<Form className="w-full container">
-						<InputField name="name" placeholder="name" touched={touched.name} errors={errors.name} type="text" />
-						<InputField name="age" placeholder="age" touched={touched.age} errors={errors.age} type="number" />
-						<InputField name="bio" placeholder="bio" touched={touched.bio} errors={errors.bio} type="text" />
+						<InputField
+							name="name"
+							placeholder="name"
+							touched={touched.name}
+							errors={errors.name}
+							type="text"
+						/>
+						<InputField
+							name="age"
+							placeholder="age"
+							touched={touched.age}
+							errors={errors.age}
+							type="number"
+						/>
+						<InputField
+							name="bio"
+							placeholder="bio"
+							touched={touched.bio}
+							errors={errors.bio}
+							type="text"
+						/>
 						<input type="file" onChange={(e: any) => handleChange(e)} />
 						<Button type="submit" loading={isSubmitting}>
 							Create Person

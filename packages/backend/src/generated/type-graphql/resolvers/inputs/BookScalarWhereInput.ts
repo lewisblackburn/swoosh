@@ -45,7 +45,7 @@ export class BookScalarWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  thumbnail?: StringFilter | undefined;
+  poster?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolFilter, {
     nullable: true

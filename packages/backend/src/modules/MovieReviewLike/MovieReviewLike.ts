@@ -43,6 +43,13 @@ export class MovieReviewLikeResolver {
 		const {_count} = transformFields(graphqlFields(info as any));
 		const movieReviewLike = await ctx.prisma.movieReviewLike.create({
 			...args,
+			data: {
+				user: {
+					connect: {
+						id: ctx.req.session.userId,
+					},
+				},
+			},
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 
@@ -57,8 +64,16 @@ export class MovieReviewLikeResolver {
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: DeleteMovieReviewLikeArgs
 	): Promise<boolean> {
+		if (!ctx.req.session.userId) return false;
+		if (!args.where.userId_reviewUserId_reviewMovieId) return false;
+
 		const movieReviewLike = await ctx.prisma.movieReviewLike.delete({
-			...args,
+			where: {
+				userId_reviewUserId_reviewMovieId: {
+					...args.where.userId_reviewUserId_reviewMovieId,
+					userId: ctx.req.session.userId,
+				},
+			},
 		});
 
 		return Boolean(movieReviewLike);

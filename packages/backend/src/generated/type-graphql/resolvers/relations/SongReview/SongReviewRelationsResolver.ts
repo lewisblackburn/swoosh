@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import { Song } from "../../../models/Song";
 import { SongReview } from "../../../models/SongReview";
 import { SongReviewLike } from "../../../models/SongReviewLike";
+import { User } from "../../../models/User";
 import { SongReviewLikesArgs } from "./args/SongReviewLikesArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -19,6 +20,20 @@ export class SongReviewRelationsResolver {
         },
       },
     }).likes(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => User, {
+    nullable: false
+  })
+  async user(@TypeGraphQL.Root() songReview: SongReview, @TypeGraphQL.Ctx() ctx: any): Promise<User> {
+    return getPrismaFromContext(ctx).songReview.findUnique({
+      where: {
+        userId_songId: {
+          userId: songReview.userId,
+          songId: songReview.songId,
+        },
+      },
+    }).user({});
   }
 
   @TypeGraphQL.FieldResolver(_type => Song, {

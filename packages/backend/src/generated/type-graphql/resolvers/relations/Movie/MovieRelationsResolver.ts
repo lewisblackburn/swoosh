@@ -2,12 +2,14 @@ import * as TypeGraphQL from "type-graphql";
 import { ActorInMovie } from "../../../models/ActorInMovie";
 import { Genre } from "../../../models/Genre";
 import { Movie } from "../../../models/Movie";
+import { MovieLike } from "../../../models/MovieLike";
 import { MovieReview } from "../../../models/MovieReview";
 import { Platform } from "../../../models/Platform";
 import { SongInMovie } from "../../../models/SongInMovie";
 import { Watchlist } from "../../../models/Watchlist";
 import { MovieActorsArgs } from "./args/MovieActorsArgs";
 import { MovieGenresArgs } from "./args/MovieGenresArgs";
+import { MovieLikesArgs } from "./args/MovieLikesArgs";
 import { MoviePlatformsArgs } from "./args/MoviePlatformsArgs";
 import { MovieReviewsArgs } from "./args/MovieReviewsArgs";
 import { MovieSoundtrackArgs } from "./args/MovieSoundtrackArgs";
@@ -80,5 +82,16 @@ export class MovieRelationsResolver {
         id: movie.id,
       },
     }).reviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [MovieLike], {
+    nullable: false
+  })
+  async likes(@TypeGraphQL.Root() movie: Movie, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: MovieLikesArgs): Promise<MovieLike[]> {
+    return getPrismaFromContext(ctx).movie.findUnique({
+      where: {
+        id: movie.id,
+      },
+    }).likes(args);
   }
 }

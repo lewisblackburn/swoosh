@@ -25,4 +25,9 @@ export class SongReviewUpdateWithoutSongInput {
     nullable: true
   })
   likes?: SongReviewLikeUpdateManyWithoutSongReviewInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutSongReviewsInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutSongReviewsInput | undefined;
 }

@@ -9,6 +9,7 @@ import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { FloatNullableFilter } from "../inputs/FloatNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { MovieLikeListRelationFilter } from "../inputs/MovieLikeListRelationFilter";
 import { MovieReviewListRelationFilter } from "../inputs/MovieReviewListRelationFilter";
 import { PlatformListRelationFilter } from "../inputs/PlatformListRelationFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
@@ -44,6 +45,11 @@ export class MovieWhereInput {
     nullable: true
   })
   title?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  tagline?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
@@ -115,13 +121,18 @@ export class MovieWhereInput {
   })
   reviews?: MovieReviewListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeFilter, {
+  @TypeGraphQL.Field(_type => MovieLikeListRelationFilter, {
     nullable: true
   })
-  createdAt?: DateTimeFilter | undefined;
+  likes?: MovieLikeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeFilter | undefined;
 }

@@ -20,6 +20,11 @@ export class MovieCreateManyInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
@@ -60,10 +65,10 @@ export class MovieCreateManyInput {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  createdAt?: Date | undefined;
+  updatedAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  updatedAt?: Date | undefined;
+  createdAt?: Date | undefined;
 }

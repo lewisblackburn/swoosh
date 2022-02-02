@@ -35,5 +35,5 @@ export class WatchlistShowsArgs {
   @TypeGraphQL.Field(_type => [ShowScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "thumbnail" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
 }

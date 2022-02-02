@@ -6,6 +6,7 @@ import { ActorInMovieUpdateManyWithoutMovieInput } from "../inputs/ActorInMovieU
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { GenreUpdateManyWithoutMoviesInput } from "../inputs/GenreUpdateManyWithoutMoviesInput";
+import { MovieLikeUpdateManyWithoutMovieInput } from "../inputs/MovieLikeUpdateManyWithoutMovieInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableFloatFieldUpdateOperationsInput } from "../inputs/NullableFloatFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
@@ -22,6 +23,11 @@ export class MovieUpdateWithoutReviewsInput {
     nullable: true
   })
   title?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  tagline?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
@@ -66,12 +72,12 @@ export class MovieUpdateWithoutReviewsInput {
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieUpdateManyWithoutMovieInput, {
     nullable: true
@@ -97,4 +103,9 @@ export class MovieUpdateWithoutReviewsInput {
     nullable: true
   })
   watchlist?: WatchlistUpdateManyWithoutMoviesInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeUpdateManyWithoutMovieInput, {
+    nullable: true
+  })
+  likes?: MovieLikeUpdateManyWithoutMovieInput | undefined;
 }

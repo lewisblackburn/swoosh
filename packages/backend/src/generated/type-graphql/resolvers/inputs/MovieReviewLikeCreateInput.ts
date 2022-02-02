@@ -14,6 +14,11 @@ export class MovieReviewLikeCreateInput {
   })
   createdAt?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutLikedMovieReviewsInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutLikedMovieReviewsInput;
+
   @TypeGraphQL.Field(_type => MovieReviewCreateNestedOneWithoutLikesInput, {
     nullable: false
   })

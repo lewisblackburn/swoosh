@@ -42,6 +42,11 @@ export class BookReviewWhereInput {
   })
   likes?: BookReviewLikeListRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => UserRelationFilter, {
+    nullable: true
+  })
+  user?: UserRelationFilter | undefined;
+
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })

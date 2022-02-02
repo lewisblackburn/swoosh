@@ -1,3 +1,3 @@
-mutation deleteMovieReview($where: MovieReviewWhereUniqueInput!) {
-	deleteMovieReview(where: $where)
+mutation deleteMovieReview($movieId: Int!) {
+	deleteMovieReview(movieId: $movieId)
 }

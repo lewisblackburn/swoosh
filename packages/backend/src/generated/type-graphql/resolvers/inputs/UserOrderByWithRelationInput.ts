@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { BookReviewLikeOrderByRelationAggregateInput } from "../inputs/BookReviewLikeOrderByRelationAggregateInput";
 import { BookReviewOrderByRelationAggregateInput } from "../inputs/BookReviewOrderByRelationAggregateInput";
 import { FollowsOrderByRelationAggregateInput } from "../inputs/FollowsOrderByRelationAggregateInput";
+import { MovieLikeOrderByRelationAggregateInput } from "../inputs/MovieLikeOrderByRelationAggregateInput";
 import { MovieReviewLikeOrderByRelationAggregateInput } from "../inputs/MovieReviewLikeOrderByRelationAggregateInput";
 import { MovieReviewOrderByRelationAggregateInput } from "../inputs/MovieReviewOrderByRelationAggregateInput";
 import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
@@ -93,6 +94,11 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   watchlist?: WatchlistOrderByWithRelationInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedMovies?: MovieLikeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewOrderByRelationAggregateInput, {
     nullable: true

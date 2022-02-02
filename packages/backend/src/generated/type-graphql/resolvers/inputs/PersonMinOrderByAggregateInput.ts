@@ -21,7 +21,7 @@ export class PersonMinOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  thumbnail?: "asc" | "desc" | undefined;
+  poster?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

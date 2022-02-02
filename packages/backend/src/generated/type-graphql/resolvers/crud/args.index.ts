@@ -6,6 +6,7 @@ export * from "./BookReviewLike/args";
 export * from "./Follows/args";
 export * from "./Genre/args";
 export * from "./Movie/args";
+export * from "./MovieLike/args";
 export * from "./MovieReview/args";
 export * from "./MovieReviewLike/args";
 export * from "./Notification/args";

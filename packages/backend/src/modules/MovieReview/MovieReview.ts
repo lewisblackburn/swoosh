@@ -1,15 +1,11 @@
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
 import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
-import {
-	CreateMovieReviewArgs,
-	FindManyMovieReviewArgs,
-	MovieReview,
-	UpdateMovieReviewArgs,
-} from '../../generated/type-graphql';
+import {FindManyMovieReviewArgs, MovieReview, UpdateMovieReviewArgs} from '../../generated/type-graphql';
 import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import {CreateMovieReviewCustomArgs} from './args/CreateMovieReviewCustomArgs';
 
 @Resolver(MovieReview)
 export class MovieReviewResolver {
@@ -38,12 +34,16 @@ export class MovieReviewResolver {
 	async createMovieReview(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
-		@Args() args: CreateMovieReviewArgs
+		@Args() args: CreateMovieReviewCustomArgs
 	): Promise<boolean> {
 		const {_count} = transformFields(graphqlFields(info as any));
 		const movieReview = await ctx.prisma.movieReview.create({
-			...args,
 			data: {
+				rating: args.data.rating,
+				review: args.data.review,
+				movie: {
+					...args.data.movie,
+				},
 				user: {
 					connect: {
 						id: ctx.req.session.userId,

@@ -20,7 +20,7 @@ export class PersonCreateInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  thumbnail?: string | undefined;
+  poster?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true

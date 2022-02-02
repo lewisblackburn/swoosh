@@ -1,8 +1,8 @@
 import {Button} from '@components/Button';
-import {ErrorModal} from '@components/Form/ErrorModal';
 import InputField from '@components/Form/InputField';
+import {ErrorModal} from '@components/Modal/ErrorModal';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {useLoginMutation} from 'generated/graphql';
+import {MeDocument, MeQuery, useLoginMutation} from 'generated/graphql';
 import {toErrorMap} from 'lib/toErrorMap';
 import React, {useState} from 'react';
 import {useNotVerifyLoggedIn} from '../auth/useVerifyNotLoggedIn';
@@ -69,12 +69,8 @@ export const LoginPage: React.FC = () => {
 							{({isSubmitting}) => (
 								<Form className="my-12">
 									<p className="text-sm text-blueGray-400 mb-6">Sign In</p>
-									<div className="flex mb-4 px-4 bg-blueGray-50 rounded">
-										<InputField type="email" name="email" placeholder="name@email.com" />
-									</div>
-									<div className="flex mb-6 px-4 bg-blueGray-50 rounded">
-										<InputField type="password" name="password" placeholder="Enter your password" />
-									</div>
+									<InputField type="email" name="email" placeholder="name@email.com" />
+									<InputField type="password" name="password" placeholder="Enter your password" />
 									<Button type="submit">{isSubmitting ? 'Loading...' : 'Sign In'}</Button>
 								</Form>
 							)}

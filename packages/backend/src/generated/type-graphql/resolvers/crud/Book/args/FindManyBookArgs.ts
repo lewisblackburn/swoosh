@@ -35,5 +35,5 @@ export class FindManyBookArgs {
   @TypeGraphQL.Field(_type => [BookScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "thumbnail" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
 }

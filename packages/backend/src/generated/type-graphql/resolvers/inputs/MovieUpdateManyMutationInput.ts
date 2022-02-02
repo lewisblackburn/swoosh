@@ -21,6 +21,11 @@ export class MovieUpdateManyMutationInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
+  tagline?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
   overview?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
@@ -61,10 +66,10 @@ export class MovieUpdateManyMutationInput {
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 }

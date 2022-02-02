@@ -13,4 +13,9 @@ export class MovieReviewLikeUpdateWithoutMovieReviewInput {
     nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutLikedMovieReviewsInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutLikedMovieReviewsInput | undefined;
 }

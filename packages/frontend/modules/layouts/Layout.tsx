@@ -1,6 +1,4 @@
-import {Cookie} from '@components/Cookie';
 import {Navbar} from '@components/Navbar';
-import {Sidebar} from '@components/Sidebar';
 import {motion} from 'framer-motion';
 import React from 'react';
 

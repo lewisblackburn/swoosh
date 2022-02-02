@@ -1,5 +1,5 @@
 /// Throughout the following code, I use the following notation:
-/// @TypeGraphQL.omit(output: true, input: true)
+/// @TypeGraphQL.omit(output: true, input: false) -> input is generated but not output (except for the password field)
 /// This means that the field is not included in the output or input types of the generated files.
 /// It will mostly be used for fields that are not part of the public API of the type.
 /// Such as internal fields used for implementation details e.g password and the user (ctx.req.session.userId) field.
@@ -36,6 +36,7 @@ model User {
   followers         Follows[]         @relation(name: "follower")
   notifications     Notification[]
   watchlist         Watchlist?
+  likedMovies       MovieLike[]
   movieReviews      MovieReview[]
   likedMovieReviews MovieReviewLike[]
   showReviews       ShowReview[]
@@ -81,7 +82,7 @@ model Person {
   id        Int            @id @default(autoincrement())
   career    Career[]
   name      String
-  thumbnail String         @default(value: "https://via.placeholder.com/400x600")
+  poster    String         @default(value: "https://via.placeholder.com/400x600")
   bio       String?
   age       Int?
   movies    ActorInMovie[]
@@ -95,6 +96,7 @@ model Person {
 model Movie {
   id         Int            @id @default(autoincrement())
   title      String
+  tagline    String
   overview   String
   poster     String         @default(value: "https://via.placeholder.com/400x600")
   backdrop   String         @default(value: "https://via.placeholder.com/1200x600")
@@ -109,15 +111,16 @@ model Movie {
   soundtrack SongInMovie[]
   watchlist  Watchlist[]
   reviews    MovieReview[] // collective rating will come from rating in reviews
-  createdAt  DateTime       @default(now())
+  likes      MovieLike[]
   updatedAt  DateTime       @updatedAt
+  createdAt  DateTime       @default(now())
 }
 
 model Show {
   id          Int           @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
+  poster      String        @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean       @default(false)
   released    DateTime?
   actors      ActorInShow[]
@@ -184,7 +187,7 @@ model Book {
   id          Int          @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String       @default(value: "https://via.placeholder.com/400x600")
+  poster      String       @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean      @default(false)
   released    DateTime?
   authors     Person[]
@@ -198,7 +201,7 @@ model Song {
   id          Int           @id @default(autoincrement())
   title       String
   description String
-  thumbnail   String        @default(value: "https://via.placeholder.com/400x600")
+  poster      String        @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean       @default(false)
   released    DateTime?
   artists     Person[]
@@ -218,6 +221,16 @@ model Genre {
   books  Book[]
 }
 
+model MovieLike {
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  movieId   Int
+  createdAt DateTime @default(now())
+
+  @@id([userId, movieId])
+}
+
 model MovieReview {
   // These will be blank for users who only want to rate the movie
   review String?
@@ -225,7 +238,6 @@ model MovieReview {
   likes  MovieReviewLike[]
 
 
-  /// @TypeGraphQL.omit(output: true, input: true)
   user    User  @relation(fields: [userId], references: [id])
   userId  Int
   movie   Movie @relation(fields: [movieId], references: [id])
@@ -235,7 +247,6 @@ model MovieReview {
 }
 
 model MovieReviewLike {
-  /// @TypeGraphQL.omit(output: true, input: true)
   user          User        @relation(fields: [userId], references: [id])
   userId        Int
   reviewUserId  Int
@@ -251,7 +262,6 @@ model ShowReview {
   rating Int
   likes  ShowReviewLike[]
 
-  /// @TypeGraphQL.omit(output: true, input: true)
   user   User @relation(fields: [userId], references: [id])
   userId Int
   show   Show @relation(fields: [showId], references: [id])
@@ -261,7 +271,6 @@ model ShowReview {
 }
 
 model ShowReviewLike {
-  /// @TypeGraphQL.omit(output: true, input: true)
   user         User       @relation(fields: [userId], references: [id])
   userId       Int
   reviewUserId Int
@@ -277,7 +286,6 @@ model BookReview {
   rating Int
   likes  BookReviewLike[]
 
-  /// @TypeGraphQL.omit(output: true, input: true)
   user   User @relation(fields: [userId], references: [id])
   userId Int
   book   Book @relation(fields: [bookId], references: [id])
@@ -287,7 +295,6 @@ model BookReview {
 }
 
 model BookReviewLike {
-  /// @TypeGraphQL.omit(output: true, input: true)
   user         User       @relation(fields: [userId], references: [id])
   userId       Int
   reviewUserId Int
@@ -303,7 +310,6 @@ model SongReview {
   rating Int
   likes  SongReviewLike[]
 
-  /// @TypeGraphQL.omit(output: true, input: true)
   user   User @relation(fields: [userId], references: [id])
   userId Int
   song   Song @relation(fields: [songId], references: [id])
@@ -313,7 +319,6 @@ model SongReview {
 }
 
 model SongReviewLike {
-  /// @TypeGraphQL.omit(output: true, input: true)
   user         User       @relation(fields: [userId], references: [id])
   userId       Int
   reviewUserId Int

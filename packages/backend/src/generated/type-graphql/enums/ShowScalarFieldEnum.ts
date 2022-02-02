@@ -4,7 +4,7 @@ export enum ShowScalarFieldEnum {
   id = "id",
   title = "title",
   description = "description",
-  thumbnail = "thumbnail",
+  poster = "poster",
   locked = "locked",
   released = "released",
   createdAt = "createdAt",

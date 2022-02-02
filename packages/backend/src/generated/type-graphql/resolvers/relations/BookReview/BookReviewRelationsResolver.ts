@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import { Book } from "../../../models/Book";
 import { BookReview } from "../../../models/BookReview";
 import { BookReviewLike } from "../../../models/BookReviewLike";
+import { User } from "../../../models/User";
 import { BookReviewLikesArgs } from "./args/BookReviewLikesArgs";
 import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -19,6 +20,20 @@ export class BookReviewRelationsResolver {
         },
       },
     }).likes(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => User, {
+    nullable: false
+  })
+  async user(@TypeGraphQL.Root() bookReview: BookReview, @TypeGraphQL.Ctx() ctx: any): Promise<User> {
+    return getPrismaFromContext(ctx).bookReview.findUnique({
+      where: {
+        userId_bookId: {
+          userId: bookReview.userId,
+          bookId: bookReview.bookId,
+        },
+      },
+    }).user({});
   }
 
   @TypeGraphQL.FieldResolver(_type => Book, {

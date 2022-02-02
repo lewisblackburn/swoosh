@@ -1,4 +1,4 @@
-import {ErrorModal} from '@components/Form/ErrorModal';
+import {ErrorModal} from '@components/Modal/ErrorModal';
 import InputField from '@components/Form/InputField';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {MeDocument, MeQuery, useRegisterMutation} from 'generated/graphql';

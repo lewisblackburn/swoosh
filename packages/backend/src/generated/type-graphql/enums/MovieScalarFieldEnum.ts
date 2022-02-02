@@ -3,6 +3,7 @@ import * as TypeGraphQL from "type-graphql";
 export enum MovieScalarFieldEnum {
   id = "id",
   title = "title",
+  tagline = "tagline",
   overview = "overview",
   poster = "poster",
   backdrop = "backdrop",
@@ -11,8 +12,8 @@ export enum MovieScalarFieldEnum {
   runtime = "runtime",
   trailer = "trailer",
   rating = "rating",
-  createdAt = "createdAt",
-  updatedAt = "updatedAt"
+  updatedAt = "updatedAt",
+  createdAt = "createdAt"
 }
 TypeGraphQL.registerEnumType(MovieScalarFieldEnum, {
   name: "MovieScalarFieldEnum",

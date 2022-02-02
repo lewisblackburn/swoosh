@@ -6,6 +6,7 @@ import { BookReviewCreateNestedManyWithoutUserInput } from "../inputs/BookReview
 import { BookReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/BookReviewLikeCreateNestedManyWithoutUserInput";
 import { FollowsCreateNestedManyWithoutFollowerInput } from "../inputs/FollowsCreateNestedManyWithoutFollowerInput";
 import { FollowsCreateNestedManyWithoutFollowingInput } from "../inputs/FollowsCreateNestedManyWithoutFollowingInput";
+import { MovieLikeCreateNestedManyWithoutUserInput } from "../inputs/MovieLikeCreateNestedManyWithoutUserInput";
 import { MovieReviewCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewCreateNestedManyWithoutUserInput";
 import { MovieReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewLikeCreateNestedManyWithoutUserInput";
 import { NotificationCreateNestedManyWithoutUserInput } from "../inputs/NotificationCreateNestedManyWithoutUserInput";
@@ -99,6 +100,11 @@ export class UserCreateInput {
     nullable: true
   })
   watchlist?: WatchlistCreateNestedOneWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  likedMovies?: MovieLikeCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewCreateNestedManyWithoutUserInput, {
     nullable: true

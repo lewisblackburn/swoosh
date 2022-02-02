@@ -42,6 +42,11 @@ export class SongReviewWhereInput {
   })
   likes?: SongReviewLikeListRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => UserRelationFilter, {
+    nullable: true
+  })
+  user?: UserRelationFilter | undefined;
+
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })

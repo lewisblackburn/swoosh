@@ -19,6 +19,11 @@ export class ShowReviewCreateWithoutLikesInput {
   })
   rating!: number;
 
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutShowReviewsInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutShowReviewsInput;
+
   @TypeGraphQL.Field(_type => ShowCreateNestedOneWithoutReviewsInput, {
     nullable: false
   })

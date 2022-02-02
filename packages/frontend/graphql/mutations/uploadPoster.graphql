@@ -1,0 +1,3 @@
+mutation UploadPoster($id: Int!, $file: Upload!, $type: UploadType!) {
+	uploadPoster(id: $id, file: $file, type: $type)
+}

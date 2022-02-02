@@ -25,6 +25,11 @@ export class MovieGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
@@ -65,12 +70,12 @@ export class MovieGroupBy {
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  createdAt!: Date;
+  updatedAt!: Date;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  updatedAt!: Date;
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => MovieCountAggregate, {
     nullable: true

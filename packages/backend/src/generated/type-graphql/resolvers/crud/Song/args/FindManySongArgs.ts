@@ -35,5 +35,5 @@ export class FindManySongArgs {
   @TypeGraphQL.Field(_type => [SongScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "thumbnail" | "locked" | "released" | "createdAt"> | undefined;
+  distinct?: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt"> | undefined;
 }

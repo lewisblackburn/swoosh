@@ -9,6 +9,7 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
 import { FollowsUpdateManyWithoutFollowerInput } from "../inputs/FollowsUpdateManyWithoutFollowerInput";
 import { FollowsUpdateManyWithoutFollowingInput } from "../inputs/FollowsUpdateManyWithoutFollowingInput";
+import { MovieLikeUpdateManyWithoutUserInput } from "../inputs/MovieLikeUpdateManyWithoutUserInput";
 import { MovieReviewLikeUpdateManyWithoutUserInput } from "../inputs/MovieReviewLikeUpdateManyWithoutUserInput";
 import { MovieReviewUpdateManyWithoutUserInput } from "../inputs/MovieReviewUpdateManyWithoutUserInput";
 import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
@@ -96,6 +97,11 @@ export class UserUpdateWithoutWatchlistInput {
     nullable: true
   })
   notifications?: NotificationUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  likedMovies?: MovieLikeUpdateManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewUpdateManyWithoutUserInput, {
     nullable: true

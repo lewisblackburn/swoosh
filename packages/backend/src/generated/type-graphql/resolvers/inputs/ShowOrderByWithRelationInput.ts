@@ -32,7 +32,7 @@ export class ShowOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  thumbnail?: "asc" | "desc" | undefined;
+  poster?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

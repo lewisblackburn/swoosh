@@ -1,0 +1,13 @@
+query ActorsInMovie(
+	$movieId: Int!
+	$where: ActorInMovieWhereInput
+	$orderBy: [ActorInMovieOrderByWithRelationInput!]
+	$cursor: ActorInMovieWhereUniqueInput
+	$take: Int
+) {
+	movie(movieId: $movieId) {
+		actors(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+			personId
+		}
+	}
+}

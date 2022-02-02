@@ -32,7 +32,7 @@ export class Show {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  thumbnail!: string;
+  poster!: string;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false

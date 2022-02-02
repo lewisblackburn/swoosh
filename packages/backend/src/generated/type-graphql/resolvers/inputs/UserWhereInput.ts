@@ -9,6 +9,7 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
 import { FollowsListRelationFilter } from "../inputs/FollowsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { MovieLikeListRelationFilter } from "../inputs/MovieLikeListRelationFilter";
 import { MovieReviewLikeListRelationFilter } from "../inputs/MovieReviewLikeListRelationFilter";
 import { MovieReviewListRelationFilter } from "../inputs/MovieReviewListRelationFilter";
 import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
@@ -112,6 +113,11 @@ export class UserWhereInput {
     nullable: true
   })
   watchlist?: WatchlistRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeListRelationFilter, {
+    nullable: true
+  })
+  likedMovies?: MovieLikeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewListRelationFilter, {
     nullable: true

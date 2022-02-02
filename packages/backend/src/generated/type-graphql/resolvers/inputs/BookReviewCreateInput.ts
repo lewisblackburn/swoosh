@@ -25,6 +25,11 @@ export class BookReviewCreateInput {
   })
   likes?: BookReviewLikeCreateNestedManyWithoutBookReviewInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutBookReviewsInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutBookReviewsInput;
+
   @TypeGraphQL.Field(_type => BookCreateNestedOneWithoutReviewsInput, {
     nullable: false
   })

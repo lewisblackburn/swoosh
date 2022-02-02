@@ -3,6 +3,7 @@ export { UserBookReviewsArgs } from "./UserBookReviewsArgs";
 export { UserFollowersArgs } from "./UserFollowersArgs";
 export { UserFollowingArgs } from "./UserFollowingArgs";
 export { UserLikedMovieReviewsArgs } from "./UserLikedMovieReviewsArgs";
+export { UserLikedMoviesArgs } from "./UserLikedMoviesArgs";
 export { UserMovieReviewsArgs } from "./UserMovieReviewsArgs";
 export { UserNotificationsArgs } from "./UserNotificationsArgs";
 export { UserShowReviewLikesArgs } from "./UserShowReviewLikesArgs";

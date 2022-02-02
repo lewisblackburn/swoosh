@@ -17,7 +17,7 @@ import {Context} from './interfaces/context';
 import {redis} from './redis';
 import {createSchema} from './utils/createSchema';
 
-const PORT = parseInt(process.env.PORT ?? '4000');
+const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
 const driver = async () => {
 	const app = express();
@@ -76,7 +76,7 @@ const driver = async () => {
 							variables: request.variables,
 							estimators: [fieldExtensionsEstimator(), simpleEstimator({defaultComplexity: 1})],
 						});
-						const limit = 35;
+						const limit = 50;
 						if (complexity > limit) {
 							throw new Error(
 								`Sorry, too complicated query! ${complexity} is over ${limit} that is the max allowed complexity.`

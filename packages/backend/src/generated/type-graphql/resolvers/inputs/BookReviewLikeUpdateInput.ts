@@ -15,6 +15,11 @@ export class BookReviewLikeUpdateInput {
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutBookReviewLikesInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutBookReviewLikesInput | undefined;
+
   @TypeGraphQL.Field(_type => BookReviewUpdateOneRequiredWithoutLikesInput, {
     nullable: true
   })

@@ -42,6 +42,11 @@ export class MovieScalarWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
+  tagline?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
   overview?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringFilter, {
@@ -82,10 +87,10 @@ export class MovieScalarWhereInput {
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
-  createdAt?: DateTimeFilter | undefined;
+  updatedAt?: DateTimeFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
-  updatedAt?: DateTimeFilter | undefined;
+  createdAt?: DateTimeFilter | undefined;
 }

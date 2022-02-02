@@ -1,0 +1,5 @@
+mutation UpdateMovie($data: MovieUpdateInput!, $where: MovieWhereUniqueInput!) {
+	updateMovie(data: $data, where: $where) {
+		id
+	}
+}

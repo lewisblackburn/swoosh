@@ -1,10 +1,10 @@
-import { Button } from '@components/Button';
-import { Modal } from '@components/Modal';
-import { Dialog } from '@headlessui/react';
+import {Button} from '@components/Button';
+import {Modal} from '@components/Modal/Modal';
+import {Dialog} from '@headlessui/react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { Avatar } from '../../components/Avatar';
+import {useRouter} from 'next/router';
+import React, {useEffect, useState} from 'react';
+import {Avatar} from '../../components/Avatar';
 import {
 	FollowersDocument,
 	FollowingDocument,
@@ -16,7 +16,7 @@ import {
 	useUnfollowMutation,
 	useUserQuery,
 } from '../../generated/graphql';
-import { Layout } from '../layouts/Layout';
+import {Layout} from '../layouts/Layout';
 
 interface FollowsModalProps {
 	isOpen: boolean;
@@ -25,8 +25,8 @@ interface FollowsModalProps {
 	username: string;
 }
 
-const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, username }) => {
-	const { data: followers } = useFollowersQuery({
+const FollowsModal: React.FC<FollowsModalProps> = ({isOpen, setIsOpen, type, username}) => {
+	const {data: followers} = useFollowersQuery({
 		variables: {
 			where: {
 				follower: {
@@ -39,7 +39,7 @@ const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, us
 			},
 		},
 	});
-	const { data: following } = useFollowingQuery({
+	const {data: following} = useFollowingQuery({
 		variables: {
 			where: {
 				following: {
@@ -74,7 +74,11 @@ const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, us
 										key={follower.following.id}
 										className="flex items-center space-x-3 hover:bg-gray-100 rounded-md p-5"
 									>
-										<img src={follower.following.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
+										<img
+											src={follower.following.avatar}
+											alt="avatar"
+											className="w-16 h-16 rounded-full"
+										/>
 										<p>{follower.following.username}</p>
 									</div>
 								</a>
@@ -88,7 +92,11 @@ const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, us
 							<Link key={follow.follower.id} href={`/user/${follow.follower.username}`}>
 								<a>
 									<div className="flex items-center space-x-3 hover:bg-gray-100 rounded-md p-5">
-										<img src={follow.follower.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
+										<img
+											src={follow.follower.avatar}
+											alt="avatar"
+											className="w-16 h-16 rounded-full"
+										/>
 										<p>{follow.follower.username}</p>
 									</div>
 								</a>
@@ -103,21 +111,21 @@ const FollowsModal: React.FC<FollowsModalProps> = ({ isOpen, setIsOpen, type, us
 
 export const UserPage: React.FC = () => {
 	const router = useRouter();
-	const { username } = router.query;
+	const {username} = router.query;
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [type, setType] = useState<'Followers' | 'Following'>();
 
-	const { data: me } = useMeQuery();
-	const { data } = useUserQuery({
+	const {data: me} = useMeQuery();
+	const {data} = useUserQuery({
 		variables: {
 			username: username!.toString(),
 		},
 	});
-	const [follow, { loading: following }] = useFollowMutation({
+	const [follow, {loading: following}] = useFollowMutation({
 		refetchQueries: [UserDocument, FollowingDocument, FollowersDocument],
 	});
-	const [unfollow, { loading: unfollowing }] = useUnfollowMutation({
+	const [unfollow, {loading: unfollowing}] = useUnfollowMutation({
 		refetchQueries: [UserDocument, FollowingDocument, FollowersDocument],
 	});
 

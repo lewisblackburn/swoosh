@@ -26,6 +26,11 @@ export class SongReviewOrderByWithRelationInput {
   })
   likes?: SongReviewLikeOrderByRelationAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
+    nullable: true
+  })
+  user?: UserOrderByWithRelationInput | undefined;
+
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })

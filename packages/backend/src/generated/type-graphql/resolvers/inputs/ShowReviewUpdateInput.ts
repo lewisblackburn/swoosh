@@ -27,6 +27,11 @@ export class ShowReviewUpdateInput {
   })
   likes?: ShowReviewLikeUpdateManyWithoutShowReviewInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutShowReviewsInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutShowReviewsInput | undefined;
+
   @TypeGraphQL.Field(_type => ShowUpdateOneRequiredWithoutReviewsInput, {
     nullable: true
   })

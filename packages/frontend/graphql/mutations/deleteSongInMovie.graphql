@@ -1,0 +1,3 @@
+mutation deleteSongInMovie($where: SongInMovieWhereUniqueInput!) {
+	deleteSongInMovie(where: $where)
+}

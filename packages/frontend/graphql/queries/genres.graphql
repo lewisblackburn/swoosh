@@ -1,0 +1,6 @@
+query Genres($where: GenreWhereInput) {
+	genres(where: $where) {
+		id
+		name
+	}
+}

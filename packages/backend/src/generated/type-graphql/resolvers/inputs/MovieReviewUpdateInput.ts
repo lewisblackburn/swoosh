@@ -27,6 +27,11 @@ export class MovieReviewUpdateInput {
   })
   likes?: MovieReviewLikeUpdateManyWithoutMovieReviewInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutMovieReviewsInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutMovieReviewsInput | undefined;
+
   @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutReviewsInput, {
     nullable: true
   })

@@ -12,4 +12,9 @@ export class SongReviewLikeCreateWithoutSongReviewInput {
     nullable: true
   })
   createdAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutSongReviewLikesInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutSongReviewLikesInput;
 }

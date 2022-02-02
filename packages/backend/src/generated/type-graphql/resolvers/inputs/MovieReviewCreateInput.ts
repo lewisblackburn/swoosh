@@ -25,6 +25,11 @@ export class MovieReviewCreateInput {
   })
   likes?: MovieReviewLikeCreateNestedManyWithoutMovieReviewInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutMovieReviewsInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutMovieReviewsInput;
+
   @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutReviewsInput, {
     nullable: false
   })

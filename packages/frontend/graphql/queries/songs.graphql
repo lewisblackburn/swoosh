@@ -1,0 +1,15 @@
+query Songs(
+	$where: SongWhereInput
+	$orderBy: [SongOrderByWithRelationInput!]
+	$cursor: SongWhereUniqueInput
+	$take: Int
+) {
+	songs(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+		id
+		title
+		poster
+		artists {
+			name
+		}
+	}
+}

@@ -4,7 +4,7 @@ export enum PersonScalarFieldEnum {
   id = "id",
   career = "career",
   name = "name",
-  thumbnail = "thumbnail",
+  poster = "poster",
   bio = "bio",
   age = "age",
   createdAt = "createdAt",

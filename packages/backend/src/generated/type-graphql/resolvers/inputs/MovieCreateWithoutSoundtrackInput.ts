@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieCreateNestedManyWithoutMovieInput } from "../inputs/ActorInMovieCreateNestedManyWithoutMovieInput";
 import { GenreCreateNestedManyWithoutMoviesInput } from "../inputs/GenreCreateNestedManyWithoutMoviesInput";
+import { MovieLikeCreateNestedManyWithoutMovieInput } from "../inputs/MovieLikeCreateNestedManyWithoutMovieInput";
 import { MovieReviewCreateNestedManyWithoutMovieInput } from "../inputs/MovieReviewCreateNestedManyWithoutMovieInput";
 import { PlatformCreateNestedManyWithoutMoviesInput } from "../inputs/PlatformCreateNestedManyWithoutMoviesInput";
 import { WatchlistCreateNestedManyWithoutMoviesInput } from "../inputs/WatchlistCreateNestedManyWithoutMoviesInput";
@@ -16,6 +17,11 @@ export class MovieCreateWithoutSoundtrackInput {
     nullable: false
   })
   title!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  tagline!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -60,12 +66,12 @@ export class MovieCreateWithoutSoundtrackInput {
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  createdAt?: Date | undefined;
+  updatedAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  updatedAt?: Date | undefined;
+  createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieCreateNestedManyWithoutMovieInput, {
     nullable: true
@@ -91,4 +97,9 @@ export class MovieCreateWithoutSoundtrackInput {
     nullable: true
   })
   reviews?: MovieReviewCreateNestedManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  likes?: MovieLikeCreateNestedManyWithoutMovieInput | undefined;
 }

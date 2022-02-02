@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { BookReview } from "../models/BookReview";
 import { BookReviewLike } from "../models/BookReviewLike";
 import { Follows } from "../models/Follows";
+import { MovieLike } from "../models/MovieLike";
 import { MovieReview } from "../models/MovieReview";
 import { MovieReviewLike } from "../models/MovieReviewLike";
 import { Notification } from "../models/Notification";
@@ -84,6 +85,8 @@ export class User {
   notifications?: Notification[];
 
   watchlist?: Watchlist | null;
+
+  likedMovies?: MovieLike[];
 
   movieReviews?: MovieReview[];
 

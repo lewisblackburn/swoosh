@@ -3,7 +3,7 @@ mutation CreatePerson($data: PersonCreateInput!) {
 		id
 		career
 		name
-		thumbnail
+		poster
 		bio
 		age
 	}

@@ -1,0 +1,3 @@
+mutation UploadBackdrop($id: Int!, $file: Upload!, $type: UploadType!) {
+	uploadBackdrop(id: $id, file: $file, type: $type)
+}

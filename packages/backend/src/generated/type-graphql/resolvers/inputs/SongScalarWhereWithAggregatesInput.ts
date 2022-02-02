@@ -45,7 +45,7 @@ export class SongScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
-  thumbnail?: StringWithAggregatesFilter | undefined;
+  poster?: StringWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolWithAggregatesFilter, {
     nullable: true

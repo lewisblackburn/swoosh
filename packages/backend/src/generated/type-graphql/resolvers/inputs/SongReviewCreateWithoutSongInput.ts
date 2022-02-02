@@ -23,4 +23,9 @@ export class SongReviewCreateWithoutSongInput {
     nullable: true
   })
   likes?: SongReviewLikeCreateNestedManyWithoutSongReviewInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutSongReviewsInput, {
+    nullable: false
+  })
+  user!: UserCreateNestedOneWithoutSongReviewsInput;
 }

@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { ActorInMovie } from "../models/ActorInMovie";
 import { Genre } from "../models/Genre";
+import { MovieLike } from "../models/MovieLike";
 import { MovieReview } from "../models/MovieReview";
 import { Platform } from "../models/Platform";
 import { SongInMovie } from "../models/SongInMovie";
@@ -23,6 +24,11 @@ export class Movie {
     nullable: false
   })
   title!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  tagline!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -76,15 +82,17 @@ export class Movie {
 
   reviews?: MovieReview[];
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
-  })
-  createdAt!: Date;
+  likes?: MovieLike[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => MovieCount, {
     nullable: true

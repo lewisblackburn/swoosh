@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieOrderByRelationAggregateInput } from "../inputs/ActorInMovieOrderByRelationAggregateInput";
 import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
+import { MovieLikeOrderByRelationAggregateInput } from "../inputs/MovieLikeOrderByRelationAggregateInput";
 import { MovieReviewOrderByRelationAggregateInput } from "../inputs/MovieReviewOrderByRelationAggregateInput";
 import { PlatformOrderByRelationAggregateInput } from "../inputs/PlatformOrderByRelationAggregateInput";
 import { SongInMovieOrderByRelationAggregateInput } from "../inputs/SongInMovieOrderByRelationAggregateInput";
@@ -23,6 +24,11 @@ export class MovieOrderByWithRelationInput {
     nullable: true
   })
   title?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  tagline?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
@@ -94,13 +100,18 @@ export class MovieOrderByWithRelationInput {
   })
   reviews?: MovieReviewOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => SortOrder, {
+  @TypeGraphQL.Field(_type => MovieLikeOrderByRelationAggregateInput, {
     nullable: true
   })
-  createdAt?: "asc" | "desc" | undefined;
+  likes?: MovieLikeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  createdAt?: "asc" | "desc" | undefined;
 }

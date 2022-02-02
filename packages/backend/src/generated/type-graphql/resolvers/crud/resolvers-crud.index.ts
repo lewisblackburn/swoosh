@@ -6,6 +6,7 @@ export { BookReviewLikeCrudResolver } from "./BookReviewLike/BookReviewLikeCrudR
 export { FollowsCrudResolver } from "./Follows/FollowsCrudResolver";
 export { GenreCrudResolver } from "./Genre/GenreCrudResolver";
 export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
+export { MovieLikeCrudResolver } from "./MovieLike/MovieLikeCrudResolver";
 export { MovieReviewCrudResolver } from "./MovieReview/MovieReviewCrudResolver";
 export { MovieReviewLikeCrudResolver } from "./MovieReviewLike/MovieReviewLikeCrudResolver";
 export { NotificationCrudResolver } from "./Notification/NotificationCrudResolver";

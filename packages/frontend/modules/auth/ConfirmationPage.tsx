@@ -1,5 +1,5 @@
 import { Button } from '@components/Button';
-import { ErrorModal } from '@components/Form/ErrorModal';
+import { ErrorModal } from '@components/Modal/ErrorModal';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useConfirmMutation } from '../../generated/graphql';

@@ -21,6 +21,11 @@ export class SongReviewUpdateWithoutLikesInput {
   })
   rating?: IntFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutSongReviewsInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutSongReviewsInput | undefined;
+
   @TypeGraphQL.Field(_type => SongUpdateOneRequiredWithoutReviewsInput, {
     nullable: true
   })

@@ -1,12 +1,14 @@
 import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
 import {ShowReview} from '../../generated/type-graphql/models/ShowReview';
-import {FindManyShowReviewArgs} from '../../generated/type-graphql/resolvers/crud/ShowReview/args';
+import {
+	FindManyShowReviewArgs,
+	CreateShowReviewArgs,
+} from '../../generated/type-graphql/resolvers/crud/ShowReview/args';
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
 import {Args, Authorized, Ctx, Info, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
-import {CreateMovieReviewArgs} from '../../generated/type-graphql';
 
 @Resolver(ShowReview)
 export class ShowReviewResolver {
@@ -27,6 +29,7 @@ export class ShowReviewResolver {
 		});
 	}
 
+	// This broke idk y
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
 	@Mutation(() => ShowReview, {
@@ -35,11 +38,18 @@ export class ShowReviewResolver {
 	async createShowReview(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
-		@Args() args: CreateMovieReviewArgs
+		@Args() args: CreateShowReviewArgs
 	): Promise<ShowReview> {
 		const {_count} = transformFields(graphqlFields(info as any));
 		return ctx.prisma.showReview.create({
 			...args,
+			data: {
+				user: {
+					connect: {
+						id: 5,
+					},
+				},
+			},
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 	}

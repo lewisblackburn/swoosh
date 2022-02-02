@@ -25,6 +25,11 @@ export class UserCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  likedMovies!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   movieReviews!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

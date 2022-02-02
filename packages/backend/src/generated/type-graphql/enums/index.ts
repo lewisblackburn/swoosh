@@ -6,6 +6,7 @@ export { BookScalarFieldEnum } from "./BookScalarFieldEnum";
 export { Career } from "./Career";
 export { FollowsScalarFieldEnum } from "./FollowsScalarFieldEnum";
 export { GenreScalarFieldEnum } from "./GenreScalarFieldEnum";
+export { MovieLikeScalarFieldEnum } from "./MovieLikeScalarFieldEnum";
 export { MovieReviewLikeScalarFieldEnum } from "./MovieReviewLikeScalarFieldEnum";
 export { MovieReviewScalarFieldEnum } from "./MovieReviewScalarFieldEnum";
 export { MovieScalarFieldEnum } from "./MovieScalarFieldEnum";

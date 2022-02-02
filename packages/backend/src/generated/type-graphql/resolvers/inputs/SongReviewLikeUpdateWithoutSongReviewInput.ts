@@ -13,4 +13,9 @@ export class SongReviewLikeUpdateWithoutSongReviewInput {
     nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutSongReviewLikesInput, {
+    nullable: true
+  })
+  user?: UserUpdateOneRequiredWithoutSongReviewLikesInput | undefined;
 }

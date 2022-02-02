@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
 	switch (variant) {
 		case 'primary':
 			className +=
-				'block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded';
+				'block sm:inline-block py-4 px-8 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded';
 			break;
 		case 'secondary':
 			className +=

@@ -1,0 +1,3 @@
+mutation LikeMovie($data: MovieLikeCreateCustomInput!) {
+	likeMovie(data: $data)
+}

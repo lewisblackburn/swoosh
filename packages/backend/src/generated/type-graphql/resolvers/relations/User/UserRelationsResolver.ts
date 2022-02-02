@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import { BookReview } from "../../../models/BookReview";
 import { BookReviewLike } from "../../../models/BookReviewLike";
 import { Follows } from "../../../models/Follows";
+import { MovieLike } from "../../../models/MovieLike";
 import { MovieReview } from "../../../models/MovieReview";
 import { MovieReviewLike } from "../../../models/MovieReviewLike";
 import { Notification } from "../../../models/Notification";
@@ -16,6 +17,7 @@ import { UserBookReviewsArgs } from "./args/UserBookReviewsArgs";
 import { UserFollowersArgs } from "./args/UserFollowersArgs";
 import { UserFollowingArgs } from "./args/UserFollowingArgs";
 import { UserLikedMovieReviewsArgs } from "./args/UserLikedMovieReviewsArgs";
+import { UserLikedMoviesArgs } from "./args/UserLikedMoviesArgs";
 import { UserMovieReviewsArgs } from "./args/UserMovieReviewsArgs";
 import { UserNotificationsArgs } from "./args/UserNotificationsArgs";
 import { UserShowReviewLikesArgs } from "./args/UserShowReviewLikesArgs";
@@ -68,6 +70,17 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).watchlist({});
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [MovieLike], {
+    nullable: false
+  })
+  async likedMovies(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserLikedMoviesArgs): Promise<MovieLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).likedMovies(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [MovieReview], {

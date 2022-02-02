@@ -1,9 +1,8 @@
 import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
-import {Dialog} from '@headlessui/react';
+import {Textarea} from '@components/Form/Textarea';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {MeQuery, MeDocument, useCreateMovieReviewMutation} from 'generated/graphql';
-import {toErrorMap} from 'lib/toErrorMap';
+import {MovieDocument, useCreateMovieReviewMutation} from 'generated/graphql';
 import React from 'react';
 import {Modal, ModalProps} from './Modal';
 
@@ -17,13 +16,12 @@ interface Values {
 }
 
 export const ReviewModal: React.FC<ReviewModalProps> = ({movieId, ...props}) => {
-	const [createMovieReview] = useCreateMovieReviewMutation();
+	const [createMovieReview] = useCreateMovieReviewMutation({
+		refetchQueries: [MovieDocument],
+	});
 
 	return (
 		<Modal {...props}>
-			<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-				Review
-			</Dialog.Title>
 			<Formik
 				initialValues={{
 					rating: 0,
@@ -41,58 +39,32 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({movieId, ...props}) => 
 										id: movieId,
 									},
 								},
-								user: {
-									connect: {
-										id: 1,
-									},
-								},
 							},
 						},
-						update: (cache, {data}) => {
-							cache.writeQuery<MeQuery>({
-								query: MeDocument,
-								data: {
-									__typename: 'Query',
-									me: data?.login,
-								},
-							});
-							cache.evict({fieldName: 'movies:{}'});
-						},
-					}).catch((e: any) => {
-						// If graphql validation error
-						// Else show other errors in modal
-						if (e.graphQLErrors[0].extensions.exception.validationErrors) {
-							const errors = toErrorMap(e);
-							setModalError(errors[Object.keys(errors)[0]]);
-							setIsOpen(true);
-						} else {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-							setModalError(e.message);
-							setIsOpen(true);
-						}
-					});
+					})
+						.catch((e: any) => {
+							console.log(e);
+						})
+						.then(() => props.setIsOpen(false));
 					setSubmitting(false);
 				}}
 			>
 				{({isSubmitting}) => (
-					<Form className="my-12">
-						<p className="text-sm text-blueGray-400 mb-6">Sign In</p>
-						<div className="flex mb-4 px-4 bg-blueGray-50 rounded">
-							<InputField type="email" name="email" placeholder="name@email.com" />
+					<Form>
+						<p className="text-sm text-blueGray-400 mb-6">Review</p>
+						<InputField type="number" name="rating" min={0} max={5} />
+						<Textarea name="review" placeholder="optional" />
+						<div className="flex items-center justify-between">
+							<Button variant="secondary" className="mt-4" onClick={() => props.setIsOpen(false)}>
+								Cancel
+							</Button>
+							<Button type="submit" className="mt-4">
+								{isSubmitting ? 'Submitting...' : 'Submit'}
+							</Button>
 						</div>
-						<div className="flex mb-6 px-4 bg-blueGray-50 rounded">
-							<InputField type="password" name="password" placeholder="Enter your password" />
-						</div>
-						<Button type="submit">{isSubmitting ? 'Loading...' : 'Sign In'}</Button>
 					</Form>
 				)}
 			</Formik>
-			<Button className="mt-4" onClick={() => props.setIsOpen(false)}>
-				Submit
-			</Button>
-			<Button variant="secondary" className="mt-4" onClick={() => props.setIsOpen(false)}>
-				Cancel
-			</Button>
 		</Modal>
 	);
 };

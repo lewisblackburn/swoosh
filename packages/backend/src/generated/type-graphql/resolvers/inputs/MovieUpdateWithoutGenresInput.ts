@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutMovieInput } from "../inputs/ActorInMovieUpdateManyWithoutMovieInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { MovieLikeUpdateManyWithoutMovieInput } from "../inputs/MovieLikeUpdateManyWithoutMovieInput";
 import { MovieReviewUpdateManyWithoutMovieInput } from "../inputs/MovieReviewUpdateManyWithoutMovieInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableFloatFieldUpdateOperationsInput } from "../inputs/NullableFloatFieldUpdateOperationsInput";
@@ -22,6 +23,11 @@ export class MovieUpdateWithoutGenresInput {
     nullable: true
   })
   title?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  tagline?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
@@ -66,12 +72,12 @@ export class MovieUpdateWithoutGenresInput {
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+  createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => ActorInMovieUpdateManyWithoutMovieInput, {
     nullable: true
@@ -97,4 +103,9 @@ export class MovieUpdateWithoutGenresInput {
     nullable: true
   })
   reviews?: MovieReviewUpdateManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikeUpdateManyWithoutMovieInput, {
+    nullable: true
+  })
+  likes?: MovieLikeUpdateManyWithoutMovieInput | undefined;
 }

@@ -8,8 +8,6 @@ query People(
 		id
 		career
 		name
-		thumbnail
-		createdAt
-		updatedAt
+		poster
 	}
 }

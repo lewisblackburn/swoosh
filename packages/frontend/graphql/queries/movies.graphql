@@ -1,8 +1,12 @@
-query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput) {
-	movies(where: $where, orderBy: $orderBy, cursor: $cursor) {
+query Movies(
+	$where: MovieWhereInput
+	$orderBy: [MovieOrderByWithRelationInput!]
+	$cursor: MovieWhereUniqueInput
+	$take: Int
+) {
+	movies(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
 		id
 		title
-		overview
 		poster
 	}
 }

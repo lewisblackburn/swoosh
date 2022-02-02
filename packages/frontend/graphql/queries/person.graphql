@@ -3,7 +3,7 @@ query Person($where: PersonWhereUniqueInput!) {
 		id
 		career
 		name
-		thumbnail
+		poster
 		bio
 		age
 		_count {

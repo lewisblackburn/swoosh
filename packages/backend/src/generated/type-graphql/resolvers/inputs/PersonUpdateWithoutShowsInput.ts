@@ -23,7 +23,7 @@ export class PersonUpdateWithoutShowsInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  thumbnail?: StringFieldUpdateOperationsInput | undefined;
+  poster?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true

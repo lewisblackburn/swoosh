@@ -25,7 +25,7 @@ export class ShowMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  thumbnail!: string | null;
+  poster!: string | null;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
