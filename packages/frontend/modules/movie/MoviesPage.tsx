@@ -1,9 +1,11 @@
+import {Card} from '@components/Card';
 import {Icon} from '@components/Icon';
+import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {Layout} from '@modules/layouts/Layout';
 import {SortOrder, useMoviesQuery} from 'generated/graphql';
 import Link from 'next/link';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
 import Select from 'react-select';
 
@@ -40,7 +42,7 @@ export const MoviesPage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center py-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						<Select value={selectedOption} options={options} onChange={handleChange} />
+						<Select value={selectedOption} options={options} onChange={handleChange} />{' '}
 						<Select value={selectedOption} options={options} onChange={handleChange} />
 						<Select value={selectedOption} options={options} onChange={handleChange} />
 						<Select value={selectedOption} options={options} onChange={handleChange} />
@@ -50,20 +52,16 @@ export const MoviesPage: React.FC = () => {
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
 						<Link href="/movie/create">
 							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+								<Card>
 									<Icon icon={AiOutlinePlus} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 						{data?.movies?.map(movie => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
 								<a>
-									<img
-										className="h-80 object-cover rounded filter hover:brightness-75 transition-all"
-										src={movie.poster}
-										alt="poster"
-									/>
+									<Poster src={movie.poster} />
 								</a>
 							</Link>
 						))}

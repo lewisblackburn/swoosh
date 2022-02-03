@@ -1,6 +1,8 @@
+import {Backdrop} from '@components/Backdrop';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
 import {ReviewModal} from '@components/Modal/ReviewModal';
+import {Poster} from '@components/Poster';
 import {
 	MovieDocument,
 	useDeleteMovieReviewMutation,
@@ -90,7 +92,7 @@ export const MoviePage: React.FC = () => {
 						</div>
 					</div>
 					<div className="flex max-w-5xl mx-auto mb-8">
-						<img className="h-80 w-full object-cover rounded" src={data?.movie?.backdrop} alt="" />
+						<Backdrop src={data?.movie?.backdrop} />
 					</div>
 					<div className="max-w-2xl mx-auto mb-6">
 						<div className="text-center">
@@ -126,7 +128,7 @@ export const MoviePage: React.FC = () => {
 								</div>
 								<div className="sm:py-2 ml-2 sm:ml-6">
 									<span className="sm:text-2xl font-bold font-heading">
-										{floatToTime(data?.movie?.runtime) ?? 0}
+										{floatToTime(data?.movie?.runtime ?? 0)}
 									</span>
 									<p className="text-xs sm:text-base text-blueGray-400">Runtime</p>
 								</div>
@@ -168,14 +170,10 @@ export const MoviePage: React.FC = () => {
 								This will only include the major cast, not the extras i.e the crew, etc.
 							</p>
 						</div>
-						<div className="flex flex-wrap -mx-3">
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-12">
 							{data?.movie?.actors.map(actor => (
-								<div key={actor.role} className="w-full md:w-1/2 lg:w-1/4 px-3 mb-12">
-									<img
-										className="h-64 w-64 mx-auto rounded object-cover object-top"
-										src={actor.person.poster}
-										alt=""
-									/>
+								<div key={actor.person.id} className="flex flex-col items-center">
+									<Poster src={actor.person.poster} />
 									<p className="mt-6 text-xl">{actor.person.name}</p>
 									<p className="mt-2 mb-4 text-blue-600">{actor.role}</p>
 								</div>

@@ -1,7 +1,9 @@
+import {BackdropDiv} from '@components/BackdropDiv';
 import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {
 	MoviesDocument,
@@ -10,6 +12,7 @@ import {
 	useUploadBackdropMutation,
 	useUploadPosterMutation,
 } from 'generated/graphql';
+import handleInputClick from 'lib/handleInputClick';
 import {useRouter} from 'next/router';
 import React, {useRef, useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
@@ -35,8 +38,8 @@ export const CreatePage: React.FC = () => {
 	const [backdrop, setBackdrop] = useState();
 	const [poster, setPoster] = useState();
 
-	const backdropInput = useRef(null);
-	const posterInput = useRef(null);
+	const backdropInput = useRef(null as HTMLInputElement | null);
+	const posterInput = useRef(null as HTMLInputElement | null);
 
 	const handleBackdropChange = (event: any) => setBackdrop(event.target.files[0]);
 	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
@@ -68,7 +71,7 @@ export const CreatePage: React.FC = () => {
 							// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 							uploadBackdrop({
 								variables: {
-									id: res.data.createMovie.id,
+									id: res?.data?.createMovie.id ?? -1,
 									file: backdrop,
 									type: UploadType.Movie,
 								},
@@ -76,7 +79,7 @@ export const CreatePage: React.FC = () => {
 								// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 								uploadPoster({
 									variables: {
-										id: res.data.createMovie.id,
+										id: res?.data?.createMovie.id ?? -1,
 										file: poster,
 										type: UploadType.Movie,
 									},
@@ -96,10 +99,11 @@ export const CreatePage: React.FC = () => {
 								</div>
 							</div>
 							<div className="flex space-x-5 max-w-5xl mx-auto mb-8">
-								<div
-									className="grid place-items-center cursor-pointer h-80 w-80 bg-blueGray-100/40 hover:bg-blueGray-100 transofrm transition-all rounded"
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => posterInput.current.click()}
+								<PosterDiv
+									src={undefined}
+									onClick={() => {
+										handleInputClick(posterInput);
+									}}
 									onChange={handlePosterChange}
 								>
 									<input
@@ -110,11 +114,12 @@ export const CreatePage: React.FC = () => {
 										style={{display: 'none'}}
 									/>
 									<Icon icon={AiOutlinePlus} />
-								</div>
-								<div
-									className="grid place-items-center cursor-pointer h-80 w-full bg-blueGray-100/40 hover:bg-blueGray-100 transofrm transition-all rounded"
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => backdropInput.current.click()}
+								</PosterDiv>
+								<BackdropDiv
+									src={undefined}
+									onClick={() => {
+										handleInputClick(backdropInput);
+									}}
 									onChange={handleBackdropChange}
 								>
 									<input
@@ -125,7 +130,7 @@ export const CreatePage: React.FC = () => {
 										style={{display: 'none'}}
 									/>
 									<Icon icon={AiOutlinePlus} />
-								</div>
+								</BackdropDiv>
 							</div>
 							<div className="max-w-2xl mx-auto">
 								<InputField type="text" name="tagline" />
@@ -135,7 +140,7 @@ export const CreatePage: React.FC = () => {
 						<section className="py-20">
 							<div className="container px-4 mx-auto text-center">
 								<div className="flex space-x-5 justify-center">
-									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Save changes'}</Button>
+									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</Button>
 									<Button variant="secondary" onClick={() => history.go(-1)}>
 										Cancel
 									</Button>
