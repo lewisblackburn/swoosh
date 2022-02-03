@@ -16,19 +16,25 @@ import {prisma} from './db';
 import {Context} from './interfaces/context';
 import {redis} from './redis';
 import {createSchema} from './utils/createSchema';
+import rateLimit from 'express-rate-limit';
+import RateLimitRedisStore from 'rate-limit-redis';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
-const driver = async () => {
+// Create a new express server
+async function driver() {
 	const app = express();
 	const httpServer = createServer(app);
 
+	// Redirect / to /graphql for convenience
 	app.get('/', (req, res) => {
 		res.redirect('/graphql');
 	});
 
+	// Redis session store
 	const RedisStore = connectRedis(session);
 	app.set('trust proxy', 1);
+
 	app.use(
 		cors({
 			origin: process.env.CORS_ORIGIN,
@@ -36,6 +42,23 @@ const driver = async () => {
 		})
 	);
 
+	// Rate Limit
+	const limiter = rateLimit({
+		windowMs: 15 * 60 * 1000, // 15 minutes
+		max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+		standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+		legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+		store: new RateLimitRedisStore({
+			// Use with ioredis
+			// @ts-expect-error - Known issue: the `call` function is not present in @types/ioredis
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+			sendCommand: (...args: string[]) => redis.call(...args),
+		}),
+	});
+
+	app.use(limiter);
+
+	// Cookies
 	app.use(
 		session({
 			name: COOKIE_NAME,
@@ -44,10 +67,10 @@ const driver = async () => {
 				disableTouch: true,
 			}),
 			cookie: {
-				maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
+				maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
 				httpOnly: true,
-				sameSite: 'lax', // Csrf
-				secure: __prod__, // Cookie only works in https
+				sameSite: 'lax',
+				secure: __prod__,
 				domain: __prod__ ? '.zxffo.cc' : undefined,
 			},
 			saveUninitialized: false,
@@ -56,9 +79,11 @@ const driver = async () => {
 		})
 	);
 
+	// File Upload
 	app.use(graphqlUploadExpress({maxFileSize: 10000000, maxFiles: 1}));
 	app.use('/images', express.static(path.join(__dirname, '../images')));
 
+	// GraphQL Server
 	const schema = await createSchema();
 	const apolloServer = new ApolloServer({
 		schema,
@@ -68,6 +93,7 @@ const driver = async () => {
 		playground: !__prod__,
 		plugins: [
 			{
+				// Query Complexity
 				requestDidStart: () => ({
 					didResolveOperation({request, document}) {
 						const complexity = getComplexity({
@@ -88,6 +114,7 @@ const driver = async () => {
 		],
 	});
 
+	// Subscriptions
 	apolloServer.applyMiddleware({
 		app,
 		cors: __prod__,
@@ -96,10 +123,11 @@ const driver = async () => {
 	// codesandbox.io/s/github/apollographql/docs-examples/tree/main/apollo-server/v3/subscriptions?fontsize=14&hidenavigation=1&initialpath=/graphql&theme=dark&file=/index.js:489-529
 	SubscriptionServer.create({schema, execute, subscribe}, {server: httpServer, path: apolloServer.graphqlPath});
 
+	// Start Server
 	httpServer.listen(PORT, () => {
 		console.log(`Query endpoint ready at http://localhost:${PORT}${apolloServer.graphqlPath}`);
 		console.log(`Subscription endpoint ready at ws://localhost:${PORT}${apolloServer.graphqlPath}`);
 	});
-};
+}
 
 driver().catch(console.error);
