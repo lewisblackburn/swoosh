@@ -1,4 +1,4 @@
-import { MoviesPage } from '@modules/movie/MoviesPage';
+import {MoviesPage} from '@modules/movie/MoviesPage';
 import withApollo from '../lib/withApollo';
 
-export default withApollo({ ssr: true })(MoviesPage);
+export default withApollo({ssr: true})(MoviesPage);
