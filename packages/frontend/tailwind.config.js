@@ -151,7 +151,7 @@ module.exports = {
 			},
 			backgroundColor: theme => ({
 				...theme('colors'),
-				body: '#fff',
+				body: '#F1F5FB',
 			}),
 			backgroundPosition: {
 				bottom: 'bottom',

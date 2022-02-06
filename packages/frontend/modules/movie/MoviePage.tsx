@@ -30,7 +30,7 @@ import {Layout} from '../layouts/Layout';
 export const MoviePage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const movieId = useGetIntId();
+	const movieId: number = useGetIntId();
 	const {data} = useMovieQuery({
 		skip: movieId === -1,
 		variables: {
@@ -77,12 +77,12 @@ export const MoviePage: React.FC = () => {
 									icon={data?.movie?.isLiked ? AiFillHeart : AiOutlineHeart}
 									className={data?.movie?.isLiked ? 'text-red-500' : ''}
 									onClick={() => {
-										// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-										likeMovie().catch(() => unlikeMovie());
+										likeMovie().catch(() => {
+											unlikeMovie();
+										});
 									}}
 								/>
 								<IconButton icon={AiOutlineStar} onClick={() => setIsOpen(prev => !prev)} />
-								{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
 								<Link href={`/movie/edit/${movieId}`}>
 									<a>
 										<IconButton icon={AiOutlineEdit} />
@@ -97,9 +97,7 @@ export const MoviePage: React.FC = () => {
 					<div className="max-w-2xl mx-auto mb-6">
 						<div className="text-center">
 							<span className="text-xs text-gray-500 font-semibold">
-								{data?.movie?.genres.length === 0
-									? 'No genres'
-									: data?.movie?.genres.map(genre => genre.name).join(' / ')}
+								{data?.movie?.genres.map(genre => genre.name).join(' / ')}
 							</span>
 						</div>
 					</div>
@@ -212,7 +210,7 @@ export const MoviePage: React.FC = () => {
 											<div className="pl-4">
 												<p className="font-semibold">{song.song.title}</p>
 												<a className="text-blueGray-400" href="#">
-													{song.song.artists.map(artist => artist.name).join(', ')}
+													{song?.song?.artists.map(artist => artist.name).join(', ')}
 												</a>
 											</div>
 										</td>
@@ -222,6 +220,7 @@ export const MoviePage: React.FC = () => {
 										<td className="px-4 py-2 text-xs font-semibold">
 											{song.song.songInMovie[index].description}
 										</td>
+										<td className="px-4 py-2 text-xs font-semibold">{song.song.description}</td>
 									</tr>
 								))}
 							</tbody>
@@ -256,14 +255,13 @@ export const MoviePage: React.FC = () => {
 											<IconButton
 												icon={AiOutlineDelete}
 												loading={deleteMovieReviewLoading}
-												onClick={() =>
-													// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+												onClick={() => {
 													deleteMovieReview({
 														variables: {
 															movieId,
 														},
-													})
-												}
+													});
+												}}
 											/>
 										</div>
 										<p className="leading-loose text-blueGray-400">{review.review}</p>

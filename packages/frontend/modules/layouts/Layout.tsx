@@ -23,10 +23,10 @@ const pageTransition = {
 };
 
 export const Layout: React.FC = ({children}) => (
-	<div className="">
+	<>
 		<Navbar />
 		<motion.div
-			className="p-10"
+			className="px-10"
 			initial="initial"
 			animate="in"
 			exit="out"
@@ -36,5 +36,5 @@ export const Layout: React.FC = ({children}) => (
 			{children}
 		</motion.div>
 		{/* <Cookie /> */}
-	</div>
+	</>
 );

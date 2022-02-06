@@ -1,4 +1,5 @@
 import {Card} from '@components/Card';
+import {Grid} from '@components/Grid';
 import {Icon} from '@components/Icon';
 import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
@@ -49,7 +50,7 @@ export const MoviesPage: React.FC = () => {
 						<Select value={selectedOption} options={options} onChange={handleChange} />
 						<Select value={selectedOption} options={options} onChange={handleChange} />
 					</div>
-					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
+					<Grid>
 						<Link href="/movie/create">
 							<a className="w-full">
 								<Card>
@@ -65,7 +66,7 @@ export const MoviesPage: React.FC = () => {
 								</a>
 							</Link>
 						))}
-					</div>
+					</Grid>
 				</div>
 			</section>
 		</Layout>

@@ -14159,7 +14159,7 @@ export type MovieQueryVariables = Exact<{
   movieId: Scalars['Int'];
 }>;
 
-export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null | undefined; runtime?: number | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null | undefined; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'Person'; id: number; name: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null | undefined} | null | undefined}} | null | undefined};
+export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null | undefined; runtime?: number | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null | undefined; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'Person'; id: number; name: string}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null | undefined} | null | undefined}} | null | undefined};
 
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
@@ -15312,6 +15312,10 @@ export const MovieDocument = gql`
         artists {
           id
           name
+        }
+        songInMovie {
+          timestamp
+          description
         }
       }
     }

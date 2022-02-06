@@ -37,6 +37,10 @@ query Movie($movieId: Int!) {
 					id
 					name
 				}
+        songInMovie {
+          timestamp
+          description
+        }
 			}
 		}
 		reviews(take: 8) {

@@ -3,6 +3,7 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {IconButton} from '@components/IconButton';
+import {Modal} from '@components/Modal/Modal';
 import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {
@@ -131,6 +132,9 @@ const GenreTable: React.FC<TableProps> = ({movie}) => {
 };
 
 const ActorTable: React.FC<TableProps> = ({movie}) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [role, setRole] = useState('');
+	const [personId, setPersonId] = useState(-1);
 	const [predicate, setPredicate] = useState('');
 	const [predicateDebounced] = useDebounce(predicate, 500);
 
@@ -158,7 +162,7 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 	const [addActorInMovie] = useCreateActorInMovieMutation();
 	const [removeActorInMovie] = useDeleteActorInMovieMutation();
 
-	const addActorEvent = (personId: number) =>
+	const addActorEvent = (personId: number, role: string) =>
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		addActorInMovie({
 			variables: {
@@ -173,7 +177,7 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 							id: personId,
 						},
 					},
-					role: 'Temp',
+					role,
 				},
 			},
 			refetchQueries: [MovieDocument, ActorsInMovieDocument],
@@ -194,45 +198,75 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 		});
 
 	return (
-		<section className="py-8">
-			<div className="container px-4 mx-auto">
-				<div className="flex flex-wrap items-center mb-6">
-					<h3 className="text-xl font-bold">Actors</h3>
-					<div className="w-full md:w-auto my-6 md:my-0 flex items-center ml-auto  bg-white border rounded">
-						<input
-							className="pl-2 py-3 text-sm focus:outline-none"
-							type="text"
-							placeholder="Type to search..."
-							onChange={e => setPredicate(e.target.value)}
-						/>
+		<>
+			<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+				<input
+					autoFocus
+					className="w-full mb-4 p-4 text-sm placeholder-blueGray-400 leading-none bg-blueGray-50 outline-none rounded"
+					placeholder="Search"
+					type="text"
+					value={role}
+					onChange={e => setRole(e.currentTarget.value)}
+				/>
+				<div className="flex items-center justify-between">
+					<Button variant="secondary" className="mt-4" onClick={() => setIsOpen(false)}>
+						Cancel
+					</Button>
+					<Button
+						className="mt-4"
+						onClick={() => {
+							addActorEvent(personId, role);
+							setIsOpen(false);
+							setRole('');
+						}}
+					>
+						Submit
+					</Button>
+				</div>
+			</Modal>
+			<section className="py-8">
+				<div className="container px-4 mx-auto">
+					<div className="flex flex-wrap items-center mb-6">
+						<h3 className="text-xl font-bold">Actors</h3>
+						<div className="w-full md:w-auto my-6 md:my-0 flex items-center ml-auto  bg-white border rounded">
+							<input
+								className="pl-2 py-3 text-sm focus:outline-none"
+								type="text"
+								placeholder="Type to search..."
+								onChange={e => setPredicate(e.target.value)}
+							/>
+						</div>
+					</div>
+					<div className="flex flex-col space-y-5">
+						{data?.people?.map(person => (
+							<div
+								key={person.id}
+								className="flex items-center justify-between pl-4 pr-6 py-4 bg-white shadow rounded"
+							>
+								<h1>{person.name}</h1>
+
+								{actors?.movie?.actors.some(actor => actor.personId === person.id) ? (
+									<IconButton
+										icon={AiOutlineDelete}
+										onClick={() => {
+											removeActorEvent(person.id);
+										}}
+									/>
+								) : (
+									<IconButton
+										icon={AiOutlinePlus}
+										onClick={() => {
+											setIsOpen(true);
+											setPersonId(person.id);
+										}}
+									/>
+								)}
+							</div>
+						))}
 					</div>
 				</div>
-				<div className="flex flex-col space-y-5">
-					{data?.people?.map(person => (
-						<div
-							key={person.id}
-							className="flex items-center justify-between pl-4 pr-6 py-4 bg-white shadow rounded"
-						>
-							<h1>{person.name}</h1>
-
-							{actors?.movie?.actors.some(actor => actor.personId === person.id) ? (
-								<IconButton
-									icon={AiOutlineDelete}
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => removeActorEvent(person.id)}
-								/>
-							) : (
-								<IconButton
-									icon={AiOutlinePlus}
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => addActorEvent(person.id)}
-								/>
-							)}
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
+			</section>
+		</>
 	);
 };
 
