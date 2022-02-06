@@ -40,11 +40,8 @@ export const PaletteProvider: React.FC = () => {
 
 	const router = useRouter();
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	const close = () => setIsOpen(false);
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	const toggle = () => setIsOpen((prev: boolean) => !prev);
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	const search = (predicate: string): void => setPredicate(predicate);
 
 	useEffect(() => {
