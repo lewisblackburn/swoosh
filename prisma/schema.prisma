@@ -86,6 +86,7 @@ model Person {
   career    Career[]
   name      String
   poster    String         @default(value: "https://via.placeholder.com/400x600")
+  locked    Boolean        @default(false)
   bio       String?
   age       Int?
   movies    ActorInMovie[]

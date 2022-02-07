@@ -5,6 +5,7 @@ export enum PersonScalarFieldEnum {
   career = "career",
   name = "name",
   poster = "poster",
+  locked = "locked",
   bio = "bio",
   age = "age",
   createdAt = "createdAt",

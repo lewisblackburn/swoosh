@@ -22,6 +22,11 @@ export class PersonCreateInput {
   })
   poster?: string | undefined;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  locked?: boolean | undefined;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

@@ -1,45 +1,126 @@
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
-import {Args, Authorized, Ctx, Info, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
 import {
+	Arg,
+	Args,
+	Authorized,
+	Ctx,
+	FieldResolver,
+	Info,
+	Int,
+	Mutation,
+	Query,
+	Resolver,
+	Root,
+	UseMiddleware,
+} from 'type-graphql';
+import {
+	AggregatePersonReview,
+	AggregatePersonReviewArgs,
 	CreatePersonArgs,
 	DeletePersonArgs,
 	FindManyPersonArgs,
-	FindUniquePersonArgs,
 	Person,
 	UpdatePersonArgs,
 } from '../../generated/type-graphql';
-import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
+import {
+	getPrismaFromContext,
+	transformCountFieldIntoSelectRelationsCount,
+	transformFields,
+} from '../../generated/type-graphql/helpers';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
 
 @Resolver(Person)
 export class PersonResolver {
-	@Authorized(['ADMIN', 'USER'])
+	@FieldResolver(() => Boolean, {
+		nullable: false,
+	})
+	async isLiked(@Root() root: Person, @Ctx() ctx: Context, @Info() info: GraphQLResolveInfo): Promise<boolean> {
+		if (!ctx.req.session.userId) {
+			throw new Error('No User');
+		}
+
+		const personLike = await ctx.prisma.personLike.findUnique({
+			where: {
+				userId_personId: {
+					personId: root.id,
+					userId: ctx.req.session.userId,
+				},
+			},
+			...transformFields(graphqlFields(info as any)),
+		});
+
+		return Boolean(personLike);
+	}
+
+	@FieldResolver(() => AggregatePersonReview, {
+		nullable: false,
+	})
+	async aggregatePersonReview(
+		@Root() root: Person,
+		@Ctx() ctx: Context,
+		@Info() info: GraphQLResolveInfo,
+		@Args() args: AggregatePersonReviewArgs
+	): Promise<AggregatePersonReview> {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return getPrismaFromContext(ctx).personReview.aggregate({
+			...args,
+			where: {
+				personId: root.id,
+			},
+			...transformFields(graphqlFields(info as any)),
+		});
+	}
+
+	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
 	@Mutation(() => Person, {
 		nullable: false,
 	})
-	async createPerson(@Ctx() ctx: Context, @Args() args: CreatePersonArgs): Promise<Person> {
+	async createPerson(
+		@Ctx() ctx: Context,
+		@Info() info: GraphQLResolveInfo,
+		@Args() args: CreatePersonArgs
+	): Promise<Person> {
+		const {_count} = transformFields(graphqlFields(info as any));
 		return ctx.prisma.person.create({
-			data: {
-				career: args.data.career,
-				name: args.data.name,
-			},
+			...args,
+			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 	}
 
-	@Authorized(['ADMIN', 'USER'])
+	@Authorized(['USER'])
+	@UseMiddleware(ErrorInterceptor)
+	@Mutation(() => Person, {
+		nullable: true,
+	})
+	async editPerson(
+		@Ctx() ctx: Context,
+		@Info() info: GraphQLResolveInfo,
+		@Args() args: UpdatePersonArgs
+	): Promise<Person | null> {
+		const {_count} = transformFields(graphqlFields(info as any));
+		return ctx.prisma.person.update({
+			...args,
+			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+		});
+	}
+
+	@Authorized(['ADMIN'])
 	@UseMiddleware(ErrorInterceptor)
 	@Mutation(() => Person, {nullable: true})
-	async editPerson(@Ctx() ctx: Context, @Args() args: UpdatePersonArgs): Promise<Person | null> {
+	async lockPerson(
+		@Ctx() ctx: Context,
+		@Arg('personId', () => Int) personId: number,
+		@Arg('lock') lock: boolean
+	): Promise<Person | null> {
 		return ctx.prisma.person.update({
 			where: {
-				id: args.where.id,
+				id: personId,
 			},
 			data: {
-				name: args.data.name,
-				career: args.data.career,
+				locked: lock,
 			},
 		});
 	}
@@ -59,17 +140,21 @@ export class PersonResolver {
 	async person(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
-		@Args() args: FindUniquePersonArgs
+		@Arg('personId', () => Int) personId: number
 	): Promise<Person | null> {
 		const {_count} = transformFields(graphqlFields(info as any));
 		return ctx.prisma.person.findUnique({
-			...args,
+			where: {
+				id: personId,
+			},
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
 	}
 
 	@Query(() => [Person], {nullable: true})
-	async people(@Ctx() ctx: Context, @Args() args: FindManyPersonArgs): Promise<Person[] | null> {
-		return ctx.prisma.person.findMany({...args});
+	async persons(@Args() args: FindManyPersonArgs, @Ctx() ctx: Context): Promise<Person[] | null> {
+		return ctx.prisma.person.findMany({
+			...args,
+		});
 	}
 }

@@ -6,6 +6,7 @@ import { ActorInMovieListRelationFilter } from "../inputs/ActorInMovieListRelati
 import { ActorInShowListRelationFilter } from "../inputs/ActorInShowListRelationFilter";
 import { ArtistInSongListRelationFilter } from "../inputs/ArtistInSongListRelationFilter";
 import { AuthorInBookListRelationFilter } from "../inputs/AuthorInBookListRelationFilter";
+import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumCareerNullableListFilter } from "../inputs/EnumCareerNullableListFilter";
 import { IntFilter } from "../inputs/IntFilter";
@@ -51,6 +52,11 @@ export class PersonWhereInput {
     nullable: true
   })
   poster?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BoolFilter, {
+    nullable: true
+  })
+  locked?: BoolFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true

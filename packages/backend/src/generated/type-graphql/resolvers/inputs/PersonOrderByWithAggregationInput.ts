@@ -36,6 +36,11 @@ export class PersonOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  locked?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   bio?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

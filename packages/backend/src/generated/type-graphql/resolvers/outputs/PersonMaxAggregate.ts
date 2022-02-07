@@ -22,6 +22,11 @@ export class PersonMaxAggregate {
   })
   poster!: string | null;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  locked!: boolean | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

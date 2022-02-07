@@ -33,6 +33,11 @@ export class PersonGroupBy {
   })
   poster!: string;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: false
+  })
+  locked!: boolean;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
