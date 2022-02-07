@@ -1,78 +1,19 @@
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
+import {Arg, Args, Authorized, Ctx, Info, Int, Mutation, Query, Resolver, UseMiddleware} from 'type-graphql';
 import {
-	Arg,
-	Args,
-	Authorized,
-	Ctx,
-	FieldResolver,
-	Info,
-	Int,
-	Mutation,
-	Query,
-	Resolver,
-	Root,
-	UseMiddleware,
-} from 'type-graphql';
-import {
-	AggregatePersonReview,
-	AggregatePersonReviewArgs,
 	CreatePersonArgs,
 	DeletePersonArgs,
 	FindManyPersonArgs,
 	Person,
 	UpdatePersonArgs,
 } from '../../generated/type-graphql';
-import {
-	getPrismaFromContext,
-	transformCountFieldIntoSelectRelationsCount,
-	transformFields,
-} from '../../generated/type-graphql/helpers';
+import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
 import {Context} from '../../interfaces/context';
 import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
 
 @Resolver(Person)
 export class PersonResolver {
-	@FieldResolver(() => Boolean, {
-		nullable: false,
-	})
-	async isLiked(@Root() root: Person, @Ctx() ctx: Context, @Info() info: GraphQLResolveInfo): Promise<boolean> {
-		if (!ctx.req.session.userId) {
-			throw new Error('No User');
-		}
-
-		const personLike = await ctx.prisma.personLike.findUnique({
-			where: {
-				userId_personId: {
-					personId: root.id,
-					userId: ctx.req.session.userId,
-				},
-			},
-			...transformFields(graphqlFields(info as any)),
-		});
-
-		return Boolean(personLike);
-	}
-
-	@FieldResolver(() => AggregatePersonReview, {
-		nullable: false,
-	})
-	async aggregatePersonReview(
-		@Root() root: Person,
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: AggregatePersonReviewArgs
-	): Promise<AggregatePersonReview> {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return getPrismaFromContext(ctx).personReview.aggregate({
-			...args,
-			where: {
-				personId: root.id,
-			},
-			...transformFields(graphqlFields(info as any)),
-		});
-	}
-
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
 	@Mutation(() => Person, {
@@ -153,6 +94,8 @@ export class PersonResolver {
 
 	@Query(() => [Person], {nullable: true})
 	async persons(@Args() args: FindManyPersonArgs, @Ctx() ctx: Context): Promise<Person[] | null> {
+		// @ts-expect-error unfixable: https://github.com/MichalLytek/typegraphql-prisma/issues/222
+		// I think this is related to the career enum in the generated schema
 		return ctx.prisma.person.findMany({
 			...args,
 		});
