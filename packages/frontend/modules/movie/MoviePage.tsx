@@ -1,7 +1,7 @@
 import {Backdrop} from '@components/Backdrop';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
-import {ReviewModal} from '@components/Modal/ReviewModal';
+import {ReviewMovieModal} from '@components/Modal/ReviewMovieModal';
 import {Poster} from '@components/Poster';
 import {
 	MovieDocument,
@@ -65,7 +65,7 @@ export const MoviePage: React.FC = () => {
 
 	return (
 		<>
-			<ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} movieId={movieId} />
+			<ReviewMovieModal isOpen={isOpen} setIsOpen={setIsOpen} movieId={movieId} />
 			<Layout>
 				<div className="container px-4 mx-auto">
 					<div className="max-w-2xl mx-auto mb-6">

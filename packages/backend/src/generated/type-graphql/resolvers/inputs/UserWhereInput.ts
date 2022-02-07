@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookLikeListRelationFilter } from "../inputs/BookLikeListRelationFilter";
 import { BookReviewLikeListRelationFilter } from "../inputs/BookReviewLikeListRelationFilter";
 import { BookReviewListRelationFilter } from "../inputs/BookReviewListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
@@ -13,8 +14,10 @@ import { MovieLikeListRelationFilter } from "../inputs/MovieLikeListRelationFilt
 import { MovieReviewLikeListRelationFilter } from "../inputs/MovieReviewLikeListRelationFilter";
 import { MovieReviewListRelationFilter } from "../inputs/MovieReviewListRelationFilter";
 import { NotificationListRelationFilter } from "../inputs/NotificationListRelationFilter";
+import { ShowLikeListRelationFilter } from "../inputs/ShowLikeListRelationFilter";
 import { ShowReviewLikeListRelationFilter } from "../inputs/ShowReviewLikeListRelationFilter";
 import { ShowReviewListRelationFilter } from "../inputs/ShowReviewListRelationFilter";
+import { SongLikeListRelationFilter } from "../inputs/SongLikeListRelationFilter";
 import { SongReviewLikeListRelationFilter } from "../inputs/SongReviewLikeListRelationFilter";
 import { SongReviewListRelationFilter } from "../inputs/SongReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
@@ -118,6 +121,21 @@ export class UserWhereInput {
     nullable: true
   })
   likedMovies?: MovieLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => ShowLikeListRelationFilter, {
+    nullable: true
+  })
+  likedShows?: ShowLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeListRelationFilter, {
+    nullable: true
+  })
+  likedSongs?: SongLikeListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BookLikeListRelationFilter, {
+    nullable: true
+  })
+  likedBooks?: BookLikeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewListRelationFilter, {
     nullable: true

@@ -20,12 +20,22 @@ export class ShowMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  description!: string | null;
+  tagline!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  overview!: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   poster!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  backdrop!: string | null;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
@@ -37,13 +47,28 @@ export class ShowMinAggregate {
   })
   released!: Date | null;
 
-  @TypeGraphQL.Field(_type => Date, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  createdAt!: Date | null;
+  runtime!: number | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
   updatedAt!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt!: Date | null;
 }

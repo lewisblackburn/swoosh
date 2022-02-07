@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { PersonCreateNestedManyWithoutSongsInput } from "../inputs/PersonCreateNestedManyWithoutSongsInput";
 import { SongInMovieCreateNestedManyWithoutSongInput } from "../inputs/SongInMovieCreateNestedManyWithoutSongInput";
 import { SongInShowCreateNestedManyWithoutSongInput } from "../inputs/SongInShowCreateNestedManyWithoutSongInput";
+import { SongLikeCreateNestedManyWithoutSongInput } from "../inputs/SongLikeCreateNestedManyWithoutSongInput";
 import { SongReviewCreateNestedManyWithoutSongInput } from "../inputs/SongReviewCreateNestedManyWithoutSongInput";
 
 @TypeGraphQL.InputType("SongCreateWithoutGenresInput", {
@@ -41,6 +42,11 @@ export class SongCreateWithoutGenresInput {
   })
   createdAt?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  updatedAt?: Date | undefined;
+
   @TypeGraphQL.Field(_type => PersonCreateNestedManyWithoutSongsInput, {
     nullable: true
   })
@@ -60,4 +66,9 @@ export class SongCreateWithoutGenresInput {
     nullable: true
   })
   reviews?: SongReviewCreateNestedManyWithoutSongInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeCreateNestedManyWithoutSongInput, {
+    nullable: true
+  })
+  likes?: SongLikeCreateNestedManyWithoutSongInput | undefined;
 }

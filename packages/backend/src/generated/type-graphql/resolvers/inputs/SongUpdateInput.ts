@@ -9,6 +9,7 @@ import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDa
 import { PersonUpdateManyWithoutSongsInput } from "../inputs/PersonUpdateManyWithoutSongsInput";
 import { SongInMovieUpdateManyWithoutSongInput } from "../inputs/SongInMovieUpdateManyWithoutSongInput";
 import { SongInShowUpdateManyWithoutSongInput } from "../inputs/SongInShowUpdateManyWithoutSongInput";
+import { SongLikeUpdateManyWithoutSongInput } from "../inputs/SongLikeUpdateManyWithoutSongInput";
 import { SongReviewUpdateManyWithoutSongInput } from "../inputs/SongReviewUpdateManyWithoutSongInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
@@ -46,6 +47,11 @@ export class SongUpdateInput {
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => PersonUpdateManyWithoutSongsInput, {
     nullable: true
   })
@@ -70,4 +76,9 @@ export class SongUpdateInput {
     nullable: true
   })
   reviews?: SongReviewUpdateManyWithoutSongInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeUpdateManyWithoutSongInput, {
+    nullable: true
+  })
+  likes?: SongLikeUpdateManyWithoutSongInput | undefined;
 }

@@ -11,4 +11,9 @@ export class ShowSumAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime!: number | null;
 }

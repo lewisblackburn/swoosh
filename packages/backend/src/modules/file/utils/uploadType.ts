@@ -1,7 +1,8 @@
-import { registerEnumType } from 'type-graphql';
+import {registerEnumType} from 'type-graphql';
 
 export enum UploadType {
 	Movie = 'movie',
+	Show = 'show',
 	Person = 'person',
 	Book = 'book',
 	Song = 'song',

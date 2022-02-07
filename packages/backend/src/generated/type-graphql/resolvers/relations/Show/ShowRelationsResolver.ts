@@ -3,11 +3,13 @@ import { ActorInShow } from "../../../models/ActorInShow";
 import { Genre } from "../../../models/Genre";
 import { Platform } from "../../../models/Platform";
 import { Show } from "../../../models/Show";
+import { ShowLike } from "../../../models/ShowLike";
 import { ShowReview } from "../../../models/ShowReview";
 import { SongInShow } from "../../../models/SongInShow";
 import { Watchlist } from "../../../models/Watchlist";
 import { ShowActorsArgs } from "./args/ShowActorsArgs";
 import { ShowGenresArgs } from "./args/ShowGenresArgs";
+import { ShowLikesArgs } from "./args/ShowLikesArgs";
 import { ShowPlatformsArgs } from "./args/ShowPlatformsArgs";
 import { ShowReviewsArgs } from "./args/ShowReviewsArgs";
 import { ShowSoundtrackArgs } from "./args/ShowSoundtrackArgs";
@@ -80,5 +82,16 @@ export class ShowRelationsResolver {
         id: show.id,
       },
     }).reviews(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ShowLike], {
+    nullable: false
+  })
+  async likes(@TypeGraphQL.Root() show: Show, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: ShowLikesArgs): Promise<ShowLike[]> {
+    return getPrismaFromContext(ctx).show.findUnique({
+      where: {
+        id: show.id,
+      },
+    }).likes(args);
   }
 }

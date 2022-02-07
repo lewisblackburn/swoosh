@@ -27,11 +27,7 @@ export class SongInMovieResolver {
 	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteSongInMovie(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteSongInMovieArgs
-	): Promise<boolean> {
+	async deleteSongInMovie(@Ctx() ctx: Context, @Args() args: DeleteSongInMovieArgs): Promise<boolean> {
 		const songInMovie = await ctx.prisma.songInMovie.delete({
 			...args,
 		});

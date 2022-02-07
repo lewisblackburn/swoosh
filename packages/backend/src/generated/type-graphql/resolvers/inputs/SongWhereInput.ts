@@ -10,6 +10,7 @@ import { IntFilter } from "../inputs/IntFilter";
 import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
+import { SongLikeListRelationFilter } from "../inputs/SongLikeListRelationFilter";
 import { SongReviewListRelationFilter } from "../inputs/SongReviewListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
@@ -87,8 +88,18 @@ export class SongWhereInput {
   })
   reviews?: SongReviewListRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => SongLikeListRelationFilter, {
+    nullable: true
+  })
+  likes?: SongLikeListRelationFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
   createdAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  updatedAt?: DateTimeFilter | undefined;
 }

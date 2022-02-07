@@ -1,0 +1,12 @@
+query Shows(
+	$where: ShowWhereInput
+	$orderBy: [ShowOrderByWithRelationInput!]
+	$cursor: ShowWhereUniqueInput
+	$take: Int
+) {
+	shows(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+		id
+		title
+		poster
+	}
+}

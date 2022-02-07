@@ -1,0 +1,3 @@
+mutation createShowReview($data: ShowReviewCreateCustomInput!) {
+	createShowReview(data: $data)
+}

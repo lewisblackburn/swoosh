@@ -1,0 +1,12 @@
+export { AggregateBookLikeArgs } from "./AggregateBookLikeArgs";
+export { CreateBookLikeArgs } from "./CreateBookLikeArgs";
+export { CreateManyBookLikeArgs } from "./CreateManyBookLikeArgs";
+export { DeleteBookLikeArgs } from "./DeleteBookLikeArgs";
+export { DeleteManyBookLikeArgs } from "./DeleteManyBookLikeArgs";
+export { FindFirstBookLikeArgs } from "./FindFirstBookLikeArgs";
+export { FindManyBookLikeArgs } from "./FindManyBookLikeArgs";
+export { FindUniqueBookLikeArgs } from "./FindUniqueBookLikeArgs";
+export { GroupByBookLikeArgs } from "./GroupByBookLikeArgs";
+export { UpdateBookLikeArgs } from "./UpdateBookLikeArgs";
+export { UpdateManyBookLikeArgs } from "./UpdateManyBookLikeArgs";
+export { UpsertBookLikeArgs } from "./UpsertBookLikeArgs";

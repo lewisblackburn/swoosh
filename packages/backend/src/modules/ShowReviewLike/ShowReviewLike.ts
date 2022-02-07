@@ -32,33 +32,46 @@ export class ShowReviewLikeResolver {
 
 	@Authorized(['USER'])
 	@UseMiddleware(ErrorInterceptor)
-	@Mutation(() => ShowReviewLike, {
+	@Mutation(() => Boolean, {
 		nullable: false,
 	})
 	async createShowReviewLike(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: CreateShowReviewLikeArgs
-	): Promise<ShowReviewLike> {
+	): Promise<boolean> {
 		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.showReviewLike.create({
+		const showReviewLike = await ctx.prisma.showReviewLike.create({
 			...args,
+			data: {
+				user: {
+					connect: {
+						id: ctx.req.session.userId,
+					},
+				},
+			},
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
+
+		return Boolean(showReviewLike);
 	}
 
-	@Mutation(() => ShowReviewLike, {
+	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteShowReviewLike(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteShowReviewLikeArgs
-	): Promise<ShowReviewLike | null> {
-		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.showReviewLike.delete({
-			...args,
-			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+	async deleteShowReviewLike(@Ctx() ctx: Context, @Args() args: DeleteShowReviewLikeArgs): Promise<boolean> {
+		if (!ctx.req.session.userId) return false;
+		if (!args.where.userId_reviewUserId_reviewShowId) return false;
+
+		const showReviewLike = await ctx.prisma.showReviewLike.delete({
+			where: {
+				userId_reviewUserId_reviewShowId: {
+					...args.where.userId_reviewUserId_reviewShowId,
+					userId: ctx.req.session.userId,
+				},
+			},
 		});
+
+		return Boolean(showReviewLike);
 	}
 }

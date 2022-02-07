@@ -27,11 +27,7 @@ export class ActorInMovieResolver {
 	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteActorInMovie(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteActorInMovieArgs
-	): Promise<boolean> {
+	async deleteActorInMovie(@Ctx() ctx: Context, @Args() args: DeleteActorInMovieArgs): Promise<boolean> {
 		const actorInMovie = await ctx.prisma.actorInMovie.delete({
 			...args,
 		});

@@ -47,6 +47,11 @@ export class SongGroupBy {
   })
   createdAt!: Date;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
   @TypeGraphQL.Field(_type => SongCountAggregate, {
     nullable: true
   })

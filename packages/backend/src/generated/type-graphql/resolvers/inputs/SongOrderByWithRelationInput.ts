@@ -6,6 +6,7 @@ import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelati
 import { PersonOrderByRelationAggregateInput } from "../inputs/PersonOrderByRelationAggregateInput";
 import { SongInMovieOrderByRelationAggregateInput } from "../inputs/SongInMovieOrderByRelationAggregateInput";
 import { SongInShowOrderByRelationAggregateInput } from "../inputs/SongInShowOrderByRelationAggregateInput";
+import { SongLikeOrderByRelationAggregateInput } from "../inputs/SongLikeOrderByRelationAggregateInput";
 import { SongReviewOrderByRelationAggregateInput } from "../inputs/SongReviewOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -68,8 +69,18 @@ export class SongOrderByWithRelationInput {
   })
   reviews?: SongReviewOrderByRelationAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => SongLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likes?: SongLikeOrderByRelationAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  updatedAt?: "asc" | "desc" | undefined;
 }

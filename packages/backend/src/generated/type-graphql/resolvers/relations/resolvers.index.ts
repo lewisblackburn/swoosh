@@ -1,6 +1,7 @@
 export { ActorInMovieRelationsResolver } from "./ActorInMovie/ActorInMovieRelationsResolver";
 export { ActorInShowRelationsResolver } from "./ActorInShow/ActorInShowRelationsResolver";
 export { BookRelationsResolver } from "./Book/BookRelationsResolver";
+export { BookLikeRelationsResolver } from "./BookLike/BookLikeRelationsResolver";
 export { BookReviewRelationsResolver } from "./BookReview/BookReviewRelationsResolver";
 export { BookReviewLikeRelationsResolver } from "./BookReviewLike/BookReviewLikeRelationsResolver";
 export { FollowsRelationsResolver } from "./Follows/FollowsRelationsResolver";
@@ -13,11 +14,13 @@ export { NotificationRelationsResolver } from "./Notification/NotificationRelati
 export { PersonRelationsResolver } from "./Person/PersonRelationsResolver";
 export { PlatformRelationsResolver } from "./Platform/PlatformRelationsResolver";
 export { ShowRelationsResolver } from "./Show/ShowRelationsResolver";
+export { ShowLikeRelationsResolver } from "./ShowLike/ShowLikeRelationsResolver";
 export { ShowReviewRelationsResolver } from "./ShowReview/ShowReviewRelationsResolver";
 export { ShowReviewLikeRelationsResolver } from "./ShowReviewLike/ShowReviewLikeRelationsResolver";
 export { SongRelationsResolver } from "./Song/SongRelationsResolver";
 export { SongInMovieRelationsResolver } from "./SongInMovie/SongInMovieRelationsResolver";
 export { SongInShowRelationsResolver } from "./SongInShow/SongInShowRelationsResolver";
+export { SongLikeRelationsResolver } from "./SongLike/SongLikeRelationsResolver";
 export { SongReviewRelationsResolver } from "./SongReview/SongReviewRelationsResolver";
 export { SongReviewLikeRelationsResolver } from "./SongReviewLike/SongReviewLikeRelationsResolver";
 export { UserRelationsResolver } from "./User/UserRelationsResolver";

@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInShowCreateNestedManyWithoutShowInput } from "../inputs/ActorInShowCreateNestedManyWithoutShowInput";
 import { PlatformCreateNestedManyWithoutShowsInput } from "../inputs/PlatformCreateNestedManyWithoutShowsInput";
+import { ShowLikeCreateNestedManyWithoutShowInput } from "../inputs/ShowLikeCreateNestedManyWithoutShowInput";
 import { ShowReviewCreateNestedManyWithoutShowInput } from "../inputs/ShowReviewCreateNestedManyWithoutShowInput";
 import { SongInShowCreateNestedManyWithoutShowInput } from "../inputs/SongInShowCreateNestedManyWithoutShowInput";
 import { WatchlistCreateNestedManyWithoutShowsInput } from "../inputs/WatchlistCreateNestedManyWithoutShowsInput";
@@ -20,12 +21,22 @@ export class ShowCreateWithoutGenresInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   poster?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  backdrop?: string | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
@@ -37,15 +48,30 @@ export class ShowCreateWithoutGenresInput {
   })
   released?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => Date, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  createdAt?: Date | undefined;
+  runtime?: number | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating?: string | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => ActorInShowCreateNestedManyWithoutShowInput, {
     nullable: true
@@ -71,4 +97,9 @@ export class ShowCreateWithoutGenresInput {
     nullable: true
   })
   reviews?: ShowReviewCreateNestedManyWithoutShowInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowLikeCreateNestedManyWithoutShowInput, {
+    nullable: true
+  })
+  likes?: ShowLikeCreateNestedManyWithoutShowInput | undefined;
 }

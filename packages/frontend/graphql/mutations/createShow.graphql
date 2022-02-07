@@ -1,0 +1,7 @@
+mutation CreateShow($data: ShowCreateInput!) {
+	createShow(data: $data) {
+		id
+		title
+		overview
+	}
+}

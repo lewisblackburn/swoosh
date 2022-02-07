@@ -1,0 +1,3 @@
+mutation deleteActorInShow($where: ActorInShowWhereUniqueInput!) {
+	deleteActorInShow(where: $where)
+}

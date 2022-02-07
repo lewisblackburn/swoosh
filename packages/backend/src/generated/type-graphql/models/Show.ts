@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../scalars";
 import { ActorInShow } from "../models/ActorInShow";
 import { Genre } from "../models/Genre";
 import { Platform } from "../models/Platform";
+import { ShowLike } from "../models/ShowLike";
 import { ShowReview } from "../models/ShowReview";
 import { SongInShow } from "../models/SongInShow";
 import { Watchlist } from "../models/Watchlist";
@@ -27,12 +28,22 @@ export class Show {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   poster!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  backdrop!: string;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
@@ -43,6 +54,21 @@ export class Show {
     nullable: true
   })
   released?: Date | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime?: number | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating?: string | null;
 
   actors?: ActorInShow[];
 
@@ -56,15 +82,17 @@ export class Show {
 
   reviews?: ShowReview[];
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
-  })
-  createdAt!: Date;
+  likes?: ShowLike[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => ShowCount, {
     nullable: true

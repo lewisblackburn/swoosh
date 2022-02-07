@@ -7,7 +7,8 @@ export enum SongScalarFieldEnum {
   poster = "poster",
   locked = "locked",
   released = "released",
-  createdAt = "createdAt"
+  createdAt = "createdAt",
+  updatedAt = "updatedAt"
 }
 TypeGraphQL.registerEnumType(SongScalarFieldEnum, {
   name: "SongScalarFieldEnum",

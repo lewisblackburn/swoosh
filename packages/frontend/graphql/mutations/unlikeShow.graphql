@@ -1,0 +1,3 @@
+mutation UnlikeShow($showId: Int!) {
+	unlikeShow(showId: $showId)
+}

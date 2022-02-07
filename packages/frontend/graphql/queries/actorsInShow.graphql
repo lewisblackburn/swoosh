@@ -1,0 +1,13 @@
+query ActorsInShow(
+	$showId: Int!
+	$where: ActorInShowWhereInput
+	$orderBy: [ActorInShowOrderByWithRelationInput!]
+	$cursor: ActorInShowWhereUniqueInput
+	$take: Int
+) {
+	show(showId: $showId) {
+		actors(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+			personId
+		}
+	}
+}

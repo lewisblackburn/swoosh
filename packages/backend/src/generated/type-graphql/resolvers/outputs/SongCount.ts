@@ -31,4 +31,9 @@ export class SongCount {
     nullable: false
   })
   reviews!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  likes!: number;
 }

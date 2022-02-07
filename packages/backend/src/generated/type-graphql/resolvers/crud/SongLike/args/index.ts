@@ -1,0 +1,12 @@
+export { AggregateSongLikeArgs } from "./AggregateSongLikeArgs";
+export { CreateManySongLikeArgs } from "./CreateManySongLikeArgs";
+export { CreateSongLikeArgs } from "./CreateSongLikeArgs";
+export { DeleteManySongLikeArgs } from "./DeleteManySongLikeArgs";
+export { DeleteSongLikeArgs } from "./DeleteSongLikeArgs";
+export { FindFirstSongLikeArgs } from "./FindFirstSongLikeArgs";
+export { FindManySongLikeArgs } from "./FindManySongLikeArgs";
+export { FindUniqueSongLikeArgs } from "./FindUniqueSongLikeArgs";
+export { GroupBySongLikeArgs } from "./GroupBySongLikeArgs";
+export { UpdateManySongLikeArgs } from "./UpdateManySongLikeArgs";
+export { UpdateSongLikeArgs } from "./UpdateSongLikeArgs";
+export { UpsertSongLikeArgs } from "./UpsertSongLikeArgs";

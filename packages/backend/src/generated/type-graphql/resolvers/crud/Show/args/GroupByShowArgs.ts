@@ -20,7 +20,7 @@ export class GroupByShowArgs {
   @TypeGraphQL.Field(_type => [ShowScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt" | "updatedAt">;
+  by!: Array<"id" | "title" | "tagline" | "overview" | "poster" | "backdrop" | "locked" | "released" | "runtime" | "trailer" | "rating" | "updatedAt" | "createdAt">;
 
   @TypeGraphQL.Field(_type => ShowScalarWhereWithAggregatesInput, {
     nullable: true

@@ -1,0 +1,3 @@
+mutation deleteSongInShow($where: SongInShowWhereUniqueInput!) {
+	deleteSongInShow(where: $where)
+}

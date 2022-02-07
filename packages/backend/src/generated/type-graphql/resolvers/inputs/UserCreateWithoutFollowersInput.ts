@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookLikeCreateNestedManyWithoutUserInput } from "../inputs/BookLikeCreateNestedManyWithoutUserInput";
 import { BookReviewCreateNestedManyWithoutUserInput } from "../inputs/BookReviewCreateNestedManyWithoutUserInput";
 import { BookReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/BookReviewLikeCreateNestedManyWithoutUserInput";
 import { FollowsCreateNestedManyWithoutFollowingInput } from "../inputs/FollowsCreateNestedManyWithoutFollowingInput";
@@ -9,8 +10,10 @@ import { MovieLikeCreateNestedManyWithoutUserInput } from "../inputs/MovieLikeCr
 import { MovieReviewCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewCreateNestedManyWithoutUserInput";
 import { MovieReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewLikeCreateNestedManyWithoutUserInput";
 import { NotificationCreateNestedManyWithoutUserInput } from "../inputs/NotificationCreateNestedManyWithoutUserInput";
+import { ShowLikeCreateNestedManyWithoutUserInput } from "../inputs/ShowLikeCreateNestedManyWithoutUserInput";
 import { ShowReviewCreateNestedManyWithoutUserInput } from "../inputs/ShowReviewCreateNestedManyWithoutUserInput";
 import { ShowReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/ShowReviewLikeCreateNestedManyWithoutUserInput";
+import { SongLikeCreateNestedManyWithoutUserInput } from "../inputs/SongLikeCreateNestedManyWithoutUserInput";
 import { SongReviewCreateNestedManyWithoutUserInput } from "../inputs/SongReviewCreateNestedManyWithoutUserInput";
 import { SongReviewLikeCreateNestedManyWithoutUserInput } from "../inputs/SongReviewLikeCreateNestedManyWithoutUserInput";
 import { WatchlistCreateNestedOneWithoutUserInput } from "../inputs/WatchlistCreateNestedOneWithoutUserInput";
@@ -99,6 +102,21 @@ export class UserCreateWithoutFollowersInput {
     nullable: true
   })
   likedMovies?: MovieLikeCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowLikeCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  likedShows?: ShowLikeCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  likedSongs?: SongLikeCreateNestedManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookLikeCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  likedBooks?: BookLikeCreateNestedManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewCreateNestedManyWithoutUserInput, {
     nullable: true

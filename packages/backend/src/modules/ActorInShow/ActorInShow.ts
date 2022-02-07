@@ -7,33 +7,31 @@ import {Context} from '../../interfaces/context';
 
 @Resolver(ActorInShow)
 export class ActorInShowResolver {
-	@Mutation(() => ActorInShow, {
+	@Mutation(() => Boolean, {
 		nullable: false,
 	})
-	async addActorToShow(
+	async createActorInShow(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: CreateActorInShowArgs
-	): Promise<ActorInShow> {
+	): Promise<boolean> {
 		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.actorInShow.create({
+		const actorInShow = await ctx.prisma.actorInShow.create({
 			...args,
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
+
+		return Boolean(actorInShow);
 	}
 
-	@Mutation(() => ActorInShow, {
+	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteActorInShow(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteActorInShowArgs
-	): Promise<ActorInShow | null> {
-		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.actorInShow.delete({
+	async deleteActorInShow(@Ctx() ctx: Context, @Args() args: DeleteActorInShowArgs): Promise<boolean> {
+		const actorInShow = await ctx.prisma.actorInShow.delete({
 			...args,
-			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
+
+		return Boolean(actorInShow);
 	}
 }

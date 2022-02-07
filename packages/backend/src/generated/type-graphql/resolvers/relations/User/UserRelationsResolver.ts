@@ -1,4 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
+import { BookLike } from "../../../models/BookLike";
 import { BookReview } from "../../../models/BookReview";
 import { BookReviewLike } from "../../../models/BookReviewLike";
 import { Follows } from "../../../models/Follows";
@@ -6,8 +7,10 @@ import { MovieLike } from "../../../models/MovieLike";
 import { MovieReview } from "../../../models/MovieReview";
 import { MovieReviewLike } from "../../../models/MovieReviewLike";
 import { Notification } from "../../../models/Notification";
+import { ShowLike } from "../../../models/ShowLike";
 import { ShowReview } from "../../../models/ShowReview";
 import { ShowReviewLike } from "../../../models/ShowReviewLike";
+import { SongLike } from "../../../models/SongLike";
 import { SongReview } from "../../../models/SongReview";
 import { SongReviewLike } from "../../../models/SongReviewLike";
 import { User } from "../../../models/User";
@@ -16,8 +19,11 @@ import { UserBookReviewLikesArgs } from "./args/UserBookReviewLikesArgs";
 import { UserBookReviewsArgs } from "./args/UserBookReviewsArgs";
 import { UserFollowersArgs } from "./args/UserFollowersArgs";
 import { UserFollowingArgs } from "./args/UserFollowingArgs";
+import { UserLikedBooksArgs } from "./args/UserLikedBooksArgs";
 import { UserLikedMovieReviewsArgs } from "./args/UserLikedMovieReviewsArgs";
 import { UserLikedMoviesArgs } from "./args/UserLikedMoviesArgs";
+import { UserLikedShowsArgs } from "./args/UserLikedShowsArgs";
+import { UserLikedSongsArgs } from "./args/UserLikedSongsArgs";
 import { UserMovieReviewsArgs } from "./args/UserMovieReviewsArgs";
 import { UserNotificationsArgs } from "./args/UserNotificationsArgs";
 import { UserShowReviewLikesArgs } from "./args/UserShowReviewLikesArgs";
@@ -81,6 +87,39 @@ export class UserRelationsResolver {
         id: user.id,
       },
     }).likedMovies(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [ShowLike], {
+    nullable: false
+  })
+  async likedShows(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserLikedShowsArgs): Promise<ShowLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).likedShows(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [SongLike], {
+    nullable: false
+  })
+  async likedSongs(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserLikedSongsArgs): Promise<SongLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).likedSongs(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [BookLike], {
+    nullable: false
+  })
+  async likedBooks(@TypeGraphQL.Root() user: User, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: UserLikedBooksArgs): Promise<BookLike[]> {
+    return getPrismaFromContext(ctx).user.findUnique({
+      where: {
+        id: user.id,
+      },
+    }).likedBooks(args);
   }
 
   @TypeGraphQL.FieldResolver(_type => [MovieReview], {

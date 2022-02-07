@@ -20,12 +20,22 @@ export class ShowCreateManyInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   poster?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  backdrop?: string | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
@@ -37,13 +47,28 @@ export class ShowCreateManyInput {
   })
   released?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => Date, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true
   })
-  createdAt?: Date | undefined;
+  runtime?: number | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating?: string | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
   updatedAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
 }

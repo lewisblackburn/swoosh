@@ -25,12 +25,22 @@ export class ShowGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  description!: string;
+  tagline!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  overview!: string;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   poster!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  backdrop!: string;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: false
@@ -42,15 +52,30 @@ export class ShowGroupBy {
   })
   released!: Date | null;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
   })
-  createdAt!: Date;
+  runtime!: number | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  trailer!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  rating!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => ShowCountAggregate, {
     nullable: true

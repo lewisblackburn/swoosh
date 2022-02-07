@@ -1,0 +1,3 @@
+mutation createActorInShow($data: ActorInShowCreateInput!) {
+	createActorInShow(data: $data)
+}

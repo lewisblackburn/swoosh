@@ -7,33 +7,31 @@ import {Context} from '../../interfaces/context';
 
 @Resolver(SongInShow)
 export class SongInShowResolver {
-	@Mutation(() => SongInShow, {
+	@Mutation(() => Boolean, {
 		nullable: false,
 	})
-	async addSongToShow(
+	async createSongInShow(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: CreateSongInShowArgs
-	): Promise<SongInShow> {
+	): Promise<boolean> {
 		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.songInShow.create({
+		const songInShow = await ctx.prisma.songInShow.create({
 			...args,
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
+
+		return Boolean(songInShow);
 	}
 
-	@Mutation(() => SongInShow, {
+	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteSongFromShow(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteSongInShowArgs
-	): Promise<SongInShow | null> {
-		const {_count} = transformFields(graphqlFields(info as any));
-		return ctx.prisma.songInShow.delete({
+	async deleteSongInShow(@Ctx() ctx: Context, @Args() args: DeleteSongInShowArgs): Promise<boolean> {
+		const songInShow = await ctx.prisma.songInShow.delete({
 			...args,
-			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});
+
+		return Boolean(songInShow);
 	}
 }

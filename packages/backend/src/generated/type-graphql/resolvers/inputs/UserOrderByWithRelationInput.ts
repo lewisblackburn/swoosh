@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookLikeOrderByRelationAggregateInput } from "../inputs/BookLikeOrderByRelationAggregateInput";
 import { BookReviewLikeOrderByRelationAggregateInput } from "../inputs/BookReviewLikeOrderByRelationAggregateInput";
 import { BookReviewOrderByRelationAggregateInput } from "../inputs/BookReviewOrderByRelationAggregateInput";
 import { FollowsOrderByRelationAggregateInput } from "../inputs/FollowsOrderByRelationAggregateInput";
@@ -9,8 +10,10 @@ import { MovieLikeOrderByRelationAggregateInput } from "../inputs/MovieLikeOrder
 import { MovieReviewLikeOrderByRelationAggregateInput } from "../inputs/MovieReviewLikeOrderByRelationAggregateInput";
 import { MovieReviewOrderByRelationAggregateInput } from "../inputs/MovieReviewOrderByRelationAggregateInput";
 import { NotificationOrderByRelationAggregateInput } from "../inputs/NotificationOrderByRelationAggregateInput";
+import { ShowLikeOrderByRelationAggregateInput } from "../inputs/ShowLikeOrderByRelationAggregateInput";
 import { ShowReviewLikeOrderByRelationAggregateInput } from "../inputs/ShowReviewLikeOrderByRelationAggregateInput";
 import { ShowReviewOrderByRelationAggregateInput } from "../inputs/ShowReviewOrderByRelationAggregateInput";
+import { SongLikeOrderByRelationAggregateInput } from "../inputs/SongLikeOrderByRelationAggregateInput";
 import { SongReviewLikeOrderByRelationAggregateInput } from "../inputs/SongReviewLikeOrderByRelationAggregateInput";
 import { SongReviewOrderByRelationAggregateInput } from "../inputs/SongReviewOrderByRelationAggregateInput";
 import { WatchlistOrderByWithRelationInput } from "../inputs/WatchlistOrderByWithRelationInput";
@@ -99,6 +102,21 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   likedMovies?: MovieLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedShows?: ShowLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedSongs?: SongLikeOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookLikeOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedBooks?: BookLikeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewOrderByRelationAggregateInput, {
     nullable: true

@@ -77,6 +77,14 @@ export class FileUploadResolver {
 					},
 				});
 				break;
+			case UploadType.Show:
+				await ctx.prisma.show.update({
+					where: {id},
+					data: {
+						poster: serverLocation,
+					},
+				});
+				break;
 			case UploadType.Person:
 				await ctx.prisma.person.update({
 					where: {id},
@@ -143,6 +151,14 @@ export class FileUploadResolver {
 		switch (type) {
 			case UploadType.Movie:
 				await ctx.prisma.movie.update({
+					where: {id},
+					data: {
+						backdrop: serverLocation,
+					},
+				});
+				break;
+			case UploadType.Show:
+				await ctx.prisma.show.update({
 					where: {id},
 					data: {
 						backdrop: serverLocation,

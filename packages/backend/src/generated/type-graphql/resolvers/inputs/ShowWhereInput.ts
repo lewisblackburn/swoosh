@@ -6,12 +6,15 @@ import { ActorInShowListRelationFilter } from "../inputs/ActorInShowListRelation
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
+import { FloatNullableFilter } from "../inputs/FloatNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PlatformListRelationFilter } from "../inputs/PlatformListRelationFilter";
+import { ShowLikeListRelationFilter } from "../inputs/ShowLikeListRelationFilter";
 import { ShowReviewListRelationFilter } from "../inputs/ShowReviewListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { WatchlistListRelationFilter } from "../inputs/WatchlistListRelationFilter";
 
 @TypeGraphQL.InputType("ShowWhereInput", {
@@ -46,12 +49,22 @@ export class ShowWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  description?: StringFilter | undefined;
+  tagline?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  overview?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
   poster?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  backdrop?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolFilter, {
     nullable: true
@@ -62,6 +75,21 @@ export class ShowWhereInput {
     nullable: true
   })
   released?: DateTimeNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FloatNullableFilter, {
+    nullable: true
+  })
+  runtime?: FloatNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  trailer?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  rating?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => ActorInShowListRelationFilter, {
     nullable: true
@@ -93,13 +121,18 @@ export class ShowWhereInput {
   })
   reviews?: ShowReviewListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeFilter, {
+  @TypeGraphQL.Field(_type => ShowLikeListRelationFilter, {
     nullable: true
   })
-  createdAt?: DateTimeFilter | undefined;
+  likes?: ShowLikeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeFilter | undefined;
 }

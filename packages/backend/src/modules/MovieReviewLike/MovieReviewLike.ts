@@ -59,11 +59,7 @@ export class MovieReviewLikeResolver {
 	@Mutation(() => Boolean, {
 		nullable: true,
 	})
-	async deleteMovieReviewLike(
-		@Ctx() ctx: Context,
-		@Info() info: GraphQLResolveInfo,
-		@Args() args: DeleteMovieReviewLikeArgs
-	): Promise<boolean> {
+	async deleteMovieReviewLike(@Ctx() ctx: Context, @Args() args: DeleteMovieReviewLikeArgs): Promise<boolean> {
 		if (!ctx.req.session.userId) return false;
 		if (!args.where.userId_reviewUserId_reviewMovieId) return false;
 

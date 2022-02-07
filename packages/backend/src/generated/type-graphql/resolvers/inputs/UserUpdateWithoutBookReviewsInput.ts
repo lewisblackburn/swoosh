@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { BookLikeUpdateManyWithoutUserInput } from "../inputs/BookLikeUpdateManyWithoutUserInput";
 import { BookReviewLikeUpdateManyWithoutUserInput } from "../inputs/BookReviewLikeUpdateManyWithoutUserInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
@@ -12,8 +13,10 @@ import { MovieLikeUpdateManyWithoutUserInput } from "../inputs/MovieLikeUpdateMa
 import { MovieReviewLikeUpdateManyWithoutUserInput } from "../inputs/MovieReviewLikeUpdateManyWithoutUserInput";
 import { MovieReviewUpdateManyWithoutUserInput } from "../inputs/MovieReviewUpdateManyWithoutUserInput";
 import { NotificationUpdateManyWithoutUserInput } from "../inputs/NotificationUpdateManyWithoutUserInput";
+import { ShowLikeUpdateManyWithoutUserInput } from "../inputs/ShowLikeUpdateManyWithoutUserInput";
 import { ShowReviewLikeUpdateManyWithoutUserInput } from "../inputs/ShowReviewLikeUpdateManyWithoutUserInput";
 import { ShowReviewUpdateManyWithoutUserInput } from "../inputs/ShowReviewUpdateManyWithoutUserInput";
+import { SongLikeUpdateManyWithoutUserInput } from "../inputs/SongLikeUpdateManyWithoutUserInput";
 import { SongReviewLikeUpdateManyWithoutUserInput } from "../inputs/SongReviewLikeUpdateManyWithoutUserInput";
 import { SongReviewUpdateManyWithoutUserInput } from "../inputs/SongReviewUpdateManyWithoutUserInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
@@ -107,6 +110,21 @@ export class UserUpdateWithoutBookReviewsInput {
     nullable: true
   })
   likedMovies?: MovieLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => ShowLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  likedShows?: ShowLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => SongLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  likedSongs?: SongLikeUpdateManyWithoutUserInput | undefined;
+
+  @TypeGraphQL.Field(_type => BookLikeUpdateManyWithoutUserInput, {
+    nullable: true
+  })
+  likedBooks?: BookLikeUpdateManyWithoutUserInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewUpdateManyWithoutUserInput, {
     nullable: true

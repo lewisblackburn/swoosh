@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { BookLike } from "../models/BookLike";
 import { BookReview } from "../models/BookReview";
 import { BookReviewLike } from "../models/BookReviewLike";
 import { Follows } from "../models/Follows";
@@ -9,8 +10,10 @@ import { MovieLike } from "../models/MovieLike";
 import { MovieReview } from "../models/MovieReview";
 import { MovieReviewLike } from "../models/MovieReviewLike";
 import { Notification } from "../models/Notification";
+import { ShowLike } from "../models/ShowLike";
 import { ShowReview } from "../models/ShowReview";
 import { ShowReviewLike } from "../models/ShowReviewLike";
+import { SongLike } from "../models/SongLike";
 import { SongReview } from "../models/SongReview";
 import { SongReviewLike } from "../models/SongReviewLike";
 import { Watchlist } from "../models/Watchlist";
@@ -87,6 +90,12 @@ export class User {
   watchlist?: Watchlist | null;
 
   likedMovies?: MovieLike[];
+
+  likedShows?: ShowLike[];
+
+  likedSongs?: SongLike[];
+
+  likedBooks?: BookLike[];
 
   movieReviews?: MovieReview[];
 
