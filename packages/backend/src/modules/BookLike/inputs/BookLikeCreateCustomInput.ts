@@ -1,17 +1,17 @@
-import {MovieCreateNestedOneWithoutLikesInput} from '../../../generated/type-graphql';
+import {BookCreateNestedOneWithoutLikesInput} from '../../../generated/type-graphql';
 import {Field, InputType} from 'type-graphql';
 
-@InputType('MovieLikeCreateCustomInput', {
+@InputType('BookLikeCreateCustomInput', {
 	isAbstract: true,
 })
-export class MovieLikeCreateCustomInput {
+export class BookLikeCreateCustomInput {
 	@Field(() => Date, {
 		nullable: true,
 	})
 	createdAt?: Date | undefined;
 
-	@Field(() => MovieCreateNestedOneWithoutLikesInput, {
+	@Field(() => BookCreateNestedOneWithoutLikesInput, {
 		nullable: false,
 	})
-	movie!: MovieCreateNestedOneWithoutLikesInput;
+	book!: BookCreateNestedOneWithoutLikesInput;
 }

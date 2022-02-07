@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { AuthorInBookListRelationFilter } from "../inputs/AuthorInBookListRelationFilter";
 import { BookLikeListRelationFilter } from "../inputs/BookLikeListRelationFilter";
 import { BookReviewListRelationFilter } from "../inputs/BookReviewListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
@@ -9,7 +10,6 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("BookWhereInput", {
@@ -61,10 +61,10 @@ export class BookWhereInput {
   })
   released?: DateTimeNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PersonListRelationFilter, {
+  @TypeGraphQL.Field(_type => AuthorInBookListRelationFilter, {
     nullable: true
   })
-  authors?: PersonListRelationFilter | undefined;
+  authors?: AuthorInBookListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => GenreListRelationFilter, {
     nullable: true

@@ -1,0 +1,12 @@
+export { AggregateArtistInSongArgs } from "./AggregateArtistInSongArgs";
+export { CreateArtistInSongArgs } from "./CreateArtistInSongArgs";
+export { CreateManyArtistInSongArgs } from "./CreateManyArtistInSongArgs";
+export { DeleteArtistInSongArgs } from "./DeleteArtistInSongArgs";
+export { DeleteManyArtistInSongArgs } from "./DeleteManyArtistInSongArgs";
+export { FindFirstArtistInSongArgs } from "./FindFirstArtistInSongArgs";
+export { FindManyArtistInSongArgs } from "./FindManyArtistInSongArgs";
+export { FindUniqueArtistInSongArgs } from "./FindUniqueArtistInSongArgs";
+export { GroupByArtistInSongArgs } from "./GroupByArtistInSongArgs";
+export { UpdateArtistInSongArgs } from "./UpdateArtistInSongArgs";
+export { UpdateManyArtistInSongArgs } from "./UpdateManyArtistInSongArgs";
+export { UpsertArtistInSongArgs } from "./UpsertArtistInSongArgs";

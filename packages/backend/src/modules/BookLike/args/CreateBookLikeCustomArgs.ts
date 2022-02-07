@@ -1,10 +1,10 @@
 import {ArgsType, Field} from 'type-graphql';
-import {MovieLikeCreateCustomInput} from '../inputs/MovieLikeCreateCustomInput';
+import {BookLikeCreateCustomInput} from '../inputs/BookLikeCreateCustomInput';
 
 @ArgsType()
-export class CreateMovieLikeCustomArgs {
-	@Field(() => MovieLikeCreateCustomInput, {
+export class CreateBookLikeCustomArgs {
+	@Field(() => BookLikeCreateCustomInput, {
 		nullable: false,
 	})
-	data!: MovieLikeCreateCustomInput;
+	data!: BookLikeCreateCustomInput;
 }

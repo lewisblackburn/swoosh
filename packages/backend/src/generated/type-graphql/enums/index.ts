@@ -1,5 +1,7 @@
 export { ActorInMovieScalarFieldEnum } from "./ActorInMovieScalarFieldEnum";
 export { ActorInShowScalarFieldEnum } from "./ActorInShowScalarFieldEnum";
+export { ArtistInSongScalarFieldEnum } from "./ArtistInSongScalarFieldEnum";
+export { AuthorInBookScalarFieldEnum } from "./AuthorInBookScalarFieldEnum";
 export { BookLikeScalarFieldEnum } from "./BookLikeScalarFieldEnum";
 export { BookReviewLikeScalarFieldEnum } from "./BookReviewLikeScalarFieldEnum";
 export { BookReviewScalarFieldEnum } from "./BookReviewScalarFieldEnum";

@@ -1,5 +1,7 @@
 export { ActorInMovie } from "./ActorInMovie";
 export { ActorInShow } from "./ActorInShow";
+export { ArtistInSong } from "./ArtistInSong";
+export { AuthorInBook } from "./AuthorInBook";
 export { Book } from "./Book";
 export { BookLike } from "./BookLike";
 export { BookReview } from "./BookReview";

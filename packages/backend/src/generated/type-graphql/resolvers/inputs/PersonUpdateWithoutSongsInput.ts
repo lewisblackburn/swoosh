@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutPersonInput } from "../inputs/ActorInMovieUpdateManyWithoutPersonInput";
 import { ActorInShowUpdateManyWithoutPersonInput } from "../inputs/ActorInShowUpdateManyWithoutPersonInput";
-import { BookUpdateManyWithoutAuthorsInput } from "../inputs/BookUpdateManyWithoutAuthorsInput";
+import { AuthorInBookUpdateManyWithoutPersonInput } from "../inputs/AuthorInBookUpdateManyWithoutPersonInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
@@ -60,8 +60,8 @@ export class PersonUpdateWithoutSongsInput {
   })
   shows?: ActorInShowUpdateManyWithoutPersonInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookUpdateManyWithoutAuthorsInput, {
+  @TypeGraphQL.Field(_type => AuthorInBookUpdateManyWithoutPersonInput, {
     nullable: true
   })
-  books?: BookUpdateManyWithoutAuthorsInput | undefined;
+  books?: AuthorInBookUpdateManyWithoutPersonInput | undefined;
 }

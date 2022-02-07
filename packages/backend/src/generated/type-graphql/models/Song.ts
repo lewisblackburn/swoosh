@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { ArtistInSong } from "../models/ArtistInSong";
 import { Genre } from "../models/Genre";
-import { Person } from "../models/Person";
 import { SongInMovie } from "../models/SongInMovie";
 import { SongInShow } from "../models/SongInShow";
 import { SongLike } from "../models/SongLike";
@@ -44,7 +44,7 @@ export class Song {
   })
   released?: Date | null;
 
-  artists?: Person[];
+  artists?: ArtistInSong[];
 
   songInShow?: SongInShow[];
 

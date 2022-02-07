@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { SongOrderByWithRelationInput } from "../../../inputs/SongOrderByWithRelationInput";
-import { SongWhereInput } from "../../../inputs/SongWhereInput";
-import { SongWhereUniqueInput } from "../../../inputs/SongWhereUniqueInput";
-import { SongScalarFieldEnum } from "../../../../enums/SongScalarFieldEnum";
+import { ArtistInSongOrderByWithRelationInput } from "../../../inputs/ArtistInSongOrderByWithRelationInput";
+import { ArtistInSongWhereInput } from "../../../inputs/ArtistInSongWhereInput";
+import { ArtistInSongWhereUniqueInput } from "../../../inputs/ArtistInSongWhereUniqueInput";
+import { ArtistInSongScalarFieldEnum } from "../../../../enums/ArtistInSongScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class PersonSongsArgs {
-  @TypeGraphQL.Field(_type => SongWhereInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongWhereInput, {
     nullable: true
   })
-  where?: SongWhereInput | undefined;
+  where?: ArtistInSongWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [SongOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [ArtistInSongOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: SongOrderByWithRelationInput[] | undefined;
+  orderBy?: ArtistInSongOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => SongWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongWhereUniqueInput, {
     nullable: true
   })
-  cursor?: SongWhereUniqueInput | undefined;
+  cursor?: ArtistInSongWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class PersonSongsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [SongScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [ArtistInSongScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"songId" | "personId" | "penname"> | undefined;
 }

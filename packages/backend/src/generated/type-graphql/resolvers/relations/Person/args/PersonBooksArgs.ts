@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { BookOrderByWithRelationInput } from "../../../inputs/BookOrderByWithRelationInput";
-import { BookWhereInput } from "../../../inputs/BookWhereInput";
-import { BookWhereUniqueInput } from "../../../inputs/BookWhereUniqueInput";
-import { BookScalarFieldEnum } from "../../../../enums/BookScalarFieldEnum";
+import { AuthorInBookOrderByWithRelationInput } from "../../../inputs/AuthorInBookOrderByWithRelationInput";
+import { AuthorInBookWhereInput } from "../../../inputs/AuthorInBookWhereInput";
+import { AuthorInBookWhereUniqueInput } from "../../../inputs/AuthorInBookWhereUniqueInput";
+import { AuthorInBookScalarFieldEnum } from "../../../../enums/AuthorInBookScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class PersonBooksArgs {
-  @TypeGraphQL.Field(_type => BookWhereInput, {
+  @TypeGraphQL.Field(_type => AuthorInBookWhereInput, {
     nullable: true
   })
-  where?: BookWhereInput | undefined;
+  where?: AuthorInBookWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [BookOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [AuthorInBookOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: BookOrderByWithRelationInput[] | undefined;
+  orderBy?: AuthorInBookOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => BookWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => AuthorInBookWhereUniqueInput, {
     nullable: true
   })
-  cursor?: BookWhereUniqueInput | undefined;
+  cursor?: AuthorInBookWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class PersonBooksArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [BookScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [AuthorInBookScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "title" | "description" | "poster" | "locked" | "released" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"bookId" | "personId" | "stagename"> | undefined;
 }

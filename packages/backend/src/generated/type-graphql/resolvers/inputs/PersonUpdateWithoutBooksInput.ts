@@ -4,11 +4,11 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieUpdateManyWithoutPersonInput } from "../inputs/ActorInMovieUpdateManyWithoutPersonInput";
 import { ActorInShowUpdateManyWithoutPersonInput } from "../inputs/ActorInShowUpdateManyWithoutPersonInput";
+import { ArtistInSongUpdateManyWithoutPersonInput } from "../inputs/ArtistInSongUpdateManyWithoutPersonInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableIntFieldUpdateOperationsInput } from "../inputs/NullableIntFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PersonUpdatecareerInput } from "../inputs/PersonUpdatecareerInput";
-import { SongUpdateManyWithoutArtistsInput } from "../inputs/SongUpdateManyWithoutArtistsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("PersonUpdateWithoutBooksInput", {
@@ -60,8 +60,8 @@ export class PersonUpdateWithoutBooksInput {
   })
   shows?: ActorInShowUpdateManyWithoutPersonInput | undefined;
 
-  @TypeGraphQL.Field(_type => SongUpdateManyWithoutArtistsInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongUpdateManyWithoutPersonInput, {
     nullable: true
   })
-  songs?: SongUpdateManyWithoutArtistsInput | undefined;
+  songs?: ArtistInSongUpdateManyWithoutPersonInput | undefined;
 }

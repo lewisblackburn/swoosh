@@ -1,5 +1,7 @@
 export { ActorInMovieCrudResolver } from "./ActorInMovie/ActorInMovieCrudResolver";
 export { ActorInShowCrudResolver } from "./ActorInShow/ActorInShowCrudResolver";
+export { ArtistInSongCrudResolver } from "./ArtistInSong/ArtistInSongCrudResolver";
+export { AuthorInBookCrudResolver } from "./AuthorInBook/AuthorInBookCrudResolver";
 export { BookCrudResolver } from "./Book/BookCrudResolver";
 export { BookLikeCrudResolver } from "./BookLike/BookLikeCrudResolver";
 export { BookReviewCrudResolver } from "./BookReview/BookReviewCrudResolver";

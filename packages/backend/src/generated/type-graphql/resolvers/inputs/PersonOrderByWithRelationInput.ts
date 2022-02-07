@@ -4,8 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieOrderByRelationAggregateInput } from "../inputs/ActorInMovieOrderByRelationAggregateInput";
 import { ActorInShowOrderByRelationAggregateInput } from "../inputs/ActorInShowOrderByRelationAggregateInput";
-import { BookOrderByRelationAggregateInput } from "../inputs/BookOrderByRelationAggregateInput";
-import { SongOrderByRelationAggregateInput } from "../inputs/SongOrderByRelationAggregateInput";
+import { ArtistInSongOrderByRelationAggregateInput } from "../inputs/ArtistInSongOrderByRelationAggregateInput";
+import { AuthorInBookOrderByRelationAggregateInput } from "../inputs/AuthorInBookOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("PersonOrderByWithRelationInput", {
@@ -52,15 +52,15 @@ export class PersonOrderByWithRelationInput {
   })
   shows?: ActorInShowOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => BookOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => AuthorInBookOrderByRelationAggregateInput, {
     nullable: true
   })
-  books?: BookOrderByRelationAggregateInput | undefined;
+  books?: AuthorInBookOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => SongOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongOrderByRelationAggregateInput, {
     nullable: true
   })
-  songs?: SongOrderByRelationAggregateInput | undefined;
+  songs?: ArtistInSongOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

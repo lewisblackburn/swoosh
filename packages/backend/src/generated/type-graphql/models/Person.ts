@@ -4,8 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { ActorInMovie } from "../models/ActorInMovie";
 import { ActorInShow } from "../models/ActorInShow";
-import { Book } from "../models/Book";
-import { Song } from "../models/Song";
+import { ArtistInSong } from "../models/ArtistInSong";
+import { AuthorInBook } from "../models/AuthorInBook";
 import { Career } from "../enums/Career";
 import { PersonCount } from "../resolvers/outputs/PersonCount";
 
@@ -47,9 +47,9 @@ export class Person {
 
   shows?: ActorInShow[];
 
-  books?: Book[];
+  books?: AuthorInBook[];
 
-  songs?: Song[];
+  songs?: ArtistInSong[];
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false

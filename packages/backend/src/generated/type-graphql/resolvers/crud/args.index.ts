@@ -1,5 +1,7 @@
 export * from "./ActorInMovie/args";
 export * from "./ActorInShow/args";
+export * from "./ArtistInSong/args";
+export * from "./AuthorInBook/args";
 export * from "./Book/args";
 export * from "./BookLike/args";
 export * from "./BookReview/args";

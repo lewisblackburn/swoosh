@@ -2,12 +2,12 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ArtistInSongListRelationFilter } from "../inputs/ArtistInSongListRelationFilter";
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { PersonListRelationFilter } from "../inputs/PersonListRelationFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
 import { SongInShowListRelationFilter } from "../inputs/SongInShowListRelationFilter";
 import { SongLikeListRelationFilter } from "../inputs/SongLikeListRelationFilter";
@@ -63,10 +63,10 @@ export class SongWhereInput {
   })
   released?: DateTimeNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PersonListRelationFilter, {
+  @TypeGraphQL.Field(_type => ArtistInSongListRelationFilter, {
     nullable: true
   })
-  artists?: PersonListRelationFilter | undefined;
+  artists?: ArtistInSongListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => SongInShowListRelationFilter, {
     nullable: true

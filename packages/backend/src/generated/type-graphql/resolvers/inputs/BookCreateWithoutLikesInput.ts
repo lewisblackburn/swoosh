@@ -2,9 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { AuthorInBookCreateNestedManyWithoutBookInput } from "../inputs/AuthorInBookCreateNestedManyWithoutBookInput";
 import { BookReviewCreateNestedManyWithoutBookInput } from "../inputs/BookReviewCreateNestedManyWithoutBookInput";
 import { GenreCreateNestedManyWithoutBooksInput } from "../inputs/GenreCreateNestedManyWithoutBooksInput";
-import { PersonCreateNestedManyWithoutBooksInput } from "../inputs/PersonCreateNestedManyWithoutBooksInput";
 
 @TypeGraphQL.InputType("BookCreateWithoutLikesInput", {
   isAbstract: true
@@ -45,10 +45,10 @@ export class BookCreateWithoutLikesInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => PersonCreateNestedManyWithoutBooksInput, {
+  @TypeGraphQL.Field(_type => AuthorInBookCreateNestedManyWithoutBookInput, {
     nullable: true
   })
-  authors?: PersonCreateNestedManyWithoutBooksInput | undefined;
+  authors?: AuthorInBookCreateNestedManyWithoutBookInput | undefined;
 
   @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutBooksInput, {
     nullable: true

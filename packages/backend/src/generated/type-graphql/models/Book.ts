@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { AuthorInBook } from "../models/AuthorInBook";
 import { BookLike } from "../models/BookLike";
 import { BookReview } from "../models/BookReview";
 import { Genre } from "../models/Genre";
-import { Person } from "../models/Person";
 import { BookCount } from "../resolvers/outputs/BookCount";
 
 @TypeGraphQL.ObjectType("Book", {
@@ -42,7 +42,7 @@ export class Book {
   })
   released?: Date | null;
 
-  authors?: Person[];
+  authors?: AuthorInBook[];
 
   genres?: Genre[];
 

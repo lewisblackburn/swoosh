@@ -2,11 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { ArtistInSongUpdateManyWithoutSongInput } from "../inputs/ArtistInSongUpdateManyWithoutSongInput";
 import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { GenreUpdateManyWithoutSongsInput } from "../inputs/GenreUpdateManyWithoutSongsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
-import { PersonUpdateManyWithoutSongsInput } from "../inputs/PersonUpdateManyWithoutSongsInput";
 import { SongInMovieUpdateManyWithoutSongInput } from "../inputs/SongInMovieUpdateManyWithoutSongInput";
 import { SongInShowUpdateManyWithoutSongInput } from "../inputs/SongInShowUpdateManyWithoutSongInput";
 import { SongLikeUpdateManyWithoutSongInput } from "../inputs/SongLikeUpdateManyWithoutSongInput";
@@ -52,10 +52,10 @@ export class SongUpdateInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => PersonUpdateManyWithoutSongsInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongUpdateManyWithoutSongInput, {
     nullable: true
   })
-  artists?: PersonUpdateManyWithoutSongsInput | undefined;
+  artists?: ArtistInSongUpdateManyWithoutSongInput | undefined;
 
   @TypeGraphQL.Field(_type => SongInShowUpdateManyWithoutSongInput, {
     nullable: true

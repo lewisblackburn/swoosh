@@ -90,8 +90,8 @@ model Person {
   age       Int?
   movies    ActorInMovie[]
   shows     ActorInShow[]
-  books     Book[]
-  songs     Song[]
+  books     AuthorInBook[]
+  songs     ArtistInSong[]
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
 }
@@ -193,35 +193,55 @@ model ActorInShow {
 }
 
 model Book {
-  id          Int          @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   title       String
   description String
-  poster      String       @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean      @default(false)
+  poster      String         @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean        @default(false)
   released    DateTime?
-  authors     Person[]
+  authors     AuthorInBook[]
   genres      Genre[]
   reviews     BookReview[]
   likes       BookLike[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 }
 
 model Song {
-  id          Int           @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   title       String
   description String
-  poster      String        @default(value: "https://via.placeholder.com/400x600")
-  locked      Boolean       @default(false)
+  poster      String         @default(value: "https://via.placeholder.com/400x600")
+  locked      Boolean        @default(false)
   released    DateTime?
-  artists     Person[]
+  artists     ArtistInSong[]
   songInShow  SongInShow[]
   songInMovie SongInMovie[]
   genres      Genre[]
   reviews     SongReview[]
   likes       SongLike[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model AuthorInBook {
+  book      Book   @relation(fields: [bookId], references: [id])
+  bookId    Int
+  person    Person @relation(fields: [personId], references: [id])
+  personId  Int
+  stagename String
+
+  @@id([personId, bookId])
+}
+
+model ArtistInSong {
+  song     Song   @relation(fields: [songId], references: [id])
+  songId   Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
+  penname  String
+
+  @@id([personId, songId])
 }
 
 model Genre {

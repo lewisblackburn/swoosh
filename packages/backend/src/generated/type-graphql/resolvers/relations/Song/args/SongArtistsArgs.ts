@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { PersonOrderByWithRelationInput } from "../../../inputs/PersonOrderByWithRelationInput";
-import { PersonWhereInput } from "../../../inputs/PersonWhereInput";
-import { PersonWhereUniqueInput } from "../../../inputs/PersonWhereUniqueInput";
-import { PersonScalarFieldEnum } from "../../../../enums/PersonScalarFieldEnum";
+import { ArtistInSongOrderByWithRelationInput } from "../../../inputs/ArtistInSongOrderByWithRelationInput";
+import { ArtistInSongWhereInput } from "../../../inputs/ArtistInSongWhereInput";
+import { ArtistInSongWhereUniqueInput } from "../../../inputs/ArtistInSongWhereUniqueInput";
+import { ArtistInSongScalarFieldEnum } from "../../../../enums/ArtistInSongScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class SongArtistsArgs {
-  @TypeGraphQL.Field(_type => PersonWhereInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongWhereInput, {
     nullable: true
   })
-  where?: PersonWhereInput | undefined;
+  where?: ArtistInSongWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [PersonOrderByWithRelationInput], {
+  @TypeGraphQL.Field(_type => [ArtistInSongOrderByWithRelationInput], {
     nullable: true
   })
-  orderBy?: PersonOrderByWithRelationInput[] | undefined;
+  orderBy?: ArtistInSongOrderByWithRelationInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => PersonWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => ArtistInSongWhereUniqueInput, {
     nullable: true
   })
-  cursor?: PersonWhereUniqueInput | undefined;
+  cursor?: ArtistInSongWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class SongArtistsArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [PersonScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [ArtistInSongScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "career" | "name" | "poster" | "bio" | "age" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"songId" | "personId" | "penname"> | undefined;
 }

@@ -4,12 +4,12 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { ActorInMovieListRelationFilter } from "../inputs/ActorInMovieListRelationFilter";
 import { ActorInShowListRelationFilter } from "../inputs/ActorInShowListRelationFilter";
-import { BookListRelationFilter } from "../inputs/BookListRelationFilter";
+import { ArtistInSongListRelationFilter } from "../inputs/ArtistInSongListRelationFilter";
+import { AuthorInBookListRelationFilter } from "../inputs/AuthorInBookListRelationFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumCareerNullableListFilter } from "../inputs/EnumCareerNullableListFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
-import { SongListRelationFilter } from "../inputs/SongListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
@@ -72,15 +72,15 @@ export class PersonWhereInput {
   })
   shows?: ActorInShowListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => BookListRelationFilter, {
+  @TypeGraphQL.Field(_type => AuthorInBookListRelationFilter, {
     nullable: true
   })
-  books?: BookListRelationFilter | undefined;
+  books?: AuthorInBookListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => SongListRelationFilter, {
+  @TypeGraphQL.Field(_type => ArtistInSongListRelationFilter, {
     nullable: true
   })
-  songs?: SongListRelationFilter | undefined;
+  songs?: ArtistInSongListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

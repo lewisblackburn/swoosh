@@ -1,7 +1,7 @@
-import { PrismaClient, Role } from '@prisma/client';
-import { Request, Response } from 'express';
-import { Session } from 'express-session';
-import { Redis } from 'ioredis';
+import {PrismaClient, Role} from '@prisma/client';
+import {Request, Response} from 'express';
+import {Session} from 'express-session';
+import {Redis} from 'ioredis';
 
 export interface Context {
 	prisma: PrismaClient;
@@ -9,7 +9,7 @@ export interface Context {
 		session: {
 			userId?: number;
 			role?: Role;
-			confirmed?: Boolean;
+			confirmed?: boolean;
 		} & Session;
 	};
 	res: Response;

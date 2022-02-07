@@ -1,9 +1,9 @@
 import * as TypeGraphQL from "type-graphql";
+import { AuthorInBook } from "../../../models/AuthorInBook";
 import { Book } from "../../../models/Book";
 import { BookLike } from "../../../models/BookLike";
 import { BookReview } from "../../../models/BookReview";
 import { Genre } from "../../../models/Genre";
-import { Person } from "../../../models/Person";
 import { BookAuthorsArgs } from "./args/BookAuthorsArgs";
 import { BookGenresArgs } from "./args/BookGenresArgs";
 import { BookLikesArgs } from "./args/BookLikesArgs";
@@ -12,10 +12,10 @@ import { transformFields, getPrismaFromContext, transformCountFieldIntoSelectRel
 
 @TypeGraphQL.Resolver(_of => Book)
 export class BookRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [Person], {
+  @TypeGraphQL.FieldResolver(_type => [AuthorInBook], {
     nullable: false
   })
-  async authors(@TypeGraphQL.Root() book: Book, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: BookAuthorsArgs): Promise<Person[]> {
+  async authors(@TypeGraphQL.Root() book: Book, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: BookAuthorsArgs): Promise<AuthorInBook[]> {
     return getPrismaFromContext(ctx).book.findUnique({
       where: {
         id: book.id,
