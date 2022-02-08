@@ -25,7 +25,7 @@ export class ArtistInSongGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  penname!: string;
+  stagename!: string;
 
   @TypeGraphQL.Field(_type => ArtistInSongCountAggregate, {
     nullable: true

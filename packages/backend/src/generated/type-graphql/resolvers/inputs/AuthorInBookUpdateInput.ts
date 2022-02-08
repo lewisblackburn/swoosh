@@ -13,7 +13,7 @@ export class AuthorInBookUpdateInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  stagename?: StringFieldUpdateOperationsInput | undefined;
+  penname?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => BookUpdateOneRequiredWithoutAuthorsInput, {
     nullable: true

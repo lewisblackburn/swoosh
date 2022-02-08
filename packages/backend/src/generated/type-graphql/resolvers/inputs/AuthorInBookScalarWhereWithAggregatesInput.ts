@@ -37,5 +37,5 @@ export class AuthorInBookScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
-  stagename?: StringWithAggregatesFilter | undefined;
+  penname?: StringWithAggregatesFilter | undefined;
 }

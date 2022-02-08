@@ -49,5 +49,5 @@ export class AuthorInBookWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  stagename?: StringFilter | undefined;
+  penname?: StringFilter | undefined;
 }

@@ -15,5 +15,5 @@ export class ArtistInSongCreateManyPersonInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  penname!: string;
+  stagename!: string;
 }

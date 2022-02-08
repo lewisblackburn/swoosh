@@ -21,5 +21,5 @@ export class ArtistInSongCountOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  penname?: "asc" | "desc" | undefined;
+  stagename?: "asc" | "desc" | undefined;
 }

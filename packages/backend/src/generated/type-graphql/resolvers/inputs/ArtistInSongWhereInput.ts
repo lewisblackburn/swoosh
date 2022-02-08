@@ -49,5 +49,5 @@ export class ArtistInSongWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  penname?: StringFilter | undefined;
+  stagename?: StringFilter | undefined;
 }

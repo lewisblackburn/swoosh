@@ -11,5 +11,5 @@ export class AuthorInBookUpdateManyMutationInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  stagename?: StringFieldUpdateOperationsInput | undefined;
+  penname?: StringFieldUpdateOperationsInput | undefined;
 }

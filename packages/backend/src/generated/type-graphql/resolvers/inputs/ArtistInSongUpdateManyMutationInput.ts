@@ -11,5 +11,5 @@ export class ArtistInSongUpdateManyMutationInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  penname?: StringFieldUpdateOperationsInput | undefined;
+  stagename?: StringFieldUpdateOperationsInput | undefined;
 }

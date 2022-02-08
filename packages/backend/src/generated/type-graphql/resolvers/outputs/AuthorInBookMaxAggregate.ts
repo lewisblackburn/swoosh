@@ -20,5 +20,5 @@ export class AuthorInBookMaxAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  stagename!: string | null;
+  penname!: string | null;
 }

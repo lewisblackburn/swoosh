@@ -25,7 +25,7 @@ export class AuthorInBookGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  stagename!: string;
+  penname!: string;
 
   @TypeGraphQL.Field(_type => AuthorInBookCountAggregate, {
     nullable: true

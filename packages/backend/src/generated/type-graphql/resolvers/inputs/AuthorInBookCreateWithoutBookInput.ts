@@ -11,7 +11,7 @@ export class AuthorInBookCreateWithoutBookInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  stagename!: string;
+  penname!: string;
 
   @TypeGraphQL.Field(_type => PersonCreateNestedOneWithoutBooksInput, {
     nullable: false

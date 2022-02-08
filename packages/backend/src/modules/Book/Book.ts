@@ -64,7 +64,7 @@ export class BookResolver {
 		@Args() args: AggregateBookReviewArgs
 	): Promise<AggregateBookReview> {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return getPrismaFromContext(ctx).book.aggregate({
+		return getPrismaFromContext(ctx).bookReview.aggregate({
 			...args,
 			where: {
 				bookId: root.id,

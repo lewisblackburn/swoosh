@@ -13,7 +13,7 @@ export class ArtistInSongUpdateInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  penname?: StringFieldUpdateOperationsInput | undefined;
+  stagename?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => SongUpdateOneRequiredWithoutArtistsInput, {
     nullable: true

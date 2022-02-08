@@ -37,5 +37,5 @@ export class ArtistInSongScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
-  penname?: StringWithAggregatesFilter | undefined;
+  stagename?: StringWithAggregatesFilter | undefined;
 }

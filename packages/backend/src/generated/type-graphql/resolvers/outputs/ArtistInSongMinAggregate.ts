@@ -20,5 +20,5 @@ export class ArtistInSongMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  penname!: string | null;
+  stagename!: string | null;
 }

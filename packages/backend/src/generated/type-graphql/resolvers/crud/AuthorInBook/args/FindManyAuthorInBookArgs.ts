@@ -35,5 +35,5 @@ export class FindManyAuthorInBookArgs {
   @TypeGraphQL.Field(_type => [AuthorInBookScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"bookId" | "personId" | "stagename"> | undefined;
+  distinct?: Array<"bookId" | "personId" | "penname"> | undefined;
 }

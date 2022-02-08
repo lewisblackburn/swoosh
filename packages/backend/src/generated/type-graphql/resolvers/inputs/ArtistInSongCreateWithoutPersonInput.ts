@@ -11,7 +11,7 @@ export class ArtistInSongCreateWithoutPersonInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  penname!: string;
+  stagename!: string;
 
   @TypeGraphQL.Field(_type => SongCreateNestedOneWithoutArtistsInput, {
     nullable: false

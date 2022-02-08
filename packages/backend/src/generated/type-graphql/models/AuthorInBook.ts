@@ -26,5 +26,5 @@ export class AuthorInBook {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  stagename!: string;
+  penname!: string;
 }
