@@ -34,13 +34,15 @@ query Movie($movieId: Int!) {
 				description
 				poster
 				artists {
-					id
-					name
+					personId
+					person {
+						name
+					}
 				}
-        songInMovie {
-          timestamp
-          description
-        }
+				songInMovie {
+					timestamp
+					description
+				}
 			}
 		}
 		reviews(take: 8) {

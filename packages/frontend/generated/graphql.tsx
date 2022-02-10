@@ -646,6 +646,24 @@ export type AggregateActorInShow = {
   _sum?: Maybe<ActorInShowSumAggregate>;
 };
 
+export type AggregateArtistInSong = {
+  __typename?: 'AggregateArtistInSong';
+  _avg?: Maybe<ArtistInSongAvgAggregate>;
+  _count?: Maybe<ArtistInSongCountAggregate>;
+  _max?: Maybe<ArtistInSongMaxAggregate>;
+  _min?: Maybe<ArtistInSongMinAggregate>;
+  _sum?: Maybe<ArtistInSongSumAggregate>;
+};
+
+export type AggregateAuthorInBook = {
+  __typename?: 'AggregateAuthorInBook';
+  _avg?: Maybe<AuthorInBookAvgAggregate>;
+  _count?: Maybe<AuthorInBookCountAggregate>;
+  _max?: Maybe<AuthorInBookMaxAggregate>;
+  _min?: Maybe<AuthorInBookMinAggregate>;
+  _sum?: Maybe<AuthorInBookSumAggregate>;
+};
+
 export type AggregateBook = {
   __typename?: 'AggregateBook';
   _avg?: Maybe<BookAvgAggregate>;
@@ -653,6 +671,15 @@ export type AggregateBook = {
   _max?: Maybe<BookMaxAggregate>;
   _min?: Maybe<BookMinAggregate>;
   _sum?: Maybe<BookSumAggregate>;
+};
+
+export type AggregateBookLike = {
+  __typename?: 'AggregateBookLike';
+  _avg?: Maybe<BookLikeAvgAggregate>;
+  _count?: Maybe<BookLikeCountAggregate>;
+  _max?: Maybe<BookLikeMaxAggregate>;
+  _min?: Maybe<BookLikeMinAggregate>;
+  _sum?: Maybe<BookLikeSumAggregate>;
 };
 
 export type AggregateBookReview = {
@@ -817,6 +844,15 @@ export type AggregateSongInShow = {
   _sum?: Maybe<SongInShowSumAggregate>;
 };
 
+export type AggregateSongLike = {
+  __typename?: 'AggregateSongLike';
+  _avg?: Maybe<SongLikeAvgAggregate>;
+  _count?: Maybe<SongLikeCountAggregate>;
+  _max?: Maybe<SongLikeMaxAggregate>;
+  _min?: Maybe<SongLikeMinAggregate>;
+  _sum?: Maybe<SongLikeSumAggregate>;
+};
+
 export type AggregateSongReview = {
   __typename?: 'AggregateSongReview';
   _avg?: Maybe<SongReviewAvgAggregate>;
@@ -853,14 +889,621 @@ export type AggregateWatchlist = {
   _sum?: Maybe<WatchlistSumAggregate>;
 };
 
+export type ArtistInSong = {
+  __typename?: 'ArtistInSong';
+  person: Person;
+  personId: Scalars['Int'];
+  song: Song;
+  songId: Scalars['Int'];
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongAvgAggregate = {
+  __typename?: 'ArtistInSongAvgAggregate';
+  personId?: Maybe<Scalars['Float']>;
+  songId?: Maybe<Scalars['Float']>;
+};
+
+export type ArtistInSongAvgOrderByAggregateInput = {
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongCountAggregate = {
+  __typename?: 'ArtistInSongCountAggregate';
+  _all: Scalars['Int'];
+  personId: Scalars['Int'];
+  songId: Scalars['Int'];
+  stagename: Scalars['Int'];
+};
+
+export type ArtistInSongCountOrderByAggregateInput = {
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  stagename?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongCreateInput = {
+  person: PersonCreateNestedOneWithoutSongsInput;
+  song: SongCreateNestedOneWithoutArtistsInput;
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongCreateManyInput = {
+  personId: Scalars['Int'];
+  songId: Scalars['Int'];
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongCreateManyPersonInput = {
+  songId: Scalars['Int'];
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongCreateManyPersonInputEnvelope = {
+  data: ArtistInSongCreateManyPersonInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ArtistInSongCreateManySongInput = {
+  personId: Scalars['Int'];
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongCreateManySongInputEnvelope = {
+  data: ArtistInSongCreateManySongInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ArtistInSongCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<ArtistInSongCreateOrConnectWithoutPersonInput[]>;
+  create?: InputMaybe<ArtistInSongCreateWithoutPersonInput[]>;
+  createMany?: InputMaybe<ArtistInSongCreateManyPersonInputEnvelope>;
+};
+
+export type ArtistInSongCreateNestedManyWithoutSongInput = {
+  connect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<ArtistInSongCreateOrConnectWithoutSongInput[]>;
+  create?: InputMaybe<ArtistInSongCreateWithoutSongInput[]>;
+  createMany?: InputMaybe<ArtistInSongCreateManySongInputEnvelope>;
+};
+
+export type ArtistInSongCreateOrConnectWithoutPersonInput = {
+  create: ArtistInSongCreateWithoutPersonInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongCreateOrConnectWithoutSongInput = {
+  create: ArtistInSongCreateWithoutSongInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongCreateWithoutPersonInput = {
+  song: SongCreateNestedOneWithoutArtistsInput;
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongCreateWithoutSongInput = {
+  person: PersonCreateNestedOneWithoutSongsInput;
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongGroupBy = {
+  __typename?: 'ArtistInSongGroupBy';
+  _avg?: Maybe<ArtistInSongAvgAggregate>;
+  _count?: Maybe<ArtistInSongCountAggregate>;
+  _max?: Maybe<ArtistInSongMaxAggregate>;
+  _min?: Maybe<ArtistInSongMinAggregate>;
+  _sum?: Maybe<ArtistInSongSumAggregate>;
+  personId: Scalars['Int'];
+  songId: Scalars['Int'];
+  stagename: Scalars['String'];
+};
+
+export type ArtistInSongListRelationFilter = {
+  every?: InputMaybe<ArtistInSongWhereInput>;
+  none?: InputMaybe<ArtistInSongWhereInput>;
+  some?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type ArtistInSongMaxAggregate = {
+  __typename?: 'ArtistInSongMaxAggregate';
+  personId?: Maybe<Scalars['Int']>;
+  songId?: Maybe<Scalars['Int']>;
+  stagename?: Maybe<Scalars['String']>;
+};
+
+export type ArtistInSongMaxOrderByAggregateInput = {
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  stagename?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongMinAggregate = {
+  __typename?: 'ArtistInSongMinAggregate';
+  personId?: Maybe<Scalars['Int']>;
+  songId?: Maybe<Scalars['Int']>;
+  stagename?: Maybe<Scalars['String']>;
+};
+
+export type ArtistInSongMinOrderByAggregateInput = {
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  stagename?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongOrderByWithAggregationInput = {
+  _avg?: InputMaybe<ArtistInSongAvgOrderByAggregateInput>;
+  _count?: InputMaybe<ArtistInSongCountOrderByAggregateInput>;
+  _max?: InputMaybe<ArtistInSongMaxOrderByAggregateInput>;
+  _min?: InputMaybe<ArtistInSongMinOrderByAggregateInput>;
+  _sum?: InputMaybe<ArtistInSongSumOrderByAggregateInput>;
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  stagename?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongOrderByWithRelationInput = {
+  person?: InputMaybe<PersonOrderByWithRelationInput>;
+  personId?: InputMaybe<SortOrder>;
+  song?: InputMaybe<SongOrderByWithRelationInput>;
+  songId?: InputMaybe<SortOrder>;
+  stagename?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongPersonIdSongIdCompoundUniqueInput = {
+  personId: Scalars['Int'];
+  songId: Scalars['Int'];
+};
+
+export enum ArtistInSongScalarFieldEnum {
+  PersonId = 'personId',
+  SongId = 'songId',
+  Stagename = 'stagename'
+}
+
+export type ArtistInSongScalarWhereInput = {
+  AND?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  NOT?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  OR?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  personId?: InputMaybe<IntFilter>;
+  songId?: InputMaybe<IntFilter>;
+  stagename?: InputMaybe<StringFilter>;
+};
+
+export type ArtistInSongScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
+  personId?: InputMaybe<IntWithAggregatesFilter>;
+  songId?: InputMaybe<IntWithAggregatesFilter>;
+  stagename?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type ArtistInSongSumAggregate = {
+  __typename?: 'ArtistInSongSumAggregate';
+  personId?: Maybe<Scalars['Int']>;
+  songId?: Maybe<Scalars['Int']>;
+};
+
+export type ArtistInSongSumOrderByAggregateInput = {
+  personId?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+};
+
+export type ArtistInSongUpdateInput = {
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutSongsInput>;
+  song?: InputMaybe<SongUpdateOneRequiredWithoutArtistsInput>;
+  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ArtistInSongUpdateManyMutationInput = {
+  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ArtistInSongUpdateManyWithWhereWithoutPersonInput = {
+  data: ArtistInSongUpdateManyMutationInput;
+  where: ArtistInSongScalarWhereInput;
+};
+
+export type ArtistInSongUpdateManyWithWhereWithoutSongInput = {
+  data: ArtistInSongUpdateManyMutationInput;
+  where: ArtistInSongScalarWhereInput;
+};
+
+export type ArtistInSongUpdateManyWithoutPersonInput = {
+  connect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<ArtistInSongCreateOrConnectWithoutPersonInput[]>;
+  create?: InputMaybe<ArtistInSongCreateWithoutPersonInput[]>;
+  createMany?: InputMaybe<ArtistInSongCreateManyPersonInputEnvelope>;
+  delete?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  disconnect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  set?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  update?: InputMaybe<ArtistInSongUpdateWithWhereUniqueWithoutPersonInput[]>;
+  updateMany?: InputMaybe<ArtistInSongUpdateManyWithWhereWithoutPersonInput[]>;
+  upsert?: InputMaybe<ArtistInSongUpsertWithWhereUniqueWithoutPersonInput[]>;
+};
+
+export type ArtistInSongUpdateManyWithoutSongInput = {
+  connect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<ArtistInSongCreateOrConnectWithoutSongInput[]>;
+  create?: InputMaybe<ArtistInSongCreateWithoutSongInput[]>;
+  createMany?: InputMaybe<ArtistInSongCreateManySongInputEnvelope>;
+  delete?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  disconnect?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  set?: InputMaybe<ArtistInSongWhereUniqueInput[]>;
+  update?: InputMaybe<ArtistInSongUpdateWithWhereUniqueWithoutSongInput[]>;
+  updateMany?: InputMaybe<ArtistInSongUpdateManyWithWhereWithoutSongInput[]>;
+  upsert?: InputMaybe<ArtistInSongUpsertWithWhereUniqueWithoutSongInput[]>;
+};
+
+export type ArtistInSongUpdateWithWhereUniqueWithoutPersonInput = {
+  data: ArtistInSongUpdateWithoutPersonInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongUpdateWithWhereUniqueWithoutSongInput = {
+  data: ArtistInSongUpdateWithoutSongInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongUpdateWithoutPersonInput = {
+  song?: InputMaybe<SongUpdateOneRequiredWithoutArtistsInput>;
+  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ArtistInSongUpdateWithoutSongInput = {
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutSongsInput>;
+  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type ArtistInSongUpsertWithWhereUniqueWithoutPersonInput = {
+  create: ArtistInSongCreateWithoutPersonInput;
+  update: ArtistInSongUpdateWithoutPersonInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongUpsertWithWhereUniqueWithoutSongInput = {
+  create: ArtistInSongCreateWithoutSongInput;
+  update: ArtistInSongUpdateWithoutSongInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type ArtistInSongWhereInput = {
+  AND?: InputMaybe<ArtistInSongWhereInput[]>;
+  NOT?: InputMaybe<ArtistInSongWhereInput[]>;
+  OR?: InputMaybe<ArtistInSongWhereInput[]>;
+  person?: InputMaybe<PersonRelationFilter>;
+  personId?: InputMaybe<IntFilter>;
+  song?: InputMaybe<SongRelationFilter>;
+  songId?: InputMaybe<IntFilter>;
+  stagename?: InputMaybe<StringFilter>;
+};
+
+export type ArtistInSongWhereUniqueInput = {
+  personId_songId?: InputMaybe<ArtistInSongPersonIdSongIdCompoundUniqueInput>;
+};
+
+export type AuthorInBook = {
+  __typename?: 'AuthorInBook';
+  book: Book;
+  bookId: Scalars['Int'];
+  penname: Scalars['String'];
+  person: Person;
+  personId: Scalars['Int'];
+};
+
+export type AuthorInBookAvgAggregate = {
+  __typename?: 'AuthorInBookAvgAggregate';
+  bookId?: Maybe<Scalars['Float']>;
+  personId?: Maybe<Scalars['Float']>;
+};
+
+export type AuthorInBookAvgOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookCountAggregate = {
+  __typename?: 'AuthorInBookCountAggregate';
+  _all: Scalars['Int'];
+  bookId: Scalars['Int'];
+  penname: Scalars['Int'];
+  personId: Scalars['Int'];
+};
+
+export type AuthorInBookCountOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  penname?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookCreateInput = {
+  book: BookCreateNestedOneWithoutAuthorsInput;
+  penname: Scalars['String'];
+  person: PersonCreateNestedOneWithoutBooksInput;
+};
+
+export type AuthorInBookCreateManyBookInput = {
+  penname: Scalars['String'];
+  personId: Scalars['Int'];
+};
+
+export type AuthorInBookCreateManyBookInputEnvelope = {
+  data: AuthorInBookCreateManyBookInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type AuthorInBookCreateManyInput = {
+  bookId: Scalars['Int'];
+  penname: Scalars['String'];
+  personId: Scalars['Int'];
+};
+
+export type AuthorInBookCreateManyPersonInput = {
+  bookId: Scalars['Int'];
+  penname: Scalars['String'];
+};
+
+export type AuthorInBookCreateManyPersonInputEnvelope = {
+  data: AuthorInBookCreateManyPersonInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type AuthorInBookCreateNestedManyWithoutBookInput = {
+  connect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<AuthorInBookCreateOrConnectWithoutBookInput[]>;
+  create?: InputMaybe<AuthorInBookCreateWithoutBookInput[]>;
+  createMany?: InputMaybe<AuthorInBookCreateManyBookInputEnvelope>;
+};
+
+export type AuthorInBookCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<AuthorInBookCreateOrConnectWithoutPersonInput[]>;
+  create?: InputMaybe<AuthorInBookCreateWithoutPersonInput[]>;
+  createMany?: InputMaybe<AuthorInBookCreateManyPersonInputEnvelope>;
+};
+
+export type AuthorInBookCreateOrConnectWithoutBookInput = {
+  create: AuthorInBookCreateWithoutBookInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookCreateOrConnectWithoutPersonInput = {
+  create: AuthorInBookCreateWithoutPersonInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookCreateWithoutBookInput = {
+  penname: Scalars['String'];
+  person: PersonCreateNestedOneWithoutBooksInput;
+};
+
+export type AuthorInBookCreateWithoutPersonInput = {
+  book: BookCreateNestedOneWithoutAuthorsInput;
+  penname: Scalars['String'];
+};
+
+export type AuthorInBookGroupBy = {
+  __typename?: 'AuthorInBookGroupBy';
+  _avg?: Maybe<AuthorInBookAvgAggregate>;
+  _count?: Maybe<AuthorInBookCountAggregate>;
+  _max?: Maybe<AuthorInBookMaxAggregate>;
+  _min?: Maybe<AuthorInBookMinAggregate>;
+  _sum?: Maybe<AuthorInBookSumAggregate>;
+  bookId: Scalars['Int'];
+  penname: Scalars['String'];
+  personId: Scalars['Int'];
+};
+
+export type AuthorInBookListRelationFilter = {
+  every?: InputMaybe<AuthorInBookWhereInput>;
+  none?: InputMaybe<AuthorInBookWhereInput>;
+  some?: InputMaybe<AuthorInBookWhereInput>;
+};
+
+export type AuthorInBookMaxAggregate = {
+  __typename?: 'AuthorInBookMaxAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  penname?: Maybe<Scalars['String']>;
+  personId?: Maybe<Scalars['Int']>;
+};
+
+export type AuthorInBookMaxOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  penname?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookMinAggregate = {
+  __typename?: 'AuthorInBookMinAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  penname?: Maybe<Scalars['String']>;
+  personId?: Maybe<Scalars['Int']>;
+};
+
+export type AuthorInBookMinOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  penname?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookOrderByWithAggregationInput = {
+  _avg?: InputMaybe<AuthorInBookAvgOrderByAggregateInput>;
+  _count?: InputMaybe<AuthorInBookCountOrderByAggregateInput>;
+  _max?: InputMaybe<AuthorInBookMaxOrderByAggregateInput>;
+  _min?: InputMaybe<AuthorInBookMinOrderByAggregateInput>;
+  _sum?: InputMaybe<AuthorInBookSumOrderByAggregateInput>;
+  bookId?: InputMaybe<SortOrder>;
+  penname?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookOrderByWithRelationInput = {
+  book?: InputMaybe<BookOrderByWithRelationInput>;
+  bookId?: InputMaybe<SortOrder>;
+  penname?: InputMaybe<SortOrder>;
+  person?: InputMaybe<PersonOrderByWithRelationInput>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookPersonIdBookIdCompoundUniqueInput = {
+  bookId: Scalars['Int'];
+  personId: Scalars['Int'];
+};
+
+export enum AuthorInBookScalarFieldEnum {
+  BookId = 'bookId',
+  Penname = 'penname',
+  PersonId = 'personId'
+}
+
+export type AuthorInBookScalarWhereInput = {
+  AND?: InputMaybe<AuthorInBookScalarWhereInput[]>;
+  NOT?: InputMaybe<AuthorInBookScalarWhereInput[]>;
+  OR?: InputMaybe<AuthorInBookScalarWhereInput[]>;
+  bookId?: InputMaybe<IntFilter>;
+  penname?: InputMaybe<StringFilter>;
+  personId?: InputMaybe<IntFilter>;
+};
+
+export type AuthorInBookScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput[]>;
+  bookId?: InputMaybe<IntWithAggregatesFilter>;
+  penname?: InputMaybe<StringWithAggregatesFilter>;
+  personId?: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type AuthorInBookSumAggregate = {
+  __typename?: 'AuthorInBookSumAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  personId?: Maybe<Scalars['Int']>;
+};
+
+export type AuthorInBookSumOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  personId?: InputMaybe<SortOrder>;
+};
+
+export type AuthorInBookUpdateInput = {
+  book?: InputMaybe<BookUpdateOneRequiredWithoutAuthorsInput>;
+  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutBooksInput>;
+};
+
+export type AuthorInBookUpdateManyMutationInput = {
+  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type AuthorInBookUpdateManyWithWhereWithoutBookInput = {
+  data: AuthorInBookUpdateManyMutationInput;
+  where: AuthorInBookScalarWhereInput;
+};
+
+export type AuthorInBookUpdateManyWithWhereWithoutPersonInput = {
+  data: AuthorInBookUpdateManyMutationInput;
+  where: AuthorInBookScalarWhereInput;
+};
+
+export type AuthorInBookUpdateManyWithoutBookInput = {
+  connect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<AuthorInBookCreateOrConnectWithoutBookInput[]>;
+  create?: InputMaybe<AuthorInBookCreateWithoutBookInput[]>;
+  createMany?: InputMaybe<AuthorInBookCreateManyBookInputEnvelope>;
+  delete?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<AuthorInBookScalarWhereInput[]>;
+  disconnect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  set?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  update?: InputMaybe<AuthorInBookUpdateWithWhereUniqueWithoutBookInput[]>;
+  updateMany?: InputMaybe<AuthorInBookUpdateManyWithWhereWithoutBookInput[]>;
+  upsert?: InputMaybe<AuthorInBookUpsertWithWhereUniqueWithoutBookInput[]>;
+};
+
+export type AuthorInBookUpdateManyWithoutPersonInput = {
+  connect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<AuthorInBookCreateOrConnectWithoutPersonInput[]>;
+  create?: InputMaybe<AuthorInBookCreateWithoutPersonInput[]>;
+  createMany?: InputMaybe<AuthorInBookCreateManyPersonInputEnvelope>;
+  delete?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<AuthorInBookScalarWhereInput[]>;
+  disconnect?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  set?: InputMaybe<AuthorInBookWhereUniqueInput[]>;
+  update?: InputMaybe<AuthorInBookUpdateWithWhereUniqueWithoutPersonInput[]>;
+  updateMany?: InputMaybe<AuthorInBookUpdateManyWithWhereWithoutPersonInput[]>;
+  upsert?: InputMaybe<AuthorInBookUpsertWithWhereUniqueWithoutPersonInput[]>;
+};
+
+export type AuthorInBookUpdateWithWhereUniqueWithoutBookInput = {
+  data: AuthorInBookUpdateWithoutBookInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookUpdateWithWhereUniqueWithoutPersonInput = {
+  data: AuthorInBookUpdateWithoutPersonInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookUpdateWithoutBookInput = {
+  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutBooksInput>;
+};
+
+export type AuthorInBookUpdateWithoutPersonInput = {
+  book?: InputMaybe<BookUpdateOneRequiredWithoutAuthorsInput>;
+  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type AuthorInBookUpsertWithWhereUniqueWithoutBookInput = {
+  create: AuthorInBookCreateWithoutBookInput;
+  update: AuthorInBookUpdateWithoutBookInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookUpsertWithWhereUniqueWithoutPersonInput = {
+  create: AuthorInBookCreateWithoutPersonInput;
+  update: AuthorInBookUpdateWithoutPersonInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type AuthorInBookWhereInput = {
+  AND?: InputMaybe<AuthorInBookWhereInput[]>;
+  NOT?: InputMaybe<AuthorInBookWhereInput[]>;
+  OR?: InputMaybe<AuthorInBookWhereInput[]>;
+  book?: InputMaybe<BookRelationFilter>;
+  bookId?: InputMaybe<IntFilter>;
+  penname?: InputMaybe<StringFilter>;
+  person?: InputMaybe<PersonRelationFilter>;
+  personId?: InputMaybe<IntFilter>;
+};
+
+export type AuthorInBookWhereUniqueInput = {
+  personId_bookId?: InputMaybe<AuthorInBookPersonIdBookIdCompoundUniqueInput>;
+};
+
 export type Book = {
   __typename?: 'Book';
   _count?: Maybe<BookCount>;
-  authors: Person[];
+  aggregateBookReview: AggregateBookReview;
+  authors: AuthorInBook[];
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   genres: Genre[];
   id: Scalars['Int'];
+  isLiked: Scalars['Boolean'];
+  likes: BookLike[];
   locked: Scalars['Boolean'];
   poster: Scalars['String'];
   released?: Maybe<Scalars['DateTime']>;
@@ -869,13 +1512,21 @@ export type Book = {
   updatedAt: Scalars['DateTime'];
 };
 
-export type BookAuthorsArgs = {
-  cursor?: InputMaybe<PersonWhereUniqueInput>;
-  distinct?: InputMaybe<PersonScalarFieldEnum[]>;
-  orderBy?: InputMaybe<PersonOrderByWithRelationInput[]>;
+export type BookAggregateBookReviewArgs = {
+  cursor?: InputMaybe<BookReviewWhereUniqueInput>;
+  orderBy?: InputMaybe<BookReviewOrderByWithRelationInput[]>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<PersonWhereInput>;
+  where?: InputMaybe<BookReviewWhereInput>;
+};
+
+export type BookAuthorsArgs = {
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  distinct?: InputMaybe<AuthorInBookScalarFieldEnum[]>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
 };
 
 export type BookGenresArgs = {
@@ -885,6 +1536,15 @@ export type BookGenresArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<GenreWhereInput>;
+};
+
+export type BookLikesArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  distinct?: InputMaybe<BookLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type BookReviewsArgs = {
@@ -909,6 +1569,7 @@ export type BookCount = {
   __typename?: 'BookCount';
   authors: Scalars['Int'];
   genres: Scalars['Int'];
+  likes: Scalars['Int'];
   reviews: Scalars['Int'];
 };
 
@@ -937,10 +1598,11 @@ export type BookCountOrderByAggregateInput = {
 };
 
 export type BookCreateInput = {
-  authors?: InputMaybe<PersonCreateNestedManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookCreateNestedManyWithoutBookInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeCreateNestedManyWithoutBookInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -960,16 +1622,22 @@ export type BookCreateManyInput = {
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type BookCreateNestedManyWithoutAuthorsInput = {
-  connect?: InputMaybe<BookWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutAuthorsInput[]>;
-  create?: InputMaybe<BookCreateWithoutAuthorsInput[]>;
-};
-
 export type BookCreateNestedManyWithoutGenresInput = {
   connect?: InputMaybe<BookWhereUniqueInput[]>;
   connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutGenresInput[]>;
   create?: InputMaybe<BookCreateWithoutGenresInput[]>;
+};
+
+export type BookCreateNestedOneWithoutAuthorsInput = {
+  connect?: InputMaybe<BookWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutAuthorsInput>;
+  create?: InputMaybe<BookCreateWithoutAuthorsInput>;
+};
+
+export type BookCreateNestedOneWithoutLikesInput = {
+  connect?: InputMaybe<BookWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutLikesInput>;
+  create?: InputMaybe<BookCreateWithoutLikesInput>;
 };
 
 export type BookCreateNestedOneWithoutReviewsInput = {
@@ -988,6 +1656,11 @@ export type BookCreateOrConnectWithoutGenresInput = {
   where: BookWhereUniqueInput;
 };
 
+export type BookCreateOrConnectWithoutLikesInput = {
+  create: BookCreateWithoutLikesInput;
+  where: BookWhereUniqueInput;
+};
+
 export type BookCreateOrConnectWithoutReviewsInput = {
   create: BookCreateWithoutReviewsInput;
   where: BookWhereUniqueInput;
@@ -997,6 +1670,7 @@ export type BookCreateWithoutAuthorsInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeCreateNestedManyWithoutBookInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -1006,9 +1680,23 @@ export type BookCreateWithoutAuthorsInput = {
 };
 
 export type BookCreateWithoutGenresInput = {
-  authors?: InputMaybe<PersonCreateNestedManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookCreateNestedManyWithoutBookInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
+  likes?: InputMaybe<BookLikeCreateNestedManyWithoutBookInput>;
+  locked?: InputMaybe<Scalars['Boolean']>;
+  poster?: InputMaybe<Scalars['String']>;
+  released?: InputMaybe<Scalars['DateTime']>;
+  reviews?: InputMaybe<BookReviewCreateNestedManyWithoutBookInput>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type BookCreateWithoutLikesInput = {
+  authors?: InputMaybe<AuthorInBookCreateNestedManyWithoutBookInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  genres?: InputMaybe<GenreCreateNestedManyWithoutBooksInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -1018,10 +1706,11 @@ export type BookCreateWithoutGenresInput = {
 };
 
 export type BookCreateWithoutReviewsInput = {
-  authors?: InputMaybe<PersonCreateNestedManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookCreateNestedManyWithoutBookInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeCreateNestedManyWithoutBookInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -1044,6 +1733,313 @@ export type BookGroupBy = {
   released?: Maybe<Scalars['DateTime']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+};
+
+export type BookLike = {
+  __typename?: 'BookLike';
+  book: Book;
+  bookId: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['Int'];
+};
+
+export type BookLikeAvgAggregate = {
+  __typename?: 'BookLikeAvgAggregate';
+  bookId?: Maybe<Scalars['Float']>;
+  userId?: Maybe<Scalars['Float']>;
+};
+
+export type BookLikeAvgOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeCountAggregate = {
+  __typename?: 'BookLikeCountAggregate';
+  _all: Scalars['Int'];
+  bookId: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type BookLikeCountOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeCreateCustomInput = {
+  book: BookCreateNestedOneWithoutLikesInput;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type BookLikeCreateInput = {
+  book: BookCreateNestedOneWithoutLikesInput;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutLikedBooksInput;
+};
+
+export type BookLikeCreateManyBookInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+export type BookLikeCreateManyBookInputEnvelope = {
+  data: BookLikeCreateManyBookInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type BookLikeCreateManyInput = {
+  bookId: Scalars['Int'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+export type BookLikeCreateManyUserInput = {
+  bookId: Scalars['Int'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type BookLikeCreateManyUserInputEnvelope = {
+  data: BookLikeCreateManyUserInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type BookLikeCreateNestedManyWithoutBookInput = {
+  connect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<BookLikeCreateOrConnectWithoutBookInput[]>;
+  create?: InputMaybe<BookLikeCreateWithoutBookInput[]>;
+  createMany?: InputMaybe<BookLikeCreateManyBookInputEnvelope>;
+};
+
+export type BookLikeCreateNestedManyWithoutUserInput = {
+  connect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<BookLikeCreateOrConnectWithoutUserInput[]>;
+  create?: InputMaybe<BookLikeCreateWithoutUserInput[]>;
+  createMany?: InputMaybe<BookLikeCreateManyUserInputEnvelope>;
+};
+
+export type BookLikeCreateOrConnectWithoutBookInput = {
+  create: BookLikeCreateWithoutBookInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeCreateOrConnectWithoutUserInput = {
+  create: BookLikeCreateWithoutUserInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeCreateWithoutBookInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutLikedBooksInput;
+};
+
+export type BookLikeCreateWithoutUserInput = {
+  book: BookCreateNestedOneWithoutLikesInput;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type BookLikeGroupBy = {
+  __typename?: 'BookLikeGroupBy';
+  _avg?: Maybe<BookLikeAvgAggregate>;
+  _count?: Maybe<BookLikeCountAggregate>;
+  _max?: Maybe<BookLikeMaxAggregate>;
+  _min?: Maybe<BookLikeMinAggregate>;
+  _sum?: Maybe<BookLikeSumAggregate>;
+  bookId: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  userId: Scalars['Int'];
+};
+
+export type BookLikeListRelationFilter = {
+  every?: InputMaybe<BookLikeWhereInput>;
+  none?: InputMaybe<BookLikeWhereInput>;
+  some?: InputMaybe<BookLikeWhereInput>;
+};
+
+export type BookLikeMaxAggregate = {
+  __typename?: 'BookLikeMaxAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type BookLikeMaxOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeMinAggregate = {
+  __typename?: 'BookLikeMinAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type BookLikeMinOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeOrderByWithAggregationInput = {
+  _avg?: InputMaybe<BookLikeAvgOrderByAggregateInput>;
+  _count?: InputMaybe<BookLikeCountOrderByAggregateInput>;
+  _max?: InputMaybe<BookLikeMaxOrderByAggregateInput>;
+  _min?: InputMaybe<BookLikeMinOrderByAggregateInput>;
+  _sum?: InputMaybe<BookLikeSumOrderByAggregateInput>;
+  bookId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeOrderByWithRelationInput = {
+  book?: InputMaybe<BookOrderByWithRelationInput>;
+  bookId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  user?: InputMaybe<UserOrderByWithRelationInput>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export enum BookLikeScalarFieldEnum {
+  BookId = 'bookId',
+  CreatedAt = 'createdAt',
+  UserId = 'userId'
+}
+
+export type BookLikeScalarWhereInput = {
+  AND?: InputMaybe<BookLikeScalarWhereInput[]>;
+  NOT?: InputMaybe<BookLikeScalarWhereInput[]>;
+  OR?: InputMaybe<BookLikeScalarWhereInput[]>;
+  bookId?: InputMaybe<IntFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  userId?: InputMaybe<IntFilter>;
+};
+
+export type BookLikeScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<BookLikeScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<BookLikeScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<BookLikeScalarWhereWithAggregatesInput[]>;
+  bookId?: InputMaybe<IntWithAggregatesFilter>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId?: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type BookLikeSumAggregate = {
+  __typename?: 'BookLikeSumAggregate';
+  bookId?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type BookLikeSumOrderByAggregateInput = {
+  bookId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type BookLikeUpdateInput = {
+  book?: InputMaybe<BookUpdateOneRequiredWithoutLikesInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutLikedBooksInput>;
+};
+
+export type BookLikeUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type BookLikeUpdateManyWithWhereWithoutBookInput = {
+  data: BookLikeUpdateManyMutationInput;
+  where: BookLikeScalarWhereInput;
+};
+
+export type BookLikeUpdateManyWithWhereWithoutUserInput = {
+  data: BookLikeUpdateManyMutationInput;
+  where: BookLikeScalarWhereInput;
+};
+
+export type BookLikeUpdateManyWithoutBookInput = {
+  connect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<BookLikeCreateOrConnectWithoutBookInput[]>;
+  create?: InputMaybe<BookLikeCreateWithoutBookInput[]>;
+  createMany?: InputMaybe<BookLikeCreateManyBookInputEnvelope>;
+  delete?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<BookLikeScalarWhereInput[]>;
+  disconnect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  set?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  update?: InputMaybe<BookLikeUpdateWithWhereUniqueWithoutBookInput[]>;
+  updateMany?: InputMaybe<BookLikeUpdateManyWithWhereWithoutBookInput[]>;
+  upsert?: InputMaybe<BookLikeUpsertWithWhereUniqueWithoutBookInput[]>;
+};
+
+export type BookLikeUpdateManyWithoutUserInput = {
+  connect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<BookLikeCreateOrConnectWithoutUserInput[]>;
+  create?: InputMaybe<BookLikeCreateWithoutUserInput[]>;
+  createMany?: InputMaybe<BookLikeCreateManyUserInputEnvelope>;
+  delete?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<BookLikeScalarWhereInput[]>;
+  disconnect?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  set?: InputMaybe<BookLikeWhereUniqueInput[]>;
+  update?: InputMaybe<BookLikeUpdateWithWhereUniqueWithoutUserInput[]>;
+  updateMany?: InputMaybe<BookLikeUpdateManyWithWhereWithoutUserInput[]>;
+  upsert?: InputMaybe<BookLikeUpsertWithWhereUniqueWithoutUserInput[]>;
+};
+
+export type BookLikeUpdateWithWhereUniqueWithoutBookInput = {
+  data: BookLikeUpdateWithoutBookInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeUpdateWithWhereUniqueWithoutUserInput = {
+  data: BookLikeUpdateWithoutUserInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeUpdateWithoutBookInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutLikedBooksInput>;
+};
+
+export type BookLikeUpdateWithoutUserInput = {
+  book?: InputMaybe<BookUpdateOneRequiredWithoutLikesInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type BookLikeUpsertWithWhereUniqueWithoutBookInput = {
+  create: BookLikeCreateWithoutBookInput;
+  update: BookLikeUpdateWithoutBookInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeUpsertWithWhereUniqueWithoutUserInput = {
+  create: BookLikeCreateWithoutUserInput;
+  update: BookLikeUpdateWithoutUserInput;
+  where: BookLikeWhereUniqueInput;
+};
+
+export type BookLikeUserIdBookIdCompoundUniqueInput = {
+  bookId: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type BookLikeWhereInput = {
+  AND?: InputMaybe<BookLikeWhereInput[]>;
+  NOT?: InputMaybe<BookLikeWhereInput[]>;
+  OR?: InputMaybe<BookLikeWhereInput[]>;
+  book?: InputMaybe<BookRelationFilter>;
+  bookId?: InputMaybe<IntFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<IntFilter>;
+};
+
+export type BookLikeWhereUniqueInput = {
+  userId_bookId?: InputMaybe<BookLikeUserIdBookIdCompoundUniqueInput>;
 };
 
 export type BookListRelationFilter = {
@@ -1119,11 +2115,12 @@ export type BookOrderByWithAggregationInput = {
 };
 
 export type BookOrderByWithRelationInput = {
-  authors?: InputMaybe<PersonOrderByRelationAggregateInput>;
+  authors?: InputMaybe<AuthorInBookOrderByRelationAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   genres?: InputMaybe<GenreOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
+  likes?: InputMaybe<BookLikeOrderByRelationAggregateInput>;
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
@@ -1190,6 +2187,13 @@ export type BookReviewCountOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
   review?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
+};
+
+export type BookReviewCreateCustomInput = {
+  book: BookCreateNestedOneWithoutReviewsInput;
+  likes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutBookReviewInput>;
+  rating: Scalars['Int'];
+  review?: InputMaybe<Scalars['String']>;
 };
 
 export type BookReviewCreateInput = {
@@ -1906,10 +2910,11 @@ export type BookSumOrderByAggregateInput = {
 };
 
 export type BookUpdateInput = {
-  authors?: InputMaybe<PersonUpdateManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookUpdateManyWithoutBookInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeUpdateManyWithoutBookInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -1928,27 +2933,9 @@ export type BookUpdateManyMutationInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type BookUpdateManyWithWhereWithoutAuthorsInput = {
-  data: BookUpdateManyMutationInput;
-  where: BookScalarWhereInput;
-};
-
 export type BookUpdateManyWithWhereWithoutGenresInput = {
   data: BookUpdateManyMutationInput;
   where: BookScalarWhereInput;
-};
-
-export type BookUpdateManyWithoutAuthorsInput = {
-  connect?: InputMaybe<BookWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutAuthorsInput[]>;
-  create?: InputMaybe<BookCreateWithoutAuthorsInput[]>;
-  delete?: InputMaybe<BookWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<BookScalarWhereInput[]>;
-  disconnect?: InputMaybe<BookWhereUniqueInput[]>;
-  set?: InputMaybe<BookWhereUniqueInput[]>;
-  update?: InputMaybe<BookUpdateWithWhereUniqueWithoutAuthorsInput[]>;
-  updateMany?: InputMaybe<BookUpdateManyWithWhereWithoutAuthorsInput[]>;
-  upsert?: InputMaybe<BookUpsertWithWhereUniqueWithoutAuthorsInput[]>;
 };
 
 export type BookUpdateManyWithoutGenresInput = {
@@ -1964,17 +2951,28 @@ export type BookUpdateManyWithoutGenresInput = {
   upsert?: InputMaybe<BookUpsertWithWhereUniqueWithoutGenresInput[]>;
 };
 
+export type BookUpdateOneRequiredWithoutAuthorsInput = {
+  connect?: InputMaybe<BookWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutAuthorsInput>;
+  create?: InputMaybe<BookCreateWithoutAuthorsInput>;
+  update?: InputMaybe<BookUpdateWithoutAuthorsInput>;
+  upsert?: InputMaybe<BookUpsertWithoutAuthorsInput>;
+};
+
+export type BookUpdateOneRequiredWithoutLikesInput = {
+  connect?: InputMaybe<BookWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutLikesInput>;
+  create?: InputMaybe<BookCreateWithoutLikesInput>;
+  update?: InputMaybe<BookUpdateWithoutLikesInput>;
+  upsert?: InputMaybe<BookUpsertWithoutLikesInput>;
+};
+
 export type BookUpdateOneRequiredWithoutReviewsInput = {
   connect?: InputMaybe<BookWhereUniqueInput>;
   connectOrCreate?: InputMaybe<BookCreateOrConnectWithoutReviewsInput>;
   create?: InputMaybe<BookCreateWithoutReviewsInput>;
   update?: InputMaybe<BookUpdateWithoutReviewsInput>;
   upsert?: InputMaybe<BookUpsertWithoutReviewsInput>;
-};
-
-export type BookUpdateWithWhereUniqueWithoutAuthorsInput = {
-  data: BookUpdateWithoutAuthorsInput;
-  where: BookWhereUniqueInput;
 };
 
 export type BookUpdateWithWhereUniqueWithoutGenresInput = {
@@ -1986,6 +2984,7 @@ export type BookUpdateWithoutAuthorsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeUpdateManyWithoutBookInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -1995,9 +2994,23 @@ export type BookUpdateWithoutAuthorsInput = {
 };
 
 export type BookUpdateWithoutGenresInput = {
-  authors?: InputMaybe<PersonUpdateManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookUpdateManyWithoutBookInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  likes?: InputMaybe<BookLikeUpdateManyWithoutBookInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  poster?: InputMaybe<StringFieldUpdateOperationsInput>;
+  released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  reviews?: InputMaybe<BookReviewUpdateManyWithoutBookInput>;
+  title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type BookUpdateWithoutLikesInput = {
+  authors?: InputMaybe<AuthorInBookUpdateManyWithoutBookInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  genres?: InputMaybe<GenreUpdateManyWithoutBooksInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -2007,10 +3020,11 @@ export type BookUpdateWithoutGenresInput = {
 };
 
 export type BookUpdateWithoutReviewsInput = {
-  authors?: InputMaybe<PersonUpdateManyWithoutBooksInput>;
+  authors?: InputMaybe<AuthorInBookUpdateManyWithoutBookInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutBooksInput>;
+  likes?: InputMaybe<BookLikeUpdateManyWithoutBookInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -2018,16 +3032,20 @@ export type BookUpdateWithoutReviewsInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type BookUpsertWithWhereUniqueWithoutAuthorsInput = {
-  create: BookCreateWithoutAuthorsInput;
-  update: BookUpdateWithoutAuthorsInput;
-  where: BookWhereUniqueInput;
-};
-
 export type BookUpsertWithWhereUniqueWithoutGenresInput = {
   create: BookCreateWithoutGenresInput;
   update: BookUpdateWithoutGenresInput;
   where: BookWhereUniqueInput;
+};
+
+export type BookUpsertWithoutAuthorsInput = {
+  create: BookCreateWithoutAuthorsInput;
+  update: BookUpdateWithoutAuthorsInput;
+};
+
+export type BookUpsertWithoutLikesInput = {
+  create: BookCreateWithoutLikesInput;
+  update: BookUpdateWithoutLikesInput;
 };
 
 export type BookUpsertWithoutReviewsInput = {
@@ -2039,11 +3057,12 @@ export type BookWhereInput = {
   AND?: InputMaybe<BookWhereInput[]>;
   NOT?: InputMaybe<BookWhereInput[]>;
   OR?: InputMaybe<BookWhereInput[]>;
-  authors?: InputMaybe<PersonListRelationFilter>;
+  authors?: InputMaybe<AuthorInBookListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringFilter>;
   genres?: InputMaybe<GenreListRelationFilter>;
   id?: InputMaybe<IntFilter>;
+  likes?: InputMaybe<BookLikeListRelationFilter>;
   locked?: InputMaybe<BoolFilter>;
   poster?: InputMaybe<StringFilter>;
   released?: InputMaybe<DateTimeNullableFilter>;
@@ -5005,20 +6024,24 @@ export type MovieWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addArtist?: Maybe<Book>;
   changePassword: User;
   confirm: Scalars['Boolean'];
   createActorInMovie: Scalars['Boolean'];
   createActorInShow: Scalars['Boolean'];
-  createBook?: Maybe<Book>;
-  createBookReview: BookReview;
+  createArtistInSong: Scalars['Boolean'];
+  createAuthorInBook: Scalars['Boolean'];
+  createBook: Book;
+  createBookLike: BookLike;
+  createBookReview: Scalars['Boolean'];
   createBookReviewLike: BookReviewLike;
-  createBookeReview: BookReview;
   createFollows: Follows;
   createGenre: Genre;
   createManyActorInMovie: AffectedRowsOutput;
   createManyActorInShow: AffectedRowsOutput;
+  createManyArtistInSong: AffectedRowsOutput;
+  createManyAuthorInBook: AffectedRowsOutput;
   createManyBook: AffectedRowsOutput;
+  createManyBookLike: AffectedRowsOutput;
   createManyBookReview: AffectedRowsOutput;
   createManyBookReviewLike: AffectedRowsOutput;
   createManyFollows: AffectedRowsOutput;
@@ -5037,6 +6060,7 @@ export type Mutation = {
   createManySong: AffectedRowsOutput;
   createManySongInMovie: AffectedRowsOutput;
   createManySongInShow: AffectedRowsOutput;
+  createManySongLike: AffectedRowsOutput;
   createManySongReview: AffectedRowsOutput;
   createManySongReviewLike: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
@@ -5055,20 +6079,27 @@ export type Mutation = {
   createSong: Song;
   createSongInMovie: Scalars['Boolean'];
   createSongInShow: Scalars['Boolean'];
-  createSongReview: SongReview;
+  createSongLike: SongLike;
+  createSongReview: Scalars['Boolean'];
   createSongReviewLike: SongReviewLike;
   createUser: User;
   createWatchlist: Watchlist;
   deleteActorInMovie?: Maybe<Scalars['Boolean']>;
   deleteActorInShow?: Maybe<Scalars['Boolean']>;
+  deleteArtistInSong?: Maybe<Scalars['Boolean']>;
+  deleteAuthorInBook?: Maybe<Scalars['Boolean']>;
   deleteBook?: Maybe<Book>;
-  deleteBookReview?: Maybe<BookReview>;
+  deleteBookLike?: Maybe<BookLike>;
+  deleteBookReview: Scalars['Boolean'];
   deleteBookReviewLike?: Maybe<BookReviewLike>;
   deleteFollows?: Maybe<Follows>;
   deleteGenre?: Maybe<Genre>;
   deleteManyActorInMovie: AffectedRowsOutput;
   deleteManyActorInShow: AffectedRowsOutput;
+  deleteManyArtistInSong: AffectedRowsOutput;
+  deleteManyAuthorInBook: AffectedRowsOutput;
   deleteManyBook: AffectedRowsOutput;
+  deleteManyBookLike: AffectedRowsOutput;
   deleteManyBookReview: AffectedRowsOutput;
   deleteManyBookReviewLike: AffectedRowsOutput;
   deleteManyFollows: AffectedRowsOutput;
@@ -5087,6 +6118,7 @@ export type Mutation = {
   deleteManySong: AffectedRowsOutput;
   deleteManySongInMovie: AffectedRowsOutput;
   deleteManySongInShow: AffectedRowsOutput;
+  deleteManySongLike: AffectedRowsOutput;
   deleteManySongReview: AffectedRowsOutput;
   deleteManySongReviewLike: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
@@ -5105,7 +6137,8 @@ export type Mutation = {
   deleteSong?: Maybe<Song>;
   deleteSongInMovie?: Maybe<Scalars['Boolean']>;
   deleteSongInShow?: Maybe<Scalars['Boolean']>;
-  deleteSongReview?: Maybe<SongReview>;
+  deleteSongLike?: Maybe<SongLike>;
+  deleteSongReview: Scalars['Boolean'];
   deleteSongReviewLike?: Maybe<SongReviewLike>;
   deleteUser?: Maybe<User>;
   deleteWatchlist?: Maybe<Watchlist>;
@@ -5113,30 +6146,42 @@ export type Mutation = {
   editMovie?: Maybe<Movie>;
   editPerson?: Maybe<Person>;
   editShow?: Maybe<Show>;
+  editSong?: Maybe<Song>;
   follow: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
+  likeBook: Scalars['Boolean'];
   likeMovie: Scalars['Boolean'];
   likeShow: Scalars['Boolean'];
+  likeSong: Scalars['Boolean'];
   lockBook?: Maybe<Book>;
   lockMovie?: Maybe<Movie>;
+  lockPerson?: Maybe<Person>;
   lockShow?: Maybe<Show>;
+  lockSong?: Maybe<Song>;
   login: User;
   logout: Scalars['Boolean'];
   register: User;
-  removeArtist?: Maybe<Book>;
   unfollow: Scalars['Boolean'];
+  unlikeBook: Scalars['Boolean'];
   unlikeMovie: Scalars['Boolean'];
   unlikeShow: Scalars['Boolean'];
+  unlikeSong: Scalars['Boolean'];
   updateActorInMovie?: Maybe<ActorInMovie>;
   updateActorInShow?: Maybe<ActorInShow>;
+  updateArtistInSong?: Maybe<ArtistInSong>;
+  updateAuthorInBook?: Maybe<AuthorInBook>;
   updateBook?: Maybe<Book>;
-  updateBookReview?: Maybe<BookReview>;
+  updateBookLike?: Maybe<BookLike>;
+  updateBookReview: BookReview;
   updateBookReviewLike?: Maybe<BookReviewLike>;
   updateFollows?: Maybe<Follows>;
   updateGenre?: Maybe<Genre>;
   updateManyActorInMovie: AffectedRowsOutput;
   updateManyActorInShow: AffectedRowsOutput;
+  updateManyArtistInSong: AffectedRowsOutput;
+  updateManyAuthorInBook: AffectedRowsOutput;
   updateManyBook: AffectedRowsOutput;
+  updateManyBookLike: AffectedRowsOutput;
   updateManyBookReview: AffectedRowsOutput;
   updateManyBookReviewLike: AffectedRowsOutput;
   updateManyFollows: AffectedRowsOutput;
@@ -5155,6 +6200,7 @@ export type Mutation = {
   updateManySong: AffectedRowsOutput;
   updateManySongInMovie: AffectedRowsOutput;
   updateManySongInShow: AffectedRowsOutput;
+  updateManySongLike: AffectedRowsOutput;
   updateManySongReview: AffectedRowsOutput;
   updateManySongReviewLike: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
@@ -5173,7 +6219,8 @@ export type Mutation = {
   updateSong?: Maybe<Song>;
   updateSongInMovie?: Maybe<SongInMovie>;
   updateSongInShow?: Maybe<SongInShow>;
-  updateSongReview?: Maybe<SongReview>;
+  updateSongLike?: Maybe<SongLike>;
+  updateSongReview: SongReview;
   updateSongReviewLike?: Maybe<SongReviewLike>;
   updateUser?: Maybe<User>;
   updateWatchlist?: Maybe<Watchlist>;
@@ -5182,7 +6229,10 @@ export type Mutation = {
   uploadPoster: Scalars['Boolean'];
   upsertActorInMovie: ActorInMovie;
   upsertActorInShow: ActorInShow;
+  upsertArtistInSong: ArtistInSong;
+  upsertAuthorInBook: AuthorInBook;
   upsertBook: Book;
+  upsertBookLike: BookLike;
   upsertBookReview: BookReview;
   upsertBookReviewLike: BookReviewLike;
   upsertFollows: Follows;
@@ -5201,15 +6251,11 @@ export type Mutation = {
   upsertSong: Song;
   upsertSongInMovie: SongInMovie;
   upsertSongInShow: SongInShow;
+  upsertSongLike: SongLike;
   upsertSongReview: SongReview;
   upsertSongReviewLike: SongReviewLike;
   upsertUser: User;
   upsertWatchlist: Watchlist;
-};
-
-export type MutationAddArtistArgs = {
-  bookId: Scalars['Int'];
-  personId: Scalars['Int'];
 };
 
 export type MutationChangePasswordArgs = {
@@ -5228,20 +6274,28 @@ export type MutationCreateActorInShowArgs = {
   data: ActorInShowCreateInput;
 };
 
+export type MutationCreateArtistInSongArgs = {
+  data: ArtistInSongCreateInput;
+};
+
+export type MutationCreateAuthorInBookArgs = {
+  data: AuthorInBookCreateInput;
+};
+
 export type MutationCreateBookArgs = {
   data: BookCreateInput;
 };
 
+export type MutationCreateBookLikeArgs = {
+  data: BookLikeCreateInput;
+};
+
 export type MutationCreateBookReviewArgs = {
-  data: BookReviewCreateInput;
+  data: BookReviewCreateCustomInput;
 };
 
 export type MutationCreateBookReviewLikeArgs = {
   data: BookReviewLikeCreateInput;
-};
-
-export type MutationCreateBookeReviewArgs = {
-  data: BookReviewCreateInput;
 };
 
 export type MutationCreateFollowsArgs = {
@@ -5262,8 +6316,23 @@ export type MutationCreateManyActorInShowArgs = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type MutationCreateManyArtistInSongArgs = {
+  data: ArtistInSongCreateManyInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type MutationCreateManyAuthorInBookArgs = {
+  data: AuthorInBookCreateManyInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type MutationCreateManyBookArgs = {
   data: BookCreateManyInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type MutationCreateManyBookLikeArgs = {
+  data: BookLikeCreateManyInput[];
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -5357,6 +6426,11 @@ export type MutationCreateManySongInShowArgs = {
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type MutationCreateManySongLikeArgs = {
+  data: SongLikeCreateManyInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type MutationCreateManySongReviewArgs = {
   data: SongReviewCreateManyInput[];
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
@@ -5433,8 +6507,12 @@ export type MutationCreateSongInShowArgs = {
   data: SongInShowCreateInput;
 };
 
+export type MutationCreateSongLikeArgs = {
+  data: SongLikeCreateInput;
+};
+
 export type MutationCreateSongReviewArgs = {
-  data: SongReviewCreateInput;
+  data: SongReviewCreateCustomInput;
 };
 
 export type MutationCreateSongReviewLikeArgs = {
@@ -5457,12 +6535,24 @@ export type MutationDeleteActorInShowArgs = {
   where: ActorInShowWhereUniqueInput;
 };
 
+export type MutationDeleteArtistInSongArgs = {
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type MutationDeleteAuthorInBookArgs = {
+  where: AuthorInBookWhereUniqueInput;
+};
+
 export type MutationDeleteBookArgs = {
   where: BookWhereUniqueInput;
 };
 
+export type MutationDeleteBookLikeArgs = {
+  where: BookLikeWhereUniqueInput;
+};
+
 export type MutationDeleteBookReviewArgs = {
-  where: BookReviewWhereUniqueInput;
+  bookId: Scalars['Int'];
 };
 
 export type MutationDeleteBookReviewLikeArgs = {
@@ -5485,8 +6575,20 @@ export type MutationDeleteManyActorInShowArgs = {
   where?: InputMaybe<ActorInShowWhereInput>;
 };
 
+export type MutationDeleteManyArtistInSongArgs = {
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type MutationDeleteManyAuthorInBookArgs = {
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type MutationDeleteManyBookArgs = {
   where?: InputMaybe<BookWhereInput>;
+};
+
+export type MutationDeleteManyBookLikeArgs = {
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type MutationDeleteManyBookReviewArgs = {
@@ -5561,6 +6663,10 @@ export type MutationDeleteManySongInShowArgs = {
   where?: InputMaybe<SongInShowWhereInput>;
 };
 
+export type MutationDeleteManySongLikeArgs = {
+  where?: InputMaybe<SongLikeWhereInput>;
+};
+
 export type MutationDeleteManySongReviewArgs = {
   where?: InputMaybe<SongReviewWhereInput>;
 };
@@ -5633,8 +6739,12 @@ export type MutationDeleteSongInShowArgs = {
   where: SongInShowWhereUniqueInput;
 };
 
+export type MutationDeleteSongLikeArgs = {
+  where: SongLikeWhereUniqueInput;
+};
+
 export type MutationDeleteSongReviewArgs = {
-  where: SongReviewWhereUniqueInput;
+  songId: Scalars['Int'];
 };
 
 export type MutationDeleteSongReviewLikeArgs = {
@@ -5669,6 +6779,11 @@ export type MutationEditShowArgs = {
   where: ShowWhereUniqueInput;
 };
 
+export type MutationEditSongArgs = {
+  data: SongUpdateInput;
+  where: SongWhereUniqueInput;
+};
+
 export type MutationFollowArgs = {
   userId: Scalars['Int'];
 };
@@ -5677,12 +6792,20 @@ export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
+export type MutationLikeBookArgs = {
+  data: BookLikeCreateCustomInput;
+};
+
 export type MutationLikeMovieArgs = {
   data: MovieLikeCreateCustomInput;
 };
 
 export type MutationLikeShowArgs = {
   data: ShowLikeCreateCustomInput;
+};
+
+export type MutationLikeSongArgs = {
+  data: SongLikeCreateCustomInput;
 };
 
 export type MutationLockBookArgs = {
@@ -5695,9 +6818,19 @@ export type MutationLockMovieArgs = {
   movieId: Scalars['Int'];
 };
 
+export type MutationLockPersonArgs = {
+  lock: Scalars['Boolean'];
+  personId: Scalars['Int'];
+};
+
 export type MutationLockShowArgs = {
   lock: Scalars['Boolean'];
   showId: Scalars['Int'];
+};
+
+export type MutationLockSongArgs = {
+  lock: Scalars['Boolean'];
+  songId: Scalars['Int'];
 };
 
 export type MutationLoginArgs = {
@@ -5708,13 +6841,12 @@ export type MutationRegisterArgs = {
   data: RegisterInput;
 };
 
-export type MutationRemoveArtistArgs = {
-  bookId: Scalars['Int'];
-  personId: Scalars['Int'];
-};
-
 export type MutationUnfollowArgs = {
   userId: Scalars['Int'];
+};
+
+export type MutationUnlikeBookArgs = {
+  bookId: Scalars['Int'];
 };
 
 export type MutationUnlikeMovieArgs = {
@@ -5723,6 +6855,10 @@ export type MutationUnlikeMovieArgs = {
 
 export type MutationUnlikeShowArgs = {
   showId: Scalars['Int'];
+};
+
+export type MutationUnlikeSongArgs = {
+  songId: Scalars['Int'];
 };
 
 export type MutationUpdateActorInMovieArgs = {
@@ -5735,9 +6871,24 @@ export type MutationUpdateActorInShowArgs = {
   where: ActorInShowWhereUniqueInput;
 };
 
+export type MutationUpdateArtistInSongArgs = {
+  data: ArtistInSongUpdateInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type MutationUpdateAuthorInBookArgs = {
+  data: AuthorInBookUpdateInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
 export type MutationUpdateBookArgs = {
   data: BookUpdateInput;
   where: BookWhereUniqueInput;
+};
+
+export type MutationUpdateBookLikeArgs = {
+  data: BookLikeUpdateInput;
+  where: BookLikeWhereUniqueInput;
 };
 
 export type MutationUpdateBookReviewArgs = {
@@ -5770,9 +6921,24 @@ export type MutationUpdateManyActorInShowArgs = {
   where?: InputMaybe<ActorInShowWhereInput>;
 };
 
+export type MutationUpdateManyArtistInSongArgs = {
+  data: ArtistInSongUpdateManyMutationInput;
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type MutationUpdateManyAuthorInBookArgs = {
+  data: AuthorInBookUpdateManyMutationInput;
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type MutationUpdateManyBookArgs = {
   data: BookUpdateManyMutationInput;
   where?: InputMaybe<BookWhereInput>;
+};
+
+export type MutationUpdateManyBookLikeArgs = {
+  data: BookLikeUpdateManyMutationInput;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type MutationUpdateManyBookReviewArgs = {
@@ -5865,6 +7031,11 @@ export type MutationUpdateManySongInShowArgs = {
   where?: InputMaybe<SongInShowWhereInput>;
 };
 
+export type MutationUpdateManySongLikeArgs = {
+  data: SongLikeUpdateManyMutationInput;
+  where?: InputMaybe<SongLikeWhereInput>;
+};
+
 export type MutationUpdateManySongReviewArgs = {
   data: SongReviewUpdateManyMutationInput;
   where?: InputMaybe<SongReviewWhereInput>;
@@ -5955,6 +7126,11 @@ export type MutationUpdateSongInShowArgs = {
   where: SongInShowWhereUniqueInput;
 };
 
+export type MutationUpdateSongLikeArgs = {
+  data: SongLikeUpdateInput;
+  where: SongLikeWhereUniqueInput;
+};
+
 export type MutationUpdateSongReviewArgs = {
   data: SongReviewUpdateInput;
   where: SongReviewWhereUniqueInput;
@@ -6003,10 +7179,28 @@ export type MutationUpsertActorInShowArgs = {
   where: ActorInShowWhereUniqueInput;
 };
 
+export type MutationUpsertArtistInSongArgs = {
+  create: ArtistInSongCreateInput;
+  update: ArtistInSongUpdateInput;
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type MutationUpsertAuthorInBookArgs = {
+  create: AuthorInBookCreateInput;
+  update: AuthorInBookUpdateInput;
+  where: AuthorInBookWhereUniqueInput;
+};
+
 export type MutationUpsertBookArgs = {
   create: BookCreateInput;
   update: BookUpdateInput;
   where: BookWhereUniqueInput;
+};
+
+export type MutationUpsertBookLikeArgs = {
+  create: BookLikeCreateInput;
+  update: BookLikeUpdateInput;
+  where: BookLikeWhereUniqueInput;
 };
 
 export type MutationUpsertBookReviewArgs = {
@@ -6115,6 +7309,12 @@ export type MutationUpsertSongInShowArgs = {
   create: SongInShowCreateInput;
   update: SongInShowUpdateInput;
   where: SongInShowWhereUniqueInput;
+};
+
+export type MutationUpsertSongLikeArgs = {
+  create: SongLikeCreateInput;
+  update: SongLikeUpdateInput;
+  where: SongLikeWhereUniqueInput;
 };
 
 export type MutationUpsertSongReviewArgs = {
@@ -6674,25 +7874,26 @@ export type Person = {
   _count?: Maybe<PersonCount>;
   age?: Maybe<Scalars['Int']>;
   bio?: Maybe<Scalars['String']>;
-  books: Book[];
+  books: AuthorInBook[];
   career: Career[];
   createdAt: Scalars['DateTime'];
   id: Scalars['Int'];
+  locked: Scalars['Boolean'];
   movies: ActorInMovie[];
   name: Scalars['String'];
   poster: Scalars['String'];
   shows: ActorInShow[];
-  songs: Song[];
+  songs: ArtistInSong[];
   updatedAt: Scalars['DateTime'];
 };
 
 export type PersonBooksArgs = {
-  cursor?: InputMaybe<BookWhereUniqueInput>;
-  distinct?: InputMaybe<BookScalarFieldEnum[]>;
-  orderBy?: InputMaybe<BookOrderByWithRelationInput[]>;
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  distinct?: InputMaybe<AuthorInBookScalarFieldEnum[]>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[]>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<BookWhereInput>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
 };
 
 export type PersonMoviesArgs = {
@@ -6714,12 +7915,12 @@ export type PersonShowsArgs = {
 };
 
 export type PersonSongsArgs = {
-  cursor?: InputMaybe<SongWhereUniqueInput>;
-  distinct?: InputMaybe<SongScalarFieldEnum[]>;
-  orderBy?: InputMaybe<SongOrderByWithRelationInput[]>;
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  distinct?: InputMaybe<ArtistInSongScalarFieldEnum[]>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[]>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<SongWhereInput>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
 };
 
 export type PersonAvgAggregate = {
@@ -6749,6 +7950,7 @@ export type PersonCountAggregate = {
   career: Scalars['Int'];
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
+  locked: Scalars['Int'];
   name: Scalars['Int'];
   poster: Scalars['Int'];
   updatedAt: Scalars['Int'];
@@ -6760,6 +7962,7 @@ export type PersonCountOrderByAggregateInput = {
   career?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  locked?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -6768,14 +7971,15 @@ export type PersonCountOrderByAggregateInput = {
 export type PersonCreateInput = {
   age?: InputMaybe<Scalars['Int']>;
   bio?: InputMaybe<Scalars['String']>;
-  books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookCreateNestedManyWithoutPersonInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
   shows?: InputMaybe<ActorInShowCreateNestedManyWithoutPersonInput>;
-  songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongCreateNestedManyWithoutPersonInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -6785,6 +7989,7 @@ export type PersonCreateManyInput = {
   career?: InputMaybe<PersonCreateManycareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['Int']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -6794,16 +7999,10 @@ export type PersonCreateManycareerInput = {
   set: Career[];
 };
 
-export type PersonCreateNestedManyWithoutBooksInput = {
-  connect?: InputMaybe<PersonWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutBooksInput[]>;
-  create?: InputMaybe<PersonCreateWithoutBooksInput[]>;
-};
-
-export type PersonCreateNestedManyWithoutSongsInput = {
-  connect?: InputMaybe<PersonWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutSongsInput[]>;
-  create?: InputMaybe<PersonCreateWithoutSongsInput[]>;
+export type PersonCreateNestedOneWithoutBooksInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutBooksInput>;
+  create?: InputMaybe<PersonCreateWithoutBooksInput>;
 };
 
 export type PersonCreateNestedOneWithoutMoviesInput = {
@@ -6816,6 +8015,12 @@ export type PersonCreateNestedOneWithoutShowsInput = {
   connect?: InputMaybe<PersonWhereUniqueInput>;
   connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutShowsInput>;
   create?: InputMaybe<PersonCreateWithoutShowsInput>;
+};
+
+export type PersonCreateNestedOneWithoutSongsInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutSongsInput>;
+  create?: InputMaybe<PersonCreateWithoutSongsInput>;
 };
 
 export type PersonCreateOrConnectWithoutBooksInput = {
@@ -6843,46 +8048,50 @@ export type PersonCreateWithoutBooksInput = {
   bio?: InputMaybe<Scalars['String']>;
   career?: InputMaybe<PersonCreatecareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
   shows?: InputMaybe<ActorInShowCreateNestedManyWithoutPersonInput>;
-  songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongCreateNestedManyWithoutPersonInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type PersonCreateWithoutMoviesInput = {
   age?: InputMaybe<Scalars['Int']>;
   bio?: InputMaybe<Scalars['String']>;
-  books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookCreateNestedManyWithoutPersonInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
   shows?: InputMaybe<ActorInShowCreateNestedManyWithoutPersonInput>;
-  songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongCreateNestedManyWithoutPersonInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type PersonCreateWithoutShowsInput = {
   age?: InputMaybe<Scalars['Int']>;
   bio?: InputMaybe<Scalars['String']>;
-  books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookCreateNestedManyWithoutPersonInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
-  songs?: InputMaybe<SongCreateNestedManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongCreateNestedManyWithoutPersonInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type PersonCreateWithoutSongsInput = {
   age?: InputMaybe<Scalars['Int']>;
   bio?: InputMaybe<Scalars['String']>;
-  books?: InputMaybe<BookCreateNestedManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookCreateNestedManyWithoutPersonInput>;
   career?: InputMaybe<PersonCreatecareerInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  locked?: InputMaybe<Scalars['Boolean']>;
   movies?: InputMaybe<ActorInMovieCreateNestedManyWithoutPersonInput>;
   name: Scalars['String'];
   poster?: InputMaybe<Scalars['String']>;
@@ -6906,15 +8115,10 @@ export type PersonGroupBy = {
   career?: Maybe<Career[]>;
   createdAt: Scalars['DateTime'];
   id: Scalars['Int'];
+  locked: Scalars['Boolean'];
   name: Scalars['String'];
   poster: Scalars['String'];
   updatedAt: Scalars['DateTime'];
-};
-
-export type PersonListRelationFilter = {
-  every?: InputMaybe<PersonWhereInput>;
-  none?: InputMaybe<PersonWhereInput>;
-  some?: InputMaybe<PersonWhereInput>;
 };
 
 export type PersonMaxAggregate = {
@@ -6923,6 +8127,7 @@ export type PersonMaxAggregate = {
   bio?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  locked?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -6933,6 +8138,7 @@ export type PersonMaxOrderByAggregateInput = {
   bio?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  locked?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -6944,6 +8150,7 @@ export type PersonMinAggregate = {
   bio?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  locked?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -6954,13 +8161,10 @@ export type PersonMinOrderByAggregateInput = {
   bio?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  locked?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
-};
-
-export type PersonOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
 };
 
 export type PersonOrderByWithAggregationInput = {
@@ -6974,6 +8178,7 @@ export type PersonOrderByWithAggregationInput = {
   career?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  locked?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -6982,15 +8187,16 @@ export type PersonOrderByWithAggregationInput = {
 export type PersonOrderByWithRelationInput = {
   age?: InputMaybe<SortOrder>;
   bio?: InputMaybe<SortOrder>;
-  books?: InputMaybe<BookOrderByRelationAggregateInput>;
+  books?: InputMaybe<AuthorInBookOrderByRelationAggregateInput>;
   career?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  locked?: InputMaybe<SortOrder>;
   movies?: InputMaybe<ActorInMovieOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   shows?: InputMaybe<ActorInShowOrderByRelationAggregateInput>;
-  songs?: InputMaybe<SongOrderByRelationAggregateInput>;
+  songs?: InputMaybe<ArtistInSongOrderByRelationAggregateInput>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -7005,24 +8211,11 @@ export enum PersonScalarFieldEnum {
   Career = 'career',
   CreatedAt = 'createdAt',
   Id = 'id',
+  Locked = 'locked',
   Name = 'name',
   Poster = 'poster',
   UpdatedAt = 'updatedAt'
 }
-
-export type PersonScalarWhereInput = {
-  AND?: InputMaybe<PersonScalarWhereInput[]>;
-  NOT?: InputMaybe<PersonScalarWhereInput[]>;
-  OR?: InputMaybe<PersonScalarWhereInput[]>;
-  age?: InputMaybe<IntNullableFilter>;
-  bio?: InputMaybe<StringNullableFilter>;
-  career?: InputMaybe<EnumCareerNullableListFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<IntFilter>;
-  name?: InputMaybe<StringFilter>;
-  poster?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-};
 
 export type PersonScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<PersonScalarWhereWithAggregatesInput[]>;
@@ -7033,6 +8226,7 @@ export type PersonScalarWhereWithAggregatesInput = {
   career?: InputMaybe<EnumCareerNullableListFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
+  locked?: InputMaybe<BoolWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   poster?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -7052,14 +8246,15 @@ export type PersonSumOrderByAggregateInput = {
 export type PersonUpdateInput = {
   age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookUpdateManyWithoutPersonInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   shows?: InputMaybe<ActorInShowUpdateManyWithoutPersonInput>;
-  songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongUpdateManyWithoutPersonInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -7068,45 +8263,18 @@ export type PersonUpdateManyMutationInput = {
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type PersonUpdateManyWithWhereWithoutBooksInput = {
-  data: PersonUpdateManyMutationInput;
-  where: PersonScalarWhereInput;
-};
-
-export type PersonUpdateManyWithWhereWithoutSongsInput = {
-  data: PersonUpdateManyMutationInput;
-  where: PersonScalarWhereInput;
-};
-
-export type PersonUpdateManyWithoutBooksInput = {
-  connect?: InputMaybe<PersonWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutBooksInput[]>;
-  create?: InputMaybe<PersonCreateWithoutBooksInput[]>;
-  delete?: InputMaybe<PersonWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PersonScalarWhereInput[]>;
-  disconnect?: InputMaybe<PersonWhereUniqueInput[]>;
-  set?: InputMaybe<PersonWhereUniqueInput[]>;
-  update?: InputMaybe<PersonUpdateWithWhereUniqueWithoutBooksInput[]>;
-  updateMany?: InputMaybe<PersonUpdateManyWithWhereWithoutBooksInput[]>;
-  upsert?: InputMaybe<PersonUpsertWithWhereUniqueWithoutBooksInput[]>;
-};
-
-export type PersonUpdateManyWithoutSongsInput = {
-  connect?: InputMaybe<PersonWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutSongsInput[]>;
-  create?: InputMaybe<PersonCreateWithoutSongsInput[]>;
-  delete?: InputMaybe<PersonWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PersonScalarWhereInput[]>;
-  disconnect?: InputMaybe<PersonWhereUniqueInput[]>;
-  set?: InputMaybe<PersonWhereUniqueInput[]>;
-  update?: InputMaybe<PersonUpdateWithWhereUniqueWithoutSongsInput[]>;
-  updateMany?: InputMaybe<PersonUpdateManyWithWhereWithoutSongsInput[]>;
-  upsert?: InputMaybe<PersonUpsertWithWhereUniqueWithoutSongsInput[]>;
+export type PersonUpdateOneRequiredWithoutBooksInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutBooksInput>;
+  create?: InputMaybe<PersonCreateWithoutBooksInput>;
+  update?: InputMaybe<PersonUpdateWithoutBooksInput>;
+  upsert?: InputMaybe<PersonUpsertWithoutBooksInput>;
 };
 
 export type PersonUpdateOneRequiredWithoutMoviesInput = {
@@ -7125,14 +8293,12 @@ export type PersonUpdateOneRequiredWithoutShowsInput = {
   upsert?: InputMaybe<PersonUpsertWithoutShowsInput>;
 };
 
-export type PersonUpdateWithWhereUniqueWithoutBooksInput = {
-  data: PersonUpdateWithoutBooksInput;
-  where: PersonWhereUniqueInput;
-};
-
-export type PersonUpdateWithWhereUniqueWithoutSongsInput = {
-  data: PersonUpdateWithoutSongsInput;
-  where: PersonWhereUniqueInput;
+export type PersonUpdateOneRequiredWithoutSongsInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutSongsInput>;
+  create?: InputMaybe<PersonCreateWithoutSongsInput>;
+  update?: InputMaybe<PersonUpdateWithoutSongsInput>;
+  upsert?: InputMaybe<PersonUpsertWithoutSongsInput>;
 };
 
 export type PersonUpdateWithoutBooksInput = {
@@ -7140,46 +8306,50 @@ export type PersonUpdateWithoutBooksInput = {
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   shows?: InputMaybe<ActorInShowUpdateManyWithoutPersonInput>;
-  songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongUpdateManyWithoutPersonInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type PersonUpdateWithoutMoviesInput = {
   age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookUpdateManyWithoutPersonInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   shows?: InputMaybe<ActorInShowUpdateManyWithoutPersonInput>;
-  songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongUpdateManyWithoutPersonInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type PersonUpdateWithoutShowsInput = {
   age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookUpdateManyWithoutPersonInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
-  songs?: InputMaybe<SongUpdateManyWithoutArtistsInput>;
+  songs?: InputMaybe<ArtistInSongUpdateManyWithoutPersonInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type PersonUpdateWithoutSongsInput = {
   age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   bio?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  books?: InputMaybe<BookUpdateManyWithoutAuthorsInput>;
+  books?: InputMaybe<AuthorInBookUpdateManyWithoutPersonInput>;
   career?: InputMaybe<PersonUpdatecareerInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   movies?: InputMaybe<ActorInMovieUpdateManyWithoutPersonInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -7192,16 +8362,9 @@ export type PersonUpdatecareerInput = {
   set?: InputMaybe<Career[]>;
 };
 
-export type PersonUpsertWithWhereUniqueWithoutBooksInput = {
+export type PersonUpsertWithoutBooksInput = {
   create: PersonCreateWithoutBooksInput;
   update: PersonUpdateWithoutBooksInput;
-  where: PersonWhereUniqueInput;
-};
-
-export type PersonUpsertWithWhereUniqueWithoutSongsInput = {
-  create: PersonCreateWithoutSongsInput;
-  update: PersonUpdateWithoutSongsInput;
-  where: PersonWhereUniqueInput;
 };
 
 export type PersonUpsertWithoutMoviesInput = {
@@ -7214,21 +8377,27 @@ export type PersonUpsertWithoutShowsInput = {
   update: PersonUpdateWithoutShowsInput;
 };
 
+export type PersonUpsertWithoutSongsInput = {
+  create: PersonCreateWithoutSongsInput;
+  update: PersonUpdateWithoutSongsInput;
+};
+
 export type PersonWhereInput = {
   AND?: InputMaybe<PersonWhereInput[]>;
   NOT?: InputMaybe<PersonWhereInput[]>;
   OR?: InputMaybe<PersonWhereInput[]>;
   age?: InputMaybe<IntNullableFilter>;
   bio?: InputMaybe<StringNullableFilter>;
-  books?: InputMaybe<BookListRelationFilter>;
+  books?: InputMaybe<AuthorInBookListRelationFilter>;
   career?: InputMaybe<EnumCareerNullableListFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<IntFilter>;
+  locked?: InputMaybe<BoolFilter>;
   movies?: InputMaybe<ActorInMovieListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   poster?: InputMaybe<StringFilter>;
   shows?: InputMaybe<ActorInShowListRelationFilter>;
-  songs?: InputMaybe<SongListRelationFilter>;
+  songs?: InputMaybe<ArtistInSongListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -7545,7 +8714,10 @@ export type Query = {
   actorInShows: ActorInShow[];
   aggregateActorInMovie: AggregateActorInMovie;
   aggregateActorInShow: AggregateActorInShow;
+  aggregateArtistInSong: AggregateArtistInSong;
+  aggregateAuthorInBook: AggregateAuthorInBook;
   aggregateBook: AggregateBook;
+  aggregateBookLike: AggregateBookLike;
   aggregateBookReview: AggregateBookReview;
   aggregateBookReviewLike: AggregateBookReviewLike;
   aggregateFollows: AggregateFollows;
@@ -7564,11 +8736,18 @@ export type Query = {
   aggregateSong: AggregateSong;
   aggregateSongInMovie: AggregateSongInMovie;
   aggregateSongInShow: AggregateSongInShow;
+  aggregateSongLike: AggregateSongLike;
   aggregateSongReview: AggregateSongReview;
   aggregateSongReviewLike: AggregateSongReviewLike;
   aggregateUser: AggregateUser;
   aggregateWatchlist: AggregateWatchlist;
+  artistInSong?: Maybe<ArtistInSong>;
+  artistInSongs: ArtistInSong[];
+  authorInBook?: Maybe<AuthorInBook>;
+  authorInBooks: AuthorInBook[];
   book?: Maybe<Book>;
+  bookLike?: Maybe<BookLike>;
+  bookLikes: BookLike[];
   bookReview?: Maybe<BookReview>;
   bookReviewLike?: Maybe<BookReviewLike>;
   bookReviewLikes: BookReviewLike[];
@@ -7576,7 +8755,10 @@ export type Query = {
   books?: Maybe<Book[]>;
   findFirstActorInMovie?: Maybe<ActorInMovie>;
   findFirstActorInShow?: Maybe<ActorInShow>;
+  findFirstArtistInSong?: Maybe<ArtistInSong>;
+  findFirstAuthorInBook?: Maybe<AuthorInBook>;
   findFirstBook?: Maybe<Book>;
+  findFirstBookLike?: Maybe<BookLike>;
   findFirstBookReview?: Maybe<BookReview>;
   findFirstBookReviewLike?: Maybe<BookReviewLike>;
   findFirstFollows?: Maybe<Follows>;
@@ -7595,6 +8777,7 @@ export type Query = {
   findFirstSong?: Maybe<Song>;
   findFirstSongInMovie?: Maybe<SongInMovie>;
   findFirstSongInShow?: Maybe<SongInShow>;
+  findFirstSongLike?: Maybe<SongLike>;
   findFirstSongReview?: Maybe<SongReview>;
   findFirstSongReviewLike?: Maybe<SongReviewLike>;
   findFirstUser?: Maybe<User>;
@@ -7606,7 +8789,10 @@ export type Query = {
   genres: Genre[];
   groupByActorInMovie: ActorInMovieGroupBy[];
   groupByActorInShow: ActorInShowGroupBy[];
+  groupByArtistInSong: ArtistInSongGroupBy[];
+  groupByAuthorInBook: AuthorInBookGroupBy[];
   groupByBook: BookGroupBy[];
+  groupByBookLike: BookLikeGroupBy[];
   groupByBookReview: BookReviewGroupBy[];
   groupByBookReviewLike: BookReviewLikeGroupBy[];
   groupByFollows: FollowsGroupBy[];
@@ -7625,12 +8811,15 @@ export type Query = {
   groupBySong: SongGroupBy[];
   groupBySongInMovie: SongInMovieGroupBy[];
   groupBySongInShow: SongInShowGroupBy[];
+  groupBySongLike: SongLikeGroupBy[];
   groupBySongReview: SongReviewGroupBy[];
   groupBySongReviewLike: SongReviewLikeGroupBy[];
   groupByUser: UserGroupBy[];
   groupByWatchlist: WatchlistGroupBy[];
+  likedBooks: BookLike[];
   likedMovies: MovieLike[];
   likedShows: ShowLike[];
+  likedSongs: SongLike[];
   me?: Maybe<User>;
   movie?: Maybe<Movie>;
   movieLike?: Maybe<MovieLike>;
@@ -7642,8 +8831,9 @@ export type Query = {
   movies?: Maybe<Movie[]>;
   notification?: Maybe<Notification>;
   notifications: Notification[];
-  people?: Maybe<Person[]>;
+  people: Person[];
   person?: Maybe<Person>;
+  persons?: Maybe<Person[]>;
   platform?: Maybe<Platform>;
   platforms: Platform[];
   show?: Maybe<Show>;
@@ -7659,6 +8849,8 @@ export type Query = {
   songInMovies: SongInMovie[];
   songInShow?: Maybe<SongInShow>;
   songInShows: SongInShow[];
+  songLike?: Maybe<SongLike>;
+  songLikes: SongLike[];
   songReview?: Maybe<SongReview>;
   songReviewLike?: Maybe<SongReviewLike>;
   songReviewLikes: SongReviewLike[];
@@ -7712,12 +8904,36 @@ export type QueryAggregateActorInShowArgs = {
   where?: InputMaybe<ActorInShowWhereInput>;
 };
 
+export type QueryAggregateArtistInSongArgs = {
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type QueryAggregateAuthorInBookArgs = {
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type QueryAggregateBookArgs = {
   cursor?: InputMaybe<BookWhereUniqueInput>;
   orderBy?: InputMaybe<BookOrderByWithRelationInput[]>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BookWhereInput>;
+};
+
+export type QueryAggregateBookLikeArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type QueryAggregateBookReviewArgs = {
@@ -7864,6 +9080,14 @@ export type QueryAggregateSongInShowArgs = {
   where?: InputMaybe<SongInShowWhereInput>;
 };
 
+export type QueryAggregateSongLikeArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
+};
+
 export type QueryAggregateSongReviewArgs = {
   cursor?: InputMaybe<SongReviewWhereUniqueInput>;
   orderBy?: InputMaybe<SongReviewOrderByWithRelationInput[]>;
@@ -7896,8 +9120,47 @@ export type QueryAggregateWatchlistArgs = {
   where?: InputMaybe<WatchlistWhereInput>;
 };
 
+export type QueryArtistInSongArgs = {
+  where: ArtistInSongWhereUniqueInput;
+};
+
+export type QueryArtistInSongsArgs = {
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  distinct?: InputMaybe<ArtistInSongScalarFieldEnum[]>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type QueryAuthorInBookArgs = {
+  where: AuthorInBookWhereUniqueInput;
+};
+
+export type QueryAuthorInBooksArgs = {
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  distinct?: InputMaybe<AuthorInBookScalarFieldEnum[]>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type QueryBookArgs = {
   bookId: Scalars['Int'];
+};
+
+export type QueryBookLikeArgs = {
+  where: BookLikeWhereUniqueInput;
+};
+
+export type QueryBookLikesArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  distinct?: InputMaybe<BookLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type QueryBookReviewArgs = {
@@ -7927,7 +9190,12 @@ export type QueryBookReviewsArgs = {
 };
 
 export type QueryBooksArgs = {
-  title: Scalars['String'];
+  cursor?: InputMaybe<BookWhereUniqueInput>;
+  distinct?: InputMaybe<BookScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookWhereInput>;
 };
 
 export type QueryFindFirstActorInMovieArgs = {
@@ -7948,6 +9216,24 @@ export type QueryFindFirstActorInShowArgs = {
   where?: InputMaybe<ActorInShowWhereInput>;
 };
 
+export type QueryFindFirstArtistInSongArgs = {
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  distinct?: InputMaybe<ArtistInSongScalarFieldEnum[]>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type QueryFindFirstAuthorInBookArgs = {
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  distinct?: InputMaybe<AuthorInBookScalarFieldEnum[]>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type QueryFindFirstBookArgs = {
   cursor?: InputMaybe<BookWhereUniqueInput>;
   distinct?: InputMaybe<BookScalarFieldEnum[]>;
@@ -7955,6 +9241,15 @@ export type QueryFindFirstBookArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BookWhereInput>;
+};
+
+export type QueryFindFirstBookLikeArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  distinct?: InputMaybe<BookLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type QueryFindFirstBookReviewArgs = {
@@ -8119,6 +9414,15 @@ export type QueryFindFirstSongInShowArgs = {
   where?: InputMaybe<SongInShowWhereInput>;
 };
 
+export type QueryFindFirstSongLikeArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  distinct?: InputMaybe<SongLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
+};
+
 export type QueryFindFirstSongReviewArgs = {
   cursor?: InputMaybe<SongReviewWhereUniqueInput>;
   distinct?: InputMaybe<SongReviewScalarFieldEnum[]>;
@@ -8208,6 +9512,24 @@ export type QueryGroupByActorInShowArgs = {
   where?: InputMaybe<ActorInShowWhereInput>;
 };
 
+export type QueryGroupByArtistInSongArgs = {
+  by: ArtistInSongScalarFieldEnum[];
+  having?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithAggregationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
+};
+
+export type QueryGroupByAuthorInBookArgs = {
+  by: AuthorInBookScalarFieldEnum[];
+  having?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithAggregationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AuthorInBookWhereInput>;
+};
+
 export type QueryGroupByBookArgs = {
   by: BookScalarFieldEnum[];
   having?: InputMaybe<BookScalarWhereWithAggregatesInput>;
@@ -8215,6 +9537,15 @@ export type QueryGroupByBookArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BookWhereInput>;
+};
+
+export type QueryGroupByBookLikeArgs = {
+  by: BookLikeScalarFieldEnum[];
+  having?: InputMaybe<BookLikeScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<BookLikeOrderByWithAggregationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
 };
 
 export type QueryGroupByBookReviewArgs = {
@@ -8379,6 +9710,15 @@ export type QueryGroupBySongInShowArgs = {
   where?: InputMaybe<SongInShowWhereInput>;
 };
 
+export type QueryGroupBySongLikeArgs = {
+  by: SongLikeScalarFieldEnum[];
+  having?: InputMaybe<SongLikeScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<SongLikeOrderByWithAggregationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
+};
+
 export type QueryGroupBySongReviewArgs = {
   by: SongReviewScalarFieldEnum[];
   having?: InputMaybe<SongReviewScalarWhereWithAggregatesInput>;
@@ -8415,6 +9755,15 @@ export type QueryGroupByWatchlistArgs = {
   where?: InputMaybe<WatchlistWhereInput>;
 };
 
+export type QueryLikedBooksArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  distinct?: InputMaybe<BookLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
+};
+
 export type QueryLikedMoviesArgs = {
   cursor?: InputMaybe<MovieLikeWhereUniqueInput>;
   distinct?: InputMaybe<MovieLikeScalarFieldEnum[]>;
@@ -8431,6 +9780,15 @@ export type QueryLikedShowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ShowLikeWhereInput>;
+};
+
+export type QueryLikedSongsArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  distinct?: InputMaybe<SongLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
 };
 
 export type QueryMovieArgs = {
@@ -8508,7 +9866,16 @@ export type QueryPeopleArgs = {
 };
 
 export type QueryPersonArgs = {
-  where: PersonWhereUniqueInput;
+  personId: Scalars['Int'];
+};
+
+export type QueryPersonsArgs = {
+  cursor?: InputMaybe<PersonWhereUniqueInput>;
+  distinct?: InputMaybe<PersonScalarFieldEnum[]>;
+  orderBy?: InputMaybe<PersonOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PersonWhereInput>;
 };
 
 export type QueryPlatformArgs = {
@@ -8577,7 +9944,7 @@ export type QueryShowsArgs = {
 };
 
 export type QuerySongArgs = {
-  where: SongWhereUniqueInput;
+  songId: Scalars['Int'];
 };
 
 export type QuerySongInMovieArgs = {
@@ -8604,6 +9971,19 @@ export type QuerySongInShowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SongInShowWhereInput>;
+};
+
+export type QuerySongLikeArgs = {
+  where: SongLikeWhereUniqueInput;
+};
+
+export type QuerySongLikesArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  distinct?: InputMaybe<SongLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
 };
 
 export type QuerySongReviewArgs = {
@@ -10702,11 +12082,14 @@ export type ShowWhereUniqueInput = {
 export type Song = {
   __typename?: 'Song';
   _count?: Maybe<SongCount>;
-  artists: Person[];
+  aggregateSongReview: AggregateSongReview;
+  artists: ArtistInSong[];
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   genres: Genre[];
   id: Scalars['Int'];
+  isLiked: Scalars['Boolean'];
+  likes: SongLike[];
   locked: Scalars['Boolean'];
   poster: Scalars['String'];
   released?: Maybe<Scalars['DateTime']>;
@@ -10714,15 +12097,24 @@ export type Song = {
   songInMovie: SongInMovie[];
   songInShow: SongInShow[];
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type SongAggregateSongReviewArgs = {
+  cursor?: InputMaybe<SongReviewWhereUniqueInput>;
+  orderBy?: InputMaybe<SongReviewOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongReviewWhereInput>;
 };
 
 export type SongArtistsArgs = {
-  cursor?: InputMaybe<PersonWhereUniqueInput>;
-  distinct?: InputMaybe<PersonScalarFieldEnum[]>;
-  orderBy?: InputMaybe<PersonOrderByWithRelationInput[]>;
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  distinct?: InputMaybe<ArtistInSongScalarFieldEnum[]>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[]>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<PersonWhereInput>;
+  where?: InputMaybe<ArtistInSongWhereInput>;
 };
 
 export type SongGenresArgs = {
@@ -10732,6 +12124,15 @@ export type SongGenresArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<GenreWhereInput>;
+};
+
+export type SongLikesArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  distinct?: InputMaybe<SongLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
 };
 
 export type SongReviewsArgs = {
@@ -10774,6 +12175,7 @@ export type SongCount = {
   __typename?: 'SongCount';
   artists: Scalars['Int'];
   genres: Scalars['Int'];
+  likes: Scalars['Int'];
   reviews: Scalars['Int'];
   songInMovie: Scalars['Int'];
   songInShow: Scalars['Int'];
@@ -10789,6 +12191,7 @@ export type SongCountAggregate = {
   poster: Scalars['Int'];
   released: Scalars['Int'];
   title: Scalars['Int'];
+  updatedAt: Scalars['Int'];
 };
 
 export type SongCountOrderByAggregateInput = {
@@ -10799,13 +12202,15 @@ export type SongCountOrderByAggregateInput = {
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SongCreateInput = {
-  artists?: InputMaybe<PersonCreateNestedManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -10813,6 +12218,7 @@ export type SongCreateInput = {
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateManyInput = {
@@ -10823,18 +12229,25 @@ export type SongCreateManyInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   title: Scalars['String'];
-};
-
-export type SongCreateNestedManyWithoutArtistsInput = {
-  connect?: InputMaybe<SongWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutArtistsInput[]>;
-  create?: InputMaybe<SongCreateWithoutArtistsInput[]>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateNestedManyWithoutGenresInput = {
   connect?: InputMaybe<SongWhereUniqueInput[]>;
   connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutGenresInput[]>;
   create?: InputMaybe<SongCreateWithoutGenresInput[]>;
+};
+
+export type SongCreateNestedOneWithoutArtistsInput = {
+  connect?: InputMaybe<SongWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutArtistsInput>;
+  create?: InputMaybe<SongCreateWithoutArtistsInput>;
+};
+
+export type SongCreateNestedOneWithoutLikesInput = {
+  connect?: InputMaybe<SongWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutLikesInput>;
+  create?: InputMaybe<SongCreateWithoutLikesInput>;
 };
 
 export type SongCreateNestedOneWithoutReviewsInput = {
@@ -10865,6 +12278,11 @@ export type SongCreateOrConnectWithoutGenresInput = {
   where: SongWhereUniqueInput;
 };
 
+export type SongCreateOrConnectWithoutLikesInput = {
+  create: SongCreateWithoutLikesInput;
+  where: SongWhereUniqueInput;
+};
+
 export type SongCreateOrConnectWithoutReviewsInput = {
   create: SongCreateWithoutReviewsInput;
   where: SongWhereUniqueInput;
@@ -10884,6 +12302,7 @@ export type SongCreateWithoutArtistsInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -10891,12 +12310,14 @@ export type SongCreateWithoutArtistsInput = {
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateWithoutGenresInput = {
-  artists?: InputMaybe<PersonCreateNestedManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
@@ -10904,45 +12325,67 @@ export type SongCreateWithoutGenresInput = {
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type SongCreateWithoutLikesInput = {
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  locked?: InputMaybe<Scalars['Boolean']>;
+  poster?: InputMaybe<Scalars['String']>;
+  released?: InputMaybe<Scalars['DateTime']>;
+  reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
+  songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateWithoutReviewsInput = {
-  artists?: InputMaybe<PersonCreateNestedManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateWithoutSongInMovieInput = {
-  artists?: InputMaybe<PersonCreateNestedManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongCreateWithoutSongInShowInput = {
-  artists?: InputMaybe<PersonCreateNestedManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongCreateNestedManyWithoutSongInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
   genres?: InputMaybe<GenreCreateNestedManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeCreateNestedManyWithoutSongInput>;
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type SongGroupBy = {
@@ -10959,6 +12402,7 @@ export type SongGroupBy = {
   poster: Scalars['String'];
   released?: Maybe<Scalars['DateTime']>;
   title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type SongInMovie = {
@@ -11613,6 +13057,313 @@ export type SongInShowWhereUniqueInput = {
   songId_showId?: InputMaybe<SongInShowSongIdShowIdCompoundUniqueInput>;
 };
 
+export type SongLike = {
+  __typename?: 'SongLike';
+  createdAt: Scalars['DateTime'];
+  song: Song;
+  songId: Scalars['Int'];
+  user: User;
+  userId: Scalars['Int'];
+};
+
+export type SongLikeAvgAggregate = {
+  __typename?: 'SongLikeAvgAggregate';
+  songId?: Maybe<Scalars['Float']>;
+  userId?: Maybe<Scalars['Float']>;
+};
+
+export type SongLikeAvgOrderByAggregateInput = {
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeCountAggregate = {
+  __typename?: 'SongLikeCountAggregate';
+  _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  songId: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type SongLikeCountOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeCreateCustomInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  song: SongCreateNestedOneWithoutLikesInput;
+};
+
+export type SongLikeCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  song: SongCreateNestedOneWithoutLikesInput;
+  user: UserCreateNestedOneWithoutLikedSongsInput;
+};
+
+export type SongLikeCreateManyInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  songId: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type SongLikeCreateManySongInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['Int'];
+};
+
+export type SongLikeCreateManySongInputEnvelope = {
+  data: SongLikeCreateManySongInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type SongLikeCreateManyUserInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  songId: Scalars['Int'];
+};
+
+export type SongLikeCreateManyUserInputEnvelope = {
+  data: SongLikeCreateManyUserInput[];
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type SongLikeCreateNestedManyWithoutSongInput = {
+  connect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<SongLikeCreateOrConnectWithoutSongInput[]>;
+  create?: InputMaybe<SongLikeCreateWithoutSongInput[]>;
+  createMany?: InputMaybe<SongLikeCreateManySongInputEnvelope>;
+};
+
+export type SongLikeCreateNestedManyWithoutUserInput = {
+  connect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<SongLikeCreateOrConnectWithoutUserInput[]>;
+  create?: InputMaybe<SongLikeCreateWithoutUserInput[]>;
+  createMany?: InputMaybe<SongLikeCreateManyUserInputEnvelope>;
+};
+
+export type SongLikeCreateOrConnectWithoutSongInput = {
+  create: SongLikeCreateWithoutSongInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeCreateOrConnectWithoutUserInput = {
+  create: SongLikeCreateWithoutUserInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeCreateWithoutSongInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutLikedSongsInput;
+};
+
+export type SongLikeCreateWithoutUserInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  song: SongCreateNestedOneWithoutLikesInput;
+};
+
+export type SongLikeGroupBy = {
+  __typename?: 'SongLikeGroupBy';
+  _avg?: Maybe<SongLikeAvgAggregate>;
+  _count?: Maybe<SongLikeCountAggregate>;
+  _max?: Maybe<SongLikeMaxAggregate>;
+  _min?: Maybe<SongLikeMinAggregate>;
+  _sum?: Maybe<SongLikeSumAggregate>;
+  createdAt: Scalars['DateTime'];
+  songId: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type SongLikeListRelationFilter = {
+  every?: InputMaybe<SongLikeWhereInput>;
+  none?: InputMaybe<SongLikeWhereInput>;
+  some?: InputMaybe<SongLikeWhereInput>;
+};
+
+export type SongLikeMaxAggregate = {
+  __typename?: 'SongLikeMaxAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  songId?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type SongLikeMaxOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeMinAggregate = {
+  __typename?: 'SongLikeMinAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  songId?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type SongLikeMinOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeOrderByWithAggregationInput = {
+  _avg?: InputMaybe<SongLikeAvgOrderByAggregateInput>;
+  _count?: InputMaybe<SongLikeCountOrderByAggregateInput>;
+  _max?: InputMaybe<SongLikeMaxOrderByAggregateInput>;
+  _min?: InputMaybe<SongLikeMinOrderByAggregateInput>;
+  _sum?: InputMaybe<SongLikeSumOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeOrderByWithRelationInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  song?: InputMaybe<SongOrderByWithRelationInput>;
+  songId?: InputMaybe<SortOrder>;
+  user?: InputMaybe<UserOrderByWithRelationInput>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export enum SongLikeScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  SongId = 'songId',
+  UserId = 'userId'
+}
+
+export type SongLikeScalarWhereInput = {
+  AND?: InputMaybe<SongLikeScalarWhereInput[]>;
+  NOT?: InputMaybe<SongLikeScalarWhereInput[]>;
+  OR?: InputMaybe<SongLikeScalarWhereInput[]>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  songId?: InputMaybe<IntFilter>;
+  userId?: InputMaybe<IntFilter>;
+};
+
+export type SongLikeScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<SongLikeScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<SongLikeScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<SongLikeScalarWhereWithAggregatesInput[]>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  songId?: InputMaybe<IntWithAggregatesFilter>;
+  userId?: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type SongLikeSumAggregate = {
+  __typename?: 'SongLikeSumAggregate';
+  songId?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type SongLikeSumOrderByAggregateInput = {
+  songId?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type SongLikeUpdateInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  song?: InputMaybe<SongUpdateOneRequiredWithoutLikesInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutLikedSongsInput>;
+};
+
+export type SongLikeUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SongLikeUpdateManyWithWhereWithoutSongInput = {
+  data: SongLikeUpdateManyMutationInput;
+  where: SongLikeScalarWhereInput;
+};
+
+export type SongLikeUpdateManyWithWhereWithoutUserInput = {
+  data: SongLikeUpdateManyMutationInput;
+  where: SongLikeScalarWhereInput;
+};
+
+export type SongLikeUpdateManyWithoutSongInput = {
+  connect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<SongLikeCreateOrConnectWithoutSongInput[]>;
+  create?: InputMaybe<SongLikeCreateWithoutSongInput[]>;
+  createMany?: InputMaybe<SongLikeCreateManySongInputEnvelope>;
+  delete?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<SongLikeScalarWhereInput[]>;
+  disconnect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  set?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  update?: InputMaybe<SongLikeUpdateWithWhereUniqueWithoutSongInput[]>;
+  updateMany?: InputMaybe<SongLikeUpdateManyWithWhereWithoutSongInput[]>;
+  upsert?: InputMaybe<SongLikeUpsertWithWhereUniqueWithoutSongInput[]>;
+};
+
+export type SongLikeUpdateManyWithoutUserInput = {
+  connect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  connectOrCreate?: InputMaybe<SongLikeCreateOrConnectWithoutUserInput[]>;
+  create?: InputMaybe<SongLikeCreateWithoutUserInput[]>;
+  createMany?: InputMaybe<SongLikeCreateManyUserInputEnvelope>;
+  delete?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  deleteMany?: InputMaybe<SongLikeScalarWhereInput[]>;
+  disconnect?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  set?: InputMaybe<SongLikeWhereUniqueInput[]>;
+  update?: InputMaybe<SongLikeUpdateWithWhereUniqueWithoutUserInput[]>;
+  updateMany?: InputMaybe<SongLikeUpdateManyWithWhereWithoutUserInput[]>;
+  upsert?: InputMaybe<SongLikeUpsertWithWhereUniqueWithoutUserInput[]>;
+};
+
+export type SongLikeUpdateWithWhereUniqueWithoutSongInput = {
+  data: SongLikeUpdateWithoutSongInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeUpdateWithWhereUniqueWithoutUserInput = {
+  data: SongLikeUpdateWithoutUserInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeUpdateWithoutSongInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutLikedSongsInput>;
+};
+
+export type SongLikeUpdateWithoutUserInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  song?: InputMaybe<SongUpdateOneRequiredWithoutLikesInput>;
+};
+
+export type SongLikeUpsertWithWhereUniqueWithoutSongInput = {
+  create: SongLikeCreateWithoutSongInput;
+  update: SongLikeUpdateWithoutSongInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeUpsertWithWhereUniqueWithoutUserInput = {
+  create: SongLikeCreateWithoutUserInput;
+  update: SongLikeUpdateWithoutUserInput;
+  where: SongLikeWhereUniqueInput;
+};
+
+export type SongLikeUserIdSongIdCompoundUniqueInput = {
+  songId: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type SongLikeWhereInput = {
+  AND?: InputMaybe<SongLikeWhereInput[]>;
+  NOT?: InputMaybe<SongLikeWhereInput[]>;
+  OR?: InputMaybe<SongLikeWhereInput[]>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  song?: InputMaybe<SongRelationFilter>;
+  songId?: InputMaybe<IntFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<IntFilter>;
+};
+
+export type SongLikeWhereUniqueInput = {
+  userId_songId?: InputMaybe<SongLikeUserIdSongIdCompoundUniqueInput>;
+};
+
 export type SongListRelationFilter = {
   every?: InputMaybe<SongWhereInput>;
   none?: InputMaybe<SongWhereInput>;
@@ -11628,6 +13379,7 @@ export type SongMaxAggregate = {
   poster?: Maybe<Scalars['String']>;
   released?: Maybe<Scalars['DateTime']>;
   title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type SongMaxOrderByAggregateInput = {
@@ -11638,6 +13390,7 @@ export type SongMaxOrderByAggregateInput = {
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SongMinAggregate = {
@@ -11649,6 +13402,7 @@ export type SongMinAggregate = {
   poster?: Maybe<Scalars['String']>;
   released?: Maybe<Scalars['DateTime']>;
   title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type SongMinOrderByAggregateInput = {
@@ -11659,6 +13413,7 @@ export type SongMinOrderByAggregateInput = {
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SongOrderByRelationAggregateInput = {
@@ -11678,14 +13433,16 @@ export type SongOrderByWithAggregationInput = {
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SongOrderByWithRelationInput = {
-  artists?: InputMaybe<PersonOrderByRelationAggregateInput>;
+  artists?: InputMaybe<ArtistInSongOrderByRelationAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   genres?: InputMaybe<GenreOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
+  likes?: InputMaybe<SongLikeOrderByRelationAggregateInput>;
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
@@ -11693,6 +13450,7 @@ export type SongOrderByWithRelationInput = {
   songInMovie?: InputMaybe<SongInMovieOrderByRelationAggregateInput>;
   songInShow?: InputMaybe<SongInShowOrderByRelationAggregateInput>;
   title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type SongRelationFilter = {
@@ -11753,6 +13511,13 @@ export type SongReviewCountOrderByAggregateInput = {
   review?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
+};
+
+export type SongReviewCreateCustomInput = {
+  likes?: InputMaybe<SongReviewLikeCreateNestedManyWithoutSongReviewInput>;
+  rating: Scalars['Int'];
+  review?: InputMaybe<Scalars['String']>;
+  song: SongCreateNestedOneWithoutReviewsInput;
 };
 
 export type SongReviewCreateInput = {
@@ -12427,7 +14192,8 @@ export enum SongScalarFieldEnum {
   Locked = 'locked',
   Poster = 'poster',
   Released = 'released',
-  Title = 'title'
+  Title = 'title',
+  UpdatedAt = 'updatedAt'
 }
 
 export type SongScalarWhereInput = {
@@ -12441,6 +14207,7 @@ export type SongScalarWhereInput = {
   poster?: InputMaybe<StringFilter>;
   released?: InputMaybe<DateTimeNullableFilter>;
   title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type SongScalarWhereWithAggregatesInput = {
@@ -12454,6 +14221,7 @@ export type SongScalarWhereWithAggregatesInput = {
   poster?: InputMaybe<StringWithAggregatesFilter>;
   released?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   title?: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
 export type SongSumAggregate = {
@@ -12466,10 +14234,11 @@ export type SongSumOrderByAggregateInput = {
 };
 
 export type SongUpdateInput = {
-  artists?: InputMaybe<PersonUpdateManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -12477,6 +14246,7 @@ export type SongUpdateInput = {
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateManyMutationInput = {
@@ -12486,29 +14256,12 @@ export type SongUpdateManyMutationInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type SongUpdateManyWithWhereWithoutArtistsInput = {
-  data: SongUpdateManyMutationInput;
-  where: SongScalarWhereInput;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateManyWithWhereWithoutGenresInput = {
   data: SongUpdateManyMutationInput;
   where: SongScalarWhereInput;
-};
-
-export type SongUpdateManyWithoutArtistsInput = {
-  connect?: InputMaybe<SongWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutArtistsInput[]>;
-  create?: InputMaybe<SongCreateWithoutArtistsInput[]>;
-  delete?: InputMaybe<SongWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<SongScalarWhereInput[]>;
-  disconnect?: InputMaybe<SongWhereUniqueInput[]>;
-  set?: InputMaybe<SongWhereUniqueInput[]>;
-  update?: InputMaybe<SongUpdateWithWhereUniqueWithoutArtistsInput[]>;
-  updateMany?: InputMaybe<SongUpdateManyWithWhereWithoutArtistsInput[]>;
-  upsert?: InputMaybe<SongUpsertWithWhereUniqueWithoutArtistsInput[]>;
 };
 
 export type SongUpdateManyWithoutGenresInput = {
@@ -12522,6 +14275,22 @@ export type SongUpdateManyWithoutGenresInput = {
   update?: InputMaybe<SongUpdateWithWhereUniqueWithoutGenresInput[]>;
   updateMany?: InputMaybe<SongUpdateManyWithWhereWithoutGenresInput[]>;
   upsert?: InputMaybe<SongUpsertWithWhereUniqueWithoutGenresInput[]>;
+};
+
+export type SongUpdateOneRequiredWithoutArtistsInput = {
+  connect?: InputMaybe<SongWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutArtistsInput>;
+  create?: InputMaybe<SongCreateWithoutArtistsInput>;
+  update?: InputMaybe<SongUpdateWithoutArtistsInput>;
+  upsert?: InputMaybe<SongUpsertWithoutArtistsInput>;
+};
+
+export type SongUpdateOneRequiredWithoutLikesInput = {
+  connect?: InputMaybe<SongWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<SongCreateOrConnectWithoutLikesInput>;
+  create?: InputMaybe<SongCreateWithoutLikesInput>;
+  update?: InputMaybe<SongUpdateWithoutLikesInput>;
+  upsert?: InputMaybe<SongUpsertWithoutLikesInput>;
 };
 
 export type SongUpdateOneRequiredWithoutReviewsInput = {
@@ -12548,11 +14317,6 @@ export type SongUpdateOneRequiredWithoutSongInShowInput = {
   upsert?: InputMaybe<SongUpsertWithoutSongInShowInput>;
 };
 
-export type SongUpdateWithWhereUniqueWithoutArtistsInput = {
-  data: SongUpdateWithoutArtistsInput;
-  where: SongWhereUniqueInput;
-};
-
 export type SongUpdateWithWhereUniqueWithoutGenresInput = {
   data: SongUpdateWithoutGenresInput;
   where: SongWhereUniqueInput;
@@ -12562,6 +14326,7 @@ export type SongUpdateWithoutArtistsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -12569,12 +14334,14 @@ export type SongUpdateWithoutArtistsInput = {
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateWithoutGenresInput = {
-  artists?: InputMaybe<PersonUpdateManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -12582,57 +14349,83 @@ export type SongUpdateWithoutGenresInput = {
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SongUpdateWithoutLikesInput = {
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  poster?: InputMaybe<StringFieldUpdateOperationsInput>;
+  released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
+  songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
+  title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateWithoutReviewsInput = {
-  artists?: InputMaybe<PersonUpdateManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateWithoutSongInMovieInput = {
-  artists?: InputMaybe<PersonUpdateManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpdateWithoutSongInShowInput = {
-  artists?: InputMaybe<PersonUpdateManyWithoutSongsInput>;
+  artists?: InputMaybe<ArtistInSongUpdateManyWithoutSongInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   genres?: InputMaybe<GenreUpdateManyWithoutSongsInput>;
+  likes?: InputMaybe<SongLikeUpdateManyWithoutSongInput>;
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type SongUpsertWithWhereUniqueWithoutArtistsInput = {
-  create: SongCreateWithoutArtistsInput;
-  update: SongUpdateWithoutArtistsInput;
-  where: SongWhereUniqueInput;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SongUpsertWithWhereUniqueWithoutGenresInput = {
   create: SongCreateWithoutGenresInput;
   update: SongUpdateWithoutGenresInput;
   where: SongWhereUniqueInput;
+};
+
+export type SongUpsertWithoutArtistsInput = {
+  create: SongCreateWithoutArtistsInput;
+  update: SongUpdateWithoutArtistsInput;
+};
+
+export type SongUpsertWithoutLikesInput = {
+  create: SongCreateWithoutLikesInput;
+  update: SongUpdateWithoutLikesInput;
 };
 
 export type SongUpsertWithoutReviewsInput = {
@@ -12654,11 +14447,12 @@ export type SongWhereInput = {
   AND?: InputMaybe<SongWhereInput[]>;
   NOT?: InputMaybe<SongWhereInput[]>;
   OR?: InputMaybe<SongWhereInput[]>;
-  artists?: InputMaybe<PersonListRelationFilter>;
+  artists?: InputMaybe<ArtistInSongListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringFilter>;
   genres?: InputMaybe<GenreListRelationFilter>;
   id?: InputMaybe<IntFilter>;
+  likes?: InputMaybe<SongLikeListRelationFilter>;
   locked?: InputMaybe<BoolFilter>;
   poster?: InputMaybe<StringFilter>;
   released?: InputMaybe<DateTimeNullableFilter>;
@@ -12666,6 +14460,7 @@ export type SongWhereInput = {
   songInMovie?: InputMaybe<SongInMovieListRelationFilter>;
   songInShow?: InputMaybe<SongInShowListRelationFilter>;
   title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type SongWhereUniqueInput = {
@@ -12781,9 +14576,11 @@ export type User = {
   following: Follows[];
   id: Scalars['Int'];
   isFollowing: Scalars['Boolean'];
+  likedBooks: BookLike[];
   likedMovieReviews: MovieReviewLike[];
   likedMovies: MovieLike[];
   likedShows: ShowLike[];
+  likedSongs: SongLike[];
   location: Scalars['String'];
   movieReviews: MovieReview[];
   notifications: Notification[];
@@ -12834,6 +14631,15 @@ export type UserFollowingArgs = {
   where?: InputMaybe<FollowsWhereInput>;
 };
 
+export type UserLikedBooksArgs = {
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  distinct?: InputMaybe<BookLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<BookLikeWhereInput>;
+};
+
 export type UserLikedMovieReviewsArgs = {
   cursor?: InputMaybe<MovieReviewLikeWhereUniqueInput>;
   distinct?: InputMaybe<MovieReviewLikeScalarFieldEnum[]>;
@@ -12859,6 +14665,15 @@ export type UserLikedShowsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ShowLikeWhereInput>;
+};
+
+export type UserLikedSongsArgs = {
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  distinct?: InputMaybe<SongLikeScalarFieldEnum[]>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[]>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<SongLikeWhereInput>;
 };
 
 export type UserMovieReviewsArgs = {
@@ -12930,9 +14745,11 @@ export type UserCount = {
   bookReviews: Scalars['Int'];
   followers: Scalars['Int'];
   following: Scalars['Int'];
+  likedBooks: Scalars['Int'];
   likedMovieReviews: Scalars['Int'];
   likedMovies: Scalars['Int'];
   likedShows: Scalars['Int'];
+  likedSongs: Scalars['Int'];
   movieReviews: Scalars['Int'];
   notifications: Scalars['Int'];
   showReviewLikes: Scalars['Int'];
@@ -12988,9 +14805,11 @@ export type UserCreateInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13045,6 +14864,12 @@ export type UserCreateNestedOneWithoutFollowingInput = {
   create?: InputMaybe<UserCreateWithoutFollowingInput>;
 };
 
+export type UserCreateNestedOneWithoutLikedBooksInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedBooksInput>;
+  create?: InputMaybe<UserCreateWithoutLikedBooksInput>;
+};
+
 export type UserCreateNestedOneWithoutLikedMovieReviewsInput = {
   connect?: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedMovieReviewsInput>;
@@ -13061,6 +14886,12 @@ export type UserCreateNestedOneWithoutLikedShowsInput = {
   connect?: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedShowsInput>;
   create?: InputMaybe<UserCreateWithoutLikedShowsInput>;
+};
+
+export type UserCreateNestedOneWithoutLikedSongsInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedSongsInput>;
+  create?: InputMaybe<UserCreateWithoutLikedSongsInput>;
 };
 
 export type UserCreateNestedOneWithoutMovieReviewsInput = {
@@ -13125,6 +14956,11 @@ export type UserCreateOrConnectWithoutFollowingInput = {
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutLikedBooksInput = {
+  create: UserCreateWithoutLikedBooksInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutLikedMovieReviewsInput = {
   create: UserCreateWithoutLikedMovieReviewsInput;
   where: UserWhereUniqueInput;
@@ -13137,6 +14973,11 @@ export type UserCreateOrConnectWithoutLikedMoviesInput = {
 
 export type UserCreateOrConnectWithoutLikedShowsInput = {
   create: UserCreateWithoutLikedShowsInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutLikedSongsInput = {
+  create: UserCreateWithoutLikedSongsInput;
   where: UserWhereUniqueInput;
 };
 
@@ -13186,9 +15027,11 @@ export type UserCreateWithoutBookReviewLikesInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13214,9 +15057,11 @@ export type UserCreateWithoutBookReviewsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13242,9 +15087,11 @@ export type UserCreateWithoutFollowersInput = {
   dob?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13270,9 +15117,41 @@ export type UserCreateWithoutFollowingInput = {
   dob?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
+  location?: InputMaybe<Scalars['String']>;
+  movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
+  notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
+  role?: InputMaybe<Role>;
+  showReviewLikes?: InputMaybe<ShowReviewLikeCreateNestedManyWithoutUserInput>;
+  showReviews?: InputMaybe<ShowReviewCreateNestedManyWithoutUserInput>;
+  songReviewLikes?: InputMaybe<SongReviewLikeCreateNestedManyWithoutUserInput>;
+  songReviews?: InputMaybe<SongReviewCreateNestedManyWithoutUserInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  watchlist?: InputMaybe<WatchlistCreateNestedOneWithoutUserInput>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+export type UserCreateWithoutLikedBooksInput = {
+  avatar?: InputMaybe<Scalars['String']>;
+  bio?: InputMaybe<Scalars['String']>;
+  bookReviewLikes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutUserInput>;
+  bookReviews?: InputMaybe<BookReviewCreateNestedManyWithoutUserInput>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  displayname: Scalars['String'];
+  dob?: InputMaybe<Scalars['String']>;
+  email: Scalars['String'];
+  followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
+  following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
+  likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
+  likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13299,8 +15178,10 @@ export type UserCreateWithoutLikedMovieReviewsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13327,8 +15208,10 @@ export type UserCreateWithoutLikedMoviesInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13355,8 +15238,40 @@ export type UserCreateWithoutLikedShowsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
+  location?: InputMaybe<Scalars['String']>;
+  movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
+  notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
+  role?: InputMaybe<Role>;
+  showReviewLikes?: InputMaybe<ShowReviewLikeCreateNestedManyWithoutUserInput>;
+  showReviews?: InputMaybe<ShowReviewCreateNestedManyWithoutUserInput>;
+  songReviewLikes?: InputMaybe<SongReviewLikeCreateNestedManyWithoutUserInput>;
+  songReviews?: InputMaybe<SongReviewCreateNestedManyWithoutUserInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  watchlist?: InputMaybe<WatchlistCreateNestedOneWithoutUserInput>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+export type UserCreateWithoutLikedSongsInput = {
+  avatar?: InputMaybe<Scalars['String']>;
+  bio?: InputMaybe<Scalars['String']>;
+  bookReviewLikes?: InputMaybe<BookReviewLikeCreateNestedManyWithoutUserInput>;
+  bookReviews?: InputMaybe<BookReviewCreateNestedManyWithoutUserInput>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  displayname: Scalars['String'];
+  dob?: InputMaybe<Scalars['String']>;
+  email: Scalars['String'];
+  followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
+  following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
+  likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
+  likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
+  likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13383,9 +15298,11 @@ export type UserCreateWithoutMovieReviewsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
   role?: InputMaybe<Role>;
@@ -13411,9 +15328,11 @@ export type UserCreateWithoutNotificationsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   role?: InputMaybe<Role>;
@@ -13439,9 +15358,11 @@ export type UserCreateWithoutShowReviewLikesInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13467,9 +15388,11 @@ export type UserCreateWithoutShowReviewsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13495,9 +15418,11 @@ export type UserCreateWithoutSongReviewLikesInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13523,9 +15448,11 @@ export type UserCreateWithoutSongReviewsInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13551,9 +15478,11 @@ export type UserCreateWithoutWatchlistInput = {
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeCreateNestedManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeCreateNestedManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeCreateNestedManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeCreateNestedManyWithoutUserInput>;
   location?: InputMaybe<Scalars['String']>;
   movieReviews?: InputMaybe<MovieReviewCreateNestedManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationCreateNestedManyWithoutUserInput>;
@@ -13692,9 +15621,11 @@ export type UserOrderByWithRelationInput = {
   followers?: InputMaybe<FollowsOrderByRelationAggregateInput>;
   following?: InputMaybe<FollowsOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
+  likedBooks?: InputMaybe<BookLikeOrderByRelationAggregateInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeOrderByRelationAggregateInput>;
   likedMovies?: InputMaybe<MovieLikeOrderByRelationAggregateInput>;
   likedShows?: InputMaybe<ShowLikeOrderByRelationAggregateInput>;
+  likedSongs?: InputMaybe<SongLikeOrderByRelationAggregateInput>;
   location?: InputMaybe<SortOrder>;
   movieReviews?: InputMaybe<MovieReviewOrderByRelationAggregateInput>;
   notifications?: InputMaybe<NotificationOrderByRelationAggregateInput>;
@@ -13771,9 +15702,11 @@ export type UserUpdateInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -13835,6 +15768,14 @@ export type UserUpdateOneRequiredWithoutFollowingInput = {
   upsert?: InputMaybe<UserUpsertWithoutFollowingInput>;
 };
 
+export type UserUpdateOneRequiredWithoutLikedBooksInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedBooksInput>;
+  create?: InputMaybe<UserCreateWithoutLikedBooksInput>;
+  update?: InputMaybe<UserUpdateWithoutLikedBooksInput>;
+  upsert?: InputMaybe<UserUpsertWithoutLikedBooksInput>;
+};
+
 export type UserUpdateOneRequiredWithoutLikedMovieReviewsInput = {
   connect?: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedMovieReviewsInput>;
@@ -13857,6 +15798,14 @@ export type UserUpdateOneRequiredWithoutLikedShowsInput = {
   create?: InputMaybe<UserCreateWithoutLikedShowsInput>;
   update?: InputMaybe<UserUpdateWithoutLikedShowsInput>;
   upsert?: InputMaybe<UserUpsertWithoutLikedShowsInput>;
+};
+
+export type UserUpdateOneRequiredWithoutLikedSongsInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutLikedSongsInput>;
+  create?: InputMaybe<UserCreateWithoutLikedSongsInput>;
+  update?: InputMaybe<UserUpdateWithoutLikedSongsInput>;
+  upsert?: InputMaybe<UserUpsertWithoutLikedSongsInput>;
 };
 
 export type UserUpdateOneRequiredWithoutMovieReviewsInput = {
@@ -13926,9 +15875,11 @@ export type UserUpdateWithoutBookReviewLikesInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -13954,9 +15905,11 @@ export type UserUpdateWithoutBookReviewsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -13982,9 +15935,11 @@ export type UserUpdateWithoutFollowersInput = {
   dob?: InputMaybe<StringFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14010,9 +15965,41 @@ export type UserUpdateWithoutFollowingInput = {
   dob?: InputMaybe<StringFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
+  location?: InputMaybe<StringFieldUpdateOperationsInput>;
+  movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
+  notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
+  role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
+  showReviewLikes?: InputMaybe<ShowReviewLikeUpdateManyWithoutUserInput>;
+  showReviews?: InputMaybe<ShowReviewUpdateManyWithoutUserInput>;
+  songReviewLikes?: InputMaybe<SongReviewLikeUpdateManyWithoutUserInput>;
+  songReviews?: InputMaybe<SongReviewUpdateManyWithoutUserInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  watchlist?: InputMaybe<WatchlistUpdateOneWithoutUserInput>;
+  website?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type UserUpdateWithoutLikedBooksInput = {
+  avatar?: InputMaybe<StringFieldUpdateOperationsInput>;
+  bio?: InputMaybe<StringFieldUpdateOperationsInput>;
+  bookReviewLikes?: InputMaybe<BookReviewLikeUpdateManyWithoutUserInput>;
+  bookReviews?: InputMaybe<BookReviewUpdateManyWithoutUserInput>;
+  confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
+  following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
+  likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
+  likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14039,8 +16026,10 @@ export type UserUpdateWithoutLikedMovieReviewsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14067,8 +16056,10 @@ export type UserUpdateWithoutLikedMoviesInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14095,8 +16086,40 @@ export type UserUpdateWithoutLikedShowsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
+  location?: InputMaybe<StringFieldUpdateOperationsInput>;
+  movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
+  notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
+  role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
+  showReviewLikes?: InputMaybe<ShowReviewLikeUpdateManyWithoutUserInput>;
+  showReviews?: InputMaybe<ShowReviewUpdateManyWithoutUserInput>;
+  songReviewLikes?: InputMaybe<SongReviewLikeUpdateManyWithoutUserInput>;
+  songReviews?: InputMaybe<SongReviewUpdateManyWithoutUserInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  watchlist?: InputMaybe<WatchlistUpdateOneWithoutUserInput>;
+  website?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type UserUpdateWithoutLikedSongsInput = {
+  avatar?: InputMaybe<StringFieldUpdateOperationsInput>;
+  bio?: InputMaybe<StringFieldUpdateOperationsInput>;
+  bookReviewLikes?: InputMaybe<BookReviewLikeUpdateManyWithoutUserInput>;
+  bookReviews?: InputMaybe<BookReviewUpdateManyWithoutUserInput>;
+  confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
+  following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
+  likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
+  likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
+  likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14123,9 +16146,11 @@ export type UserUpdateWithoutMovieReviewsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
   role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
@@ -14151,9 +16176,11 @@ export type UserUpdateWithoutNotificationsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
@@ -14179,9 +16206,11 @@ export type UserUpdateWithoutShowReviewLikesInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14207,9 +16236,11 @@ export type UserUpdateWithoutShowReviewsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14235,9 +16266,11 @@ export type UserUpdateWithoutSongReviewLikesInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14263,9 +16296,11 @@ export type UserUpdateWithoutSongReviewsInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14291,9 +16326,11 @@ export type UserUpdateWithoutWatchlistInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
+  likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeUpdateManyWithoutUserInput>;
   likedMovies?: InputMaybe<MovieLikeUpdateManyWithoutUserInput>;
   likedShows?: InputMaybe<ShowLikeUpdateManyWithoutUserInput>;
+  likedSongs?: InputMaybe<SongLikeUpdateManyWithoutUserInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   movieReviews?: InputMaybe<MovieReviewUpdateManyWithoutUserInput>;
   notifications?: InputMaybe<NotificationUpdateManyWithoutUserInput>;
@@ -14327,6 +16364,11 @@ export type UserUpsertWithoutFollowingInput = {
   update: UserUpdateWithoutFollowingInput;
 };
 
+export type UserUpsertWithoutLikedBooksInput = {
+  create: UserCreateWithoutLikedBooksInput;
+  update: UserUpdateWithoutLikedBooksInput;
+};
+
 export type UserUpsertWithoutLikedMovieReviewsInput = {
   create: UserCreateWithoutLikedMovieReviewsInput;
   update: UserUpdateWithoutLikedMovieReviewsInput;
@@ -14340,6 +16382,11 @@ export type UserUpsertWithoutLikedMoviesInput = {
 export type UserUpsertWithoutLikedShowsInput = {
   create: UserCreateWithoutLikedShowsInput;
   update: UserUpdateWithoutLikedShowsInput;
+};
+
+export type UserUpsertWithoutLikedSongsInput = {
+  create: UserCreateWithoutLikedSongsInput;
+  update: UserUpdateWithoutLikedSongsInput;
 };
 
 export type UserUpsertWithoutMovieReviewsInput = {
@@ -14393,9 +16440,11 @@ export type UserWhereInput = {
   followers?: InputMaybe<FollowsListRelationFilter>;
   following?: InputMaybe<FollowsListRelationFilter>;
   id?: InputMaybe<IntFilter>;
+  likedBooks?: InputMaybe<BookLikeListRelationFilter>;
   likedMovieReviews?: InputMaybe<MovieReviewLikeListRelationFilter>;
   likedMovies?: InputMaybe<MovieLikeListRelationFilter>;
   likedShows?: InputMaybe<ShowLikeListRelationFilter>;
+  likedSongs?: InputMaybe<SongLikeListRelationFilter>;
   location?: InputMaybe<StringFilter>;
   movieReviews?: InputMaybe<MovieReviewListRelationFilter>;
   notifications?: InputMaybe<NotificationListRelationFilter>;
@@ -14787,6 +16836,12 @@ export type CreateActorInShowMutationVariables = Exact<{
 
 export type CreateActorInShowMutation = {__typename?: 'Mutation'; createActorInShow: boolean};
 
+export type CreateBookMutationVariables = Exact<{
+  data: BookCreateInput;
+}>;
+
+export type CreateBookMutation = {__typename?: 'Mutation'; createBook: {__typename?: 'Book'; id: number; title: string; description: string}};
+
 export type CreateMovieMutationVariables = Exact<{
   data: MovieCreateInput;
 }>;
@@ -14809,7 +16864,7 @@ export type CreatePersonMutationVariables = Exact<{
   data: PersonCreateInput;
 }>;
 
-export type CreatePersonMutation = {__typename?: 'Mutation'; createPerson: {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null | undefined; age?: number | null | undefined}};
+export type CreatePersonMutation = {__typename?: 'Mutation'; createPerson: {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null}};
 
 export type CreateShowMutationVariables = Exact<{
   data: ShowCreateInput;
@@ -14822,6 +16877,12 @@ export type CreateShowReviewMutationVariables = Exact<{
 }>;
 
 export type CreateShowReviewMutation = {__typename?: 'Mutation'; createShowReview: boolean};
+
+export type CreateSongMutationVariables = Exact<{
+  data: SongCreateInput;
+}>;
+
+export type CreateSongMutation = {__typename?: 'Mutation'; createSong: {__typename?: 'Song'; id: number; title: string; description: string}};
 
 export type CreateSongInMovieMutationVariables = Exact<{
   data: SongInMovieCreateInput;
@@ -14839,13 +16900,13 @@ export type DeleteActorInMovieMutationVariables = Exact<{
   where: ActorInMovieWhereUniqueInput;
 }>;
 
-export type DeleteActorInMovieMutation = {__typename?: 'Mutation'; deleteActorInMovie?: boolean | null | undefined};
+export type DeleteActorInMovieMutation = {__typename?: 'Mutation'; deleteActorInMovie?: boolean | null};
 
 export type DeleteActorInShowMutationVariables = Exact<{
   where: ActorInShowWhereUniqueInput;
 }>;
 
-export type DeleteActorInShowMutation = {__typename?: 'Mutation'; deleteActorInShow?: boolean | null | undefined};
+export type DeleteActorInShowMutation = {__typename?: 'Mutation'; deleteActorInShow?: boolean | null};
 
 export type DeleteMovieReviewMutationVariables = Exact<{
   movieId: Scalars['Int'];
@@ -14857,7 +16918,7 @@ export type DeleteMovieReviewLikeMutationVariables = Exact<{
   where: MovieReviewLikeWhereUniqueInput;
 }>;
 
-export type DeleteMovieReviewLikeMutation = {__typename?: 'Mutation'; deleteMovieReviewLike?: boolean | null | undefined};
+export type DeleteMovieReviewLikeMutation = {__typename?: 'Mutation'; deleteMovieReviewLike?: boolean | null};
 
 export type DeleteShowReviewMutationVariables = Exact<{
   showId: Scalars['Int'];
@@ -14869,13 +16930,13 @@ export type DeleteSongInMovieMutationVariables = Exact<{
   where: SongInMovieWhereUniqueInput;
 }>;
 
-export type DeleteSongInMovieMutation = {__typename?: 'Mutation'; deleteSongInMovie?: boolean | null | undefined};
+export type DeleteSongInMovieMutation = {__typename?: 'Mutation'; deleteSongInMovie?: boolean | null};
 
 export type DeleteSongInShowMutationVariables = Exact<{
   where: SongInShowWhereUniqueInput;
 }>;
 
-export type DeleteSongInShowMutation = {__typename?: 'Mutation'; deleteSongInShow?: boolean | null | undefined};
+export type DeleteSongInShowMutation = {__typename?: 'Mutation'; deleteSongInShow?: boolean | null};
 
 export type FollowMutationVariables = Exact<{
   userId: Scalars['Int'];
@@ -14934,28 +16995,28 @@ export type UpdateGenreMutationVariables = Exact<{
   where: GenreWhereUniqueInput;
 }>;
 
-export type UpdateGenreMutation = {__typename?: 'Mutation'; updateGenre?: {__typename?: 'Genre'; name: string} | null | undefined};
+export type UpdateGenreMutation = {__typename?: 'Mutation'; updateGenre?: {__typename?: 'Genre'; name: string} | null};
 
 export type UpdateMovieMutationVariables = Exact<{
   data: MovieUpdateInput;
   where: MovieWhereUniqueInput;
 }>;
 
-export type UpdateMovieMutation = {__typename?: 'Mutation'; updateMovie?: {__typename?: 'Movie'; id: number} | null | undefined};
+export type UpdateMovieMutation = {__typename?: 'Mutation'; updateMovie?: {__typename?: 'Movie'; id: number} | null};
 
 export type UpdateMovieReivewMutationVariables = Exact<{
   data: MovieReviewUpdateInput;
   where: MovieReviewWhereUniqueInput;
 }>;
 
-export type UpdateMovieReivewMutation = {__typename?: 'Mutation'; updateMovieReview: {__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}};
+export type UpdateMovieReivewMutation = {__typename?: 'Mutation'; updateMovieReview: {__typename?: 'MovieReview'; review?: string | null; rating: number; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}};
 
 export type UpdateShowMutationVariables = Exact<{
   data: ShowUpdateInput;
   where: ShowWhereUniqueInput;
 }>;
 
-export type UpdateShowMutation = {__typename?: 'Mutation'; updateShow?: {__typename?: 'Show'; id: number} | null | undefined};
+export type UpdateShowMutation = {__typename?: 'Mutation'; updateShow?: {__typename?: 'Show'; id: number} | null};
 
 export type UploadAvatarMutationVariables = Exact<{
   file: Scalars['Upload'];
@@ -14987,7 +17048,7 @@ export type ActorsInMovieQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type ActorsInMovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; actors: Array<{__typename?: 'ActorInMovie'; personId: number}>} | null | undefined};
+export type ActorsInMovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; actors: Array<{__typename?: 'ActorInMovie'; personId: number}>} | null};
 
 export type ActorsInShowQueryVariables = Exact<{
   showId: Scalars['Int'];
@@ -14997,11 +17058,26 @@ export type ActorsInShowQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type ActorsInShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; actors: Array<{__typename?: 'ActorInShow'; personId: number}>} | null | undefined};
+export type ActorsInShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; actors: Array<{__typename?: 'ActorInShow'; personId: number}>} | null};
+
+export type BookQueryVariables = Exact<{
+  bookId: Scalars['Int'];
+}>;
+
+export type BookQuery = {__typename?: 'Query'; book?: {__typename?: 'Book'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'BookCount'; likes: number} | null; authors: Array<{__typename?: 'AuthorInBook'; penname: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'BookReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'BookReviewCount'; likes: number} | null}>; aggregateBookReview: {__typename?: 'AggregateBookReview'; _avg?: {__typename?: 'BookReviewAvgAggregate'; rating?: number | null} | null}} | null};
+
+export type BooksQueryVariables = Exact<{
+  where?: InputMaybe<BookWhereInput>;
+  orderBy?: InputMaybe<BookOrderByWithRelationInput[] | BookOrderByWithRelationInput>;
+  cursor?: InputMaybe<BookWhereUniqueInput>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type BooksQuery = {__typename?: 'Query'; books?: Array<{__typename?: 'Book'; id: number; title: string; poster: string}> | null};
 
 export type CountMediaQueryVariables = Exact<Record<string, never>>;
 
-export type CountMediaQuery = {__typename?: 'Query'; aggregateMovie: {__typename?: 'AggregateMovie'; _count?: {__typename?: 'MovieCountAggregate'; _all: number} | null | undefined}; aggregateShow: {__typename?: 'AggregateShow'; _count?: {__typename?: 'ShowCountAggregate'; _all: number} | null | undefined}; aggregateSong: {__typename?: 'AggregateSong'; _count?: {__typename?: 'SongCountAggregate'; _all: number} | null | undefined}; aggregateBook: {__typename?: 'AggregateBook'; _count?: {__typename?: 'BookCountAggregate'; _all: number} | null | undefined}};
+export type CountMediaQuery = {__typename?: 'Query'; aggregateMovie: {__typename?: 'AggregateMovie'; _count?: {__typename?: 'MovieCountAggregate'; _all: number} | null}; aggregateShow: {__typename?: 'AggregateShow'; _count?: {__typename?: 'ShowCountAggregate'; _all: number} | null}; aggregateSong: {__typename?: 'AggregateSong'; _count?: {__typename?: 'SongCountAggregate'; _all: number} | null}; aggregateBook: {__typename?: 'AggregateBook'; _count?: {__typename?: 'BookCountAggregate'; _all: number} | null}};
 
 export type FollowersQueryVariables = Exact<{
   where?: InputMaybe<FollowsWhereInput>;
@@ -15027,13 +17103,13 @@ export type GenresQuery = {__typename?: 'Query'; genres: Array<{__typename?: 'Ge
 
 export type MeQueryVariables = Exact<Record<string, never>>;
 
-export type MeQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; email: string; username: string; avatar: string} | null | undefined};
+export type MeQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; email: string; username: string; avatar: string} | null};
 
 export type MovieQueryVariables = Exact<{
   movieId: Scalars['Int'];
 }>;
 
-export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null | undefined; runtime?: number | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null | undefined; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'Person'; id: number; name: string}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null | undefined; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null | undefined}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null | undefined} | null | undefined}} | null | undefined};
+export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
@@ -15042,7 +17118,7 @@ export type MoviesQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type MoviesQuery = {__typename?: 'Query'; movies?: Array<{__typename?: 'Movie'; id: number; title: string; poster: string}> | null | undefined};
+export type MoviesQuery = {__typename?: 'Query'; movies?: Array<{__typename?: 'Movie'; id: number; title: string; poster: string}> | null};
 
 export type NotificationsQueryVariables = Exact<Record<string, never>>;
 
@@ -15055,19 +17131,23 @@ export type PeopleQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type PeopleQuery = {__typename?: 'Query'; people?: Array<{__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string}> | null | undefined};
+export type PeopleQuery = {__typename?: 'Query'; people: Array<{__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string}>};
 
 export type PersonQueryVariables = Exact<{
-  where: PersonWhereUniqueInput;
+  personId: Scalars['Int'];
 }>;
 
-export type PersonQuery = {__typename?: 'Query'; person?: {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null | undefined; age?: number | null | undefined; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null | undefined} | null | undefined};
+export type PersonQuery = {__typename?: 'Query'; person?: {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null} | null};
+
+export type PreferencesQueryVariables = Exact<Record<string, never>>;
+
+export type PreferencesQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; createdAt: any; updatedAt: any} | null};
 
 export type ShowQueryVariables = Exact<{
   showId: Scalars['Int'];
 }>;
 
-export type ShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null | undefined; trailer?: string | null | undefined; rating?: string | null | undefined; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null | undefined; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'Person'; id: number; name: string}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null | undefined; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null | undefined}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null | undefined} | null | undefined}} | null | undefined};
+export type ShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type ShowsQueryVariables = Exact<{
   where?: InputMaybe<ShowWhereInput>;
@@ -15076,7 +17156,13 @@ export type ShowsQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type ShowsQuery = {__typename?: 'Query'; shows?: Array<{__typename?: 'Show'; id: number; title: string; poster: string}> | null | undefined};
+export type ShowsQuery = {__typename?: 'Query'; shows?: Array<{__typename?: 'Show'; id: number; title: string; poster: string}> | null};
+
+export type SongQueryVariables = Exact<{
+  songId: Scalars['Int'];
+}>;
+
+export type SongQuery = {__typename?: 'Query'; song?: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; stagename: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type SongsQueryVariables = Exact<{
   where?: InputMaybe<SongWhereInput>;
@@ -15085,13 +17171,13 @@ export type SongsQueryVariables = Exact<{
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type SongsQuery = {__typename?: 'Query'; songs?: Array<{__typename?: 'Song'; id: number; title: string; poster: string; artists: Array<{__typename?: 'Person'; name: string}>}> | null | undefined};
+export type SongsQuery = {__typename?: 'Query'; songs?: Array<{__typename?: 'Song'; id: number; title: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>}> | null};
 
 export type UserQueryVariables = Exact<{
   username: Scalars['String'];
 }>;
 
-export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null | undefined} | null | undefined};
+export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null} | null};
 
 export type NotificationListenerSubscriptionVariables = Exact<{
   listenerId: Scalars['Int'];
@@ -15203,6 +17289,42 @@ export function useCreateActorInShowMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateActorInShowMutationHookResult = ReturnType<typeof useCreateActorInShowMutation>;
 export type CreateActorInShowMutationResult = Apollo.MutationResult<CreateActorInShowMutation>;
 export type CreateActorInShowMutationOptions = Apollo.BaseMutationOptions<CreateActorInShowMutation, CreateActorInShowMutationVariables>;
+export const CreateBookDocument = gql`
+    mutation CreateBook($data: BookCreateInput!) {
+  createBook(data: $data) {
+    id
+    title
+    description
+  }
+}
+    `;
+export type CreateBookMutationFn = Apollo.MutationFunction<CreateBookMutation, CreateBookMutationVariables>;
+
+/**
+ * __useCreateBookMutation__
+ *
+ * To run a mutation, you first call `useCreateBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBookMutation, { data, loading, error }] = useCreateBookMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateBookMutation(baseOptions?: Apollo.MutationHookOptions<CreateBookMutation, CreateBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateBookMutation, CreateBookMutationVariables>(CreateBookDocument, options);
+      }
+
+export type CreateBookMutationHookResult = ReturnType<typeof useCreateBookMutation>;
+export type CreateBookMutationResult = Apollo.MutationResult<CreateBookMutation>;
+export type CreateBookMutationOptions = Apollo.BaseMutationOptions<CreateBookMutation, CreateBookMutationVariables>;
 export const CreateMovieDocument = gql`
     mutation CreateMovie($data: MovieCreateInput!) {
   createMovie(data: $data) {
@@ -15410,6 +17532,42 @@ export function useCreateShowReviewMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateShowReviewMutationHookResult = ReturnType<typeof useCreateShowReviewMutation>;
 export type CreateShowReviewMutationResult = Apollo.MutationResult<CreateShowReviewMutation>;
 export type CreateShowReviewMutationOptions = Apollo.BaseMutationOptions<CreateShowReviewMutation, CreateShowReviewMutationVariables>;
+export const CreateSongDocument = gql`
+    mutation CreateSong($data: SongCreateInput!) {
+  createSong(data: $data) {
+    id
+    title
+    description
+  }
+}
+    `;
+export type CreateSongMutationFn = Apollo.MutationFunction<CreateSongMutation, CreateSongMutationVariables>;
+
+/**
+ * __useCreateSongMutation__
+ *
+ * To run a mutation, you first call `useCreateSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSongMutation, { data, loading, error }] = useCreateSongMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateSongMutation(baseOptions?: Apollo.MutationHookOptions<CreateSongMutation, CreateSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateSongMutation, CreateSongMutationVariables>(CreateSongDocument, options);
+      }
+
+export type CreateSongMutationHookResult = ReturnType<typeof useCreateSongMutation>;
+export type CreateSongMutationResult = Apollo.MutationResult<CreateSongMutation>;
+export type CreateSongMutationOptions = Apollo.BaseMutationOptions<CreateSongMutation, CreateSongMutationVariables>;
 export const CreateSongInMovieDocument = gql`
     mutation createSongInMovie($data: SongInMovieCreateInput!) {
   createSongInMovie(data: $data)
@@ -16319,6 +18477,120 @@ export function useActorsInShowLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type ActorsInShowQueryHookResult = ReturnType<typeof useActorsInShowQuery>;
 export type ActorsInShowLazyQueryHookResult = ReturnType<typeof useActorsInShowLazyQuery>;
 export type ActorsInShowQueryResult = Apollo.QueryResult<ActorsInShowQuery, ActorsInShowQueryVariables>;
+export const BookDocument = gql`
+    query Book($bookId: Int!) {
+  book(bookId: $bookId) {
+    id
+    title
+    description
+    poster
+    released
+    isLiked
+    _count {
+      likes
+    }
+    authors(take: 8) {
+      penname
+      person {
+        id
+        name
+        poster
+      }
+    }
+    genres {
+      name
+    }
+    reviews(take: 8) {
+      review
+      rating
+      user {
+        username
+        avatar
+      }
+      _count {
+        likes
+      }
+    }
+    aggregateBookReview {
+      _avg {
+        rating
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useBookQuery__
+ *
+ * To run a query within a React component, call `useBookQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBookQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBookQuery({
+ *   variables: {
+ *      bookId: // value for 'bookId'
+ *   },
+ * });
+ */
+export function useBookQuery(baseOptions: Apollo.QueryHookOptions<BookQuery, BookQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<BookQuery, BookQueryVariables>(BookDocument, options);
+      }
+
+export function useBookLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BookQuery, BookQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<BookQuery, BookQueryVariables>(BookDocument, options);
+        }
+
+export type BookQueryHookResult = ReturnType<typeof useBookQuery>;
+export type BookLazyQueryHookResult = ReturnType<typeof useBookLazyQuery>;
+export type BookQueryResult = Apollo.QueryResult<BookQuery, BookQueryVariables>;
+export const BooksDocument = gql`
+    query Books($where: BookWhereInput, $orderBy: [BookOrderByWithRelationInput!], $cursor: BookWhereUniqueInput, $take: Int) {
+  books(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+    id
+    title
+    poster
+  }
+}
+    `;
+
+/**
+ * __useBooksQuery__
+ *
+ * To run a query within a React component, call `useBooksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBooksQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useBooksQuery(baseOptions?: Apollo.QueryHookOptions<BooksQuery, BooksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
+      }
+
+export function useBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BooksQuery, BooksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
+        }
+
+export type BooksQueryHookResult = ReturnType<typeof useBooksQuery>;
+export type BooksLazyQueryHookResult = ReturnType<typeof useBooksLazyQuery>;
+export type BooksQueryResult = Apollo.QueryResult<BooksQuery, BooksQueryVariables>;
 export const CountMediaDocument = gql`
     query CountMedia {
   aggregateMovie {
@@ -16569,8 +18841,10 @@ export const MovieDocument = gql`
         description
         poster
         artists {
-          id
-          name
+          personId
+          person {
+            name
+          }
         }
         songInMovie {
           timestamp
@@ -16752,8 +19026,8 @@ export type PeopleQueryHookResult = ReturnType<typeof usePeopleQuery>;
 export type PeopleLazyQueryHookResult = ReturnType<typeof usePeopleLazyQuery>;
 export type PeopleQueryResult = Apollo.QueryResult<PeopleQuery, PeopleQueryVariables>;
 export const PersonDocument = gql`
-    query Person($where: PersonWhereUniqueInput!) {
-  person(where: $where) {
+    query Person($personId: Int!) {
+  person(personId: $personId) {
     id
     career
     name
@@ -16782,7 +19056,7 @@ export const PersonDocument = gql`
  * @example
  * const { data, loading, error } = usePersonQuery({
  *   variables: {
- *      where: // value for 'where'
+ *      personId: // value for 'personId'
  *   },
  * });
  */
@@ -16799,6 +19073,54 @@ export function usePersonLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Per
 export type PersonQueryHookResult = ReturnType<typeof usePersonQuery>;
 export type PersonLazyQueryHookResult = ReturnType<typeof usePersonLazyQuery>;
 export type PersonQueryResult = Apollo.QueryResult<PersonQuery, PersonQueryVariables>;
+export const PreferencesDocument = gql`
+    query Preferences {
+  me {
+    id
+    confirmed
+    email
+    username
+    displayname
+    role
+    avatar
+    bio
+    location
+    website
+    dob
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __usePreferencesQuery__
+ *
+ * To run a query within a React component, call `usePreferencesQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePreferencesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePreferencesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePreferencesQuery(baseOptions?: Apollo.QueryHookOptions<PreferencesQuery, PreferencesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<PreferencesQuery, PreferencesQueryVariables>(PreferencesDocument, options);
+      }
+
+export function usePreferencesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PreferencesQuery, PreferencesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<PreferencesQuery, PreferencesQueryVariables>(PreferencesDocument, options);
+        }
+
+export type PreferencesQueryHookResult = ReturnType<typeof usePreferencesQuery>;
+export type PreferencesLazyQueryHookResult = ReturnType<typeof usePreferencesLazyQuery>;
+export type PreferencesQueryResult = Apollo.QueryResult<PreferencesQuery, PreferencesQueryVariables>;
 export const ShowDocument = gql`
     query Show($showId: Int!) {
   show(showId: $showId) {
@@ -16835,8 +19157,10 @@ export const ShowDocument = gql`
         description
         poster
         artists {
-          id
-          name
+          personId
+          person {
+            name
+          }
         }
         songInShow {
           timestamp
@@ -16935,6 +19259,78 @@ export function useShowsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Show
 export type ShowsQueryHookResult = ReturnType<typeof useShowsQuery>;
 export type ShowsLazyQueryHookResult = ReturnType<typeof useShowsLazyQuery>;
 export type ShowsQueryResult = Apollo.QueryResult<ShowsQuery, ShowsQueryVariables>;
+export const SongDocument = gql`
+    query Song($songId: Int!) {
+  song(songId: $songId) {
+    id
+    title
+    description
+    poster
+    released
+    isLiked
+    _count {
+      likes
+    }
+    artists(take: 8) {
+      stagename
+      person {
+        id
+        name
+        poster
+      }
+    }
+    genres {
+      name
+    }
+    reviews(take: 8) {
+      review
+      rating
+      user {
+        username
+        avatar
+      }
+      _count {
+        likes
+      }
+    }
+    aggregateSongReview {
+      _avg {
+        rating
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSongQuery__
+ *
+ * To run a query within a React component, call `useSongQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSongQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSongQuery({
+ *   variables: {
+ *      songId: // value for 'songId'
+ *   },
+ * });
+ */
+export function useSongQuery(baseOptions: Apollo.QueryHookOptions<SongQuery, SongQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<SongQuery, SongQueryVariables>(SongDocument, options);
+      }
+
+export function useSongLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SongQuery, SongQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<SongQuery, SongQueryVariables>(SongDocument, options);
+        }
+
+export type SongQueryHookResult = ReturnType<typeof useSongQuery>;
+export type SongLazyQueryHookResult = ReturnType<typeof useSongLazyQuery>;
+export type SongQueryResult = Apollo.QueryResult<SongQuery, SongQueryVariables>;
 export const SongsDocument = gql`
     query Songs($where: SongWhereInput, $orderBy: [SongOrderByWithRelationInput!], $cursor: SongWhereUniqueInput, $take: Int) {
   songs(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
@@ -16942,7 +19338,10 @@ export const SongsDocument = gql`
     title
     poster
     artists {
-      name
+      personId
+      person {
+        name
+      }
     }
   }
 }

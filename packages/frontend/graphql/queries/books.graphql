@@ -1,0 +1,12 @@
+query Books(
+	$where: BookWhereInput
+	$orderBy: [BookOrderByWithRelationInput!]
+	$cursor: BookWhereUniqueInput
+	$take: Int
+) {
+	books(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+		id
+		title
+		poster
+	}
+}

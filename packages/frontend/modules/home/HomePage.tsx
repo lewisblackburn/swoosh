@@ -1,6 +1,7 @@
 import {Icon} from '@components/Icon';
+import {Poster} from '@components/Poster';
 import {Layout} from '@modules/layouts/Layout';
-import {SortOrder, useMoviesQuery, useShowsQuery} from 'generated/graphql';
+import {SortOrder, useBooksQuery, useMoviesQuery, useShowsQuery, useSongsQuery} from 'generated/graphql';
 import Link from 'next/link';
 import React from 'react';
 import {AiOutlineArrowRight} from 'react-icons/ai';
@@ -24,6 +25,24 @@ export const HomePage: React.FC = () => {
 		},
 	});
 
+	const {data: books} = useBooksQuery({
+		variables: {
+			orderBy: {
+				createdAt: SortOrder.Desc,
+			},
+			take: 5,
+		},
+	});
+
+	const {data: songs} = useSongsQuery({
+		variables: {
+			orderBy: {
+				createdAt: SortOrder.Desc,
+			},
+			take: 5,
+		},
+	});
+
 	return (
 		<Layout>
 			<section>
@@ -38,11 +57,7 @@ export const HomePage: React.FC = () => {
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
 								<a>
-									<img
-										className="h-80 object-cover rounded filter hover:brightness-75 transition-all"
-										src={movie.poster}
-										alt="poster"
-									/>
+									<Poster src={movie.poster} />
 								</a>
 							</Link>
 						))}
@@ -90,14 +105,21 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{movies?.movies?.map(movie => (
+						{songs?.songs?.map(song => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
+							<Link key={song.id} href={`/song/${song.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={movie.poster} alt="poster" />
+									<img className="h-80 object-cover rounded" src={song.poster} alt="poster" />
 								</a>
 							</Link>
 						))}
+						<Link href="/songs">
+							<a className="w-full">
+								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
+								</div>
+							</a>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -109,14 +131,21 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{movies?.movies?.map(movie => (
+						{books?.books?.map(book => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
+							<Link key={book.id} href={`/book/${book.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={movie.poster} alt="poster" />
+									<Poster src={book.poster} />
 								</a>
 							</Link>
 						))}
+						<Link href="/books">
+							<a className="w-full">
+								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
+								</div>
+							</a>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -136,6 +165,13 @@ export const HomePage: React.FC = () => {
 								</a>
 							</Link>
 						))}
+						<Link href="/people">
+							<a className="w-full">
+								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
+								</div>
+							</a>
+						</Link>
 					</div>
 				</div>
 			</section>

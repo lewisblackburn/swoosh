@@ -1,5 +1,5 @@
-query Person($where: PersonWhereUniqueInput!) {
-	person(where: $where) {
+query Person($personId: Int!) {
+	person(personId: $personId) {
 		id
 		career
 		name

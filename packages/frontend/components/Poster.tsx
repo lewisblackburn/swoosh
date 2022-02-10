@@ -7,7 +7,7 @@ interface PosterProps {
 export const Poster: React.FC<PosterProps> = ({src}) => {
 	return (
 		<img
-			className="h-80 w-72 object-cover rounded filter hover:brightness-75 transition-all"
+			className="h-80 w-58 object-cover rounded filter hover:brightness-75 transition-all"
 			src={src ?? ''}
 			alt="poster"
 		/>

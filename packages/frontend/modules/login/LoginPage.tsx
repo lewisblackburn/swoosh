@@ -25,9 +25,9 @@ export const LoginPage: React.FC = () => {
 			<section className="grid place-items-center w-full h-screen">
 				<div className="container px-4 mx-auto">
 					<div className="flex flex-col max-w-sm mx-auto text-center">
-						<a className="block mx-auto text-3xl font-semibold leading-none" href="#">
+						{/* <a className="block mx-auto text-3xl font-semibold leading-none" href="#">
 							<img className="h-10" src="metis-assets/logos/metis/metis.svg" alt width="auto" />
-						</a>
+						</a> */}
 
 						<Formik
 							initialValues={{

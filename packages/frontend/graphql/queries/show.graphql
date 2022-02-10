@@ -33,13 +33,15 @@ query Show($showId: Int!) {
 				description
 				poster
 				artists {
-					id
-					name
+					personId
+					person {
+						name
+					}
 				}
-        songInShow {
-          timestamp
-          description
-        }
+				songInShow {
+					timestamp
+					description
+				}
 			}
 		}
 		reviews(take: 8) {

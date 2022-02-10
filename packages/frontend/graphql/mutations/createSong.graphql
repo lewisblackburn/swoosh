@@ -1,0 +1,7 @@
+mutation CreateSong($data: SongCreateInput!) {
+	createSong(data: $data) {
+		id
+		title
+		description
+	}
+}

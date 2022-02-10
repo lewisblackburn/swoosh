@@ -1,4 +1,6 @@
-import { Layout } from '@modules/layouts/Layout';
+import {PreferencesLayout} from '@modules/layouts/PreferenceLayout';
 import React from 'react';
 
-export const DeleteAccountPage: React.FC = () => <Layout />;
+export const DeleteAccountPage: React.FC = () => {
+	return <PreferencesLayout />;
+};

@@ -31,7 +31,7 @@ model User {
   bio               String            @default(value: "")
   location          String            @default(value: "")
   website           String            @default(value: "")
-  dob               String            @default(value: "")
+  dob               DateTime          @default(now())
   following         Follows[]         @relation(name: "following")
   followers         Follows[]         @relation(name: "follower")
   notifications     Notification[]
@@ -226,21 +226,21 @@ model Song {
 }
 
 model AuthorInBook {
-  book      Book   @relation(fields: [bookId], references: [id])
-  bookId    Int
-  person    Person @relation(fields: [personId], references: [id])
-  personId  Int
-  stagename String
+  book     Book   @relation(fields: [bookId], references: [id])
+  bookId   Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
+  penname  String
 
   @@id([personId, bookId])
 }
 
 model ArtistInSong {
-  song     Song   @relation(fields: [songId], references: [id])
-  songId   Int
-  person   Person @relation(fields: [personId], references: [id])
-  personId Int
-  penname  String
+  song      Song   @relation(fields: [songId], references: [id])
+  songId    Int
+  person    Person @relation(fields: [personId], references: [id])
+  personId  Int
+  stagename String
 
   @@id([personId, songId])
 }

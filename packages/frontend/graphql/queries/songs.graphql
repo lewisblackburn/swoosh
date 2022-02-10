@@ -9,7 +9,10 @@ query Songs(
 		title
 		poster
 		artists {
-			name
+			personId
+			person {
+				name
+			}
 		}
 	}
 }

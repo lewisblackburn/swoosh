@@ -1,55 +1,68 @@
-/* eslint-disable react/button-has-type */
-import {Transition} from '@headlessui/react';
-import {useNotificationsQuery} from 'generated/graphql';
+import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
+import {useMeQuery} from 'generated/graphql';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
-import React, {Fragment, useState} from 'react';
-import {AiOutlineBell, AiOutlineLeft, AiOutlineSetting} from 'react-icons/ai';
+import React from 'react';
+import {
+	AiOutlineBell,
+	AiOutlineFire,
+	AiOutlineLineHeight,
+	AiOutlineMacCommand,
+	AiOutlineSetting,
+	AiOutlineShoppingCart,
+} from 'react-icons/ai';
+import {Button} from './Button';
+import {Icon} from './Icon';
 import {IconLink} from './IconLink';
 
-interface NotifcationsProps {
-	isOpen: boolean;
-}
+const NavButton: React.FC<{href: string}> = ({href, children}) => {
+	const router = useRouter();
 
-const Notifications: React.FC<NotifcationsProps> = ({isOpen}) => {
-	const {data} = useNotificationsQuery();
+	const isActive = router.pathname === href;
+
+	if (isActive) {
+		return (
+			<Link href={href}>
+				<a className="inline-block px-4 py-3 text-sm text-gray-600 bg-blueGray-50 font-semibold leading-none rounded transform transition-all">
+					{children}
+				</a>
+			</Link>
+		);
+	}
 
 	return (
-		<Transition
-			show={isOpen}
-			enter="transform transition duration-[400ms]"
-			enterFrom="opacity-0 scale-50"
-			enterTo="opacity-100 scale-100"
-			leave="transform duration-200 transition ease-in-out"
-			leaveFrom="opacity-100 scale-100"
-			leaveTo="opacity-0 scale-95"
-			className="absolute top-20 bg-blueGray-50 rounded"
-		>
-			{data?.notifications.map(notification => (
-				<div key={notification.id} className="p-5">
-					{notification.message}
-				</div>
-			))}
-		</Transition>
+		<Link href={href}>
+			<a className="inline-block px-4 py-3 text-sm text-gray-600 hover:bg-blueGray-100 font-semibold leading-none rounded transform transition-all">
+				{children}
+			</a>
+		</Link>
 	);
 };
 
 export const Navbar: React.FC = () => {
-	const router = useRouter();
+	// I could maybe add useVerifyLoggedIn() here instead of having it in all the pages.
 
-	const [isOpen, setIsOpen] = useState(false);
+	const {data: me} = useMeQuery();
 
 	return (
-		<nav className="flex items-center justify-between m-5 p-5">
-			<div className="flex items-center space-x-2">
-				<IconLink icon={AiOutlineLeft} onClick={async () => router.back()} />
-			</div>
-
-			<div className="flex items-center space-x-5">
-				<div className="flex flex-col items-center justify-center">
-					<IconLink icon={AiOutlineBell} className="w-5 h-5" onClick={() => setIsOpen(prev => !prev)} />
-					<Notifications isOpen={isOpen} />
+		<nav className="p-10">
+			<div className="flex items-center justify-between">
+				<Link href="/home">
+					<a className="flex space-x-1 p-3 text-sm text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 font-semibold leading-none border border-bray-200 hover:border-gray-300 rounded">
+						<Icon icon={AiOutlineMacCommand} className="w-4 h-4" />
+						<h1>K</h1>
+					</a>
+				</Link>
+				<div className="flex items-center space-x-5">
+					<Button variant="tertiary" className="flex items-center space-x-2">
+						<Icon icon={AiOutlineFire} className="w-4 h-4" />
+						{/* Upgrade now ?? Verify Account? */}
+						<h1>Upgrade now</h1>
+					</Button>
+					<IconLink href="/preferences" icon={AiOutlineSetting} className="w-5 h-5" />
+					<IconLink icon={AiOutlineBell} className="w-5 h-5" />
+					<img src={me?.me?.avatar ?? ''} className="w-10 h-10 rounded-full" />
 				</div>
-				<IconLink href="/preferences" icon={AiOutlineSetting} className="w-5 h-5" />
 			</div>
 		</nav>
 	);
