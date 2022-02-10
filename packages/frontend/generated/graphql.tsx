@@ -6147,6 +6147,7 @@ export type Mutation = {
   editPerson?: Maybe<Person>;
   editShow?: Maybe<Show>;
   editSong?: Maybe<Song>;
+  editUser?: Maybe<Scalars['Boolean']>;
   follow: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
   likeBook: Scalars['Boolean'];
@@ -6782,6 +6783,10 @@ export type MutationEditShowArgs = {
 export type MutationEditSongArgs = {
   data: SongUpdateInput;
   where: SongWhereUniqueInput;
+};
+
+export type MutationEditUserArgs = {
+  data: UserUpdateInput;
 };
 
 export type MutationFollowArgs = {
@@ -14570,7 +14575,7 @@ export type User = {
   confirmed: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
   displayname: Scalars['String'];
-  dob: Scalars['String'];
+  dob: Scalars['DateTime'];
   email: Scalars['String'];
   followers: Follows[];
   following: Follows[];
@@ -14801,7 +14806,7 @@ export type UserCreateInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -14830,7 +14835,7 @@ export type UserCreateManyInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id?: InputMaybe<Scalars['Int']>;
   location?: InputMaybe<Scalars['String']>;
@@ -15023,7 +15028,7 @@ export type UserCreateWithoutBookReviewLikesInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15053,7 +15058,7 @@ export type UserCreateWithoutBookReviewsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15084,7 +15089,7 @@ export type UserCreateWithoutFollowersInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
   likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
@@ -15114,7 +15119,7 @@ export type UserCreateWithoutFollowingInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   likedBooks?: InputMaybe<BookLikeCreateNestedManyWithoutUserInput>;
@@ -15144,7 +15149,7 @@ export type UserCreateWithoutLikedBooksInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15174,7 +15179,7 @@ export type UserCreateWithoutLikedMovieReviewsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15204,7 +15209,7 @@ export type UserCreateWithoutLikedMoviesInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15234,7 +15239,7 @@ export type UserCreateWithoutLikedShowsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15264,7 +15269,7 @@ export type UserCreateWithoutLikedSongsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15294,7 +15299,7 @@ export type UserCreateWithoutMovieReviewsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15324,7 +15329,7 @@ export type UserCreateWithoutNotificationsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15354,7 +15359,7 @@ export type UserCreateWithoutShowReviewLikesInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15384,7 +15389,7 @@ export type UserCreateWithoutShowReviewsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15414,7 +15419,7 @@ export type UserCreateWithoutSongReviewLikesInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15444,7 +15449,7 @@ export type UserCreateWithoutSongReviewsInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15474,7 +15479,7 @@ export type UserCreateWithoutWatchlistInput = {
   confirmed?: InputMaybe<Scalars['Boolean']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   displayname: Scalars['String'];
-  dob?: InputMaybe<Scalars['String']>;
+  dob?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   followers?: InputMaybe<FollowsCreateNestedManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsCreateNestedManyWithoutFollowingInput>;
@@ -15508,7 +15513,7 @@ export type UserGroupBy = {
   confirmed: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
   displayname: Scalars['String'];
-  dob: Scalars['String'];
+  dob: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['Int'];
   location: Scalars['String'];
@@ -15526,7 +15531,7 @@ export type UserMaxAggregate = {
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   displayname?: Maybe<Scalars['String']>;
-  dob?: Maybe<Scalars['String']>;
+  dob?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   location?: Maybe<Scalars['String']>;
@@ -15560,7 +15565,7 @@ export type UserMinAggregate = {
   confirmed?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   displayname?: Maybe<Scalars['String']>;
-  dob?: Maybe<Scalars['String']>;
+  dob?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   location?: Maybe<Scalars['String']>;
@@ -15671,7 +15676,7 @@ export type UserScalarWhereWithAggregatesInput = {
   confirmed?: InputMaybe<BoolWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   displayname?: InputMaybe<StringWithAggregatesFilter>;
-  dob?: InputMaybe<StringWithAggregatesFilter>;
+  dob?: InputMaybe<DateTimeWithAggregatesFilter>;
   email?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
   location?: InputMaybe<StringWithAggregatesFilter>;
@@ -15698,7 +15703,7 @@ export type UserUpdateInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -15727,7 +15732,7 @@ export type UserUpdateManyMutationInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   location?: InputMaybe<StringFieldUpdateOperationsInput>;
   role?: InputMaybe<EnumRoleFieldUpdateOperationsInput>;
@@ -15871,7 +15876,7 @@ export type UserUpdateWithoutBookReviewLikesInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -15901,7 +15906,7 @@ export type UserUpdateWithoutBookReviewsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -15932,7 +15937,7 @@ export type UserUpdateWithoutFollowersInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
   likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
@@ -15962,7 +15967,7 @@ export type UserUpdateWithoutFollowingInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   likedBooks?: InputMaybe<BookLikeUpdateManyWithoutUserInput>;
@@ -15992,7 +15997,7 @@ export type UserUpdateWithoutLikedBooksInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16022,7 +16027,7 @@ export type UserUpdateWithoutLikedMovieReviewsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16052,7 +16057,7 @@ export type UserUpdateWithoutLikedMoviesInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16082,7 +16087,7 @@ export type UserUpdateWithoutLikedShowsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16112,7 +16117,7 @@ export type UserUpdateWithoutLikedSongsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16142,7 +16147,7 @@ export type UserUpdateWithoutMovieReviewsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16172,7 +16177,7 @@ export type UserUpdateWithoutNotificationsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16202,7 +16207,7 @@ export type UserUpdateWithoutShowReviewLikesInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16232,7 +16237,7 @@ export type UserUpdateWithoutShowReviewsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16262,7 +16267,7 @@ export type UserUpdateWithoutSongReviewLikesInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16292,7 +16297,7 @@ export type UserUpdateWithoutSongReviewsInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16322,7 +16327,7 @@ export type UserUpdateWithoutWatchlistInput = {
   confirmed?: InputMaybe<BoolFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   displayname?: InputMaybe<StringFieldUpdateOperationsInput>;
-  dob?: InputMaybe<StringFieldUpdateOperationsInput>;
+  dob?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   followers?: InputMaybe<FollowsUpdateManyWithoutFollowerInput>;
   following?: InputMaybe<FollowsUpdateManyWithoutFollowingInput>;
@@ -16435,7 +16440,7 @@ export type UserWhereInput = {
   confirmed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   displayname?: InputMaybe<StringFilter>;
-  dob?: InputMaybe<StringFilter>;
+  dob?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
   followers?: InputMaybe<FollowsListRelationFilter>;
   following?: InputMaybe<FollowsListRelationFilter>;
@@ -16938,6 +16943,12 @@ export type DeleteSongInShowMutationVariables = Exact<{
 
 export type DeleteSongInShowMutation = {__typename?: 'Mutation'; deleteSongInShow?: boolean | null};
 
+export type EditUserMutationVariables = Exact<{
+  data: UserUpdateInput;
+}>;
+
+export type EditUserMutation = {__typename?: 'Mutation'; editUser?: boolean | null};
+
 export type FollowMutationVariables = Exact<{
   userId: Scalars['Int'];
 }>;
@@ -17141,7 +17152,7 @@ export type PersonQuery = {__typename?: 'Query'; person?: {__typename?: 'Person'
 
 export type PreferencesQueryVariables = Exact<Record<string, never>>;
 
-export type PreferencesQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; createdAt: any; updatedAt: any} | null};
+export type PreferencesQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: any; createdAt: any; updatedAt: any} | null};
 
 export type ShowQueryVariables = Exact<{
   showId: Scalars['Int'];
@@ -17177,7 +17188,7 @@ export type UserQueryVariables = Exact<{
   username: Scalars['String'];
 }>;
 
-export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: string; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null} | null};
+export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: any; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null} | null};
 
 export type NotificationListenerSubscriptionVariables = Exact<{
   listenerId: Scalars['Int'];
@@ -17856,6 +17867,38 @@ export function useDeleteSongInShowMutation(baseOptions?: Apollo.MutationHookOpt
 export type DeleteSongInShowMutationHookResult = ReturnType<typeof useDeleteSongInShowMutation>;
 export type DeleteSongInShowMutationResult = Apollo.MutationResult<DeleteSongInShowMutation>;
 export type DeleteSongInShowMutationOptions = Apollo.BaseMutationOptions<DeleteSongInShowMutation, DeleteSongInShowMutationVariables>;
+export const EditUserDocument = gql`
+    mutation EditUser($data: UserUpdateInput!) {
+  editUser(data: $data)
+}
+    `;
+export type EditUserMutationFn = Apollo.MutationFunction<EditUserMutation, EditUserMutationVariables>;
+
+/**
+ * __useEditUserMutation__
+ *
+ * To run a mutation, you first call `useEditUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useEditUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [editUserMutation, { data, loading, error }] = useEditUserMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useEditUserMutation(baseOptions?: Apollo.MutationHookOptions<EditUserMutation, EditUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<EditUserMutation, EditUserMutationVariables>(EditUserDocument, options);
+      }
+
+export type EditUserMutationHookResult = ReturnType<typeof useEditUserMutation>;
+export type EditUserMutationResult = Apollo.MutationResult<EditUserMutation>;
+export type EditUserMutationOptions = Apollo.BaseMutationOptions<EditUserMutation, EditUserMutationVariables>;
 export const FollowDocument = gql`
     mutation Follow($userId: Int!) {
   follow(userId: $userId)

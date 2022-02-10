@@ -1,5 +1,6 @@
 import {Navbar} from '@components/Navbar';
 import {motion} from 'framer-motion';
+import {Toaster} from 'react-hot-toast';
 import React from 'react';
 
 const pageVariants = {
@@ -24,6 +25,7 @@ const pageTransition = {
 
 export const Layout: React.FC = ({children}) => (
 	<>
+		<Toaster position="top-right" />
 		<Navbar />
 		<motion.div
 			className="px-10"
