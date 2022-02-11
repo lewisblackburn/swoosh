@@ -1,3 +1,4 @@
+import {Card} from '@components/Card';
 import {Icon} from '@components/Icon';
 import {Poster} from '@components/Poster';
 import {Layout} from '@modules/layouts/Layout';
@@ -53,7 +54,11 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{movies?.movies?.map(movie => (
+						{/* Due to apollo caching it means that if 20 movies have been loaded from the path
+						 /movies it will render them here but I only won't the first five, so instead of fetching with the
+						  no-cache parameter which would be a wastful query I just render the first fiive from cache
+						*/}
+						{movies?.movies?.slice(0, 5).map(movie => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
 								<a>
@@ -62,10 +67,10 @@ export const HomePage: React.FC = () => {
 							</Link>
 						))}
 						<Link href="/movies">
-							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+							<a>
+								<Card>
 									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 					</div>
@@ -79,7 +84,7 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{shows?.shows?.map(show => (
+						{shows?.shows?.slice(0, 4).map(show => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={show.id} href={`/show/${show.id}` ?? 0}>
 								<a>
@@ -89,9 +94,9 @@ export const HomePage: React.FC = () => {
 						))}
 						<Link href="/shows">
 							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+								<Card>
 									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 					</div>
@@ -105,7 +110,7 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{songs?.songs?.map(song => (
+						{songs?.songs?.slice(0, 4).map(song => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={song.id} href={`/song/${song.id}` ?? 0}>
 								<a>
@@ -115,9 +120,9 @@ export const HomePage: React.FC = () => {
 						))}
 						<Link href="/songs">
 							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+								<Card>
 									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 					</div>
@@ -131,7 +136,7 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{books?.books?.map(book => (
+						{books?.books?.slice(0, 4).map(book => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={book.id} href={`/book/${book.id}` ?? 0}>
 								<a>
@@ -141,9 +146,9 @@ export const HomePage: React.FC = () => {
 						))}
 						<Link href="/books">
 							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+								<Card>
 									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 					</div>
@@ -157,7 +162,7 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{movies?.movies?.map(movie => (
+						{movies?.movies?.slice(0, 4).map(movie => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
 								<a>
@@ -166,10 +171,10 @@ export const HomePage: React.FC = () => {
 							</Link>
 						))}
 						<Link href="/people">
-							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+							<a className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
+								<Card>
 									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</div>
+								</Card>
 							</a>
 						</Link>
 					</div>

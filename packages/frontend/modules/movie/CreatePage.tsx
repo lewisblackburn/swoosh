@@ -3,6 +3,7 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {notify} from '@components/Notify';
 import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {
@@ -67,8 +68,9 @@ export const CreatePage: React.FC = () => {
 						},
 						refetchQueries: [MoviesDocument],
 					})
-						.then(res =>
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+						.then(res => {
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							notify('success', 'mutation', `${res?.data?.createMovie.title} created`);
 							uploadBackdrop({
 								variables: {
 									id: res?.data?.createMovie.id ?? -1,
@@ -84,10 +86,14 @@ export const CreatePage: React.FC = () => {
 										type: UploadType.Movie,
 									},
 								})
-							)
-						)
-						.then(() => setSubmitting(false))
-						.then(async () => router.push('/movies'));
+							);
+						})
+						.catch((e: any) => {
+							notify('error', 'mutation', e.graphQLErrors[0].message);
+						})
+						.then(() => {
+							setSubmitting(false);
+						});
 				}}
 			>
 				{({isSubmitting}) => (

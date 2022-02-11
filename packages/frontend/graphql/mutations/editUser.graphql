@@ -1,3 +1,0 @@
-mutation EditUser($data: UserUpdateInput!) {
-	editUser(data: $data)
-}

@@ -1,0 +1,62 @@
+fragment RegularShow on Show {
+	id
+	title
+	tagline
+	overview
+	poster
+	backdrop
+	released
+	trailer
+	rating
+	isLiked
+	_count {
+		likes
+	}
+	actors(take: 8) {
+		role
+		person {
+			id
+			name
+			poster
+		}
+	}
+	genres {
+		name
+	}
+	soundtrack {
+		timestamp
+		description
+		song {
+			id
+			title
+			description
+			poster
+			artists {
+				personId
+				person {
+					name
+				}
+			}
+			songInShow {
+				timestamp
+				description
+			}
+		}
+	}
+	reviews(take: 8) {
+		review
+		rating
+		user {
+			username
+			avatar
+		}
+		_count {
+			likes
+		}
+	}
+	aggregateShowReview {
+		_avg {
+			rating
+		}
+	}
+}

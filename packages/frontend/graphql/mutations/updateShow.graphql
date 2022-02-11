@@ -1,5 +1,5 @@
 mutation UpdateShow($data: ShowUpdateInput!, $where: ShowWhereUniqueInput!) {
 	updateShow(data: $data, where: $where) {
-		id
+		...RegularShow
 	}
 }

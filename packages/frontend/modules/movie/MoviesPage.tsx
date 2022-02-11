@@ -21,7 +21,9 @@ export const MoviesPage: React.FC = () => {
 
 	const handleChange = (selectedOption: any) => setSelectedOption(selectedOption);
 	const {data} = useMoviesQuery({
-		variables: {},
+		variables: {
+			take: 30,
+		},
 	});
 
 	if (data?.movies) {
@@ -36,6 +38,7 @@ export const MoviesPage: React.FC = () => {
 						</div>
 						<div className="flex flex-col space-y-5">
 							<Grid>
+								<Select value={selectedOption} options={options} onChange={handleChange} />
 								<Select value={selectedOption} options={options} onChange={handleChange} />
 								<Select value={selectedOption} options={options} onChange={handleChange} />
 								<Select value={selectedOption} options={options} onChange={handleChange} />

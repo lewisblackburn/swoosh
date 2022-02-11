@@ -1,6 +1,7 @@
 import {useApolloClient} from '@apollo/client';
 import {Icon} from '@components/Icon';
 import {Navbar} from '@components/Navbar';
+import {notify} from '@components/Notify';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {motion} from 'framer-motion';
 import {useLogoutMutation} from 'generated/graphql';
@@ -104,9 +105,16 @@ export const PreferencesLayout: React.FC = ({children}) => {
 								className="flex p-3 items-center font-medium hover:bg-indigo-50 rounded text-gray-500 hover:text-indigo-500 cursor-pointer transform transition-all"
 								onClick={async () => {
 									await apolloClient.resetStore().then(() => {
-										logout().then(() => {
-											void router.reload();
-										});
+										logout()
+											.then(() => {
+												notify('success', 'mutation', 'You have been logged out.');
+												setTimeout(() => {
+													void router.reload();
+												}, 1000);
+											})
+											.catch(e => {
+												notify('error', 'mutation', e.graphQLErrors[0].message);
+											});
 									});
 								}}
 							>

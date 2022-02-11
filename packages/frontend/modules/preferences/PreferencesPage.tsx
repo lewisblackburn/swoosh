@@ -1,14 +1,13 @@
 import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
-import {notify} from '@components/toast';
+import {notify} from '@components/Notify';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {PreferencesLayout} from '@modules/layouts/PreferenceLayout';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {PreferencesDocument, useEditUserMutation, usePreferencesQuery} from 'generated/graphql';
-import {isServer} from 'lib/constants';
-import {toErrorMap} from 'lib/toErrorMap';
-import React, {useEffect, useState} from 'react';
+import {PreferencesDocument, usePreferencesQuery, useUpdateUserMutation} from 'generated/graphql';
+import {useRouter} from 'next/router';
+import React from 'react';
 
 interface Values {
 	email: string;
@@ -23,8 +22,10 @@ interface Values {
 export const PreferencesPage: React.FC = () => {
 	useVerifyLoggedIn();
 
+	const router = useRouter();
+
 	const {data: preferences} = usePreferencesQuery();
-	const [editUser] = useEditUserMutation({
+	const [updateUser] = useUpdateUserMutation({
 		refetchQueries: [PreferencesDocument],
 	});
 
@@ -43,7 +44,7 @@ export const PreferencesPage: React.FC = () => {
 					}}
 					onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
 						setSubmitting(true);
-						await editUser({
+						await updateUser({
 							variables: {
 								data: {
 									email: {
@@ -70,8 +71,12 @@ export const PreferencesPage: React.FC = () => {
 								},
 							},
 						})
+							.then(() => {
+								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+								notify('success', 'mutation', `${preferences?.me?.displayname}'s preferences updated`);
+							})
 							.catch((e: any) => {
-								notify(e.graphQLErrors[0].message);
+								notify('error', 'mutation', e.graphQLErrors[0].message);
 							})
 							.then(() => {
 								setSubmitting(false);
@@ -84,7 +89,13 @@ export const PreferencesPage: React.FC = () => {
 								<div className="flex items-center justify-between pb-10">
 									<img src={preferences?.me?.avatar ?? ''} className="rounded-full w-24 h-24" />
 									<div className="flex items-center space-x-2">
-										<Button type="submit" variant="tertiary">
+										<Button
+											type="submit"
+											variant="tertiary"
+											onClick={() => {
+												router.reload();
+											}}
+										>
 											Cancel
 										</Button>
 										<Button type="submit" variant="primary">

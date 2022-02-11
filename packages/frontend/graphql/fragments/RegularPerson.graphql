@@ -1,0 +1,14 @@
+fragment RegularPerson on Person {
+	id
+	career
+	name
+	poster
+	bio
+	age
+	_count {
+		movies
+		shows
+		books
+		songs
+	}
+}

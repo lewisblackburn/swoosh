@@ -61,7 +61,12 @@ export const Navbar: React.FC = () => {
 					</Button>
 					<IconLink href="/preferences" icon={AiOutlineSetting} className="w-5 h-5" />
 					<IconLink icon={AiOutlineBell} className="w-5 h-5" />
-					<img src={me?.me?.avatar ?? ''} className="w-10 h-10 rounded-full" />
+					{/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */}
+					<Link href={`/user/${me?.me?.username}`}>
+						<a>
+							<img src={me?.me?.avatar ?? ''} className="w-10 h-10 rounded-full" />
+						</a>
+					</Link>
 				</div>
 			</div>
 		</nav>

@@ -4,6 +4,7 @@ import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {IconButton} from '@components/IconButton';
 import {Modal} from '@components/Modal/Modal';
+import {notify} from '@components/Notify';
 import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {
@@ -453,6 +454,10 @@ export const EditPage: React.FC = () => {
 							},
 							refetchQueries: [MovieDocument],
 						})
+							.then(() => {
+								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+								notify('success', 'mutation', `${movie.movie?.title} updated successfully`);
+							})
 							.then(() => {
 								if (backdrop) {
 									uploadBackdrop({
