@@ -1,7 +1,9 @@
 import {Backdrop} from '@components/Backdrop';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
+import {Loading} from '@components/Loading';
 import {ReviewMovieModal} from '@components/Modal/ReviewMovieModal';
+import {notify} from '@components/Notify';
 import {Poster} from '@components/Poster';
 import {
 	MovieDocument,
@@ -9,6 +11,7 @@ import {
 	useLikeMovieMutation,
 	useMovieQuery,
 	useUnlikeMovieMutation,
+	useUpdateWatchlistMutation,
 } from 'generated/graphql';
 import {useGetIntId} from 'hooks/useGetIntId';
 import {floatToTime} from 'lib/floatToTime';
@@ -21,6 +24,7 @@ import {
 	AiOutlineEdit,
 	AiOutlineHeart,
 	AiOutlineHourglass,
+	AiOutlineMinus,
 	AiOutlinePlus,
 	AiOutlineStar,
 } from 'react-icons/ai';
@@ -50,10 +54,15 @@ export const MoviePage: React.FC = () => {
 		},
 		refetchQueries: [MovieDocument],
 	});
+
 	const [unlikeMovie] = useUnlikeMovieMutation({
 		variables: {
 			movieId,
 		},
+		refetchQueries: [MovieDocument],
+	});
+
+	const [updateWatchlist] = useUpdateWatchlistMutation({
 		refetchQueries: [MovieDocument],
 	});
 
@@ -62,6 +71,8 @@ export const MoviePage: React.FC = () => {
 	});
 
 	const [isOpen, setIsOpen] = useState(false);
+
+	if (!data?.movie) return <Loading />;
 
 	return (
 		<>
@@ -72,14 +83,73 @@ export const MoviePage: React.FC = () => {
 						<div className="flex flex-col items-center text-center mb-6">
 							<h2 className="text-2xl md:text-4xl my-2 font-bold font-heading">{data?.movie?.title}</h2>
 							<div className="flex space-x-5">
-								<IconButton icon={AiOutlinePlus} />
+								<IconButton
+									icon={data?.movie?.isInWatchlist ? AiOutlineMinus : AiOutlinePlus}
+									onClick={() => {
+										if (data?.movie?.isInWatchlist) {
+											updateWatchlist({
+												variables: {
+													data: {
+														movies: {
+															disconnect: [
+																{
+																	id: movieId,
+																},
+															],
+														},
+													},
+												},
+											})
+												.then(() => {
+													notify('success', 'mutation', 'Removed from watchlist');
+												})
+												.catch(() => {
+													notify('error', 'mutation', 'Failed to remove from watchlist');
+												});
+										} else {
+											updateWatchlist({
+												variables: {
+													data: {
+														movies: {
+															connect: [
+																{
+																	id: movieId,
+																},
+															],
+														},
+													},
+												},
+											})
+												.then(() => {
+													notify('success', 'mutation', 'Added to watchlist');
+												})
+												.catch(() => {
+													notify('error', 'mutation', 'Failed to add to watchlist');
+												});
+										}
+									}}
+								/>
 								<IconButton
 									icon={data?.movie?.isLiked ? AiFillHeart : AiOutlineHeart}
 									className={data?.movie?.isLiked ? 'text-red-500' : ''}
 									onClick={() => {
-										likeMovie().catch(() => {
-											unlikeMovie();
-										});
+										likeMovie()
+											.then(() => {
+												notify('success', 'mutation', 'Liked movie');
+											})
+											.catch(() => {
+												unlikeMovie()
+													.then(() => {
+														notify('success', 'mutation', 'Unliked movie');
+													})
+													.catch(() => {
+														notify(
+															'error',
+															'mutation',
+															'Failed to either like or unlike movie'
+														);
+													});
+											});
 									}}
 								/>
 								<IconButton icon={AiOutlineStar} onClick={() => setIsOpen(prev => !prev)} />
@@ -260,7 +330,13 @@ export const MoviePage: React.FC = () => {
 														variables: {
 															movieId,
 														},
-													});
+													})
+														.then(() => {
+															notify('success', 'delete', 'Review deleted');
+														})
+														.catch(() => {
+															notify('error', 'delete', 'Error deleting review');
+														});
 												}}
 											/>
 										</div>

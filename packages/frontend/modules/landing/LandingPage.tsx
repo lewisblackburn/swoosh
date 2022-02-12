@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 import {Button} from '@components/Button';
 import {Icon} from '@components/Icon';
+import {Loading} from '@components/Loading';
 import {useCountMediaQuery} from 'generated/graphql';
 import Link from 'next/link';
 import React from 'react';
@@ -8,6 +9,9 @@ import {AiOutlineCustomerService, AiOutlineDesktop, AiOutlineRead, AiOutlineVide
 
 export const LandingPage: React.FC = () => {
 	const {data} = useCountMediaQuery();
+
+	if (!data?.aggregateBook || !data?.aggregateMovie || !data?.aggregateShow || !data?.aggregateSong)
+		return <Loading />;
 
 	return (
 		<>
@@ -542,11 +546,11 @@ export const LandingPage: React.FC = () => {
 									<span className="mr-4 font-semibold">Departament:</span>
 									<label className="mr-4">
 										<input
+											defaultChecked
 											className="mr-1"
 											type="radio"
 											name="department"
 											defaultValue={1}
-											defaultChecked
 										/>
 										<span>Support</span>
 									</label>
@@ -579,9 +583,8 @@ export const LandingPage: React.FC = () => {
 								<div className="mb-4">
 									<textarea
 										className="w-full h-24 p-4 text-xs font-semibold leading-none resize-none bg-blueGray-50 rounded outline-none"
-										type="text"
 										placeholder="Message..."
-										defaultValue={''}
+										defaultValue=""
 									/>
 								</div>
 								<div className="mb-4">

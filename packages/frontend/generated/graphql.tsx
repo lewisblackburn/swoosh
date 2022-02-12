@@ -4016,6 +4016,7 @@ export type Movie = {
   createdAt: Scalars['DateTime'];
   genres: Genre[];
   id: Scalars['Int'];
+  isInWatchlist: Scalars['Boolean'];
   isLiked: Scalars['Boolean'];
   likes: MovieLike[];
   locked: Scalars['Boolean'];
@@ -6084,6 +6085,7 @@ export type Mutation = {
   createSongReviewLike: SongReviewLike;
   createUser: User;
   createWatchlist: Watchlist;
+  deleteAccount: Scalars['Boolean'];
   deleteActorInMovie?: Maybe<Scalars['Boolean']>;
   deleteActorInShow?: Maybe<Scalars['Boolean']>;
   deleteArtistInSong?: Maybe<Scalars['Boolean']>;
@@ -6520,6 +6522,10 @@ export type MutationCreateUserArgs = {
 
 export type MutationCreateWatchlistArgs = {
   data: WatchlistCreateInput;
+};
+
+export type MutationDeleteAccountArgs = {
+  password: Scalars['String'];
 };
 
 export type MutationDeleteActorInMovieArgs = {
@@ -7117,7 +7123,6 @@ export type MutationUpdateUserArgs = {
 
 export type MutationUpdateWatchlistArgs = {
   data: WatchlistUpdateInput;
-  where: WatchlistWhereUniqueInput;
 };
 
 export type MutationUploadAvatarArgs = {
@@ -9991,10 +9996,6 @@ export type QueryUsersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
-};
-
-export type QueryWatchlistArgs = {
-  where: WatchlistWhereUniqueInput;
 };
 
 export type QueryWatchlistsArgs = {
@@ -16775,7 +16776,7 @@ export type WatchlistWhereUniqueInput = {
   userId?: InputMaybe<Scalars['Int']>;
 };
 
-export type RegularMovieFragment = {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}};
+export type RegularMovieFragment = {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}};
 
 export type RegularPersonFragment = {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null};
 
@@ -16860,6 +16861,12 @@ export type CreateSongInShowMutationVariables = Exact<{
 }>;
 
 export type CreateSongInShowMutation = {__typename?: 'Mutation'; createSongInShow: boolean};
+
+export type DeleteAccountMutationVariables = Exact<{
+  password: Scalars['String'];
+}>;
+
+export type DeleteAccountMutation = {__typename?: 'Mutation'; deleteAccount: boolean};
 
 export type DeleteActorInMovieMutationVariables = Exact<{
   where: ActorInMovieWhereUniqueInput;
@@ -16967,7 +16974,7 @@ export type UpdateMovieMutationVariables = Exact<{
   where: MovieWhereUniqueInput;
 }>;
 
-export type UpdateMovieMutation = {__typename?: 'Mutation'; updateMovie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type UpdateMovieMutation = {__typename?: 'Mutation'; updateMovie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type UpdateMovieReivewMutationVariables = Exact<{
   data: MovieReviewUpdateInput;
@@ -16988,6 +16995,12 @@ export type UpdateUserMutationVariables = Exact<{
 }>;
 
 export type UpdateUserMutation = {__typename?: 'Mutation'; updateUser?: {__typename?: 'User'; id: number; email: string; username: string; avatar: string} | null};
+
+export type UpdateWatchlistMutationVariables = Exact<{
+  data: WatchlistUpdateInput;
+}>;
+
+export type UpdateWatchlistMutation = {__typename?: 'Mutation'; updateWatchlist?: {__typename?: 'Watchlist'; id: number; movies: Array<{__typename?: 'Movie'; id: number; title: string}>} | null};
 
 export type UploadAvatarMutationVariables = Exact<{
   file: Scalars['Upload'];
@@ -17080,7 +17093,7 @@ export type MovieQueryVariables = Exact<{
   movieId: Scalars['Int'];
 }>;
 
-export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
@@ -17150,6 +17163,10 @@ export type UserQueryVariables = Exact<{
 
 export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: number; confirmed: boolean; email: string; username: string; displayname: string; role: Role; avatar: string; bio: string; location: string; website: string; dob: any; isFollowing: boolean; createdAt: any; updatedAt: any; _count?: {__typename?: 'UserCount'; following: number; followers: number} | null} | null};
 
+export type WatchlistQueryVariables = Exact<Record<string, never>>;
+
+export type WatchlistQuery = {__typename?: 'Query'; watchlist?: {__typename?: 'Watchlist'; movies: Array<{__typename?: 'Movie'; id: number; title: string}>} | null};
+
 export type NotificationListenerSubscriptionVariables = Exact<{
   listenerId: Scalars['Int'];
 }>;
@@ -17169,6 +17186,7 @@ export const RegularMovieFragmentDoc = gql`
   trailer
   rating
   isLiked
+  isInWatchlist
   _count {
     likes
   }
@@ -17748,6 +17766,38 @@ export function useCreateSongInShowMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateSongInShowMutationHookResult = ReturnType<typeof useCreateSongInShowMutation>;
 export type CreateSongInShowMutationResult = Apollo.MutationResult<CreateSongInShowMutation>;
 export type CreateSongInShowMutationOptions = Apollo.BaseMutationOptions<CreateSongInShowMutation, CreateSongInShowMutationVariables>;
+export const DeleteAccountDocument = gql`
+    mutation deleteAccount($password: String!) {
+  deleteAccount(password: $password)
+}
+    `;
+export type DeleteAccountMutationFn = Apollo.MutationFunction<DeleteAccountMutation, DeleteAccountMutationVariables>;
+
+/**
+ * __useDeleteAccountMutation__
+ *
+ * To run a mutation, you first call `useDeleteAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAccountMutation, { data, loading, error }] = useDeleteAccountMutation({
+ *   variables: {
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useDeleteAccountMutation(baseOptions?: Apollo.MutationHookOptions<DeleteAccountMutation, DeleteAccountMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<DeleteAccountMutation, DeleteAccountMutationVariables>(DeleteAccountDocument, options);
+      }
+
+export type DeleteAccountMutationHookResult = ReturnType<typeof useDeleteAccountMutation>;
+export type DeleteAccountMutationResult = Apollo.MutationResult<DeleteAccountMutation>;
+export type DeleteAccountMutationOptions = Apollo.BaseMutationOptions<DeleteAccountMutation, DeleteAccountMutationVariables>;
 export const DeleteActorInMovieDocument = gql`
     mutation deleteActorInMovie($where: ActorInMovieWhereUniqueInput!) {
   deleteActorInMovie(where: $where)
@@ -18441,6 +18491,44 @@ export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
 export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
+export const UpdateWatchlistDocument = gql`
+    mutation UpdateWatchlist($data: WatchlistUpdateInput!) {
+  updateWatchlist(data: $data) {
+    id
+    movies {
+      id
+      title
+    }
+  }
+}
+    `;
+export type UpdateWatchlistMutationFn = Apollo.MutationFunction<UpdateWatchlistMutation, UpdateWatchlistMutationVariables>;
+
+/**
+ * __useUpdateWatchlistMutation__
+ *
+ * To run a mutation, you first call `useUpdateWatchlistMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWatchlistMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateWatchlistMutation, { data, loading, error }] = useUpdateWatchlistMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateWatchlistMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWatchlistMutation, UpdateWatchlistMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UpdateWatchlistMutation, UpdateWatchlistMutationVariables>(UpdateWatchlistDocument, options);
+      }
+
+export type UpdateWatchlistMutationHookResult = ReturnType<typeof useUpdateWatchlistMutation>;
+export type UpdateWatchlistMutationResult = Apollo.MutationResult<UpdateWatchlistMutation>;
+export type UpdateWatchlistMutationOptions = Apollo.BaseMutationOptions<UpdateWatchlistMutation, UpdateWatchlistMutationVariables>;
 export const UploadAvatarDocument = gql`
     mutation UploadAvatar($file: Upload!) {
   uploadAvatar(file: $file)
@@ -19464,6 +19552,45 @@ export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQ
 export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export const WatchlistDocument = gql`
+    query Watchlist {
+  watchlist {
+    movies {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useWatchlistQuery__
+ *
+ * To run a query within a React component, call `useWatchlistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWatchlistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWatchlistQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useWatchlistQuery(baseOptions?: Apollo.QueryHookOptions<WatchlistQuery, WatchlistQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<WatchlistQuery, WatchlistQueryVariables>(WatchlistDocument, options);
+      }
+
+export function useWatchlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WatchlistQuery, WatchlistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<WatchlistQuery, WatchlistQueryVariables>(WatchlistDocument, options);
+        }
+
+export type WatchlistQueryHookResult = ReturnType<typeof useWatchlistQuery>;
+export type WatchlistLazyQueryHookResult = ReturnType<typeof useWatchlistLazyQuery>;
+export type WatchlistQueryResult = Apollo.QueryResult<WatchlistQuery, WatchlistQueryVariables>;
 export const NotificationListenerDocument = gql`
     subscription NotificationListener($listenerId: Int!) {
   notificationListener(listenerId: $listenerId) {

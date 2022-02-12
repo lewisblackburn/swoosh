@@ -3,6 +3,7 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {IconButton} from '@components/IconButton';
+import {Loading} from '@components/Loading';
 import {Modal} from '@components/Modal/Modal';
 import {notify} from '@components/Notify';
 import {PosterDiv} from '@components/PosterDiv';
@@ -408,149 +409,177 @@ export const EditPage: React.FC = () => {
 	const handleBackdropChange = (event: any) => setBackdrop(event.target.files[0]);
 	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
 
-	if (movie?.movie) {
-		return (
-			<Layout>
-				<Formik
-					initialValues={{
-						title: movie?.movie?.title ?? '',
-						tagline: movie?.movie?.tagline ?? '',
-						overview: movie?.movie?.overview ?? '',
-						rating: movie?.movie?.rating ?? '',
-						runtime: movie?.movie?.runtime ?? 0,
-						released: new Date(movie?.movie?.released ?? 0).toISOString().split('T')[0] ?? 0,
-						trailer: movie?.movie?.trailer ?? '',
-					}}
-					onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
-						setSubmitting(true);
-						await updateMovie({
-							variables: {
-								data: {
-									title: {
-										set: values.title,
-									},
-									tagline: {
-										set: values.tagline,
-									},
-									overview: {
-										set: values.overview,
-									},
-									rating: {
-										set: values.rating,
-									},
-									runtime: {
-										set: parseFloat(values.runtime.toString()),
-									},
-									released: {
-										set: values.released,
-									},
-									trailer: {
-										set: values.trailer,
-									},
+	if (!movie?.movie) return <Loading />;
+
+	return (
+		<Layout>
+			<Formik
+				initialValues={{
+					title: movie?.movie?.title ?? '',
+					tagline: movie?.movie?.tagline ?? '',
+					overview: movie?.movie?.overview ?? '',
+					rating: movie?.movie?.rating ?? '',
+					runtime: movie?.movie?.runtime ?? 0,
+					released: new Date(movie?.movie?.released ?? 0).toISOString().split('T')[0] ?? 0,
+					trailer: movie?.movie?.trailer ?? '',
+				}}
+				onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
+					setSubmitting(true);
+					await updateMovie({
+						variables: {
+							data: {
+								title: {
+									set: values.title,
 								},
-								where: {
-									id: movie?.movie?.id,
+								tagline: {
+									set: values.tagline,
+								},
+								overview: {
+									set: values.overview,
+								},
+								rating: {
+									set: values.rating,
+								},
+								runtime: {
+									set: parseFloat(values.runtime.toString()),
+								},
+								released: {
+									set: values.released,
+								},
+								trailer: {
+									set: values.trailer,
 								},
 							},
-							refetchQueries: [MovieDocument],
+							where: {
+								id: movie?.movie?.id,
+							},
+						},
+						refetchQueries: [MovieDocument],
+					})
+						.then(() => {
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							notify('success', 'mutation', `${movie.movie?.title} updated successfully`);
 						})
-							.then(() => {
-								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-								notify('success', 'mutation', `${movie.movie?.title} updated successfully`);
-							})
-							.then(() => {
-								if (backdrop) {
-									uploadBackdrop({
-										variables: {
-											id: movieId,
-											file: backdrop,
-											type: UploadType.Movie,
-										},
+						.catch(() => {
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							notify('error', 'mutation', `${movie.movie?.title} update failed`);
+						})
+						.then(() => {
+							if (backdrop) {
+								uploadBackdrop({
+									variables: {
+										id: movieId,
+										file: backdrop,
+										type: UploadType.Movie,
+									},
+								})
+									.then(() => {
+										notify(
+											'success',
+											'mutation',
+											// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+											`${movie.movie?.title} backdrop uploaded successfully`
+										);
+									})
+									.catch(() => {
+										// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+										notify('error', 'mutation', `${movie.movie?.title} backdrop upload failed`);
 									});
-								}
+							}
 
-								if (poster) {
-									uploadPoster({
-										variables: {
-											id: movieId,
-											file: poster,
-											type: UploadType.Movie,
-										},
+							if (poster) {
+								uploadPoster({
+									variables: {
+										id: movieId,
+										file: poster,
+										type: UploadType.Movie,
+									},
+								})
+									.then(() => {
+										notify(
+											'success',
+											'mutation',
+											// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+											`${movie.movie?.title} poster uploaded successfully`
+										);
+									})
+									.catch(() => {
+										// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+										notify('error', 'mutation', `${movie.movie?.title} poster upload failed`);
 									});
-								}
-							})
-							.then(() => setSubmitting(false))
-							.then(async () => router.back());
-					}}
-				>
-					{({isSubmitting}) => (
-						<Form>
-							<div className="container px-4 mx-auto">
-								<div className="max-w-2xl mx-auto mb-6">
-									<div className="flex flex-col items-center text-center mb-6">
-										<InputField type="text" name="title" />
-									</div>
-								</div>
-								<div className="flex space-x-5 max-w-5xl mx-auto mb-8">
-									<PosterDiv
-										src={movie?.movie?.poster}
-										onClick={() => {
-											handleInputClick(posterInput);
-										}}
-										onChange={handlePosterChange}
-									>
-										<input
-											ref={posterInput}
-											type="file"
-											id="file"
-											accept="images"
-											style={{display: 'none'}}
-										/>
-									</PosterDiv>
-									<BackdropDiv
-										src={movie?.movie?.backdrop}
-										onClick={() => {
-											handleInputClick(backdropInput);
-										}}
-										onChange={handleBackdropChange}
-									>
-										<input
-											ref={backdropInput}
-											type="file"
-											id="file"
-											accept="images"
-											style={{display: 'none'}}
-										/>
-									</BackdropDiv>
-								</div>
-								<div className="max-w-2xl mx-auto">
-									<InputField type="text" name="tagline" />
-									<Textarea name="overview" placeholder="overview" />
-									<InputField type="text" name="rating" />
-									<InputField type="text" name="runtime" />
-									<InputField type="date" name="released" />
-									<InputField type="text" name="trailer" />
+							}
+						})
+						.then(() => {
+							setSubmitting(false);
+							router.back();
+						});
+				}}
+			>
+				{({isSubmitting}) => (
+					<Form>
+						<div className="container px-4 mx-auto">
+							<div className="max-w-2xl mx-auto mb-6">
+								<div className="flex flex-col items-center text-center mb-6">
+									<InputField type="text" name="title" />
 								</div>
 							</div>
-							<GenreTable movie={movie} />
-							<ActorTable movie={movie} />
-							<SongTable movie={movie} />
-							<section className="py-20">
-								<div className="container px-4 mx-auto text-center">
-									<div className="flex space-x-5 justify-center">
-										<Button type="submit">{isSubmitting ? 'Submitting...' : 'Save changes'}</Button>
-										<Button variant="secondary" onClick={() => history.go(-1)}>
-											Cancel
-										</Button>
-									</div>
+							<div className="flex space-x-5 max-w-5xl mx-auto mb-8">
+								<PosterDiv
+									src={movie?.movie?.poster}
+									onClick={() => {
+										handleInputClick(posterInput);
+									}}
+									onChange={handlePosterChange}
+								>
+									<input
+										ref={posterInput}
+										type="file"
+										id="file"
+										accept="images"
+										style={{display: 'none'}}
+									/>
+								</PosterDiv>
+								<BackdropDiv
+									src={movie?.movie?.backdrop}
+									onClick={() => {
+										handleInputClick(backdropInput);
+									}}
+									onChange={handleBackdropChange}
+								>
+									<input
+										ref={backdropInput}
+										type="file"
+										id="file"
+										accept="images"
+										style={{display: 'none'}}
+									/>
+								</BackdropDiv>
+							</div>
+							<div className="max-w-2xl mx-auto">
+								<InputField type="text" name="tagline" />
+								<Textarea name="overview" placeholder="overview" />
+								<InputField type="text" name="rating" />
+								<InputField type="text" name="runtime" />
+								<InputField type="date" name="released" />
+								<InputField type="text" name="trailer" />
+							</div>
+						</div>
+						<GenreTable movie={movie} />
+						<ActorTable movie={movie} />
+						<SongTable movie={movie} />
+						<section className="py-20">
+							<div className="container px-4 mx-auto text-center">
+								<div className="flex space-x-5 justify-center">
+									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Save changes'}</Button>
+									<Button variant="secondary" onClick={() => history.go(-1)}>
+										Cancel
+									</Button>
 								</div>
-							</section>
-						</Form>
-					)}
-				</Formik>
-			</Layout>
-		);
-	}
-
-	return null;
+							</div>
+						</section>
+					</Form>
+				)}
+			</Formik>
+		</Layout>
+	);
 };

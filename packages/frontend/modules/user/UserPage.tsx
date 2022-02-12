@@ -1,13 +1,14 @@
-import {Grid} from '@components/Grid';
+import {Button} from '@components/Button';
+import {Loading} from '@components/Loading';
 import {useGetStringId} from 'hooks/useGetStringId';
 import React from 'react';
-import {useUserQuery} from '../../generated/graphql';
+import {useFollowMutation, useMeQuery, UserDocument, useUnfollowMutation, useUserQuery} from '../../generated/graphql';
 import {Layout} from '../layouts/Layout';
 
 export const UserPage: React.FC = () => {
 	const username: string = useGetStringId();
 
-	// May need: const [type, setType] = useState<'Followers' | 'Following'>('Following');
+	const {data: me} = useMeQuery();
 
 	const {data} = useUserQuery({
 		variables: {
@@ -15,35 +16,51 @@ export const UserPage: React.FC = () => {
 		},
 	});
 
+	const [follow] = useFollowMutation({
+		refetchQueries: [UserDocument],
+	});
+	const [unfollow] = useUnfollowMutation({
+		refetchQueries: [UserDocument],
+	});
+
+	const handleFollow = async () => {
+		if (me?.me?.id) {
+			if (data?.user?.isFollowing) {
+				await unfollow({
+					variables: {
+						userId: data?.user?.id ?? -1,
+					},
+				});
+			} else {
+				await follow({
+					variables: {
+						userId: data?.user?.id ?? -1,
+					},
+				});
+			}
+		}
+	};
+
+	if (!data?.user || !me?.me) return <Loading />;
+
 	return (
 		<Layout>
-			<Grid>
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					<div className="flex flex-col space-y-5 items-center w-full">
-						<img src={data?.user?.avatar ?? ''} className="rounded-full w-24 h-24" />
-						<h1>{data?.user?.displayname}</h1>
-						<p>{data?.user?.bio}</p>
-					</div>
+			<div className="flex flex-col space-y-5 border p-5 rounded">
+				<div className="flex items-start justify-between">
+					<img src={data?.user?.avatar ?? ''} className="rounded-full w-16 h-16" />
+					{data?.user?.id !== me?.me?.id && (
+						<Button variant="tertiary" onClick={handleFollow}>
+							{data?.user?.isFollowing ? 'Following' : 'Follow'}
+						</Button>
+					)}
 				</div>
-				{/* Need to add first five of each here */}
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					<h1>{data?.user?._count?.followers}</h1>
-					<p>Followers</p>
+				<h1>{data?.user?.username}</h1>
+				<p>{data?.user?.bio}</p>
+				<div className="flex items-center space-x-2">
+					<Button variant="tertiary">{data?.user?._count?.followers} Followers</Button>
+					<Button variant="tertiary">{data?.user?._count?.following} Following</Button>
 				</div>
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					<h1>{data?.user?._count?.following}</h1>
-					<p>Following</p>
-				</div>
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					Notifications
-				</div>
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					Watchlist
-				</div>
-				<div className="flex px-4 py-3 leading-none text-sm font-semibold bg-white text-gray-600 hover:text-gray-700 hover:bg-blueGray-100 border border-bray-200 hover:border-gray-300 rounded">
-					Reviews
-				</div>
-			</Grid>
+			</div>
 		</Layout>
 	);
 };

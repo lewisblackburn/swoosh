@@ -1,9 +1,11 @@
 import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
+import {notify} from '@components/Notify';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {MovieDocument, useCreateMovieReviewMutation} from 'generated/graphql';
 import React from 'react';
+import {isThisTypeNode} from 'typescript';
 import {Modal, ModalProps} from './Modal';
 
 interface ReviewModalProps extends ModalProps {
@@ -42,11 +44,16 @@ export const ReviewMovieModal: React.FC<ReviewModalProps> = ({movieId, ...props}
 							},
 						},
 					})
-						.catch((e: any) => {
-							console.log(e);
+						.then(() => {
+							notify('success', 'mutation', 'Review created');
 						})
-						.then(() => props.setIsOpen(false));
-					setSubmitting(false);
+						.catch(() => {
+							notify('error', 'mutation', 'Review creation failed');
+						})
+						.then(() => {
+							props.setIsOpen(false);
+							setSubmitting(false);
+						});
 				}}
 			>
 				{({isSubmitting}) => (

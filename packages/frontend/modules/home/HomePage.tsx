@@ -1,5 +1,6 @@
 import {Card} from '@components/Card';
 import {Icon} from '@components/Icon';
+import {Loading} from '@components/Loading';
 import {Poster} from '@components/Poster';
 import {Layout} from '@modules/layouts/Layout';
 import {SortOrder, useBooksQuery, useMoviesQuery, useShowsQuery, useSongsQuery} from 'generated/graphql';
@@ -13,7 +14,7 @@ export const HomePage: React.FC = () => {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 5,
+			take: 20,
 		},
 	});
 
@@ -43,6 +44,8 @@ export const HomePage: React.FC = () => {
 			take: 5,
 		},
 	});
+
+	if (!movies?.movies || !shows?.shows || !books?.books || !songs?.songs) return <Loading />;
 
 	return (
 		<Layout>

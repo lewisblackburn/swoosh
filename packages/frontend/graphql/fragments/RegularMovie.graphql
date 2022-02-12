@@ -10,6 +10,7 @@ fragment RegularMovie on Movie {
 	trailer
 	rating
 	isLiked
+	isInWatchlist
 	_count {
 		likes
 	}

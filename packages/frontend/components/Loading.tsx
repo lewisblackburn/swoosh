@@ -1,13 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {Spinner} from './Spinner';
 
-interface LoadingProps {
-	loading: boolean;
-}
-
-export const Loading: React.FC<LoadingProps> = ({loading}) => {
+export const Loading: React.FC = () => {
 	return (
-		<div className="absolute w-full h-full grid place-items-center bg-gray-300">
+		<div className="absolute w-full h-full grid place-items-center bg-white transform transition-all duration-1000">
 			<Spinner />
 		</div>
 	);

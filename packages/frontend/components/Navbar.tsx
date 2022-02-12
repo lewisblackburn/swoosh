@@ -1,16 +1,8 @@
-import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {useMeQuery} from 'generated/graphql';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import React from 'react';
-import {
-	AiOutlineBell,
-	AiOutlineFire,
-	AiOutlineLineHeight,
-	AiOutlineMacCommand,
-	AiOutlineSetting,
-	AiOutlineShoppingCart,
-} from 'react-icons/ai';
+import {AiOutlineBell, AiOutlineFire, AiOutlineMacCommand, AiOutlineSetting} from 'react-icons/ai';
 import {Button} from './Button';
 import {Icon} from './Icon';
 import {IconLink} from './IconLink';

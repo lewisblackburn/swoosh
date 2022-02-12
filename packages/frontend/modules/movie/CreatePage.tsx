@@ -14,7 +14,6 @@ import {
 	useUploadPosterMutation,
 } from 'generated/graphql';
 import handleInputClick from 'lib/handleInputClick';
-import {useRouter} from 'next/router';
 import React, {useRef, useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
@@ -28,8 +27,6 @@ interface Values {
 
 export const CreatePage: React.FC = () => {
 	useVerifyLoggedIn();
-
-	const router = useRouter();
 
 	const [createMovie] = useCreateMovieMutation();
 

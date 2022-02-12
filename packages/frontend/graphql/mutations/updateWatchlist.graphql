@@ -1,0 +1,9 @@
+mutation UpdateWatchlist($data: WatchlistUpdateInput!) {
+	updateWatchlist(data: $data) {
+		id
+		movies {
+			id
+			title
+		}
+	}
+}

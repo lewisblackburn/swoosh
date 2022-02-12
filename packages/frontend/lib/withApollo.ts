@@ -10,11 +10,21 @@ const createClient = (ctx?: NextPageContext) =>
 			uri: apiBaseUrl,
 			credentials: 'include',
 			headers: {
-				cookie: (typeof window === 'undefined' ? ctx?.req?.headers.cookie : undefined) || '',
+				cookie: (typeof window === 'undefined' ? ctx?.req?.headers.cookie : undefined) ?? '',
 			},
 		}) as any,
 		cache: new InMemoryCache({
 			typePolicies: {
+				Watchlist: {
+					fields: {
+						movies: {
+							keyArgs: [],
+							merge(existing = [], incoming) {
+								return [...existing, ...incoming];
+							},
+						},
+					},
+				},
 				Query: {
 					fields: {
 						movies: {

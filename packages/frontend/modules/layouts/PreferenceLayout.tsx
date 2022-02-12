@@ -1,43 +1,20 @@
 import {useApolloClient} from '@apollo/client';
 import {Icon} from '@components/Icon';
-import {Navbar} from '@components/Navbar';
 import {notify} from '@components/Notify';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
-import {motion} from 'framer-motion';
 import {useLogoutMutation} from 'generated/graphql';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import React from 'react';
 import {
-	AiOutlineAccountBook,
 	AiOutlineBell,
-	AiOutlineBlock,
 	AiOutlineDelete,
+	AiOutlineInbox,
 	AiOutlineLogout,
-	AiOutlineMonitor,
 	AiOutlineProfile,
+	AiOutlineSafetyCertificate,
 } from 'react-icons/ai';
 import {Layout} from './Layout';
-
-const pageVariants = {
-	initial: {
-		y: -100,
-		opacity: 0,
-	},
-	in: {
-		y: 0,
-		opacity: 1,
-	},
-	out: {
-		y: -100,
-		opacity: 0,
-	},
-};
-const pageTransition = {
-	type: 'tween',
-	ease: 'anticipate',
-	duration: 0.4,
-};
 
 const LinkButton: React.FC<{href: string}> = ({href, children}) => {
 	const router = useRouter();
@@ -81,21 +58,17 @@ export const PreferencesLayout: React.FC = ({children}) => {
 								<Icon icon={AiOutlineProfile} className="w-5 h-5 mr-3" />
 								<span>Edit Profile</span>
 							</LinkButton>
-							<LinkButton href="/preferences/account">
-								<Icon icon={AiOutlineAccountBook} className="w-5 h-5 mr-3" />
-								<span>Account</span>
-							</LinkButton>
 							<LinkButton href="/preferences/notification">
 								<Icon icon={AiOutlineBell} className="w-5 h-5 mr-3" />
 								<span>Notificaiton</span>
 							</LinkButton>
-							<LinkButton href="/preferences/blocked">
-								<Icon icon={AiOutlineBlock} className="w-5 h-5 mr-3" />
-								<span>Blocked Users</span>
+							<LinkButton href="/preferences/watchlist">
+								<Icon icon={AiOutlineInbox} className="w-5 h-5 mr-3" />
+								<span>Watchlist</span>
 							</LinkButton>
-							<LinkButton href="/preferences/streaming">
-								<Icon icon={AiOutlineMonitor} className="w-5 h-5 mr-3" />
-								<span>Streaming Services</span>
+							<LinkButton href="/preferences/verify">
+								<Icon icon={AiOutlineSafetyCertificate} className="w-5 h-5 mr-3" />
+								<span>Verify Account</span>
 							</LinkButton>
 							<LinkButton href="/preferences/delete">
 								<Icon icon={AiOutlineDelete} className="w-5 h-5 mr-3" />
