@@ -1,0 +1,3 @@
+mutation createArtistInSong($data: ArtistInSongCreateInput!) {
+	createArtistInSong(data: $data)
+}

@@ -8,10 +8,10 @@ import { SongCreateNestedOneWithoutArtistsInput } from "../inputs/SongCreateNest
   isAbstract: true
 })
 export class ArtistInSongCreateWithoutPersonInput {
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
-  stagename!: string;
+  createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => SongCreateNestedOneWithoutArtistsInput, {
     nullable: false

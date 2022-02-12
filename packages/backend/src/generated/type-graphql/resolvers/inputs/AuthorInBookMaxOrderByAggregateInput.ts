@@ -21,5 +21,5 @@ export class AuthorInBookMaxOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  penname?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 }

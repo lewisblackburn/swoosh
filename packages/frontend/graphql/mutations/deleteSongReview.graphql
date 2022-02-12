@@ -1,0 +1,3 @@
+mutation deleteSongReview($songId: Int!) {
+	deleteSongReview(songId: $songId)
+}

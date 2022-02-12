@@ -3,7 +3,7 @@ import * as TypeGraphQL from "type-graphql";
 export enum AuthorInBookScalarFieldEnum {
   bookId = "bookId",
   personId = "personId",
-  penname = "penname"
+  createdAt = "createdAt"
 }
 TypeGraphQL.registerEnumType(AuthorInBookScalarFieldEnum, {
   name: "AuthorInBookScalarFieldEnum",

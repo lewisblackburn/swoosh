@@ -38,6 +38,11 @@ export class SongCreateInput {
   })
   released?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime?: number | undefined;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

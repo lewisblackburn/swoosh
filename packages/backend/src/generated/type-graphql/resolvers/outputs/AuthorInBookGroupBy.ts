@@ -22,10 +22,10 @@ export class AuthorInBookGroupBy {
   })
   personId!: number;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  penname!: string;
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => AuthorInBookCountAggregate, {
     nullable: true

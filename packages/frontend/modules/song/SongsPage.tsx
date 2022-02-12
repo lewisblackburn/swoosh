@@ -1,13 +1,10 @@
-import {Card} from '@components/Card';
 import {Grid} from '@components/Grid';
-import {Icon} from '@components/Icon';
 import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {Layout} from '@modules/layouts/Layout';
 import {SortOrder, useSongsQuery} from 'generated/graphql';
 import Link from 'next/link';
 import React, {useState} from 'react';
-import {AiOutlinePlus} from 'react-icons/ai';
 import Select from 'react-select';
 
 const options = [
@@ -41,6 +38,7 @@ export const SongsPage: React.FC = () => {
 					</div>
 					<div className="flex flex-col space-y-5">
 						<Grid>
+							<Select value={selectedOption} options={options} onChange={handleChange} />
 							<Select value={selectedOption} options={options} onChange={handleChange} />
 							<Select value={selectedOption} options={options} onChange={handleChange} />
 							<Select value={selectedOption} options={options} onChange={handleChange} />

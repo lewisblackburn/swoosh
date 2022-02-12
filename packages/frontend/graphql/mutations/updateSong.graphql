@@ -1,0 +1,5 @@
+mutation UpdateSong($data: SongUpdateInput!, $where: SongWhereUniqueInput!) {
+	updateSong(data: $data, where: $where) {
+		...RegularSong
+	}
+}

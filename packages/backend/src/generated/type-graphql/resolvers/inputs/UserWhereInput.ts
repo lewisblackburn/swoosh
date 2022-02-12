@@ -92,10 +92,10 @@ export class UserWhereInput {
   })
   website?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
-  dob?: StringFilter | undefined;
+  dob?: DateTimeFilter | undefined;
 
   @TypeGraphQL.Field(_type => FollowsListRelationFilter, {
     nullable: true

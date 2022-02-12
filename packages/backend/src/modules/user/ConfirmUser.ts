@@ -1,7 +1,7 @@
-import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
-import { Context } from '../../interfaces/context';
-import { redis } from '../../redis';
-import { UserConfirmationPrefixes } from '../shared/userConfirmationPrefixes';
+import {Arg, Ctx, Mutation, Resolver} from 'type-graphql';
+import {Context} from '../../interfaces/context';
+import {redis} from '../../redis';
+import {UserConfirmationPrefixes} from '../shared/userConfirmationPrefixes';
 
 @Resolver()
 export class ConfirmUserResolver {
@@ -17,7 +17,7 @@ export class ConfirmUserResolver {
 		if (!exists) return false;
 
 		await redis.del(UserConfirmationPrefixes.confirmUser + token);
-		await ctx.prisma.user.update({
+		const user = await ctx.prisma.user.update({
 			data: {
 				confirmed: true,
 			},
@@ -25,6 +25,10 @@ export class ConfirmUserResolver {
 				id: ctx.req.session.userId,
 			},
 		});
+
+		ctx.req.session.userId = user.id;
+		ctx.req.session.confirmed = user.confirmed;
+		ctx.req.session.role = user.role;
 
 		return true;
 	}

@@ -1,0 +1,13 @@
+query AuthorsInBook(
+	$bookId: Int!
+	$where: AuthorInBookWhereInput
+	$orderBy: [AuthorInBookOrderByWithRelationInput!]
+	$cursor: AuthorInBookWhereUniqueInput
+	$take: Int
+) {
+	book(bookId: $bookId) {
+		authors(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+			personId
+		}
+	}
+}

@@ -23,8 +23,8 @@ export class ArtistInSong {
   })
   personId!: number;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  stagename!: string;
+  createdAt!: Date;
 }

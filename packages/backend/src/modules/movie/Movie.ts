@@ -54,6 +54,26 @@ export class MovieResolver {
 		return Boolean(movieLike);
 	}
 
+	@FieldResolver(() => Boolean)
+	async isInWatchlist(@Root() root: Movie, @Ctx() ctx: Context): Promise<boolean> {
+		if (!ctx.req.session.userId) return false;
+
+		const watchlist = await ctx.prisma.movie
+			.findUnique({
+				where: {
+					id: root.id,
+				},
+			})
+			.watchlist({
+				where: {
+					userId: ctx.req.session.userId,
+				},
+			});
+
+		// If the array is empty, the movie is not in the watchlist else it is and we return true
+		return Boolean(watchlist.length);
+	}
+
 	@FieldResolver(() => AggregateMovieReview, {
 		nullable: false,
 	})
@@ -95,7 +115,7 @@ export class MovieResolver {
 	@Mutation(() => Movie, {
 		nullable: true,
 	})
-	async editMovie(
+	async updateMovie(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: UpdateMovieArgs

@@ -76,10 +76,10 @@ export class User {
   })
   website!: string;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  dob!: string;
+  dob!: Date;
 
   following?: Follows[];
 

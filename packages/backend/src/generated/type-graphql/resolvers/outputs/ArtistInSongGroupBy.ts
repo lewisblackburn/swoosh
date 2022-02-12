@@ -22,10 +22,10 @@ export class ArtistInSongGroupBy {
   })
   personId!: number;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })
-  stagename!: string;
+  createdAt!: Date;
 
   @TypeGraphQL.Field(_type => ArtistInSongCountAggregate, {
     nullable: true

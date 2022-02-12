@@ -3,9 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { BookRelationFilter } from "../inputs/BookRelationFilter";
+import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PersonRelationFilter } from "../inputs/PersonRelationFilter";
-import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("AuthorInBookWhereInput", {
   isAbstract: true
@@ -46,8 +46,8 @@ export class AuthorInBookWhereInput {
   })
   personId?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
-  penname?: StringFilter | undefined;
+  createdAt?: DateTimeFilter | undefined;
 }

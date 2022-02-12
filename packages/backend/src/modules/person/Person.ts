@@ -36,7 +36,7 @@ export class PersonResolver {
 	@Mutation(() => Person, {
 		nullable: true,
 	})
-	async editPerson(
+	async updatePerson(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: UpdatePersonArgs
@@ -93,9 +93,9 @@ export class PersonResolver {
 	}
 
 	@Query(() => [Person], {nullable: true})
-	async persons(@Args() args: FindManyPersonArgs, @Ctx() ctx: Context): Promise<Person[] | null> {
-		// @ts-expect-error unfixable: https://github.com/MichalLytek/typegraphql-prisma/issues/222
-		// I think this is related to the career enum in the generated schema
+	async people(@Args() args: FindManyPersonArgs, @Ctx() ctx: Context): Promise<Person[] | null> {
+		//  I think this is related to the career enum in the generated schema
+		//  @ts-expect-error unfixable: https://github.com/MichalLytek/typegraphql-prisma/issues/222
 		return ctx.prisma.person.findMany({
 			...args,
 		});

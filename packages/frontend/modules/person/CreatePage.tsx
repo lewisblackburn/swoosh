@@ -2,8 +2,9 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {PeopleDocument, UploadType, useCreatePersonMutation, useUploadPosterMutation} from 'generated/graphql';
+import {PersonDocument, UploadType, useCreatePersonMutation, useUploadPosterMutation} from 'generated/graphql';
 import {useRouter} from 'next/router';
 import React, {useRef, useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
@@ -12,9 +13,10 @@ import {Layout} from '../layouts/Layout';
 
 interface Values {
 	name: string;
-	age: number;
 	bio: string;
 }
+
+// WARN: There is a bug in Formik that causes the form to not submit if the poster is not set and it will create a person with empty values.
 
 export const CreatePage: React.FC = () => {
 	useVerifyLoggedIn();
@@ -24,11 +26,8 @@ export const CreatePage: React.FC = () => {
 	const [createPerson] = useCreatePersonMutation();
 
 	const [uploadPoster] = useUploadPosterMutation();
-
 	const [poster, setPoster] = useState();
-
 	const posterInput = useRef(null as HTMLInputElement | null);
-
 	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
 
 	return (
@@ -36,7 +35,6 @@ export const CreatePage: React.FC = () => {
 			<Formik
 				initialValues={{
 					name: '',
-					age: 0,
 					bio: '',
 				}}
 				onSubmit={async (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
@@ -45,25 +43,23 @@ export const CreatePage: React.FC = () => {
 						variables: {
 							data: {
 								name: values.name,
-								age: values.age,
 								bio: values.bio,
 							},
 						},
 						update: cache => {
 							cache.evict({fieldName: 'people:{}'});
 						},
-						refetchQueries: [PeopleDocument],
+						refetchQueries: [PersonDocument],
 					})
-						.then(res =>
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+						.then(res => {
 							uploadPoster({
 								variables: {
-									id: res.data?.createPerson.id,
+									id: res?.data?.createPerson?.id ?? -1,
 									file: poster,
 									type: UploadType.Person,
 								},
-							})
-						)
+							});
+						})
 						.then(() => setSubmitting(false))
 						.then(async () => router.push('/people'));
 				}}
@@ -73,15 +69,15 @@ export const CreatePage: React.FC = () => {
 						<div className="container px-4 mx-auto">
 							<div className="max-w-2xl mx-auto mb-6">
 								<div className="flex flex-col items-center text-center mb-6">
-									<InputField type="text" name="name" />
+									<InputField type="text" name="title" />
 								</div>
 							</div>
 							<div className="flex justify-center space-x-5 max-w-5xl mx-auto mb-8">
-								<div
-									className="grid place-items-center cursor-pointer h-80 w-64 bg-blueGray-100/40 hover:bg-blueGray-100 transofrm transition-all rounded"
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => posterInput.current.click()}
-									onChange={handlePosterChange}
+								<PosterDiv
+									src=""
+									onClick={() => {
+										if (posterInput.current) posterInput.current.click();
+									}}
 								>
 									<input
 										ref={posterInput}
@@ -89,13 +85,13 @@ export const CreatePage: React.FC = () => {
 										id="file"
 										accept="images"
 										style={{display: 'none'}}
+										onChange={handlePosterChange}
 									/>
 									<Icon icon={AiOutlinePlus} />
-								</div>
+								</PosterDiv>
 							</div>
 							<div className="max-w-2xl mx-auto">
-								<InputField type="number" name="age" />
-								<Textarea name="bio" placeholder="bio" />
+								<Textarea name="description" placeholder="description" />
 							</div>
 						</div>
 						<section className="py-20">

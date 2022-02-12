@@ -891,11 +891,11 @@ export type AggregateWatchlist = {
 
 export type ArtistInSong = {
   __typename?: 'ArtistInSong';
+  createdAt: Scalars['DateTime'];
   person: Person;
   personId: Scalars['Int'];
   song: Song;
   songId: Scalars['Int'];
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongAvgAggregate = {
@@ -912,32 +912,32 @@ export type ArtistInSongAvgOrderByAggregateInput = {
 export type ArtistInSongCountAggregate = {
   __typename?: 'ArtistInSongCountAggregate';
   _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
   personId: Scalars['Int'];
   songId: Scalars['Int'];
-  stagename: Scalars['Int'];
 };
 
 export type ArtistInSongCountOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  stagename?: InputMaybe<SortOrder>;
 };
 
 export type ArtistInSongCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   person: PersonCreateNestedOneWithoutSongsInput;
   song: SongCreateNestedOneWithoutArtistsInput;
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongCreateManyInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   personId: Scalars['Int'];
   songId: Scalars['Int'];
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongCreateManyPersonInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   songId: Scalars['Int'];
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongCreateManyPersonInputEnvelope = {
@@ -946,8 +946,8 @@ export type ArtistInSongCreateManyPersonInputEnvelope = {
 };
 
 export type ArtistInSongCreateManySongInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   personId: Scalars['Int'];
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongCreateManySongInputEnvelope = {
@@ -980,13 +980,13 @@ export type ArtistInSongCreateOrConnectWithoutSongInput = {
 };
 
 export type ArtistInSongCreateWithoutPersonInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   song: SongCreateNestedOneWithoutArtistsInput;
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongCreateWithoutSongInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   person: PersonCreateNestedOneWithoutSongsInput;
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongGroupBy = {
@@ -996,9 +996,9 @@ export type ArtistInSongGroupBy = {
   _max?: Maybe<ArtistInSongMaxAggregate>;
   _min?: Maybe<ArtistInSongMinAggregate>;
   _sum?: Maybe<ArtistInSongSumAggregate>;
+  createdAt: Scalars['DateTime'];
   personId: Scalars['Int'];
   songId: Scalars['Int'];
-  stagename: Scalars['String'];
 };
 
 export type ArtistInSongListRelationFilter = {
@@ -1009,28 +1009,28 @@ export type ArtistInSongListRelationFilter = {
 
 export type ArtistInSongMaxAggregate = {
   __typename?: 'ArtistInSongMaxAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
   personId?: Maybe<Scalars['Int']>;
   songId?: Maybe<Scalars['Int']>;
-  stagename?: Maybe<Scalars['String']>;
 };
 
 export type ArtistInSongMaxOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  stagename?: InputMaybe<SortOrder>;
 };
 
 export type ArtistInSongMinAggregate = {
   __typename?: 'ArtistInSongMinAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
   personId?: Maybe<Scalars['Int']>;
   songId?: Maybe<Scalars['Int']>;
-  stagename?: Maybe<Scalars['String']>;
 };
 
 export type ArtistInSongMinOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  stagename?: InputMaybe<SortOrder>;
 };
 
 export type ArtistInSongOrderByRelationAggregateInput = {
@@ -1043,17 +1043,17 @@ export type ArtistInSongOrderByWithAggregationInput = {
   _max?: InputMaybe<ArtistInSongMaxOrderByAggregateInput>;
   _min?: InputMaybe<ArtistInSongMinOrderByAggregateInput>;
   _sum?: InputMaybe<ArtistInSongSumOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
   songId?: InputMaybe<SortOrder>;
-  stagename?: InputMaybe<SortOrder>;
 };
 
 export type ArtistInSongOrderByWithRelationInput = {
+  createdAt?: InputMaybe<SortOrder>;
   person?: InputMaybe<PersonOrderByWithRelationInput>;
   personId?: InputMaybe<SortOrder>;
   song?: InputMaybe<SongOrderByWithRelationInput>;
   songId?: InputMaybe<SortOrder>;
-  stagename?: InputMaybe<SortOrder>;
 };
 
 export type ArtistInSongPersonIdSongIdCompoundUniqueInput = {
@@ -1062,27 +1062,27 @@ export type ArtistInSongPersonIdSongIdCompoundUniqueInput = {
 };
 
 export enum ArtistInSongScalarFieldEnum {
+  CreatedAt = 'createdAt',
   PersonId = 'personId',
-  SongId = 'songId',
-  Stagename = 'stagename'
+  SongId = 'songId'
 }
 
 export type ArtistInSongScalarWhereInput = {
   AND?: InputMaybe<ArtistInSongScalarWhereInput[]>;
   NOT?: InputMaybe<ArtistInSongScalarWhereInput[]>;
   OR?: InputMaybe<ArtistInSongScalarWhereInput[]>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   personId?: InputMaybe<IntFilter>;
   songId?: InputMaybe<IntFilter>;
-  stagename?: InputMaybe<StringFilter>;
 };
 
 export type ArtistInSongScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
   NOT?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
   OR?: InputMaybe<ArtistInSongScalarWhereWithAggregatesInput[]>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   personId?: InputMaybe<IntWithAggregatesFilter>;
   songId?: InputMaybe<IntWithAggregatesFilter>;
-  stagename?: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type ArtistInSongSumAggregate = {
@@ -1097,13 +1097,13 @@ export type ArtistInSongSumOrderByAggregateInput = {
 };
 
 export type ArtistInSongUpdateInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutSongsInput>;
   song?: InputMaybe<SongUpdateOneRequiredWithoutArtistsInput>;
-  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type ArtistInSongUpdateManyMutationInput = {
-  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type ArtistInSongUpdateManyWithWhereWithoutPersonInput = {
@@ -1155,13 +1155,13 @@ export type ArtistInSongUpdateWithWhereUniqueWithoutSongInput = {
 };
 
 export type ArtistInSongUpdateWithoutPersonInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   song?: InputMaybe<SongUpdateOneRequiredWithoutArtistsInput>;
-  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type ArtistInSongUpdateWithoutSongInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutSongsInput>;
-  stagename?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type ArtistInSongUpsertWithWhereUniqueWithoutPersonInput = {
@@ -1180,11 +1180,11 @@ export type ArtistInSongWhereInput = {
   AND?: InputMaybe<ArtistInSongWhereInput[]>;
   NOT?: InputMaybe<ArtistInSongWhereInput[]>;
   OR?: InputMaybe<ArtistInSongWhereInput[]>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
   song?: InputMaybe<SongRelationFilter>;
   songId?: InputMaybe<IntFilter>;
-  stagename?: InputMaybe<StringFilter>;
 };
 
 export type ArtistInSongWhereUniqueInput = {
@@ -1195,7 +1195,7 @@ export type AuthorInBook = {
   __typename?: 'AuthorInBook';
   book: Book;
   bookId: Scalars['Int'];
-  penname: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   person: Person;
   personId: Scalars['Int'];
 };
@@ -1215,24 +1215,24 @@ export type AuthorInBookCountAggregate = {
   __typename?: 'AuthorInBookCountAggregate';
   _all: Scalars['Int'];
   bookId: Scalars['Int'];
-  penname: Scalars['Int'];
+  createdAt: Scalars['Int'];
   personId: Scalars['Int'];
 };
 
 export type AuthorInBookCountOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
-  penname?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
 };
 
 export type AuthorInBookCreateInput = {
   book: BookCreateNestedOneWithoutAuthorsInput;
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   person: PersonCreateNestedOneWithoutBooksInput;
 };
 
 export type AuthorInBookCreateManyBookInput = {
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   personId: Scalars['Int'];
 };
 
@@ -1243,13 +1243,13 @@ export type AuthorInBookCreateManyBookInputEnvelope = {
 
 export type AuthorInBookCreateManyInput = {
   bookId: Scalars['Int'];
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   personId: Scalars['Int'];
 };
 
 export type AuthorInBookCreateManyPersonInput = {
   bookId: Scalars['Int'];
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type AuthorInBookCreateManyPersonInputEnvelope = {
@@ -1282,13 +1282,13 @@ export type AuthorInBookCreateOrConnectWithoutPersonInput = {
 };
 
 export type AuthorInBookCreateWithoutBookInput = {
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
   person: PersonCreateNestedOneWithoutBooksInput;
 };
 
 export type AuthorInBookCreateWithoutPersonInput = {
   book: BookCreateNestedOneWithoutAuthorsInput;
-  penname: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type AuthorInBookGroupBy = {
@@ -1299,7 +1299,7 @@ export type AuthorInBookGroupBy = {
   _min?: Maybe<AuthorInBookMinAggregate>;
   _sum?: Maybe<AuthorInBookSumAggregate>;
   bookId: Scalars['Int'];
-  penname: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   personId: Scalars['Int'];
 };
 
@@ -1312,26 +1312,26 @@ export type AuthorInBookListRelationFilter = {
 export type AuthorInBookMaxAggregate = {
   __typename?: 'AuthorInBookMaxAggregate';
   bookId?: Maybe<Scalars['Int']>;
-  penname?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
   personId?: Maybe<Scalars['Int']>;
 };
 
 export type AuthorInBookMaxOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
-  penname?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
 };
 
 export type AuthorInBookMinAggregate = {
   __typename?: 'AuthorInBookMinAggregate';
   bookId?: Maybe<Scalars['Int']>;
-  penname?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
   personId?: Maybe<Scalars['Int']>;
 };
 
 export type AuthorInBookMinOrderByAggregateInput = {
   bookId?: InputMaybe<SortOrder>;
-  penname?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
 };
 
@@ -1346,14 +1346,14 @@ export type AuthorInBookOrderByWithAggregationInput = {
   _min?: InputMaybe<AuthorInBookMinOrderByAggregateInput>;
   _sum?: InputMaybe<AuthorInBookSumOrderByAggregateInput>;
   bookId?: InputMaybe<SortOrder>;
-  penname?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
   personId?: InputMaybe<SortOrder>;
 };
 
 export type AuthorInBookOrderByWithRelationInput = {
   book?: InputMaybe<BookOrderByWithRelationInput>;
   bookId?: InputMaybe<SortOrder>;
-  penname?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
   person?: InputMaybe<PersonOrderByWithRelationInput>;
   personId?: InputMaybe<SortOrder>;
 };
@@ -1365,7 +1365,7 @@ export type AuthorInBookPersonIdBookIdCompoundUniqueInput = {
 
 export enum AuthorInBookScalarFieldEnum {
   BookId = 'bookId',
-  Penname = 'penname',
+  CreatedAt = 'createdAt',
   PersonId = 'personId'
 }
 
@@ -1374,7 +1374,7 @@ export type AuthorInBookScalarWhereInput = {
   NOT?: InputMaybe<AuthorInBookScalarWhereInput[]>;
   OR?: InputMaybe<AuthorInBookScalarWhereInput[]>;
   bookId?: InputMaybe<IntFilter>;
-  penname?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   personId?: InputMaybe<IntFilter>;
 };
 
@@ -1383,7 +1383,7 @@ export type AuthorInBookScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput[]>;
   OR?: InputMaybe<AuthorInBookScalarWhereWithAggregatesInput[]>;
   bookId?: InputMaybe<IntWithAggregatesFilter>;
-  penname?: InputMaybe<StringWithAggregatesFilter>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   personId?: InputMaybe<IntWithAggregatesFilter>;
 };
 
@@ -1400,12 +1400,12 @@ export type AuthorInBookSumOrderByAggregateInput = {
 
 export type AuthorInBookUpdateInput = {
   book?: InputMaybe<BookUpdateOneRequiredWithoutAuthorsInput>;
-  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutBooksInput>;
 };
 
 export type AuthorInBookUpdateManyMutationInput = {
-  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type AuthorInBookUpdateManyWithWhereWithoutBookInput = {
@@ -1457,13 +1457,13 @@ export type AuthorInBookUpdateWithWhereUniqueWithoutPersonInput = {
 };
 
 export type AuthorInBookUpdateWithoutBookInput = {
-  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutBooksInput>;
 };
 
 export type AuthorInBookUpdateWithoutPersonInput = {
   book?: InputMaybe<BookUpdateOneRequiredWithoutAuthorsInput>;
-  penname?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type AuthorInBookUpsertWithWhereUniqueWithoutBookInput = {
@@ -1484,7 +1484,7 @@ export type AuthorInBookWhereInput = {
   OR?: InputMaybe<AuthorInBookWhereInput[]>;
   book?: InputMaybe<BookRelationFilter>;
   bookId?: InputMaybe<IntFilter>;
-  penname?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
 };
@@ -12054,6 +12054,7 @@ export type Song = {
   poster: Scalars['String'];
   released?: Maybe<Scalars['DateTime']>;
   reviews: SongReview[];
+  runtime?: Maybe<Scalars['Float']>;
   songInMovie: SongInMovie[];
   songInShow: SongInShow[];
   title: Scalars['String'];
@@ -12125,10 +12126,12 @@ export type SongSongInShowArgs = {
 export type SongAvgAggregate = {
   __typename?: 'SongAvgAggregate';
   id?: Maybe<Scalars['Float']>;
+  runtime?: Maybe<Scalars['Float']>;
 };
 
 export type SongAvgOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
 };
 
 export type SongCount = {
@@ -12150,6 +12153,7 @@ export type SongCountAggregate = {
   locked: Scalars['Int'];
   poster: Scalars['Int'];
   released: Scalars['Int'];
+  runtime: Scalars['Int'];
   title: Scalars['Int'];
   updatedAt: Scalars['Int'];
 };
@@ -12161,6 +12165,7 @@ export type SongCountOrderByAggregateInput = {
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -12175,6 +12180,7 @@ export type SongCreateInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
@@ -12188,6 +12194,7 @@ export type SongCreateManyInput = {
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
+  runtime?: InputMaybe<Scalars['Float']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -12267,6 +12274,7 @@ export type SongCreateWithoutArtistsInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
@@ -12282,6 +12290,7 @@ export type SongCreateWithoutGenresInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
@@ -12297,6 +12306,7 @@ export type SongCreateWithoutLikesInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
@@ -12312,6 +12322,7 @@ export type SongCreateWithoutReviewsInput = {
   locked?: InputMaybe<Scalars['Boolean']>;
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
@@ -12328,6 +12339,7 @@ export type SongCreateWithoutSongInMovieInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInShow?: InputMaybe<SongInShowCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -12343,6 +12355,7 @@ export type SongCreateWithoutSongInShowInput = {
   poster?: InputMaybe<Scalars['String']>;
   released?: InputMaybe<Scalars['DateTime']>;
   reviews?: InputMaybe<SongReviewCreateNestedManyWithoutSongInput>;
+  runtime?: InputMaybe<Scalars['Float']>;
   songInMovie?: InputMaybe<SongInMovieCreateNestedManyWithoutSongInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -12361,6 +12374,7 @@ export type SongGroupBy = {
   locked: Scalars['Boolean'];
   poster: Scalars['String'];
   released?: Maybe<Scalars['DateTime']>;
+  runtime?: Maybe<Scalars['Float']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -13338,6 +13352,7 @@ export type SongMaxAggregate = {
   locked?: Maybe<Scalars['Boolean']>;
   poster?: Maybe<Scalars['String']>;
   released?: Maybe<Scalars['DateTime']>;
+  runtime?: Maybe<Scalars['Float']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -13349,6 +13364,7 @@ export type SongMaxOrderByAggregateInput = {
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -13361,6 +13377,7 @@ export type SongMinAggregate = {
   locked?: Maybe<Scalars['Boolean']>;
   poster?: Maybe<Scalars['String']>;
   released?: Maybe<Scalars['DateTime']>;
+  runtime?: Maybe<Scalars['Float']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -13372,6 +13389,7 @@ export type SongMinOrderByAggregateInput = {
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -13392,6 +13410,7 @@ export type SongOrderByWithAggregationInput = {
   locked?: InputMaybe<SortOrder>;
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -13407,6 +13426,7 @@ export type SongOrderByWithRelationInput = {
   poster?: InputMaybe<SortOrder>;
   released?: InputMaybe<SortOrder>;
   reviews?: InputMaybe<SongReviewOrderByRelationAggregateInput>;
+  runtime?: InputMaybe<SortOrder>;
   songInMovie?: InputMaybe<SongInMovieOrderByRelationAggregateInput>;
   songInShow?: InputMaybe<SongInShowOrderByRelationAggregateInput>;
   title?: InputMaybe<SortOrder>;
@@ -14152,6 +14172,7 @@ export enum SongScalarFieldEnum {
   Locked = 'locked',
   Poster = 'poster',
   Released = 'released',
+  Runtime = 'runtime',
   Title = 'title',
   UpdatedAt = 'updatedAt'
 }
@@ -14166,6 +14187,7 @@ export type SongScalarWhereInput = {
   locked?: InputMaybe<BoolFilter>;
   poster?: InputMaybe<StringFilter>;
   released?: InputMaybe<DateTimeNullableFilter>;
+  runtime?: InputMaybe<FloatNullableFilter>;
   title?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -14180,6 +14202,7 @@ export type SongScalarWhereWithAggregatesInput = {
   locked?: InputMaybe<BoolWithAggregatesFilter>;
   poster?: InputMaybe<StringWithAggregatesFilter>;
   released?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
+  runtime?: InputMaybe<FloatNullableWithAggregatesFilter>;
   title?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
@@ -14187,10 +14210,12 @@ export type SongScalarWhereWithAggregatesInput = {
 export type SongSumAggregate = {
   __typename?: 'SongSumAggregate';
   id?: Maybe<Scalars['Int']>;
+  runtime?: Maybe<Scalars['Float']>;
 };
 
 export type SongSumOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
+  runtime?: InputMaybe<SortOrder>;
 };
 
 export type SongUpdateInput = {
@@ -14203,6 +14228,7 @@ export type SongUpdateInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -14215,6 +14241,7 @@ export type SongUpdateManyMutationInput = {
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -14291,6 +14318,7 @@ export type SongUpdateWithoutArtistsInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -14306,6 +14334,7 @@ export type SongUpdateWithoutGenresInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -14321,6 +14350,7 @@ export type SongUpdateWithoutLikesInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -14336,6 +14366,7 @@ export type SongUpdateWithoutReviewsInput = {
   locked?: InputMaybe<BoolFieldUpdateOperationsInput>;
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -14352,6 +14383,7 @@ export type SongUpdateWithoutSongInMovieInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInShow?: InputMaybe<SongInShowUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -14367,6 +14399,7 @@ export type SongUpdateWithoutSongInShowInput = {
   poster?: InputMaybe<StringFieldUpdateOperationsInput>;
   released?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   reviews?: InputMaybe<SongReviewUpdateManyWithoutSongInput>;
+  runtime?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   songInMovie?: InputMaybe<SongInMovieUpdateManyWithoutSongInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -14417,6 +14450,7 @@ export type SongWhereInput = {
   poster?: InputMaybe<StringFilter>;
   released?: InputMaybe<DateTimeNullableFilter>;
   reviews?: InputMaybe<SongReviewListRelationFilter>;
+  runtime?: InputMaybe<FloatNullableFilter>;
   songInMovie?: InputMaybe<SongInMovieListRelationFilter>;
   songInShow?: InputMaybe<SongInShowListRelationFilter>;
   title?: InputMaybe<StringFilter>;
@@ -16776,11 +16810,15 @@ export type WatchlistWhereUniqueInput = {
   userId?: InputMaybe<Scalars['Int']>;
 };
 
+export type RegularBookFragment = {__typename?: 'Book'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'BookCount'; likes: number} | null; authors: Array<{__typename?: 'AuthorInBook'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'BookReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'BookReviewCount'; likes: number} | null}>; aggregateBookReview: {__typename?: 'AggregateBookReview'; _avg?: {__typename?: 'BookReviewAvgAggregate'; rating?: number | null} | null}};
+
 export type RegularMovieFragment = {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}};
 
 export type RegularPersonFragment = {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null};
 
 export type RegularShowFragment = {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}};
+
+export type RegularSongFragment = {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; runtime?: number | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}};
 
 export type RegularUserFragment = {__typename?: 'User'; id: number; email: string; username: string; avatar: string};
 
@@ -16802,11 +16840,29 @@ export type CreateActorInShowMutationVariables = Exact<{
 
 export type CreateActorInShowMutation = {__typename?: 'Mutation'; createActorInShow: boolean};
 
+export type CreateArtistInSongMutationVariables = Exact<{
+  data: ArtistInSongCreateInput;
+}>;
+
+export type CreateArtistInSongMutation = {__typename?: 'Mutation'; createArtistInSong: boolean};
+
+export type CreateAuthorInBookMutationVariables = Exact<{
+  data: AuthorInBookCreateInput;
+}>;
+
+export type CreateAuthorInBookMutation = {__typename?: 'Mutation'; createAuthorInBook: boolean};
+
 export type CreateBookMutationVariables = Exact<{
   data: BookCreateInput;
 }>;
 
 export type CreateBookMutation = {__typename?: 'Mutation'; createBook: {__typename?: 'Book'; id: number; title: string; description: string}};
+
+export type CreateBookReviewMutationVariables = Exact<{
+  data: BookReviewCreateCustomInput;
+}>;
+
+export type CreateBookReviewMutation = {__typename?: 'Mutation'; createBookReview: boolean};
 
 export type CreateMovieMutationVariables = Exact<{
   data: MovieCreateInput;
@@ -16862,6 +16918,12 @@ export type CreateSongInShowMutationVariables = Exact<{
 
 export type CreateSongInShowMutation = {__typename?: 'Mutation'; createSongInShow: boolean};
 
+export type CreateSongReviewMutationVariables = Exact<{
+  data: SongReviewCreateCustomInput;
+}>;
+
+export type CreateSongReviewMutation = {__typename?: 'Mutation'; createSongReview: boolean};
+
 export type DeleteAccountMutationVariables = Exact<{
   password: Scalars['String'];
 }>;
@@ -16879,6 +16941,24 @@ export type DeleteActorInShowMutationVariables = Exact<{
 }>;
 
 export type DeleteActorInShowMutation = {__typename?: 'Mutation'; deleteActorInShow?: boolean | null};
+
+export type DeleteArtistInSongMutationVariables = Exact<{
+  where: ArtistInSongWhereUniqueInput;
+}>;
+
+export type DeleteArtistInSongMutation = {__typename?: 'Mutation'; deleteArtistInSong?: boolean | null};
+
+export type DeleteAuthorInBookMutationVariables = Exact<{
+  where: AuthorInBookWhereUniqueInput;
+}>;
+
+export type DeleteAuthorInBookMutation = {__typename?: 'Mutation'; deleteAuthorInBook?: boolean | null};
+
+export type DeleteBookReviewMutationVariables = Exact<{
+  bookId: Scalars['Int'];
+}>;
+
+export type DeleteBookReviewMutation = {__typename?: 'Mutation'; deleteBookReview: boolean};
 
 export type DeleteMovieReviewMutationVariables = Exact<{
   movieId: Scalars['Int'];
@@ -16910,11 +16990,23 @@ export type DeleteSongInShowMutationVariables = Exact<{
 
 export type DeleteSongInShowMutation = {__typename?: 'Mutation'; deleteSongInShow?: boolean | null};
 
+export type DeleteSongReviewMutationVariables = Exact<{
+  songId: Scalars['Int'];
+}>;
+
+export type DeleteSongReviewMutation = {__typename?: 'Mutation'; deleteSongReview: boolean};
+
 export type FollowMutationVariables = Exact<{
   userId: Scalars['Int'];
 }>;
 
 export type FollowMutation = {__typename?: 'Mutation'; follow: boolean};
+
+export type LikeBookMutationVariables = Exact<{
+  data: BookLikeCreateCustomInput;
+}>;
+
+export type LikeBookMutation = {__typename?: 'Mutation'; likeBook: boolean};
 
 export type LikeMovieMutationVariables = Exact<{
   data: MovieLikeCreateCustomInput;
@@ -16927,6 +17019,12 @@ export type LikeShowMutationVariables = Exact<{
 }>;
 
 export type LikeShowMutation = {__typename?: 'Mutation'; likeShow: boolean};
+
+export type LikeSongMutationVariables = Exact<{
+  data: SongLikeCreateCustomInput;
+}>;
+
+export type LikeSongMutation = {__typename?: 'Mutation'; likeSong: boolean};
 
 export type LoginMutationVariables = Exact<{
   data: LoginInput;
@@ -16950,6 +17048,12 @@ export type UnfollowMutationVariables = Exact<{
 
 export type UnfollowMutation = {__typename?: 'Mutation'; unfollow: boolean};
 
+export type UnlikeBookMutationVariables = Exact<{
+  bookId: Scalars['Int'];
+}>;
+
+export type UnlikeBookMutation = {__typename?: 'Mutation'; unlikeBook: boolean};
+
 export type UnlikeMovieMutationVariables = Exact<{
   movieId: Scalars['Int'];
 }>;
@@ -16961,6 +17065,19 @@ export type UnlikeShowMutationVariables = Exact<{
 }>;
 
 export type UnlikeShowMutation = {__typename?: 'Mutation'; unlikeShow: boolean};
+
+export type UnlikeSongMutationVariables = Exact<{
+  songId: Scalars['Int'];
+}>;
+
+export type UnlikeSongMutation = {__typename?: 'Mutation'; unlikeSong: boolean};
+
+export type UpdateBookMutationVariables = Exact<{
+  data: BookUpdateInput;
+  where: BookWhereUniqueInput;
+}>;
+
+export type UpdateBookMutation = {__typename?: 'Mutation'; updateBook?: {__typename?: 'Book'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'BookCount'; likes: number} | null; authors: Array<{__typename?: 'AuthorInBook'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'BookReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'BookReviewCount'; likes: number} | null}>; aggregateBookReview: {__typename?: 'AggregateBookReview'; _avg?: {__typename?: 'BookReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type UpdateGenreMutationVariables = Exact<{
   data: GenreUpdateInput;
@@ -16983,12 +17100,26 @@ export type UpdateMovieReivewMutationVariables = Exact<{
 
 export type UpdateMovieReivewMutation = {__typename?: 'Mutation'; updateMovieReview: {__typename?: 'MovieReview'; review?: string | null; rating: number; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}};
 
+export type UpdatePersonMutationVariables = Exact<{
+  data: PersonUpdateInput;
+  where: PersonWhereUniqueInput;
+}>;
+
+export type UpdatePersonMutation = {__typename?: 'Mutation'; updatePerson?: {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null} | null};
+
 export type UpdateShowMutationVariables = Exact<{
   data: ShowUpdateInput;
   where: ShowWhereUniqueInput;
 }>;
 
 export type UpdateShowMutation = {__typename?: 'Mutation'; updateShow?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
+
+export type UpdateSongMutationVariables = Exact<{
+  data: SongUpdateInput;
+  where: SongWhereUniqueInput;
+}>;
+
+export type UpdateSongMutation = {__typename?: 'Mutation'; updateSong?: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; runtime?: number | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type UpdateUserMutationVariables = Exact<{
   data: UserUpdateInput;
@@ -17044,11 +17175,31 @@ export type ActorsInShowQueryVariables = Exact<{
 
 export type ActorsInShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; actors: Array<{__typename?: 'ActorInShow'; personId: number}>} | null};
 
+export type ArtistsInSongQueryVariables = Exact<{
+  songId: Scalars['Int'];
+  where?: InputMaybe<ArtistInSongWhereInput>;
+  orderBy?: InputMaybe<ArtistInSongOrderByWithRelationInput[] | ArtistInSongOrderByWithRelationInput>;
+  cursor?: InputMaybe<ArtistInSongWhereUniqueInput>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type ArtistsInSongQuery = {__typename?: 'Query'; song?: {__typename?: 'Song'; artists: Array<{__typename?: 'ArtistInSong'; personId: number}>} | null};
+
+export type AuthorsInBookQueryVariables = Exact<{
+  bookId: Scalars['Int'];
+  where?: InputMaybe<AuthorInBookWhereInput>;
+  orderBy?: InputMaybe<AuthorInBookOrderByWithRelationInput[] | AuthorInBookOrderByWithRelationInput>;
+  cursor?: InputMaybe<AuthorInBookWhereUniqueInput>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type AuthorsInBookQuery = {__typename?: 'Query'; book?: {__typename?: 'Book'; authors: Array<{__typename?: 'AuthorInBook'; personId: number}>} | null};
+
 export type BookQueryVariables = Exact<{
   bookId: Scalars['Int'];
 }>;
 
-export type BookQuery = {__typename?: 'Query'; book?: {__typename?: 'Book'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'BookCount'; likes: number} | null; authors: Array<{__typename?: 'AuthorInBook'; penname: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'BookReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'BookReviewCount'; likes: number} | null}>; aggregateBookReview: {__typename?: 'AggregateBookReview'; _avg?: {__typename?: 'BookReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type BookQuery = {__typename?: 'Query'; book?: {__typename?: 'Book'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'BookCount'; likes: number} | null; authors: Array<{__typename?: 'AuthorInBook'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'BookReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'BookReviewCount'; likes: number} | null}>; aggregateBookReview: {__typename?: 'AggregateBookReview'; _avg?: {__typename?: 'BookReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type BooksQueryVariables = Exact<{
   where?: InputMaybe<BookWhereInput>;
@@ -17146,7 +17297,7 @@ export type SongQueryVariables = Exact<{
   songId: Scalars['Int'];
 }>;
 
-export type SongQuery = {__typename?: 'Query'; song?: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; stagename: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type SongQuery = {__typename?: 'Query'; song?: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; runtime?: number | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type SongsQueryVariables = Exact<{
   where?: InputMaybe<SongWhereInput>;
@@ -17173,6 +17324,45 @@ export type NotificationListenerSubscriptionVariables = Exact<{
 
 export type NotificationListenerSubscription = {__typename?: 'Subscription'; notificationListener: {__typename?: 'Notification'; id: number; userId: number; message: string; read: boolean; createdAt: any}};
 
+export const RegularBookFragmentDoc = gql`
+    fragment RegularBook on Book {
+  id
+  title
+  description
+  poster
+  released
+  isLiked
+  _count {
+    likes
+  }
+  authors(take: 8) {
+    person {
+      id
+      name
+      poster
+    }
+  }
+  genres {
+    name
+  }
+  reviews(take: 8) {
+    review
+    rating
+    user {
+      username
+      avatar
+    }
+    _count {
+      likes
+    }
+  }
+  aggregateBookReview {
+    _avg {
+      rating
+    }
+  }
+}
+    `;
 export const RegularMovieFragmentDoc = gql`
     fragment RegularMovie on Movie {
   id
@@ -17319,6 +17509,46 @@ export const RegularShowFragmentDoc = gql`
   }
 }
     `;
+export const RegularSongFragmentDoc = gql`
+    fragment RegularSong on Song {
+  id
+  title
+  description
+  poster
+  released
+  runtime
+  isLiked
+  _count {
+    likes
+  }
+  artists(take: 8) {
+    person {
+      id
+      name
+      poster
+    }
+  }
+  genres {
+    name
+  }
+  reviews(take: 8) {
+    review
+    rating
+    user {
+      username
+      avatar
+    }
+    _count {
+      likes
+    }
+  }
+  aggregateSongReview {
+    _avg {
+      rating
+    }
+  }
+}
+    `;
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
@@ -17423,6 +17653,70 @@ export function useCreateActorInShowMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateActorInShowMutationHookResult = ReturnType<typeof useCreateActorInShowMutation>;
 export type CreateActorInShowMutationResult = Apollo.MutationResult<CreateActorInShowMutation>;
 export type CreateActorInShowMutationOptions = Apollo.BaseMutationOptions<CreateActorInShowMutation, CreateActorInShowMutationVariables>;
+export const CreateArtistInSongDocument = gql`
+    mutation createArtistInSong($data: ArtistInSongCreateInput!) {
+  createArtistInSong(data: $data)
+}
+    `;
+export type CreateArtistInSongMutationFn = Apollo.MutationFunction<CreateArtistInSongMutation, CreateArtistInSongMutationVariables>;
+
+/**
+ * __useCreateArtistInSongMutation__
+ *
+ * To run a mutation, you first call `useCreateArtistInSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateArtistInSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createArtistInSongMutation, { data, loading, error }] = useCreateArtistInSongMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateArtistInSongMutation(baseOptions?: Apollo.MutationHookOptions<CreateArtistInSongMutation, CreateArtistInSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateArtistInSongMutation, CreateArtistInSongMutationVariables>(CreateArtistInSongDocument, options);
+      }
+
+export type CreateArtistInSongMutationHookResult = ReturnType<typeof useCreateArtistInSongMutation>;
+export type CreateArtistInSongMutationResult = Apollo.MutationResult<CreateArtistInSongMutation>;
+export type CreateArtistInSongMutationOptions = Apollo.BaseMutationOptions<CreateArtistInSongMutation, CreateArtistInSongMutationVariables>;
+export const CreateAuthorInBookDocument = gql`
+    mutation createAuthorInBook($data: AuthorInBookCreateInput!) {
+  createAuthorInBook(data: $data)
+}
+    `;
+export type CreateAuthorInBookMutationFn = Apollo.MutationFunction<CreateAuthorInBookMutation, CreateAuthorInBookMutationVariables>;
+
+/**
+ * __useCreateAuthorInBookMutation__
+ *
+ * To run a mutation, you first call `useCreateAuthorInBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAuthorInBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAuthorInBookMutation, { data, loading, error }] = useCreateAuthorInBookMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateAuthorInBookMutation(baseOptions?: Apollo.MutationHookOptions<CreateAuthorInBookMutation, CreateAuthorInBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateAuthorInBookMutation, CreateAuthorInBookMutationVariables>(CreateAuthorInBookDocument, options);
+      }
+
+export type CreateAuthorInBookMutationHookResult = ReturnType<typeof useCreateAuthorInBookMutation>;
+export type CreateAuthorInBookMutationResult = Apollo.MutationResult<CreateAuthorInBookMutation>;
+export type CreateAuthorInBookMutationOptions = Apollo.BaseMutationOptions<CreateAuthorInBookMutation, CreateAuthorInBookMutationVariables>;
 export const CreateBookDocument = gql`
     mutation CreateBook($data: BookCreateInput!) {
   createBook(data: $data) {
@@ -17459,6 +17753,38 @@ export function useCreateBookMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateBookMutationHookResult = ReturnType<typeof useCreateBookMutation>;
 export type CreateBookMutationResult = Apollo.MutationResult<CreateBookMutation>;
 export type CreateBookMutationOptions = Apollo.BaseMutationOptions<CreateBookMutation, CreateBookMutationVariables>;
+export const CreateBookReviewDocument = gql`
+    mutation createBookReview($data: BookReviewCreateCustomInput!) {
+  createBookReview(data: $data)
+}
+    `;
+export type CreateBookReviewMutationFn = Apollo.MutationFunction<CreateBookReviewMutation, CreateBookReviewMutationVariables>;
+
+/**
+ * __useCreateBookReviewMutation__
+ *
+ * To run a mutation, you first call `useCreateBookReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBookReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBookReviewMutation, { data, loading, error }] = useCreateBookReviewMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateBookReviewMutation(baseOptions?: Apollo.MutationHookOptions<CreateBookReviewMutation, CreateBookReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateBookReviewMutation, CreateBookReviewMutationVariables>(CreateBookReviewDocument, options);
+      }
+
+export type CreateBookReviewMutationHookResult = ReturnType<typeof useCreateBookReviewMutation>;
+export type CreateBookReviewMutationResult = Apollo.MutationResult<CreateBookReviewMutation>;
+export type CreateBookReviewMutationOptions = Apollo.BaseMutationOptions<CreateBookReviewMutation, CreateBookReviewMutationVariables>;
 export const CreateMovieDocument = gql`
     mutation CreateMovie($data: MovieCreateInput!) {
   createMovie(data: $data) {
@@ -17766,6 +18092,38 @@ export function useCreateSongInShowMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateSongInShowMutationHookResult = ReturnType<typeof useCreateSongInShowMutation>;
 export type CreateSongInShowMutationResult = Apollo.MutationResult<CreateSongInShowMutation>;
 export type CreateSongInShowMutationOptions = Apollo.BaseMutationOptions<CreateSongInShowMutation, CreateSongInShowMutationVariables>;
+export const CreateSongReviewDocument = gql`
+    mutation createSongReview($data: SongReviewCreateCustomInput!) {
+  createSongReview(data: $data)
+}
+    `;
+export type CreateSongReviewMutationFn = Apollo.MutationFunction<CreateSongReviewMutation, CreateSongReviewMutationVariables>;
+
+/**
+ * __useCreateSongReviewMutation__
+ *
+ * To run a mutation, you first call `useCreateSongReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSongReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSongReviewMutation, { data, loading, error }] = useCreateSongReviewMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateSongReviewMutation(baseOptions?: Apollo.MutationHookOptions<CreateSongReviewMutation, CreateSongReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<CreateSongReviewMutation, CreateSongReviewMutationVariables>(CreateSongReviewDocument, options);
+      }
+
+export type CreateSongReviewMutationHookResult = ReturnType<typeof useCreateSongReviewMutation>;
+export type CreateSongReviewMutationResult = Apollo.MutationResult<CreateSongReviewMutation>;
+export type CreateSongReviewMutationOptions = Apollo.BaseMutationOptions<CreateSongReviewMutation, CreateSongReviewMutationVariables>;
 export const DeleteAccountDocument = gql`
     mutation deleteAccount($password: String!) {
   deleteAccount(password: $password)
@@ -17862,6 +18220,102 @@ export function useDeleteActorInShowMutation(baseOptions?: Apollo.MutationHookOp
 export type DeleteActorInShowMutationHookResult = ReturnType<typeof useDeleteActorInShowMutation>;
 export type DeleteActorInShowMutationResult = Apollo.MutationResult<DeleteActorInShowMutation>;
 export type DeleteActorInShowMutationOptions = Apollo.BaseMutationOptions<DeleteActorInShowMutation, DeleteActorInShowMutationVariables>;
+export const DeleteArtistInSongDocument = gql`
+    mutation deleteArtistInSong($where: ArtistInSongWhereUniqueInput!) {
+  deleteArtistInSong(where: $where)
+}
+    `;
+export type DeleteArtistInSongMutationFn = Apollo.MutationFunction<DeleteArtistInSongMutation, DeleteArtistInSongMutationVariables>;
+
+/**
+ * __useDeleteArtistInSongMutation__
+ *
+ * To run a mutation, you first call `useDeleteArtistInSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteArtistInSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteArtistInSongMutation, { data, loading, error }] = useDeleteArtistInSongMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteArtistInSongMutation(baseOptions?: Apollo.MutationHookOptions<DeleteArtistInSongMutation, DeleteArtistInSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<DeleteArtistInSongMutation, DeleteArtistInSongMutationVariables>(DeleteArtistInSongDocument, options);
+      }
+
+export type DeleteArtistInSongMutationHookResult = ReturnType<typeof useDeleteArtistInSongMutation>;
+export type DeleteArtistInSongMutationResult = Apollo.MutationResult<DeleteArtistInSongMutation>;
+export type DeleteArtistInSongMutationOptions = Apollo.BaseMutationOptions<DeleteArtistInSongMutation, DeleteArtistInSongMutationVariables>;
+export const DeleteAuthorInBookDocument = gql`
+    mutation deleteAuthorInBook($where: AuthorInBookWhereUniqueInput!) {
+  deleteAuthorInBook(where: $where)
+}
+    `;
+export type DeleteAuthorInBookMutationFn = Apollo.MutationFunction<DeleteAuthorInBookMutation, DeleteAuthorInBookMutationVariables>;
+
+/**
+ * __useDeleteAuthorInBookMutation__
+ *
+ * To run a mutation, you first call `useDeleteAuthorInBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAuthorInBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAuthorInBookMutation, { data, loading, error }] = useDeleteAuthorInBookMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteAuthorInBookMutation(baseOptions?: Apollo.MutationHookOptions<DeleteAuthorInBookMutation, DeleteAuthorInBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<DeleteAuthorInBookMutation, DeleteAuthorInBookMutationVariables>(DeleteAuthorInBookDocument, options);
+      }
+
+export type DeleteAuthorInBookMutationHookResult = ReturnType<typeof useDeleteAuthorInBookMutation>;
+export type DeleteAuthorInBookMutationResult = Apollo.MutationResult<DeleteAuthorInBookMutation>;
+export type DeleteAuthorInBookMutationOptions = Apollo.BaseMutationOptions<DeleteAuthorInBookMutation, DeleteAuthorInBookMutationVariables>;
+export const DeleteBookReviewDocument = gql`
+    mutation deleteBookReview($bookId: Int!) {
+  deleteBookReview(bookId: $bookId)
+}
+    `;
+export type DeleteBookReviewMutationFn = Apollo.MutationFunction<DeleteBookReviewMutation, DeleteBookReviewMutationVariables>;
+
+/**
+ * __useDeleteBookReviewMutation__
+ *
+ * To run a mutation, you first call `useDeleteBookReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteBookReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteBookReviewMutation, { data, loading, error }] = useDeleteBookReviewMutation({
+ *   variables: {
+ *      bookId: // value for 'bookId'
+ *   },
+ * });
+ */
+export function useDeleteBookReviewMutation(baseOptions?: Apollo.MutationHookOptions<DeleteBookReviewMutation, DeleteBookReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<DeleteBookReviewMutation, DeleteBookReviewMutationVariables>(DeleteBookReviewDocument, options);
+      }
+
+export type DeleteBookReviewMutationHookResult = ReturnType<typeof useDeleteBookReviewMutation>;
+export type DeleteBookReviewMutationResult = Apollo.MutationResult<DeleteBookReviewMutation>;
+export type DeleteBookReviewMutationOptions = Apollo.BaseMutationOptions<DeleteBookReviewMutation, DeleteBookReviewMutationVariables>;
 export const DeleteMovieReviewDocument = gql`
     mutation deleteMovieReview($movieId: Int!) {
   deleteMovieReview(movieId: $movieId)
@@ -18022,6 +18476,38 @@ export function useDeleteSongInShowMutation(baseOptions?: Apollo.MutationHookOpt
 export type DeleteSongInShowMutationHookResult = ReturnType<typeof useDeleteSongInShowMutation>;
 export type DeleteSongInShowMutationResult = Apollo.MutationResult<DeleteSongInShowMutation>;
 export type DeleteSongInShowMutationOptions = Apollo.BaseMutationOptions<DeleteSongInShowMutation, DeleteSongInShowMutationVariables>;
+export const DeleteSongReviewDocument = gql`
+    mutation deleteSongReview($songId: Int!) {
+  deleteSongReview(songId: $songId)
+}
+    `;
+export type DeleteSongReviewMutationFn = Apollo.MutationFunction<DeleteSongReviewMutation, DeleteSongReviewMutationVariables>;
+
+/**
+ * __useDeleteSongReviewMutation__
+ *
+ * To run a mutation, you first call `useDeleteSongReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteSongReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteSongReviewMutation, { data, loading, error }] = useDeleteSongReviewMutation({
+ *   variables: {
+ *      songId: // value for 'songId'
+ *   },
+ * });
+ */
+export function useDeleteSongReviewMutation(baseOptions?: Apollo.MutationHookOptions<DeleteSongReviewMutation, DeleteSongReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<DeleteSongReviewMutation, DeleteSongReviewMutationVariables>(DeleteSongReviewDocument, options);
+      }
+
+export type DeleteSongReviewMutationHookResult = ReturnType<typeof useDeleteSongReviewMutation>;
+export type DeleteSongReviewMutationResult = Apollo.MutationResult<DeleteSongReviewMutation>;
+export type DeleteSongReviewMutationOptions = Apollo.BaseMutationOptions<DeleteSongReviewMutation, DeleteSongReviewMutationVariables>;
 export const FollowDocument = gql`
     mutation Follow($userId: Int!) {
   follow(userId: $userId)
@@ -18054,6 +18540,38 @@ export function useFollowMutation(baseOptions?: Apollo.MutationHookOptions<Follo
 export type FollowMutationHookResult = ReturnType<typeof useFollowMutation>;
 export type FollowMutationResult = Apollo.MutationResult<FollowMutation>;
 export type FollowMutationOptions = Apollo.BaseMutationOptions<FollowMutation, FollowMutationVariables>;
+export const LikeBookDocument = gql`
+    mutation LikeBook($data: BookLikeCreateCustomInput!) {
+  likeBook(data: $data)
+}
+    `;
+export type LikeBookMutationFn = Apollo.MutationFunction<LikeBookMutation, LikeBookMutationVariables>;
+
+/**
+ * __useLikeBookMutation__
+ *
+ * To run a mutation, you first call `useLikeBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLikeBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [likeBookMutation, { data, loading, error }] = useLikeBookMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useLikeBookMutation(baseOptions?: Apollo.MutationHookOptions<LikeBookMutation, LikeBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<LikeBookMutation, LikeBookMutationVariables>(LikeBookDocument, options);
+      }
+
+export type LikeBookMutationHookResult = ReturnType<typeof useLikeBookMutation>;
+export type LikeBookMutationResult = Apollo.MutationResult<LikeBookMutation>;
+export type LikeBookMutationOptions = Apollo.BaseMutationOptions<LikeBookMutation, LikeBookMutationVariables>;
 export const LikeMovieDocument = gql`
     mutation LikeMovie($data: MovieLikeCreateCustomInput!) {
   likeMovie(data: $data)
@@ -18118,6 +18636,38 @@ export function useLikeShowMutation(baseOptions?: Apollo.MutationHookOptions<Lik
 export type LikeShowMutationHookResult = ReturnType<typeof useLikeShowMutation>;
 export type LikeShowMutationResult = Apollo.MutationResult<LikeShowMutation>;
 export type LikeShowMutationOptions = Apollo.BaseMutationOptions<LikeShowMutation, LikeShowMutationVariables>;
+export const LikeSongDocument = gql`
+    mutation LikeSong($data: SongLikeCreateCustomInput!) {
+  likeSong(data: $data)
+}
+    `;
+export type LikeSongMutationFn = Apollo.MutationFunction<LikeSongMutation, LikeSongMutationVariables>;
+
+/**
+ * __useLikeSongMutation__
+ *
+ * To run a mutation, you first call `useLikeSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLikeSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [likeSongMutation, { data, loading, error }] = useLikeSongMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useLikeSongMutation(baseOptions?: Apollo.MutationHookOptions<LikeSongMutation, LikeSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<LikeSongMutation, LikeSongMutationVariables>(LikeSongDocument, options);
+      }
+
+export type LikeSongMutationHookResult = ReturnType<typeof useLikeSongMutation>;
+export type LikeSongMutationResult = Apollo.MutationResult<LikeSongMutation>;
+export type LikeSongMutationOptions = Apollo.BaseMutationOptions<LikeSongMutation, LikeSongMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($data: LoginInput!) {
   login(data: $data) {
@@ -18249,6 +18799,38 @@ export function useUnfollowMutation(baseOptions?: Apollo.MutationHookOptions<Unf
 export type UnfollowMutationHookResult = ReturnType<typeof useUnfollowMutation>;
 export type UnfollowMutationResult = Apollo.MutationResult<UnfollowMutation>;
 export type UnfollowMutationOptions = Apollo.BaseMutationOptions<UnfollowMutation, UnfollowMutationVariables>;
+export const UnlikeBookDocument = gql`
+    mutation UnlikeBook($bookId: Int!) {
+  unlikeBook(bookId: $bookId)
+}
+    `;
+export type UnlikeBookMutationFn = Apollo.MutationFunction<UnlikeBookMutation, UnlikeBookMutationVariables>;
+
+/**
+ * __useUnlikeBookMutation__
+ *
+ * To run a mutation, you first call `useUnlikeBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnlikeBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unlikeBookMutation, { data, loading, error }] = useUnlikeBookMutation({
+ *   variables: {
+ *      bookId: // value for 'bookId'
+ *   },
+ * });
+ */
+export function useUnlikeBookMutation(baseOptions?: Apollo.MutationHookOptions<UnlikeBookMutation, UnlikeBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UnlikeBookMutation, UnlikeBookMutationVariables>(UnlikeBookDocument, options);
+      }
+
+export type UnlikeBookMutationHookResult = ReturnType<typeof useUnlikeBookMutation>;
+export type UnlikeBookMutationResult = Apollo.MutationResult<UnlikeBookMutation>;
+export type UnlikeBookMutationOptions = Apollo.BaseMutationOptions<UnlikeBookMutation, UnlikeBookMutationVariables>;
 export const UnlikeMovieDocument = gql`
     mutation UnlikeMovie($movieId: Int!) {
   unlikeMovie(movieId: $movieId)
@@ -18313,6 +18895,73 @@ export function useUnlikeShowMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UnlikeShowMutationHookResult = ReturnType<typeof useUnlikeShowMutation>;
 export type UnlikeShowMutationResult = Apollo.MutationResult<UnlikeShowMutation>;
 export type UnlikeShowMutationOptions = Apollo.BaseMutationOptions<UnlikeShowMutation, UnlikeShowMutationVariables>;
+export const UnlikeSongDocument = gql`
+    mutation UnlikeSong($songId: Int!) {
+  unlikeSong(songId: $songId)
+}
+    `;
+export type UnlikeSongMutationFn = Apollo.MutationFunction<UnlikeSongMutation, UnlikeSongMutationVariables>;
+
+/**
+ * __useUnlikeSongMutation__
+ *
+ * To run a mutation, you first call `useUnlikeSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnlikeSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unlikeSongMutation, { data, loading, error }] = useUnlikeSongMutation({
+ *   variables: {
+ *      songId: // value for 'songId'
+ *   },
+ * });
+ */
+export function useUnlikeSongMutation(baseOptions?: Apollo.MutationHookOptions<UnlikeSongMutation, UnlikeSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UnlikeSongMutation, UnlikeSongMutationVariables>(UnlikeSongDocument, options);
+      }
+
+export type UnlikeSongMutationHookResult = ReturnType<typeof useUnlikeSongMutation>;
+export type UnlikeSongMutationResult = Apollo.MutationResult<UnlikeSongMutation>;
+export type UnlikeSongMutationOptions = Apollo.BaseMutationOptions<UnlikeSongMutation, UnlikeSongMutationVariables>;
+export const UpdateBookDocument = gql`
+    mutation UpdateBook($data: BookUpdateInput!, $where: BookWhereUniqueInput!) {
+  updateBook(data: $data, where: $where) {
+    ...RegularBook
+  }
+}
+    ${RegularBookFragmentDoc}`;
+export type UpdateBookMutationFn = Apollo.MutationFunction<UpdateBookMutation, UpdateBookMutationVariables>;
+
+/**
+ * __useUpdateBookMutation__
+ *
+ * To run a mutation, you first call `useUpdateBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateBookMutation, { data, loading, error }] = useUpdateBookMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateBookMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBookMutation, UpdateBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UpdateBookMutation, UpdateBookMutationVariables>(UpdateBookDocument, options);
+      }
+
+export type UpdateBookMutationHookResult = ReturnType<typeof useUpdateBookMutation>;
+export type UpdateBookMutationResult = Apollo.MutationResult<UpdateBookMutation>;
+export type UpdateBookMutationOptions = Apollo.BaseMutationOptions<UpdateBookMutation, UpdateBookMutationVariables>;
 export const UpdateGenreDocument = gql`
     mutation updateGenre($data: GenreUpdateInput!, $where: GenreWhereUniqueInput!) {
   updateGenre(data: $data, where: $where) {
@@ -18422,6 +19071,41 @@ export function useUpdateMovieReivewMutation(baseOptions?: Apollo.MutationHookOp
 export type UpdateMovieReivewMutationHookResult = ReturnType<typeof useUpdateMovieReivewMutation>;
 export type UpdateMovieReivewMutationResult = Apollo.MutationResult<UpdateMovieReivewMutation>;
 export type UpdateMovieReivewMutationOptions = Apollo.BaseMutationOptions<UpdateMovieReivewMutation, UpdateMovieReivewMutationVariables>;
+export const UpdatePersonDocument = gql`
+    mutation UpdatePerson($data: PersonUpdateInput!, $where: PersonWhereUniqueInput!) {
+  updatePerson(data: $data, where: $where) {
+    ...RegularPerson
+  }
+}
+    ${RegularPersonFragmentDoc}`;
+export type UpdatePersonMutationFn = Apollo.MutationFunction<UpdatePersonMutation, UpdatePersonMutationVariables>;
+
+/**
+ * __useUpdatePersonMutation__
+ *
+ * To run a mutation, you first call `useUpdatePersonMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePersonMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePersonMutation, { data, loading, error }] = useUpdatePersonMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdatePersonMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePersonMutation, UpdatePersonMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UpdatePersonMutation, UpdatePersonMutationVariables>(UpdatePersonDocument, options);
+      }
+
+export type UpdatePersonMutationHookResult = ReturnType<typeof useUpdatePersonMutation>;
+export type UpdatePersonMutationResult = Apollo.MutationResult<UpdatePersonMutation>;
+export type UpdatePersonMutationOptions = Apollo.BaseMutationOptions<UpdatePersonMutation, UpdatePersonMutationVariables>;
 export const UpdateShowDocument = gql`
     mutation UpdateShow($data: ShowUpdateInput!, $where: ShowWhereUniqueInput!) {
   updateShow(data: $data, where: $where) {
@@ -18457,6 +19141,41 @@ export function useUpdateShowMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateShowMutationHookResult = ReturnType<typeof useUpdateShowMutation>;
 export type UpdateShowMutationResult = Apollo.MutationResult<UpdateShowMutation>;
 export type UpdateShowMutationOptions = Apollo.BaseMutationOptions<UpdateShowMutation, UpdateShowMutationVariables>;
+export const UpdateSongDocument = gql`
+    mutation UpdateSong($data: SongUpdateInput!, $where: SongWhereUniqueInput!) {
+  updateSong(data: $data, where: $where) {
+    ...RegularSong
+  }
+}
+    ${RegularSongFragmentDoc}`;
+export type UpdateSongMutationFn = Apollo.MutationFunction<UpdateSongMutation, UpdateSongMutationVariables>;
+
+/**
+ * __useUpdateSongMutation__
+ *
+ * To run a mutation, you first call `useUpdateSongMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateSongMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateSongMutation, { data, loading, error }] = useUpdateSongMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateSongMutation(baseOptions?: Apollo.MutationHookOptions<UpdateSongMutation, UpdateSongMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useMutation<UpdateSongMutation, UpdateSongMutationVariables>(UpdateSongDocument, options);
+      }
+
+export type UpdateSongMutationHookResult = ReturnType<typeof useUpdateSongMutation>;
+export type UpdateSongMutationResult = Apollo.MutationResult<UpdateSongMutation>;
+export type UpdateSongMutationOptions = Apollo.BaseMutationOptions<UpdateSongMutation, UpdateSongMutationVariables>;
 export const UpdateUserDocument = gql`
     mutation UpdateUser($data: UserUpdateInput!) {
   updateUser(data: $data) {
@@ -18715,48 +19434,99 @@ export function useActorsInShowLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type ActorsInShowQueryHookResult = ReturnType<typeof useActorsInShowQuery>;
 export type ActorsInShowLazyQueryHookResult = ReturnType<typeof useActorsInShowLazyQuery>;
 export type ActorsInShowQueryResult = Apollo.QueryResult<ActorsInShowQuery, ActorsInShowQueryVariables>;
-export const BookDocument = gql`
-    query Book($bookId: Int!) {
-  book(bookId: $bookId) {
-    id
-    title
-    description
-    poster
-    released
-    isLiked
-    _count {
-      likes
-    }
-    authors(take: 8) {
-      penname
-      person {
-        id
-        name
-        poster
-      }
-    }
-    genres {
-      name
-    }
-    reviews(take: 8) {
-      review
-      rating
-      user {
-        username
-        avatar
-      }
-      _count {
-        likes
-      }
-    }
-    aggregateBookReview {
-      _avg {
-        rating
-      }
+export const ArtistsInSongDocument = gql`
+    query ArtistsInSong($songId: Int!, $where: ArtistInSongWhereInput, $orderBy: [ArtistInSongOrderByWithRelationInput!], $cursor: ArtistInSongWhereUniqueInput, $take: Int) {
+  song(songId: $songId) {
+    artists(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+      personId
     }
   }
 }
     `;
+
+/**
+ * __useArtistsInSongQuery__
+ *
+ * To run a query within a React component, call `useArtistsInSongQuery` and pass it any options that fit your needs.
+ * When your component renders, `useArtistsInSongQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useArtistsInSongQuery({
+ *   variables: {
+ *      songId: // value for 'songId'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useArtistsInSongQuery(baseOptions: Apollo.QueryHookOptions<ArtistsInSongQuery, ArtistsInSongQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<ArtistsInSongQuery, ArtistsInSongQueryVariables>(ArtistsInSongDocument, options);
+      }
+
+export function useArtistsInSongLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ArtistsInSongQuery, ArtistsInSongQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<ArtistsInSongQuery, ArtistsInSongQueryVariables>(ArtistsInSongDocument, options);
+        }
+
+export type ArtistsInSongQueryHookResult = ReturnType<typeof useArtistsInSongQuery>;
+export type ArtistsInSongLazyQueryHookResult = ReturnType<typeof useArtistsInSongLazyQuery>;
+export type ArtistsInSongQueryResult = Apollo.QueryResult<ArtistsInSongQuery, ArtistsInSongQueryVariables>;
+export const AuthorsInBookDocument = gql`
+    query AuthorsInBook($bookId: Int!, $where: AuthorInBookWhereInput, $orderBy: [AuthorInBookOrderByWithRelationInput!], $cursor: AuthorInBookWhereUniqueInput, $take: Int) {
+  book(bookId: $bookId) {
+    authors(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+      personId
+    }
+  }
+}
+    `;
+
+/**
+ * __useAuthorsInBookQuery__
+ *
+ * To run a query within a React component, call `useAuthorsInBookQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAuthorsInBookQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAuthorsInBookQuery({
+ *   variables: {
+ *      bookId: // value for 'bookId'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useAuthorsInBookQuery(baseOptions: Apollo.QueryHookOptions<AuthorsInBookQuery, AuthorsInBookQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<AuthorsInBookQuery, AuthorsInBookQueryVariables>(AuthorsInBookDocument, options);
+      }
+
+export function useAuthorsInBookLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthorsInBookQuery, AuthorsInBookQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<AuthorsInBookQuery, AuthorsInBookQueryVariables>(AuthorsInBookDocument, options);
+        }
+
+export type AuthorsInBookQueryHookResult = ReturnType<typeof useAuthorsInBookQuery>;
+export type AuthorsInBookLazyQueryHookResult = ReturnType<typeof useAuthorsInBookLazyQuery>;
+export type AuthorsInBookQueryResult = Apollo.QueryResult<AuthorsInBookQuery, AuthorsInBookQueryVariables>;
+export const BookDocument = gql`
+    query Book($bookId: Int!) {
+  book(bookId: $bookId) {
+    ...RegularBook
+  }
+}
+    ${RegularBookFragmentDoc}`;
 
 /**
  * __useBookQuery__
@@ -19206,21 +19976,10 @@ export type PeopleQueryResult = Apollo.QueryResult<PeopleQuery, PeopleQueryVaria
 export const PersonDocument = gql`
     query Person($personId: Int!) {
   person(personId: $personId) {
-    id
-    career
-    name
-    poster
-    bio
-    age
-    _count {
-      movies
-      shows
-      books
-      songs
-    }
+    ...RegularPerson
   }
 }
-    `;
+    ${RegularPersonFragmentDoc}`;
 
 /**
  * __usePersonQuery__
@@ -19381,45 +20140,10 @@ export type ShowsQueryResult = Apollo.QueryResult<ShowsQuery, ShowsQueryVariable
 export const SongDocument = gql`
     query Song($songId: Int!) {
   song(songId: $songId) {
-    id
-    title
-    description
-    poster
-    released
-    isLiked
-    _count {
-      likes
-    }
-    artists(take: 8) {
-      stagename
-      person {
-        id
-        name
-        poster
-      }
-    }
-    genres {
-      name
-    }
-    reviews(take: 8) {
-      review
-      rating
-      user {
-        username
-        avatar
-      }
-      _count {
-        likes
-      }
-    }
-    aggregateSongReview {
-      _avg {
-        rating
-      }
-    }
+    ...RegularSong
   }
 }
-    `;
+    ${RegularSongFragmentDoc}`;
 
 /**
  * __useSongQuery__

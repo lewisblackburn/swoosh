@@ -3,7 +3,14 @@ import {Icon} from '@components/Icon';
 import {Loading} from '@components/Loading';
 import {Poster} from '@components/Poster';
 import {Layout} from '@modules/layouts/Layout';
-import {SortOrder, useBooksQuery, useMoviesQuery, useShowsQuery, useSongsQuery} from 'generated/graphql';
+import {
+	SortOrder,
+	useBooksQuery,
+	useMoviesQuery,
+	usePeopleQuery,
+	useShowsQuery,
+	useSongsQuery,
+} from 'generated/graphql';
 import Link from 'next/link';
 import React from 'react';
 import {AiOutlineArrowRight} from 'react-icons/ai';
@@ -23,7 +30,7 @@ export const HomePage: React.FC = () => {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 5,
+			take: 20,
 		},
 	});
 
@@ -32,7 +39,7 @@ export const HomePage: React.FC = () => {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 5,
+			take: 20,
 		},
 	});
 
@@ -41,11 +48,20 @@ export const HomePage: React.FC = () => {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 5,
+			take: 20,
 		},
 	});
 
-	if (!movies?.movies || !shows?.shows || !books?.books || !songs?.songs) return <Loading />;
+	const {data: people} = usePeopleQuery({
+		variables: {
+			orderBy: {
+				createdAt: SortOrder.Desc,
+			},
+			take: 20,
+		},
+	});
+
+	if (!movies?.movies || !shows?.shows || !books?.books || !songs?.songs || !people?.people) return <Loading />;
 
 	return (
 		<Layout>
@@ -87,7 +103,7 @@ export const HomePage: React.FC = () => {
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{shows?.shows?.slice(0, 4).map(show => (
+						{shows?.shows?.slice(0, 5).map(show => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={show.id} href={`/show/${show.id}` ?? 0}>
 								<a>
@@ -109,37 +125,11 @@ export const HomePage: React.FC = () => {
 				<div className="container px-4 mx-auto">
 					<div className="max-w-lg mx-auto mb-12 text-center">
 						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
-							Music
-						</span>
-					</div>
-					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{songs?.songs?.slice(0, 4).map(song => (
-							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-							<Link key={song.id} href={`/song/${song.id}` ?? 0}>
-								<a>
-									<img className="h-80 object-cover rounded" src={song.poster} alt="poster" />
-								</a>
-							</Link>
-						))}
-						<Link href="/songs">
-							<a className="w-full">
-								<Card>
-									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
-								</Card>
-							</a>
-						</Link>
-					</div>
-				</div>
-			</section>
-			<section className="py-20">
-				<div className="container px-4 mx-auto">
-					<div className="max-w-lg mx-auto mb-12 text-center">
-						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
 							Books
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{books?.books?.slice(0, 4).map(book => (
+						{books?.books?.slice(0, 5).map(book => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={book.id} href={`/book/${book.id}` ?? 0}>
 								<a>
@@ -161,15 +151,41 @@ export const HomePage: React.FC = () => {
 				<div className="container px-4 mx-auto">
 					<div className="max-w-lg mx-auto mb-12 text-center">
 						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
+							Music
+						</span>
+					</div>
+					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
+						{songs?.songs?.slice(0, 5).map(song => (
+							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+							<Link key={song.id} href={`/song/${song.id}` ?? 0}>
+								<a>
+									<img className="h-80 object-cover rounded" src={song.poster} alt="poster" />
+								</a>
+							</Link>
+						))}
+						<Link href="/songs">
+							<a className="w-full">
+								<Card>
+									<Icon icon={AiOutlineArrowRight} className="w-6 h-6" />
+								</Card>
+							</a>
+						</Link>
+					</div>
+				</div>
+			</section>
+			<section className="py-20">
+				<div className="container px-4 mx-auto">
+					<div className="max-w-lg mx-auto mb-12 text-center">
+						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
 							People
 						</span>
 					</div>
 					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						{movies?.movies?.slice(0, 4).map(movie => (
+						{people?.people?.slice(0, 5).map(person => (
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-							<Link key={movie.id} href={`/movie/${movie.id}` ?? 0}>
+							<Link key={person.id} href={`/person/${person.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={movie.poster} alt="poster" />
+									<img className="h-80 object-cover rounded" src={person.poster} alt="poster" />
 								</a>
 							</Link>
 						))}

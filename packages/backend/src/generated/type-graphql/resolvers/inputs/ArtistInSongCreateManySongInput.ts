@@ -12,8 +12,8 @@ export class ArtistInSongCreateManySongInput {
   })
   personId!: number;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
-  stagename!: string;
+  createdAt?: Date | undefined;
 }

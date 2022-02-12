@@ -1,0 +1,3 @@
+mutation createAuthorInBook($data: AuthorInBookCreateInput!) {
+	createAuthorInBook(data: $data)
+}

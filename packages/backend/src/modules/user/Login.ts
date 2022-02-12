@@ -1,8 +1,8 @@
 import argon2 from 'argon2';
-import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
-import { User } from '../../generated/type-graphql';
-import { Context } from '../../interfaces/context';
-import { LoginInput } from './login/LoginInput';
+import {Arg, Ctx, Mutation, Resolver} from 'type-graphql';
+import {User} from '../../generated/type-graphql';
+import {Context} from '../../interfaces/context';
+import {LoginInput} from './login/LoginInput';
 
 @Resolver(User)
 export class LoginResolver {
@@ -13,8 +13,6 @@ export class LoginResolver {
 				email: data.email,
 			},
 		});
-
-		// Might need to change how i deal with errors
 
 		if (!user) {
 			throw new Error('That user does not exist.');

@@ -26,7 +26,7 @@ export class AuthorInBookOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  penname?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => AuthorInBookCountOrderByAggregateInput, {
     nullable: true

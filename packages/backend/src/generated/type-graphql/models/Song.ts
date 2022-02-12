@@ -44,6 +44,11 @@ export class Song {
   })
   released?: Date | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime?: number | null;
+
   artists?: ArtistInSong[];
 
   songInShow?: SongInShow[];

@@ -1,0 +1,3 @@
+mutation deleteAuthorInBook($where: AuthorInBookWhereUniqueInput!) {
+	deleteAuthorInBook(where: $where)
+}

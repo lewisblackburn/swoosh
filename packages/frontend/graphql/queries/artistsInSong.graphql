@@ -1,0 +1,13 @@
+query ArtistsInSong(
+	$songId: Int!
+	$where: ArtistInSongWhereInput
+	$orderBy: [ArtistInSongOrderByWithRelationInput!]
+	$cursor: ArtistInSongWhereUniqueInput
+	$take: Int
+) {
+	song(songId: $songId) {
+		artists(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+			personId
+		}
+	}
+}

@@ -12,4 +12,9 @@ export class SongAvgOrderByAggregateInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  runtime?: "asc" | "desc" | undefined;
 }

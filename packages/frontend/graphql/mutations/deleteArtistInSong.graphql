@@ -1,0 +1,3 @@
+mutation deleteArtistInSong($where: ArtistInSongWhereUniqueInput!) {
+	deleteArtistInSong(where: $where)
+}

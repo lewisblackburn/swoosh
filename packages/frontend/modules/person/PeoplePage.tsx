@@ -1,18 +1,28 @@
-import {Icon} from '@components/Icon';
+import {Grid} from '@components/Grid';
+import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {Layout} from '@modules/layouts/Layout';
-import {SortOrder, useMoviesQuery, usePeopleQuery} from 'generated/graphql';
+import {SortOrder, usePeopleQuery} from 'generated/graphql';
 import Link from 'next/link';
-import React from 'react';
-import {AiOutlinePlus} from 'react-icons/ai';
+import React, {useState} from 'react';
+import Select from 'react-select';
+
+const options = [
+	{value: SortOrder.Desc, label: 'Descending'},
+	{value: SortOrder.Asc, label: 'Ascending'},
+];
 
 export const PeoplePage: React.FC = () => {
 	useVerifyLoggedIn();
 
+	const [selectedOption, setSelectedOption] = useState(options[0]);
+
+	const handleChange = (selectedOption: any) => setSelectedOption(selectedOption);
+
 	const {data} = usePeopleQuery({
 		variables: {
 			orderBy: {
-				createdAt: SortOrder.Desc,
+				id: SortOrder.Desc,
 			},
 		},
 	});
@@ -23,29 +33,28 @@ export const PeoplePage: React.FC = () => {
 				<div className="container px-4 mx-auto">
 					<div className="max-w-lg mx-auto mb-12 text-center">
 						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
-							People
+							Persons
 						</span>
 					</div>
-					<div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10">
-						<Link href="/person/create">
-							<a className="w-full">
-								<div className="grid place-items-center h-80 bg-gray-300 rounded filter hover:brightness-75 transition-all">
-									<Icon icon={AiOutlinePlus} className="w-6 h-6" />
-								</div>
-							</a>
-						</Link>
-						{data?.people?.map(people => (
-							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-							<Link key={people.id} href={`/person/${people.id}` ?? 0}>
-								<a>
-									<img
-										className="h-80 object-cover rounded filter hover:brightness-75 transition-all"
-										src={people.poster}
-										alt="poster"
-									/>
-								</a>
-							</Link>
-						))}
+					<div className="flex flex-col space-y-5">
+						<Grid>
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+							<Select value={selectedOption} options={options} onChange={handleChange} />
+						</Grid>
+						<Grid>
+							{data?.people?.map(person => (
+								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+								<Link key={person.id} href={`/person/${person.id}` ?? -1}>
+									<a>
+										<Poster src={person.poster} />
+									</a>
+								</Link>
+							))}
+						</Grid>
 					</div>
 				</div>
 			</section>

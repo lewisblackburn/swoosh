@@ -33,5 +33,5 @@ export class ArtistInSongOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  stagename?: "asc" | "desc" | undefined;
+  createdAt?: "asc" | "desc" | undefined;
 }

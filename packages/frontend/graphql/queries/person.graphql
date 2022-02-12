@@ -1,16 +1,5 @@
 query Person($personId: Int!) {
 	person(personId: $personId) {
-		id
-		career
-		name
-		poster
-		bio
-		age
-		_count {
-			movies
-			shows
-			books
-			songs
-		}
+		...RegularPerson
 	}
 }

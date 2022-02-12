@@ -1,0 +1,5 @@
+mutation UpdatePerson($data: PersonUpdateInput!, $where: PersonWhereUniqueInput!) {
+	updatePerson(data: $data, where: $where) {
+		...RegularPerson
+	}
+}

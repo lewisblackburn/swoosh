@@ -215,6 +215,7 @@ model Song {
   poster      String         @default(value: "https://via.placeholder.com/400x600")
   locked      Boolean        @default(false)
   released    DateTime?
+  runtime     Float?
   artists     ArtistInSong[]
   songInShow  SongInShow[]
   songInMovie SongInMovie[]
@@ -226,21 +227,21 @@ model Song {
 }
 
 model AuthorInBook {
-  book     Book   @relation(fields: [bookId], references: [id])
-  bookId   Int
-  person   Person @relation(fields: [personId], references: [id])
-  personId Int
-  penname  String
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    Int
+  person    Person   @relation(fields: [personId], references: [id])
+  personId  Int
+  createdAt DateTime @default(now())
 
   @@id([personId, bookId])
 }
 
 model ArtistInSong {
-  song      Song   @relation(fields: [songId], references: [id])
+  song      Song     @relation(fields: [songId], references: [id])
   songId    Int
-  person    Person @relation(fields: [personId], references: [id])
+  person    Person   @relation(fields: [personId], references: [id])
   personId  Int
-  stagename String
+  createdAt DateTime @default(now())
 
   @@id([personId, songId])
 }

@@ -95,7 +95,7 @@ export class ShowResolver {
 	@Mutation(() => Show, {
 		nullable: true,
 	})
-	async editShow(
+	async updateShow(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: UpdateShowArgs

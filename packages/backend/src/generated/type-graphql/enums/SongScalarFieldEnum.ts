@@ -7,6 +7,7 @@ export enum SongScalarFieldEnum {
   poster = "poster",
   locked = "locked",
   released = "released",
+  runtime = "runtime",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

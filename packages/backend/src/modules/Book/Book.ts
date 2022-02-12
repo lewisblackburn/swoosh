@@ -95,7 +95,7 @@ export class BookResolver {
 	@Mutation(() => Book, {
 		nullable: true,
 	})
-	async editBook(
+	async updateBook(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: UpdateBookArgs

@@ -63,10 +63,10 @@ export class UserMinAggregate {
   })
   website!: string | null;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  dob!: string | null;
+  dob!: Date | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

@@ -35,5 +35,5 @@ export class BookAuthorsArgs {
   @TypeGraphQL.Field(_type => [AuthorInBookScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"bookId" | "personId" | "penname"> | undefined;
+  distinct?: Array<"bookId" | "personId" | "createdAt"> | undefined;
 }

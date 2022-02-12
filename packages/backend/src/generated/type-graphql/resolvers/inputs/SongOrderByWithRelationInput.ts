@@ -44,6 +44,11 @@ export class SongOrderByWithRelationInput {
   })
   released?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  runtime?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => ArtistInSongOrderByRelationAggregateInput, {
     nullable: true
   })

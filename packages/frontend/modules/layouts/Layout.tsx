@@ -35,6 +35,5 @@ export const Layout: React.FC = ({children}) => (
 		>
 			{children}
 		</motion.div>
-		{/* <Cookie /> */}
 	</>
 );

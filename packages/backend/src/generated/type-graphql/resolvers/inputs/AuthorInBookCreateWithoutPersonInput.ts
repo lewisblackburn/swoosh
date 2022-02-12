@@ -8,10 +8,10 @@ import { BookCreateNestedOneWithoutAuthorsInput } from "../inputs/BookCreateNest
   isAbstract: true
 })
 export class AuthorInBookCreateWithoutPersonInput {
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
-  penname!: string;
+  createdAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => BookCreateNestedOneWithoutAuthorsInput, {
     nullable: false

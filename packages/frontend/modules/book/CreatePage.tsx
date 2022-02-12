@@ -2,6 +2,7 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {BookDocument, UploadType, useCreateBookMutation, useUploadPosterMutation} from 'generated/graphql';
 import {useRouter} from 'next/router';
@@ -23,11 +24,8 @@ export const CreatePage: React.FC = () => {
 	const [createBook] = useCreateBookMutation();
 
 	const [uploadPoster] = useUploadPosterMutation();
-
 	const [poster, setPoster] = useState();
-
 	const posterInput = useRef(null as HTMLInputElement | null);
-
 	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
 
 	return (
@@ -73,12 +71,11 @@ export const CreatePage: React.FC = () => {
 								</div>
 							</div>
 							<div className="flex justify-center space-x-5 max-w-5xl mx-auto mb-8">
-								<div
-									className="grid place-items-center cursor-pointer h-80 w-64 bg-blueGray-100/40 hover:bg-blueGray-100 transofrm transition-all rounded"
+								<PosterDiv
+									src=""
 									onClick={() => {
 										if (posterInput.current) posterInput.current.click();
 									}}
-									onChange={handlePosterChange}
 								>
 									<input
 										ref={posterInput}
@@ -86,9 +83,10 @@ export const CreatePage: React.FC = () => {
 										id="file"
 										accept="images"
 										style={{display: 'none'}}
+										onChange={handlePosterChange}
 									/>
 									<Icon icon={AiOutlinePlus} />
-								</div>
+								</PosterDiv>
 							</div>
 							<div className="max-w-2xl mx-auto">
 								<Textarea name="description" placeholder="description" />

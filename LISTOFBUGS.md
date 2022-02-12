@@ -1,0 +1,25 @@
+- create better palette
+- the poster on the create form for the movie/show page is the wrong width
+- once creating a movie it doesn't send you to the movie page
+- the submit button should realy say create movie or something along those lines
+- the runtime value is wrong
+- the backdrop should start from the top not the centre on movies/shows etc
+- if the data never loads it is stuck loading forever
+- notifications
+- no user feedback on adding a poster on create forms (notification?)
+- truncate descriptions
+- there can't be paragraphs in descriptions?
+- change size of song covers to vinyl size / aspect ratio
+- books not refetching after creation
+- sort buttons don't work
+- can't click on actors
+- songs don't refetch after adding
+- you can't add a description to song to say where it is in movie
+- the value of the poster and backdrop location should not save the domain or the host only the path
+- backrops don't update after editing unless you press the submit button
+- change aspect ratio of backdrops
+- the runtime doesn't get saved no shows
+- need a reveiws page
+- need a followers and following modal
+- need a place to show liked movies
+- create person doesn't work if you don't upload image 

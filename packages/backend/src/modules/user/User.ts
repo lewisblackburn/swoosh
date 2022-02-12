@@ -1,13 +1,23 @@
 import {GraphQLResolveInfo} from 'graphql';
 import graphqlFields from 'graphql-fields';
-import {Arg, Args, Ctx, FieldResolver, Info, Query, Resolver, Root} from 'type-graphql';
 import {
-	getPrismaFromContext,
-	transformCountFieldIntoSelectRelationsCount,
-	transformFields,
-} from '../../generated/type-graphql/helpers';
-import {FindManyUserArgs, UpsertBookArgs, User} from '../../generated/type-graphql';
+	Arg,
+	Args,
+	Authorized,
+	Ctx,
+	FieldResolver,
+	Info,
+	Mutation,
+	Query,
+	Resolver,
+	Root,
+	UseMiddleware,
+} from 'type-graphql';
+import {FindManyUserArgs, User} from '../../generated/type-graphql';
+import {transformCountFieldIntoSelectRelationsCount, transformFields} from '../../generated/type-graphql/helpers';
 import {Context} from '../../interfaces/context';
+import {ErrorInterceptor} from '../middleware/ErrorInterceptor';
+import {UpdateUserCustomArgs} from './args/UpdateUserCustomArgs';
 
 @Resolver(User)
 export class UserResolver {
@@ -33,16 +43,36 @@ export class UserResolver {
 		return Boolean(following);
 	}
 
+	@Authorized(['USER', 'ADMIN'])
+	@UseMiddleware(ErrorInterceptor)
+	@Mutation(() => User, {
+		nullable: true,
+	})
+	async updateUser(
+		@Ctx() ctx: Context,
+		@Info() info: GraphQLResolveInfo,
+		@Args() args: UpdateUserCustomArgs
+	): Promise<User | null> {
+		const {_count} = transformFields(graphqlFields(info as any));
+		return ctx.prisma.user.update({
+			...args,
+			where: {
+				id: ctx.req.session.userId,
+			},
+			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+		});
+	}
+
 	@Query(() => User, {
 		nullable: true,
 	})
 	async user(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
-		@Arg('username', () => String) username: String
+		@Arg('username', () => String) username: string
 	): Promise<User | null> {
 		const {_count} = transformFields(graphqlFields(info as any));
-		return getPrismaFromContext(ctx).user.findUnique({
+		return ctx.prisma.user.findUnique({
 			where: {username},
 			...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
 		});

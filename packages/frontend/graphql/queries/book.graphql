@@ -1,40 +1,5 @@
 query Book($bookId: Int!) {
 	book(bookId: $bookId) {
-		id
-		title
-		description
-		poster
-		released
-		isLiked
-		_count {
-			likes
-		}
-		authors(take: 8) {
-			penname
-			person {
-				id
-				name
-				poster
-			}
-		}
-		genres {
-			name
-		}
-		reviews(take: 8) {
-			review
-			rating
-			user {
-				username
-				avatar
-			}
-			_count {
-				likes
-			}
-		}
-		aggregateBookReview {
-			_avg {
-				rating
-			}
-		}
+		...RegularBook
 	}
 }

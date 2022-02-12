@@ -37,6 +37,11 @@ export class SongMinAggregate {
   })
   released!: Date | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  runtime!: number | null;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })

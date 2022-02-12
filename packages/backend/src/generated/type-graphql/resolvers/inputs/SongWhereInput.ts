@@ -6,6 +6,7 @@ import { ArtistInSongListRelationFilter } from "../inputs/ArtistInSongListRelati
 import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
+import { FloatNullableFilter } from "../inputs/FloatNullableFilter";
 import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { SongInMovieListRelationFilter } from "../inputs/SongInMovieListRelationFilter";
@@ -62,6 +63,11 @@ export class SongWhereInput {
     nullable: true
   })
   released?: DateTimeNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FloatNullableFilter, {
+    nullable: true
+  })
+  runtime?: FloatNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => ArtistInSongListRelationFilter, {
     nullable: true

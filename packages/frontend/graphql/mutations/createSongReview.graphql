@@ -1,0 +1,3 @@
+mutation createSongReview($data: SongReviewCreateCustomInput!) {
+	createSongReview(data: $data)
+}

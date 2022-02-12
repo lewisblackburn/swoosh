@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PersonRelationFilter } from "../inputs/PersonRelationFilter";
 import { SongRelationFilter } from "../inputs/SongRelationFilter";
-import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("ArtistInSongWhereInput", {
   isAbstract: true
@@ -46,8 +46,8 @@ export class ArtistInSongWhereInput {
   })
   personId?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })
-  stagename?: StringFilter | undefined;
+  createdAt?: DateTimeFilter | undefined;
 }

@@ -1,0 +1,3 @@
+mutation LikeSong($data: SongLikeCreateCustomInput!) {
+	likeSong(data: $data)
+}

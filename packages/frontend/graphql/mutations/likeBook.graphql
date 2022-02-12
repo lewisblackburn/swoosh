@@ -1,0 +1,3 @@
+mutation LikeBook($data: BookLikeCreateCustomInput!) {
+	likeBook(data: $data)
+}

@@ -5,6 +5,7 @@ import {notify} from '@components/Notify';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {BookReviewScalarFieldEnum, MeDocument, MeQuery, useLoginMutation} from 'generated/graphql';
 import {toErrorMap} from 'lib/toErrorMap';
+import Link from 'next/link';
 import React, {useState} from 'react';
 import {useNotVerifyLoggedIn} from '../auth/useVerifyNotLoggedIn';
 
@@ -86,7 +87,14 @@ export const LoginPage: React.FC = () => {
 								</Form>
 							)}
 						</Formik>
-						<div>
+						<div className="space-y-5">
+							<p className="text-xs text-blueGray-400 text-center">
+								<Link href="/register">
+									<a className="underline hover:text-blueGray-500" href="#">
+										Don't have an account?
+									</a>
+								</Link>
+							</p>
 							<p className="text-xs text-blueGray-400 text-center">
 								<a className="underline hover:text-blueGray-500" href="#">
 									Police privacy

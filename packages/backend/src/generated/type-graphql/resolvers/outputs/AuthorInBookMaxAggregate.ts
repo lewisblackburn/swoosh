@@ -17,8 +17,8 @@ export class AuthorInBookMaxAggregate {
   })
   personId!: number | null;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  penname!: string | null;
+  createdAt!: Date | null;
 }

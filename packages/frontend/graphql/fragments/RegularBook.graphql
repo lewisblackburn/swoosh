@@ -1,0 +1,37 @@
+fragment RegularBook on Book {
+	id
+	title
+	description
+	poster
+	released
+	isLiked
+	_count {
+		likes
+	}
+	authors(take: 8) {
+		person {
+			id
+			name
+			poster
+		}
+	}
+	genres {
+		name
+	}
+	reviews(take: 8) {
+		review
+		rating
+		user {
+			username
+			avatar
+		}
+		_count {
+			likes
+		}
+	}
+	aggregateBookReview {
+		_avg {
+			rating
+		}
+	}
+}

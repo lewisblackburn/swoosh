@@ -1,0 +1,3 @@
+mutation UnlikeBook($bookId: Int!) {
+	unlikeBook(bookId: $bookId)
+}

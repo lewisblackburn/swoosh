@@ -68,10 +68,10 @@ export class UserCreateWithoutMovieReviewsInput {
   })
   website?: string | undefined;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => Date, {
     nullable: true
   })
-  dob?: string | undefined;
+  dob?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

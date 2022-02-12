@@ -95,7 +95,7 @@ export class SongResolver {
 	@Mutation(() => Song, {
 		nullable: true,
 	})
-	async editSong(
+	async updateSong(
 		@Ctx() ctx: Context,
 		@Info() info: GraphQLResolveInfo,
 		@Args() args: UpdateSongArgs

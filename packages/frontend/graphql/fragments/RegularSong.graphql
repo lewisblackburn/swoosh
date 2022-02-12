@@ -1,0 +1,38 @@
+fragment RegularSong on Song {
+	id
+	title
+	description
+	poster
+	released
+	runtime
+	isLiked
+	_count {
+		likes
+	}
+	artists(take: 8) {
+		person {
+			id
+			name
+			poster
+		}
+	}
+	genres {
+		name
+	}
+	reviews(take: 8) {
+		review
+		rating
+		user {
+			username
+			avatar
+		}
+		_count {
+			likes
+		}
+	}
+	aggregateSongReview {
+		_avg {
+			rating
+		}
+	}
+}

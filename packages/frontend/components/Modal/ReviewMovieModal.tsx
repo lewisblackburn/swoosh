@@ -5,7 +5,6 @@ import {notify} from '@components/Notify';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {MovieDocument, useCreateMovieReviewMutation} from 'generated/graphql';
 import React from 'react';
-import {isThisTypeNode} from 'typescript';
 import {Modal, ModalProps} from './Modal';
 
 interface ReviewModalProps extends ModalProps {
