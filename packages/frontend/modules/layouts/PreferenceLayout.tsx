@@ -66,6 +66,10 @@ export const PreferencesLayout: React.FC = ({children}) => {
 								<Icon icon={AiOutlineInbox} className="w-5 h-5 mr-3" />
 								<span>Watchlist</span>
 							</LinkButton>
+							<LinkButton href="/preferences/liked">
+								<Icon icon={AiOutlineInbox} className="w-5 h-5 mr-3" />
+								<span>Likes</span>
+							</LinkButton>
 							<LinkButton href="/preferences/verify">
 								<Icon icon={AiOutlineSafetyCertificate} className="w-5 h-5 mr-3" />
 								<span>Verify Account</span>

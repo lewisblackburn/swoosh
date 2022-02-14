@@ -2,13 +2,16 @@ import {Backdrop} from '@components/Backdrop';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
 import {ReviewShowModal} from '@components/Modal/ReviewShowModal';
+import {notify} from '@components/Notify';
 import {Poster} from '@components/Poster';
 import {
 	ShowDocument,
+	ShowsDocument,
 	useDeleteShowReviewMutation,
 	useLikeShowMutation,
 	useShowQuery,
 	useUnlikeShowMutation,
+	useUpdateWatchlistMutation,
 } from 'generated/graphql';
 import {useGetIntId} from 'hooks/useGetIntId';
 import {floatToTime} from 'lib/floatToTime';
@@ -21,6 +24,7 @@ import {
 	AiOutlineEdit,
 	AiOutlineHeart,
 	AiOutlineHourglass,
+	AiOutlineMinus,
 	AiOutlinePlus,
 	AiOutlineStar,
 } from 'react-icons/ai';
@@ -58,6 +62,10 @@ export const ShowPage: React.FC = () => {
 		refetchQueries: [ShowDocument],
 	});
 
+	const [updateWatchlist] = useUpdateWatchlistMutation({
+		refetchQueries: [ShowDocument],
+	});
+
 	const [deleteShowReview, {loading: deleteShowReviewLoading}] = useDeleteShowReviewMutation({
 		refetchQueries: [ShowDocument],
 	});
@@ -73,7 +81,52 @@ export const ShowPage: React.FC = () => {
 						<div className="flex flex-col items-center text-center mb-6">
 							<h2 className="text-2xl md:text-4xl my-2 font-bold font-heading">{data?.show?.title}</h2>
 							<div className="flex space-x-5">
-								<IconButton icon={AiOutlinePlus} />
+								<IconButton
+									icon={data?.show?.isInWatchlist ? AiOutlineMinus : AiOutlinePlus}
+									onClick={() => {
+										if (data?.show?.isInWatchlist) {
+											updateWatchlist({
+												variables: {
+													data: {
+														shows: {
+															disconnect: [
+																{
+																	id: showId,
+																},
+															],
+														},
+													},
+												},
+											})
+												.then(() => {
+													notify('success', 'mutation', 'Removed from watchlist');
+												})
+												.catch(() => {
+													notify('error', 'mutation', 'Failed to remove from watchlist');
+												});
+										} else {
+											updateWatchlist({
+												variables: {
+													data: {
+														shows: {
+															connect: [
+																{
+																	id: showId,
+																},
+															],
+														},
+													},
+												},
+											})
+												.then(() => {
+													notify('success', 'mutation', 'Added to watchlist');
+												})
+												.catch(() => {
+													notify('error', 'mutation', 'Failed to add to watchlist');
+												});
+										}
+									}}
+								/>
 								<IconButton
 									icon={data?.show?.isLiked ? AiFillHeart : AiOutlineHeart}
 									className={data?.show?.isLiked ? 'text-red-500' : ''}

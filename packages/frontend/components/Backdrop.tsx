@@ -5,5 +5,5 @@ interface BackdropProps {
 }
 
 export const Backdrop: React.FC<BackdropProps> = ({src}) => {
-	return <img className="h-80 w-full object-cover rounded" src={src ?? ''} alt="backdrop" />;
+	return <img className="h-80 w-full object-cover object-top rounded" src={src ?? ''} alt="backdrop" />;
 };

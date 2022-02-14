@@ -1,0 +1,14 @@
+query LikedBooks(
+	$where: BookLikeWhereInput
+	$orderBy: [BookLikeOrderByWithRelationInput!]
+	$cursor: BookLikeWhereUniqueInput
+	$skip: Int
+	$take: Int
+) {
+	likedBooks(where: $where, orderBy: $orderBy, cursor: $cursor, skip: $skip, take: $take) {
+		book {
+			id
+			title
+		}
+	}
+}

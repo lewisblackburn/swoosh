@@ -22,6 +22,16 @@ export const WatchlistPage: React.FC = () => {
 						</a>
 					</Link>
 				))}
+				{watchlist?.watchlist?.shows.map(show => (
+					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+					<Link key={show.title} href={`/show/${show.id}`}>
+						<a>
+							<Button variant="tertiary" className="flex w-full">
+								{show.title}
+							</Button>
+						</a>
+					</Link>
+				))}
 			</div>
 		</PreferencesLayout>
 	);

@@ -4,5 +4,9 @@ query Watchlist {
 			id
 			title
 		}
+		shows {
+			id
+			title
+		}
 	}
 }

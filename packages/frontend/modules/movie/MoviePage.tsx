@@ -1,13 +1,12 @@
 import {Backdrop} from '@components/Backdrop';
+import {Button} from '@components/Button';
 import {Icon} from '@components/Icon';
 import {IconButton} from '@components/IconButton';
-import {Loading} from '@components/Loading';
 import {ReviewMovieModal} from '@components/Modal/ReviewMovieModal';
 import {notify} from '@components/Notify';
 import {Poster} from '@components/Poster';
 import {
 	MovieDocument,
-	useDeleteMovieReviewMutation,
 	useLikeMovieMutation,
 	useMovieQuery,
 	useUnlikeMovieMutation,
@@ -20,7 +19,6 @@ import React, {useState} from 'react';
 import {
 	AiFillHeart,
 	AiOutlineCheckCircle,
-	AiOutlineDelete,
 	AiOutlineEdit,
 	AiOutlineHeart,
 	AiOutlineHourglass,
@@ -66,13 +64,7 @@ export const MoviePage: React.FC = () => {
 		refetchQueries: [MovieDocument],
 	});
 
-	const [deleteMovieReview, {loading: deleteMovieReviewLoading}] = useDeleteMovieReviewMutation({
-		refetchQueries: [MovieDocument],
-	});
-
 	const [isOpen, setIsOpen] = useState(false);
-
-	if (!data?.movie) return <Loading />;
 
 	return (
 		<>
@@ -241,7 +233,11 @@ export const MoviePage: React.FC = () => {
 						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-12">
 							{data?.movie?.actors.map(actor => (
 								<div key={actor.person.id} className="flex flex-col items-center">
-									<Poster src={actor.person.poster} />
+									<Link href={`/person/${actor.person.id}`}>
+										<a>
+											<Poster src={actor.person.poster} />
+										</a>
+									</Link>
 									<p className="mt-6 text-xl">{actor.person.name}</p>
 									<p className="mt-2 mb-4 text-blue-600">{actor.role}</p>
 								</div>
@@ -290,7 +286,7 @@ export const MoviePage: React.FC = () => {
 										<td className="px-4 py-2 text-xs font-semibold">
 											{song.song.songInMovie[index].description}
 										</td>
-										<td className="px-4 py-2 text-xs font-semibold">{song.song.description}</td>
+										<td className="px-4 py-2 text-xs font-semibold ">{song.song.description}</td>
 									</tr>
 								))}
 							</tbody>
@@ -308,50 +304,34 @@ export const MoviePage: React.FC = () => {
 						</div>
 						<div className="flex flex-wrap max-w-5xl mx-auto mb-6">
 							{data?.movie?.reviews.map(review => (
-								<div key={review.user.username} className="w-full px-3 mb-6">
-									<div className="p-8 bg-white shadow rounded">
-										<div className="flex items-center justify-between mb-4">
-											<div className="flex items-center">
-												<img
-													className="h-16 w-16 rounded-full object-cover"
-													src={review.user.avatar}
-													alt=""
-												/>
-												<div className="pl-4">
-													<p className="text-xl">{review.user.username}</p>
-													<p className="text-blue-600">{review.rating} / 5</p>
+								<Link key={review.user.username} href={`/movie/review/${movieId}`}>
+									<a className="w-full px-3 mb-6">
+										<div className="p-8 bg-white shadow rounded">
+											<div className="flex items-center justify-between mb-4">
+												<div className="flex items-center">
+													<img
+														className="h-16 w-16 rounded-full object-cover"
+														src={review.user.avatar}
+														alt=""
+													/>
+													<div className="pl-4">
+														<p className="text-xl">{review.user.username}</p>
+														<p className="text-blue-600">{review.rating} / 5</p>
+													</div>
 												</div>
 											</div>
-											<IconButton
-												icon={AiOutlineDelete}
-												loading={deleteMovieReviewLoading}
-												onClick={() => {
-													deleteMovieReview({
-														variables: {
-															movieId,
-														},
-													})
-														.then(() => {
-															notify('success', 'delete', 'Review deleted');
-														})
-														.catch(() => {
-															notify('error', 'delete', 'Error deleting review');
-														});
-												}}
-											/>
+											<p className="leading-loose text-blueGray-400">{review.review}</p>
 										</div>
-										<p className="leading-loose text-blueGray-400">{review.review}</p>
-									</div>
-								</div>
+									</a>
+								</Link>
 							))}
 						</div>
 						<div className="text-center">
-							<a
-								className="inline-block py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
-								href="#"
-							>
-								{data?.movie?.reviews.length === 0 ? 'No reviews' : 'Show more'}
-							</a>
+							<Link href={`/reviews/movie/${movieId}`}>
+								<a>
+									<Button>{data?.movie?.reviews.length === 0 ? 'No reviews' : 'Show more'}</Button>
+								</a>
+							</Link>
 						</div>
 					</div>
 				</section>

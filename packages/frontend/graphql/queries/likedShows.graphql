@@ -1,0 +1,14 @@
+query LikedShows(
+	$where: ShowLikeWhereInput
+	$orderBy: [ShowLikeOrderByWithRelationInput!]
+	$cursor: ShowLikeWhereUniqueInput
+	$skip: Int
+	$take: Int
+) {
+	likedShows(where: $where, orderBy: $orderBy, cursor: $cursor, skip: $skip, take: $take) {
+		show {
+			id
+			title
+		}
+	}
+}

@@ -17,47 +17,52 @@ import {AiOutlineArrowRight} from 'react-icons/ai';
 
 export const HomePage: React.FC = () => {
 	const {data: movies} = useMoviesQuery({
+		fetchPolicy: 'no-cache', // Necessary to avoid caching issues with /movies page when using infinite scroll etc...
 		variables: {
 			orderBy: {
-				createdAt: SortOrder.Desc,
+				createdAt: SortOrder.Asc, // Only for video
 			},
-			take: 20,
+			take: 5,
 		},
 	});
 
 	const {data: shows} = useShowsQuery({
+		fetchPolicy: 'no-cache',
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 20,
+			take: 5,
 		},
 	});
 
 	const {data: books} = useBooksQuery({
+		fetchPolicy: 'no-cache',
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 20,
+			take: 5,
 		},
 	});
 
 	const {data: songs} = useSongsQuery({
+		fetchPolicy: 'no-cache',
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 20,
+			take: 5,
 		},
 	});
 
 	const {data: people} = usePeopleQuery({
+		fetchPolicy: 'no-cache',
 		variables: {
 			orderBy: {
 				createdAt: SortOrder.Desc,
 			},
-			take: 20,
+			take: 5,
 		},
 	});
 
@@ -107,7 +112,7 @@ export const HomePage: React.FC = () => {
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={show.id} href={`/show/${show.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={show.poster} alt="poster" />
+									<Poster src={show.poster} />
 								</a>
 							</Link>
 						))}
@@ -159,7 +164,7 @@ export const HomePage: React.FC = () => {
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={song.id} href={`/song/${song.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={song.poster} alt="poster" />
+									<Poster src={song.poster} />
 								</a>
 							</Link>
 						))}
@@ -185,7 +190,7 @@ export const HomePage: React.FC = () => {
 							// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 							<Link key={person.id} href={`/person/${person.id}` ?? 0}>
 								<a>
-									<img className="h-80 object-cover rounded" src={person.poster} alt="poster" />
+									<Poster src={person.poster} />
 								</a>
 							</Link>
 						))}

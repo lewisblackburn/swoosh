@@ -1,0 +1,19 @@
+query MovieReviews(
+	$where: MovieReviewWhereInput
+	$orderBy: [MovieReviewOrderByWithRelationInput!]
+	$cursor: MovieReviewWhereUniqueInput
+	$skip: Int
+	$take: Int
+) {
+	movieReviews(where: $where, orderBy: $orderBy, cursor: $cursor, skip: $skip, take: $take) {
+		review
+		rating
+		user {
+			username
+			avatar
+		}
+		_count {
+			likes
+		}
+	}
+}

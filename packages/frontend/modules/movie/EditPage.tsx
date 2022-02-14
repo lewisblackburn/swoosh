@@ -164,7 +164,7 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 	const [addActorInMovie] = useCreateActorInMovieMutation();
 	const [removeActorInMovie] = useDeleteActorInMovieMutation();
 
-	const addActorEvent = (personId: number, role: string) =>
+	const addActorEvent = (personId: number) =>
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		addActorInMovie({
 			variables: {
@@ -205,7 +205,7 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 				<input
 					autoFocus
 					className="w-full mb-4 p-4 text-sm placeholder-blueGray-400 leading-none bg-blueGray-50 outline-none rounded"
-					placeholder="Search"
+					placeholder="Role"
 					type="text"
 					value={role}
 					onChange={e => setRole(e.currentTarget.value)}
@@ -217,7 +217,7 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 					<Button
 						className="mt-4"
 						onClick={() => {
-							addActorEvent(personId, role);
+							addActorEvent(personId);
 							setIsOpen(false);
 							setRole('');
 						}}
@@ -273,6 +273,9 @@ const ActorTable: React.FC<TableProps> = ({movie}) => {
 };
 
 const SongTable: React.FC<TableProps> = ({movie}) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [songId, setSongId] = useState(-1);
+	const [description, setDescription] = useState('');
 	const [predicate, setPredicate] = useState('');
 	const [predicateDebounced] = useDebounce(predicate, 500);
 
@@ -307,7 +310,7 @@ const SongTable: React.FC<TableProps> = ({movie}) => {
 							id: songId,
 						},
 					},
-					description: 'Temp',
+					description,
 					timestamp: new Date().toISOString(),
 				},
 			},
@@ -329,45 +332,74 @@ const SongTable: React.FC<TableProps> = ({movie}) => {
 		});
 
 	return (
-		<section className="py-8">
-			<div className="container px-4 mx-auto">
-				<div className="flex flex-wrap items-center mb-6">
-					<h3 className="text-xl font-bold">Songs</h3>
-					<div className="w-full md:w-auto my-6 md:my-0 flex items-center ml-auto  bg-white border rounded">
-						<input
-							className="pl-2 py-3 text-sm focus:outline-none"
-							type="text"
-							placeholder="Type to search..."
-							onChange={e => setPredicate(e.target.value)}
-						/>
+		<>
+			<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+				<input
+					autoFocus
+					className="w-full mb-4 p-4 text-sm placeholder-blueGray-400 leading-none bg-blueGray-50 outline-none rounded"
+					placeholder="Description"
+					type="text"
+					value={description}
+					onChange={e => setDescription(e.currentTarget.value)}
+				/>
+				<div className="flex items-center justify-between">
+					<Button variant="secondary" className="mt-4" onClick={() => setIsOpen(false)}>
+						Cancel
+					</Button>
+					<Button
+						className="mt-4"
+						onClick={() => {
+							addSongEvent(songId);
+							setIsOpen(false);
+							setDescription('');
+						}}
+					>
+						Submit
+					</Button>
+				</div>
+			</Modal>
+			<section className="py-8">
+				<div className="container px-4 mx-auto">
+					<div className="flex flex-wrap items-center mb-6">
+						<h3 className="text-xl font-bold">Songs</h3>
+						<div className="w-full md:w-auto my-6 md:my-0 flex items-center ml-auto  bg-white border rounded">
+							<input
+								className="pl-2 py-3 text-sm focus:outline-none"
+								type="text"
+								placeholder="Type to search..."
+								onChange={e => setPredicate(e.target.value)}
+							/>
+						</div>
+					</div>
+					<div className="flex flex-col space-y-5">
+						{data?.songs?.map(song => (
+							<div
+								key={song.title}
+								className="flex items-center justify-between pl-4 pr-6 py-4 bg-white shadow rounded"
+							>
+								<h1>{song.title}</h1>
+
+								{movie?.movie?.soundtrack.some(s => s.song.title === song.title) ? (
+									<IconButton
+										icon={AiOutlineDelete}
+										// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+										onClick={() => removeSongEvent(song.id)}
+									/>
+								) : (
+									<IconButton
+										icon={AiOutlinePlus}
+										onClick={() => {
+											setSongId(song.id);
+											setIsOpen(true);
+										}}
+									/>
+								)}
+							</div>
+						))}
 					</div>
 				</div>
-				<div className="flex flex-col space-y-5">
-					{data?.songs?.map(song => (
-						<div
-							key={song.title}
-							className="flex items-center justify-between pl-4 pr-6 py-4 bg-white shadow rounded"
-						>
-							<h1>{song.title}</h1>
-
-							{movie?.movie?.soundtrack.some(s => s.song.title === song.title) ? (
-								<IconButton
-									icon={AiOutlineDelete}
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => removeSongEvent(song.id)}
-								/>
-							) : (
-								<IconButton
-									icon={AiOutlinePlus}
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-									onClick={() => addSongEvent(song.id)}
-								/>
-							)}
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
+			</section>
+		</>
 	);
 };
 

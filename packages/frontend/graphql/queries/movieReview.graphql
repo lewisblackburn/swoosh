@@ -1,0 +1,13 @@
+query MovieReview($movieId: Int!) {
+	movieReview(movieId: $movieId) {
+		review
+		rating
+		user {
+			username
+			avatar
+		}
+		_count {
+			likes
+		}
+	}
+}

@@ -1,50 +1,55 @@
 import {Grid} from '@components/Grid';
-import {Loading} from '@components/Loading';
 import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {Layout} from '@modules/layouts/Layout';
-import {SortOrder, useMoviesQuery} from 'generated/graphql';
+import {useMoviesQuery} from 'generated/graphql';
+import {limit} from 'lib/constants';
 import Link from 'next/link';
-import React, {useState} from 'react';
-import Select from 'react-select';
-
-const options = [
-	{value: SortOrder.Desc, label: 'Descending'},
-	{value: SortOrder.Asc, label: 'Ascending'},
-];
+import React, {useCallback, useEffect} from 'react';
 
 export const MoviesPage: React.FC = () => {
 	useVerifyLoggedIn();
 
-	const [selectedOption, setSelectedOption] = useState(options[0]);
-
-	const handleChange = (selectedOption: any) => setSelectedOption(selectedOption);
-	const {data} = useMoviesQuery({
+	const {data, fetchMore} = useMoviesQuery({
 		variables: {
-			take: 30,
+			take: limit,
 		},
 	});
 
-	if (!data?.movies) return <Loading />;
+	const handleScroll = useCallback(() => {
+		// @ts-expect-error this is a hack to get last element in the list
+		// eslint-disable-next-line no-unsafe-optional-chaining
+		const lastMovieInResults = data?.movies[data?.movies?.length - 1];
+		const cursor = lastMovieInResults?.id;
+
+		if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+			fetchMore({
+				variables: {
+					take: limit,
+					skip: 1, // Skip the cursor
+					cursor: {
+						id: cursor,
+					},
+				},
+			});
+		}
+	}, [data?.movies, fetchMore]);
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, [handleScroll]);
 
 	return (
 		<Layout>
 			<section>
-				<div className="container px-4 mx-auto">
+				<div className="container px-4 pb-10 mx-auto">
 					<div className="max-w-lg mx-auto mb-12 text-center">
 						<span className="inline-block py-1 px-3 text-xs font-semibold bg-blue-100 text-blue-600 rounded-xl">
 							Movies
 						</span>
 					</div>
 					<div className="flex flex-col space-y-5">
-						<Grid>
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-							<Select value={selectedOption} options={options} onChange={handleChange} />
-						</Grid>
 						<Grid>
 							{data?.movies?.map(movie => (
 								// eslint-disable-next-line @typescript-eslint/restrict-template-expressions

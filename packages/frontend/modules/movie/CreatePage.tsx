@@ -14,6 +14,7 @@ import {
 	useUploadPosterMutation,
 } from 'generated/graphql';
 import handleInputClick from 'lib/handleInputClick';
+import {useRouter} from 'next/router';
 import React, {useRef, useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
 import {useVerifyLoggedIn} from '../auth/useVerifyLoggedIn';
@@ -28,6 +29,8 @@ interface Values {
 export const CreatePage: React.FC = () => {
 	useVerifyLoggedIn();
 
+	const router = useRouter();
+
 	const [createMovie] = useCreateMovieMutation();
 
 	const [uploadBackdrop] = useUploadBackdropMutation();
@@ -39,8 +42,15 @@ export const CreatePage: React.FC = () => {
 	const backdropInput = useRef(null as HTMLInputElement | null);
 	const posterInput = useRef(null as HTMLInputElement | null);
 
-	const handleBackdropChange = (event: any) => setBackdrop(event.target.files[0]);
-	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
+	const handleBackdropChange = (event: any) => {
+		setBackdrop(event.target.files[0]);
+		notify('success', 'mutation', 'Backdrop ready to upload');
+	};
+
+	const handlePosterChange = (event: any) => {
+		setPoster(event.target.files[0]);
+		notify('success', 'mutation', 'Poster ready to upload');
+	};
 
 	return (
 		<Layout>
@@ -90,7 +100,8 @@ export const CreatePage: React.FC = () => {
 						})
 						.then(() => {
 							setSubmitting(false);
-						});
+						})
+						.then(async () => router.push('/movies'));
 				}}
 			>
 				{({isSubmitting}) => (
@@ -102,22 +113,24 @@ export const CreatePage: React.FC = () => {
 								</div>
 							</div>
 							<div className="flex space-x-5 max-w-5xl mx-auto mb-8">
-								<PosterDiv
-									src={undefined}
-									onClick={() => {
-										handleInputClick(posterInput);
-									}}
-									onChange={handlePosterChange}
-								>
-									<input
-										ref={posterInput}
-										type="file"
-										id="file"
-										accept="images"
-										style={{display: 'none'}}
-									/>
-									<Icon icon={AiOutlinePlus} />
-								</PosterDiv>
+								<div>
+									<PosterDiv
+										src={undefined}
+										onClick={() => {
+											handleInputClick(posterInput);
+										}}
+										onChange={handlePosterChange}
+									>
+										<input
+											ref={posterInput}
+											type="file"
+											id="file"
+											accept="images"
+											style={{display: 'none'}}
+										/>
+										<Icon icon={AiOutlinePlus} />
+									</PosterDiv>
+								</div>
 								<BackdropDiv
 									src={undefined}
 									onClick={() => {
@@ -143,7 +156,7 @@ export const CreatePage: React.FC = () => {
 						<section className="py-20">
 							<div className="container px-4 mx-auto text-center">
 								<div className="flex space-x-5 justify-center">
-									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</Button>
+									<Button type="submit">{isSubmitting ? 'Creating...' : 'Create Movie'}</Button>
 									<Button variant="secondary" onClick={() => history.go(-1)}>
 										Cancel
 									</Button>

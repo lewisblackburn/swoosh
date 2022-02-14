@@ -1,13 +1,10 @@
-import {Card} from '@components/Card';
 import {Grid} from '@components/Grid';
-import {Icon} from '@components/Icon';
 import {Poster} from '@components/Poster';
 import {useVerifyLoggedIn} from '@modules/auth/useVerifyLoggedIn';
 import {Layout} from '@modules/layouts/Layout';
 import {SortOrder, useShowsQuery} from 'generated/graphql';
 import Link from 'next/link';
 import React, {useState} from 'react';
-import {AiOutlinePlus} from 'react-icons/ai';
 import Select from 'react-select';
 
 const options = [

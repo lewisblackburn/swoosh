@@ -6,9 +6,11 @@ fragment RegularShow on Show {
 	poster
 	backdrop
 	released
+	runtime
 	trailer
 	rating
 	isLiked
+	isInWatchlist
 	_count {
 		likes
 	}

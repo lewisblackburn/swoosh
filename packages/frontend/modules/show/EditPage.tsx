@@ -365,6 +365,7 @@ interface Values {
 	tagline: string;
 	overview: string;
 	rating: string;
+	runtime: number;
 	released: any;
 	trailer: string;
 }
@@ -406,6 +407,7 @@ export const EditPage: React.FC = () => {
 						tagline: show?.show?.tagline ?? '',
 						overview: show?.show?.overview ?? '',
 						rating: show?.show?.rating ?? '',
+						runtime: show?.show?.runtime ?? 0,
 						released: new Date(show?.show?.released ?? 0).toISOString().split('T')[0] ?? 0,
 						trailer: show?.show?.trailer ?? '',
 					}}
@@ -425,6 +427,9 @@ export const EditPage: React.FC = () => {
 									},
 									rating: {
 										set: values.rating,
+									},
+									runtime: {
+										set: parseFloat(values.runtime.toString()),
 									},
 									released: {
 										set: values.released,

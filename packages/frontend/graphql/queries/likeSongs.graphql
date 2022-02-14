@@ -1,0 +1,14 @@
+query LikedSongs(
+	$where: SongLikeWhereInput
+	$orderBy: [SongLikeOrderByWithRelationInput!]
+	$cursor: SongLikeWhereUniqueInput
+	$skip: Int
+	$take: Int
+) {
+	likedSongs(where: $where, orderBy: $orderBy, cursor: $cursor, skip: $skip, take: $take) {
+		song {
+			id
+			title
+		}
+	}
+}

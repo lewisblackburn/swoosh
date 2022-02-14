@@ -2,9 +2,16 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {notify} from '@components/Notify';
 import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
-import {PersonDocument, UploadType, useCreatePersonMutation, useUploadPosterMutation} from 'generated/graphql';
+import {
+	PeopleDocument,
+	PersonDocument,
+	UploadType,
+	useCreatePersonMutation,
+	useUploadPosterMutation,
+} from 'generated/graphql';
 import {useRouter} from 'next/router';
 import React, {useRef, useState} from 'react';
 import {AiOutlinePlus} from 'react-icons/ai';
@@ -28,7 +35,10 @@ export const CreatePage: React.FC = () => {
 	const [uploadPoster] = useUploadPosterMutation();
 	const [poster, setPoster] = useState();
 	const posterInput = useRef(null as HTMLInputElement | null);
-	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
+	const handlePosterChange = (event: any) => {
+		setPoster(event.target.files[0]);
+		notify('success', 'mutation', 'Poster ready to upload');
+	};
 
 	return (
 		<Layout>
@@ -49,7 +59,7 @@ export const CreatePage: React.FC = () => {
 						update: cache => {
 							cache.evict({fieldName: 'people:{}'});
 						},
-						refetchQueries: [PersonDocument],
+						refetchQueries: [PeopleDocument],
 					})
 						.then(res => {
 							uploadPoster({
@@ -74,7 +84,7 @@ export const CreatePage: React.FC = () => {
 							</div>
 							<div className="flex justify-center space-x-5 max-w-5xl mx-auto mb-8">
 								<PosterDiv
-									src=""
+									src={undefined}
 									onClick={() => {
 										if (posterInput.current) posterInput.current.click();
 									}}
@@ -97,7 +107,7 @@ export const CreatePage: React.FC = () => {
 						<section className="py-20">
 							<div className="container px-4 mx-auto text-center">
 								<div className="flex space-x-5 justify-center">
-									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Save changes'}</Button>
+									<Button type="submit">{isSubmitting ? 'Creating...' : 'Create Person'}</Button>
 									<Button variant="secondary" onClick={() => history.go(-1)}>
 										Cancel
 									</Button>

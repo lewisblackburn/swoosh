@@ -3,6 +3,7 @@ import {Button} from '@components/Button';
 import InputField from '@components/Form/InputField';
 import {Textarea} from '@components/Form/Textarea';
 import {Icon} from '@components/Icon';
+import {notify} from '@components/Notify';
 import {PosterDiv} from '@components/PosterDiv';
 import {Form, Formik, FormikHelpers} from 'formik';
 import {
@@ -41,8 +42,15 @@ export const CreatePage: React.FC = () => {
 	const backdropInput = useRef(null as HTMLInputElement | null);
 	const posterInput = useRef(null as HTMLInputElement | null);
 
-	const handleBackdropChange = (event: any) => setBackdrop(event.target.files[0]);
-	const handlePosterChange = (event: any) => setPoster(event.target.files[0]);
+	const handleBackdropChange = (event: any) => {
+		setBackdrop(event.target.files[0]);
+		notify('success', 'mutation', 'Backdrop ready to upload');
+	};
+
+	const handlePosterChange = (event: any) => {
+		setPoster(event.target.files[0]);
+		notify('success', 'mutation', 'Poster ready to upload');
+	};
 
 	return (
 		<Layout>
@@ -99,22 +107,24 @@ export const CreatePage: React.FC = () => {
 								</div>
 							</div>
 							<div className="flex space-x-5 max-w-5xl mx-auto mb-8">
-								<PosterDiv
-									src={undefined}
-									onClick={() => {
-										handleInputClick(posterInput);
-									}}
-									onChange={handlePosterChange}
-								>
-									<input
-										ref={posterInput}
-										type="file"
-										id="file"
-										accept="images"
-										style={{display: 'none'}}
-									/>
-									<Icon icon={AiOutlinePlus} />
-								</PosterDiv>
+								<div>
+									<PosterDiv
+										src={undefined}
+										onClick={() => {
+											handleInputClick(posterInput);
+										}}
+										onChange={handlePosterChange}
+									>
+										<input
+											ref={posterInput}
+											type="file"
+											id="file"
+											accept="images"
+											style={{display: 'none'}}
+										/>
+										<Icon icon={AiOutlinePlus} />
+									</PosterDiv>
+								</div>
 								<BackdropDiv
 									src={undefined}
 									onClick={() => {
@@ -140,7 +150,7 @@ export const CreatePage: React.FC = () => {
 						<section className="py-20">
 							<div className="container px-4 mx-auto text-center">
 								<div className="flex space-x-5 justify-center">
-									<Button type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</Button>
+									<Button type="submit">{isSubmitting ? 'Creating...' : 'Create Show'}</Button>
 									<Button variant="secondary" onClick={() => history.go(-1)}>
 										Cancel
 									</Button>

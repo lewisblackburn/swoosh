@@ -1,0 +1,14 @@
+query LikedMovies(
+	$where: MovieLikeWhereInput
+	$orderBy: [MovieLikeOrderByWithRelationInput!]
+	$cursor: MovieLikeWhereUniqueInput
+	$skip: Int
+	$take: Int
+) {
+	likedMovies(where: $where, orderBy: $orderBy, cursor: $cursor, skip: $skip, take: $take) {
+		movie {
+			id
+			title
+		}
+	}
+}

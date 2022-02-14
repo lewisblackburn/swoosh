@@ -9782,7 +9782,7 @@ export type QueryMovieLikesArgs = {
 };
 
 export type QueryMovieReviewArgs = {
-  where: MovieReviewWhereUniqueInput;
+  movieId: Scalars['Int'];
 };
 
 export type QueryMovieReviewLikeArgs = {
@@ -10033,6 +10033,7 @@ export type Show = {
   createdAt: Scalars['DateTime'];
   genres: Genre[];
   id: Scalars['Int'];
+  isInWatchlist: Scalars['Boolean'];
   isLiked: Scalars['Boolean'];
   likes: ShowLike[];
   locked: Scalars['Boolean'];
@@ -16816,7 +16817,7 @@ export type RegularMovieFragment = {__typename?: 'Movie'; id: number; title: str
 
 export type RegularPersonFragment = {__typename?: 'Person'; id: number; career: Career[]; name: string; poster: string; bio?: string | null; age?: number | null; _count?: {__typename?: 'PersonCount'; movies: number; shows: number; books: number; songs: number} | null};
 
-export type RegularShowFragment = {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}};
+export type RegularShowFragment = {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}};
 
 export type RegularSongFragment = {__typename?: 'Song'; id: number; title: string; description: string; poster: string; released?: any | null; runtime?: number | null; isLiked: boolean; _count?: {__typename?: 'SongCount'; likes: number} | null; artists: Array<{__typename?: 'ArtistInSong'; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; reviews: Array<{__typename?: 'SongReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'SongReviewCount'; likes: number} | null}>; aggregateSongReview: {__typename?: 'AggregateSongReview'; _avg?: {__typename?: 'SongReviewAvgAggregate'; rating?: number | null} | null}};
 
@@ -17112,7 +17113,7 @@ export type UpdateShowMutationVariables = Exact<{
   where: ShowWhereUniqueInput;
 }>;
 
-export type UpdateShowMutation = {__typename?: 'Mutation'; updateShow?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type UpdateShowMutation = {__typename?: 'Mutation'; updateShow?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type UpdateSongMutationVariables = Exact<{
   data: SongUpdateInput;
@@ -17236,6 +17237,46 @@ export type GenresQueryVariables = Exact<{
 
 export type GenresQuery = {__typename?: 'Query'; genres: Array<{__typename?: 'Genre'; id: number; name: string}>};
 
+export type LikedSongsQueryVariables = Exact<{
+  where?: InputMaybe<SongLikeWhereInput>;
+  orderBy?: InputMaybe<SongLikeOrderByWithRelationInput[] | SongLikeOrderByWithRelationInput>;
+  cursor?: InputMaybe<SongLikeWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type LikedSongsQuery = {__typename?: 'Query'; likedSongs: Array<{__typename?: 'SongLike'; song: {__typename?: 'Song'; id: number; title: string}}>};
+
+export type LikedBooksQueryVariables = Exact<{
+  where?: InputMaybe<BookLikeWhereInput>;
+  orderBy?: InputMaybe<BookLikeOrderByWithRelationInput[] | BookLikeOrderByWithRelationInput>;
+  cursor?: InputMaybe<BookLikeWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type LikedBooksQuery = {__typename?: 'Query'; likedBooks: Array<{__typename?: 'BookLike'; book: {__typename?: 'Book'; id: number; title: string}}>};
+
+export type LikedMoviesQueryVariables = Exact<{
+  where?: InputMaybe<MovieLikeWhereInput>;
+  orderBy?: InputMaybe<MovieLikeOrderByWithRelationInput[] | MovieLikeOrderByWithRelationInput>;
+  cursor?: InputMaybe<MovieLikeWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type LikedMoviesQuery = {__typename?: 'Query'; likedMovies: Array<{__typename?: 'MovieLike'; movie: {__typename?: 'Movie'; id: number; title: string}}>};
+
+export type LikedShowsQueryVariables = Exact<{
+  where?: InputMaybe<ShowLikeWhereInput>;
+  orderBy?: InputMaybe<ShowLikeOrderByWithRelationInput[] | ShowLikeOrderByWithRelationInput>;
+  cursor?: InputMaybe<ShowLikeWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type LikedShowsQuery = {__typename?: 'Query'; likedShows: Array<{__typename?: 'ShowLike'; show: {__typename?: 'Show'; id: number; title: string}}>};
+
 export type MeQueryVariables = Exact<Record<string, never>>;
 
 export type MeQuery = {__typename?: 'Query'; me?: {__typename?: 'User'; id: number; email: string; username: string; avatar: string} | null};
@@ -17246,10 +17287,27 @@ export type MovieQueryVariables = Exact<{
 
 export type MovieQuery = {__typename?: 'Query'; movie?: {__typename?: 'Movie'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'MovieCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInMovie'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInMovie: Array<{__typename?: 'SongInMovie'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>; aggregateMovieReview: {__typename?: 'AggregateMovieReview'; _avg?: {__typename?: 'MovieReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
+export type MovieReviewQueryVariables = Exact<{
+  movieId: Scalars['Int'];
+}>;
+
+export type MovieReviewQuery = {__typename?: 'Query'; movieReview?: {__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null} | null};
+
+export type MovieReviewsQueryVariables = Exact<{
+  where?: InputMaybe<MovieReviewWhereInput>;
+  orderBy?: InputMaybe<MovieReviewOrderByWithRelationInput[] | MovieReviewOrderByWithRelationInput>;
+  cursor?: InputMaybe<MovieReviewWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
+
+export type MovieReviewsQuery = {__typename?: 'Query'; movieReviews: Array<{__typename?: 'MovieReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'MovieReviewCount'; likes: number} | null}>};
+
 export type MoviesQueryVariables = Exact<{
   where?: InputMaybe<MovieWhereInput>;
   orderBy?: InputMaybe<MovieOrderByWithRelationInput[] | MovieOrderByWithRelationInput>;
   cursor?: InputMaybe<MovieWhereUniqueInput>;
+  skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
 }>;
 
@@ -17282,7 +17340,7 @@ export type ShowQueryVariables = Exact<{
   showId: Scalars['Int'];
 }>;
 
-export type ShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; trailer?: string | null; rating?: string | null; isLiked: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
+export type ShowQuery = {__typename?: 'Query'; show?: {__typename?: 'Show'; id: number; title: string; tagline: string; overview: string; poster: string; backdrop: string; released?: any | null; runtime?: number | null; trailer?: string | null; rating?: string | null; isLiked: boolean; isInWatchlist: boolean; _count?: {__typename?: 'ShowCount'; likes: number} | null; actors: Array<{__typename?: 'ActorInShow'; role: string; person: {__typename?: 'Person'; id: number; name: string; poster: string}}>; genres: Array<{__typename?: 'Genre'; name: string}>; soundtrack: Array<{__typename?: 'SongInShow'; timestamp: any; description: string; song: {__typename?: 'Song'; id: number; title: string; description: string; poster: string; artists: Array<{__typename?: 'ArtistInSong'; personId: number; person: {__typename?: 'Person'; name: string}}>; songInShow: Array<{__typename?: 'SongInShow'; timestamp: any; description: string}>}}>; reviews: Array<{__typename?: 'ShowReview'; review?: string | null; rating: number; user: {__typename?: 'User'; username: string; avatar: string}; _count?: {__typename?: 'ShowReviewCount'; likes: number} | null}>; aggregateShowReview: {__typename?: 'AggregateShowReview'; _avg?: {__typename?: 'ShowReviewAvgAggregate'; rating?: number | null} | null}} | null};
 
 export type ShowsQueryVariables = Exact<{
   where?: InputMaybe<ShowWhereInput>;
@@ -17316,7 +17374,7 @@ export type UserQuery = {__typename?: 'Query'; user?: {__typename?: 'User'; id: 
 
 export type WatchlistQueryVariables = Exact<Record<string, never>>;
 
-export type WatchlistQuery = {__typename?: 'Query'; watchlist?: {__typename?: 'Watchlist'; movies: Array<{__typename?: 'Movie'; id: number; title: string}>} | null};
+export type WatchlistQuery = {__typename?: 'Query'; watchlist?: {__typename?: 'Watchlist'; movies: Array<{__typename?: 'Movie'; id: number; title: string}>; shows: Array<{__typename?: 'Show'; id: number; title: string}>} | null};
 
 export type NotificationListenerSubscriptionVariables = Exact<{
   listenerId: Scalars['Int'];
@@ -17454,9 +17512,11 @@ export const RegularShowFragmentDoc = gql`
   poster
   backdrop
   released
+  runtime
   trailer
   rating
   isLiked
+  isInWatchlist
   _count {
     likes
   }
@@ -19776,6 +19836,206 @@ export function useGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Gen
 export type GenresQueryHookResult = ReturnType<typeof useGenresQuery>;
 export type GenresLazyQueryHookResult = ReturnType<typeof useGenresLazyQuery>;
 export type GenresQueryResult = Apollo.QueryResult<GenresQuery, GenresQueryVariables>;
+export const LikedSongsDocument = gql`
+    query LikedSongs($where: SongLikeWhereInput, $orderBy: [SongLikeOrderByWithRelationInput!], $cursor: SongLikeWhereUniqueInput, $skip: Int, $take: Int) {
+  likedSongs(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
+    song {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useLikedSongsQuery__
+ *
+ * To run a query within a React component, call `useLikedSongsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLikedSongsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLikedSongsQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useLikedSongsQuery(baseOptions?: Apollo.QueryHookOptions<LikedSongsQuery, LikedSongsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<LikedSongsQuery, LikedSongsQueryVariables>(LikedSongsDocument, options);
+      }
+
+export function useLikedSongsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LikedSongsQuery, LikedSongsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<LikedSongsQuery, LikedSongsQueryVariables>(LikedSongsDocument, options);
+        }
+
+export type LikedSongsQueryHookResult = ReturnType<typeof useLikedSongsQuery>;
+export type LikedSongsLazyQueryHookResult = ReturnType<typeof useLikedSongsLazyQuery>;
+export type LikedSongsQueryResult = Apollo.QueryResult<LikedSongsQuery, LikedSongsQueryVariables>;
+export const LikedBooksDocument = gql`
+    query LikedBooks($where: BookLikeWhereInput, $orderBy: [BookLikeOrderByWithRelationInput!], $cursor: BookLikeWhereUniqueInput, $skip: Int, $take: Int) {
+  likedBooks(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
+    book {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useLikedBooksQuery__
+ *
+ * To run a query within a React component, call `useLikedBooksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLikedBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLikedBooksQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useLikedBooksQuery(baseOptions?: Apollo.QueryHookOptions<LikedBooksQuery, LikedBooksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<LikedBooksQuery, LikedBooksQueryVariables>(LikedBooksDocument, options);
+      }
+
+export function useLikedBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LikedBooksQuery, LikedBooksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<LikedBooksQuery, LikedBooksQueryVariables>(LikedBooksDocument, options);
+        }
+
+export type LikedBooksQueryHookResult = ReturnType<typeof useLikedBooksQuery>;
+export type LikedBooksLazyQueryHookResult = ReturnType<typeof useLikedBooksLazyQuery>;
+export type LikedBooksQueryResult = Apollo.QueryResult<LikedBooksQuery, LikedBooksQueryVariables>;
+export const LikedMoviesDocument = gql`
+    query LikedMovies($where: MovieLikeWhereInput, $orderBy: [MovieLikeOrderByWithRelationInput!], $cursor: MovieLikeWhereUniqueInput, $skip: Int, $take: Int) {
+  likedMovies(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
+    movie {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useLikedMoviesQuery__
+ *
+ * To run a query within a React component, call `useLikedMoviesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLikedMoviesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLikedMoviesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useLikedMoviesQuery(baseOptions?: Apollo.QueryHookOptions<LikedMoviesQuery, LikedMoviesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<LikedMoviesQuery, LikedMoviesQueryVariables>(LikedMoviesDocument, options);
+      }
+
+export function useLikedMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LikedMoviesQuery, LikedMoviesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<LikedMoviesQuery, LikedMoviesQueryVariables>(LikedMoviesDocument, options);
+        }
+
+export type LikedMoviesQueryHookResult = ReturnType<typeof useLikedMoviesQuery>;
+export type LikedMoviesLazyQueryHookResult = ReturnType<typeof useLikedMoviesLazyQuery>;
+export type LikedMoviesQueryResult = Apollo.QueryResult<LikedMoviesQuery, LikedMoviesQueryVariables>;
+export const LikedShowsDocument = gql`
+    query LikedShows($where: ShowLikeWhereInput, $orderBy: [ShowLikeOrderByWithRelationInput!], $cursor: ShowLikeWhereUniqueInput, $skip: Int, $take: Int) {
+  likedShows(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
+    show {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useLikedShowsQuery__
+ *
+ * To run a query within a React component, call `useLikedShowsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLikedShowsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLikedShowsQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useLikedShowsQuery(baseOptions?: Apollo.QueryHookOptions<LikedShowsQuery, LikedShowsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<LikedShowsQuery, LikedShowsQueryVariables>(LikedShowsDocument, options);
+      }
+
+export function useLikedShowsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LikedShowsQuery, LikedShowsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<LikedShowsQuery, LikedShowsQueryVariables>(LikedShowsDocument, options);
+        }
+
+export type LikedShowsQueryHookResult = ReturnType<typeof useLikedShowsQuery>;
+export type LikedShowsLazyQueryHookResult = ReturnType<typeof useLikedShowsLazyQuery>;
+export type LikedShowsQueryResult = Apollo.QueryResult<LikedShowsQuery, LikedShowsQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {
@@ -19849,9 +20109,115 @@ export function useMovieLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Movi
 export type MovieQueryHookResult = ReturnType<typeof useMovieQuery>;
 export type MovieLazyQueryHookResult = ReturnType<typeof useMovieLazyQuery>;
 export type MovieQueryResult = Apollo.QueryResult<MovieQuery, MovieQueryVariables>;
+export const MovieReviewDocument = gql`
+    query MovieReview($movieId: Int!) {
+  movieReview(movieId: $movieId) {
+    review
+    rating
+    user {
+      username
+      avatar
+    }
+    _count {
+      likes
+    }
+  }
+}
+    `;
+
+/**
+ * __useMovieReviewQuery__
+ *
+ * To run a query within a React component, call `useMovieReviewQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMovieReviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMovieReviewQuery({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function useMovieReviewQuery(baseOptions: Apollo.QueryHookOptions<MovieReviewQuery, MovieReviewQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<MovieReviewQuery, MovieReviewQueryVariables>(MovieReviewDocument, options);
+      }
+
+export function useMovieReviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieReviewQuery, MovieReviewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<MovieReviewQuery, MovieReviewQueryVariables>(MovieReviewDocument, options);
+        }
+
+export type MovieReviewQueryHookResult = ReturnType<typeof useMovieReviewQuery>;
+export type MovieReviewLazyQueryHookResult = ReturnType<typeof useMovieReviewLazyQuery>;
+export type MovieReviewQueryResult = Apollo.QueryResult<MovieReviewQuery, MovieReviewQueryVariables>;
+export const MovieReviewsDocument = gql`
+    query MovieReviews($where: MovieReviewWhereInput, $orderBy: [MovieReviewOrderByWithRelationInput!], $cursor: MovieReviewWhereUniqueInput, $skip: Int, $take: Int) {
+  movieReviews(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
+    review
+    rating
+    user {
+      username
+      avatar
+    }
+    _count {
+      likes
+    }
+  }
+}
+    `;
+
+/**
+ * __useMovieReviewsQuery__
+ *
+ * To run a query within a React component, call `useMovieReviewsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMovieReviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMovieReviewsQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useMovieReviewsQuery(baseOptions?: Apollo.QueryHookOptions<MovieReviewsQuery, MovieReviewsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions};
+        return Apollo.useQuery<MovieReviewsQuery, MovieReviewsQueryVariables>(MovieReviewsDocument, options);
+      }
+
+export function useMovieReviewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieReviewsQuery, MovieReviewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions};
+          return Apollo.useLazyQuery<MovieReviewsQuery, MovieReviewsQueryVariables>(MovieReviewsDocument, options);
+        }
+
+export type MovieReviewsQueryHookResult = ReturnType<typeof useMovieReviewsQuery>;
+export type MovieReviewsLazyQueryHookResult = ReturnType<typeof useMovieReviewsLazyQuery>;
+export type MovieReviewsQueryResult = Apollo.QueryResult<MovieReviewsQuery, MovieReviewsQueryVariables>;
 export const MoviesDocument = gql`
-    query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput, $take: Int) {
-  movies(where: $where, orderBy: $orderBy, cursor: $cursor, take: $take) {
+    query Movies($where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationInput!], $cursor: MovieWhereUniqueInput, $skip: Int, $take: Int) {
+  movies(
+    where: $where
+    orderBy: $orderBy
+    cursor: $cursor
+    skip: $skip
+    take: $take
+  ) {
     id
     title
     poster
@@ -19874,6 +20240,7 @@ export const MoviesDocument = gql`
  *      where: // value for 'where'
  *      orderBy: // value for 'orderBy'
  *      cursor: // value for 'cursor'
+ *      skip: // value for 'skip'
  *      take: // value for 'take'
  *   },
  * });
@@ -20280,6 +20647,10 @@ export const WatchlistDocument = gql`
     query Watchlist {
   watchlist {
     movies {
+      id
+      title
+    }
+    shows {
       id
       title
     }
